@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -10,13 +9,13 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  ctaHeading: "",
-  ctaDesc: "",
-  ctaButtonLabel: "",
-  ctaButtonUrl: "",
+  heading: "",
+  description: "",
+  leaderRole0: "", leaderName0: "", leaderBio0: "",
+  leaderRole1: "", leaderName1: "", leaderBio1: "",
 };
 
-interface AboutCtaCMSProps {
+interface LeadershipCMSProps {
   sectionId?: string;
   initialData?: Record<string, unknown>;
   saveUrl?: string;
@@ -26,15 +25,15 @@ interface AboutCtaCMSProps {
   onToggle?: () => void;
 }
 
-export function AboutCtaCMS({
+export function LeadershipCMS({
   sectionId,
   initialData,
   saveUrl = "/api/about",
-  responseKey = "AboutCta",
+  responseKey = "Leadership",
   onSave,
   isOpen: controlledIsOpen,
   onToggle: controlledOnToggle,
-}: AboutCtaCMSProps) {
+}: LeadershipCMSProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
@@ -49,14 +48,28 @@ export function AboutCtaCMS({
   const [formData, setFormData] = useState(defaultFormData);
 
   useEffect(() => {
+    const unpackData = (data: any) => {
+      const list = (data.leaders as any[]) || [];
+      setFormData({
+        heading: data.heading || "",
+        description: data.description || "",
+        leaderRole0: list[0]?.role || "",
+        leaderName0: list[0]?.name || "",
+        leaderBio0: list[0]?.bio || "",
+        leaderRole1: list[1]?.role || "",
+        leaderName1: list[1]?.name || "",
+        leaderBio1: list[1]?.bio || "",
+      });
+    };
+
     if (initialData) {
-      setFormData({ ...defaultFormData, ...initialData });
+      unpackData(initialData);
     } else {
       fetchWithCache(saveUrl)
         .then((json) => {
           const sectionData = responseKey ? json.data?.[responseKey] : json.data;
           if (json.success && sectionData) {
-            setFormData({ ...defaultFormData, ...sectionData });
+            unpackData(sectionData);
           }
         })
         .catch(console.error);
@@ -72,10 +85,14 @@ export function AboutCtaCMS({
 
   const handleSave = async () => {
     const errs: string[] = [];
-    if (!formData.ctaHeading?.trim()) errs.push("CTA Heading is required");
-    if (!formData.ctaDesc?.trim()) errs.push("Description is required");
-    if (!formData.ctaButtonLabel?.trim()) errs.push("Button label is required");
-    if (!formData.ctaButtonUrl?.trim()) errs.push("Button URL link is required");
+    if (!formData.heading?.trim()) errs.push("Heading is required");
+    if (!formData.description?.trim()) errs.push("Description is required");
+
+    for (let i = 0; i < 2; i++) {
+      if (!(formData as any)[`leaderRole${i}`]?.trim()) errs.push(`Leader ${i + 1} Role is required`);
+      if (!(formData as any)[`leaderName${i}`]?.trim()) errs.push(`Leader ${i + 1} Name is required`);
+      if (!(formData as any)[`leaderBio${i}`]?.trim()) errs.push(`Leader ${i + 1} Bio is required`);
+    }
 
     if (errs.length > 0) {
       errs.forEach((msg) => toast.error(msg));
@@ -83,10 +100,18 @@ export function AboutCtaCMS({
     }
 
     setIsSaving(true);
-    const toastId = toast.loading("Saving CTA details...");
+    const toastId = toast.loading("Saving Leadership section...");
     try {
+      const leaders = Array.from({ length: 2 }).map((_, i) => ({
+        role: (formData as any)[`leaderRole${i}`],
+        name: (formData as any)[`leaderName${i}`],
+        bio: (formData as any)[`leaderBio${i}`],
+      }));
+
       const payload = {
-        ...formData,
+        heading: formData.heading,
+        description: formData.description,
+        leaders,
       };
 
       const body = sectionId
@@ -101,8 +126,7 @@ export function AboutCtaCMS({
 
       const json = await res.json();
       if (json.success) {
-        toast.success("About CTA saved successfully!", { id: toastId });
-        setFormData(payload);
+        toast.success("Leadership saved successfully!", { id: toastId });
         if (onSave) onSave(payload as unknown as Record<string, unknown>);
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -119,8 +143,8 @@ export function AboutCtaCMS({
     <section>
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
-          title="About Call-To-Action Section"
-          description="Manage special moments background lines, CTA descriptions, and booking redirect buttons."
+          title="Leadership Team Section"
+          description="Manage leadership cards, photos, bios, and subheadings."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -132,67 +156,68 @@ export function AboutCtaCMS({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              
-              {/* Header Editor Block */}
               <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  Heading Configurator
-                </span>
-
-                <InputField
-                  label="Call-To-Action Heading"
-                  name="ctaHeading"
-                  value={formData.ctaHeading}
-                  onChange={handleChange}
-                  placeholder="e.g. Celebrate your special moments with us."
-                  required
-                  containerClassName="w-full"
-                />
-
-                <TextAreaField
-                  label="Description / Subheading Text"
-                  name="ctaDesc"
-                  value={formData.ctaDesc}
-                  onChange={handleChange}
-                  placeholder="From intimate dinners to grand celebrations in our private barn..."
-                  containerClassName="w-full"
-                  rows={2}
-                  required
-                />
-              </div>
-
-              {/* Action Button Link Block */}
-              <div className="flex flex-col gap-4 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  CTA Action Button Config
-                </span>
-
                 <div className="flex flex-col md:flex-row gap-6 w-full">
                   <InputField
-                    label="Button Label"
-                    name="ctaButtonLabel"
-                    value={formData.ctaButtonLabel}
+                    label="Heading"
+                    name="heading"
+                    value={formData.heading}
                     onChange={handleChange}
-                    placeholder="e.g. Book Your Visit"
+                    placeholder="e.g. Leadership Team"
                     required
                     containerClassName="flex-1"
                   />
-                  
                   <InputField
-                    label="Button Redirect Link URL"
-                    name="ctaButtonUrl"
-                    value={formData.ctaButtonUrl}
+                    label="Description"
+                    name="description"
+                    value={formData.description}
                     onChange={handleChange}
-                    placeholder="e.g. /contact"
+                    placeholder="e.g. Experienced leaders driving operational..."
                     required
                     containerClassName="flex-1"
                   />
                 </div>
+
+                {/* Leader Cards */}
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4">
+                  Edit 2 Executive Leadership Profiles
+                </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {Array.from({ length: 2 }).map((_, i) => (
+                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm">
+                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                        Executive Profile {i + 1}
+                      </span>
+                      <InputField
+                        label="Role / Title"
+                        name={`leaderRole${i}`}
+                        value={(formData as any)[`leaderRole${i}`]}
+                        onChange={handleChange}
+                        placeholder="e.g. Managing Director"
+                        required
+                      />
+                      <InputField
+                        label="Name"
+                        name={`leaderName${i}`}
+                        value={(formData as any)[`leaderName${i}`]}
+                        onChange={handleChange}
+                        placeholder="e.g. [Name]"
+                        required
+                      />
+                      <TextAreaField
+                        label="Biography"
+                        name={`leaderBio${i}`}
+                        value={(formData as any)[`leaderBio${i}`]}
+                        onChange={handleChange}
+                        placeholder="Executive bio..."
+                        rows={6}
+                        required
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Save Action */}
               <div className="flex justify-end pt-4 border-t border-gray-100">
                 <SaveButton
                   onClick={handleSave}
@@ -200,7 +225,6 @@ export function AboutCtaCMS({
                   className="w-44 h-12 text-sm"
                 />
               </div>
-
             </div>
           </div>
         </div>

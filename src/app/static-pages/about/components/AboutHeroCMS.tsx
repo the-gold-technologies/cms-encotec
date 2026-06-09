@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { CloudUpload, Trash2, Sparkles, Image as ImageIcon } from "lucide-react";
+import { CloudUpload, Trash2, Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -11,11 +11,10 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  backgroundImage: "",
   tagline: "",
-  headingPart1: "",
-  headingItalicHighlight: "",
-  quote: "",
+  heading: "",
+  description: "",
+  backgroundImage: "",
 };
 
 interface AboutHeroCMSProps {
@@ -92,9 +91,8 @@ export function AboutHeroCMS({
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline label is required");
-    if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
-    if (!formData.headingItalicHighlight?.trim()) errs.push("Heading Italic Highlight is required");
-    if (!formData.quote?.trim()) errs.push("Quote is required");
+    if (!formData.heading?.trim()) errs.push("Heading is required");
+    if (!formData.description?.trim()) errs.push("Description is required");
     if (!selectedImage) errs.push("Background image is required");
 
     if (errs.length > 0) {
@@ -148,7 +146,7 @@ export function AboutHeroCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="About Hero Section"
-          description="Manage parallax background imagery, tagline badges, split-headings, and introductory quote callouts."
+          description="Manage background parallax imagery, tagline badge, heading and intro description."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -168,40 +166,29 @@ export function AboutHeroCMS({
                   name="tagline"
                   value={formData.tagline}
                   onChange={handleChange}
-                  placeholder="e.g. Our Story"
+                  placeholder="e.g. About Encotec Energy"
                   required
                   containerClassName="w-full"
                 />
                 
-                <div className="flex flex-col md:flex-row gap-6 w-full">
-                  <InputField
-                    label="Heading Part 1 (Regular)"
-                    name="headingPart1"
-                    value={formData.headingPart1}
-                    onChange={handleChange}
-                    placeholder="e.g. About"
-                    required
-                    containerClassName="flex-1"
-                  />
-                  <InputField
-                    label="Heading Part 2 (Italic Highlight)"
-                    name="headingItalicHighlight"
-                    value={formData.headingItalicHighlight}
-                    onChange={handleChange}
-                    placeholder="e.g. Us"
-                    required
-                    containerClassName="flex-1"
-                  />
-                </div>
+                <InputField
+                  label="Heading"
+                  name="heading"
+                  value={formData.heading}
+                  onChange={handleChange}
+                  placeholder="e.g. Engineering Excellence, Delivered with Ownership"
+                  required
+                  containerClassName="w-full"
+                />
 
                 <TextAreaField
-                  label="Introductory Quote / Summary"
-                  name="quote"
-                  value={formData.quote}
+                  label="Description"
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
-                  placeholder="Introduce the About page in a beautiful quote box..."
+                  placeholder="A full-spectrum engineering and services company..."
                   containerClassName="w-full"
-                  rows={2}
+                  rows={3}
                   required
                 />
               </div>
@@ -210,7 +197,7 @@ export function AboutHeroCMS({
               <div className="flex flex-col gap-3">
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
                   <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  Parallax Hero Background Image
+                  Hero Background Image
                 </span>
 
                 {preview ? (
@@ -256,7 +243,7 @@ export function AboutHeroCMS({
                     <p className="text-xs text-gray-500 font-semibold group-hover:text-blue-600">
                       Drag and drop image here, or <span className="text-blue-500 hover:underline animate-pulse">browse</span>
                     </p>
-                    <p className="text-[10px] text-gray-400 mt-1">PNG, JPG or WEBP (Parallax Background)</p>
+                    <p className="text-[10px] text-gray-400 mt-1">PNG, JPG or WEBP (Hero Background)</p>
                   </div>
                 )}
                 <input

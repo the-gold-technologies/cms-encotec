@@ -2,17 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
+import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  philosophyQuote: "",
+  heading: "",
+  description: "",
+  ctaLabel: "",
+  ctaUrl: "",
 };
 
-interface AboutPhilosophyCMSProps {
+interface ClosingStatementCMSProps {
   sectionId?: string;
   initialData?: Record<string, unknown>;
   saveUrl?: string;
@@ -22,15 +25,15 @@ interface AboutPhilosophyCMSProps {
   onToggle?: () => void;
 }
 
-export function AboutPhilosophyCMS({
+export function ClosingStatementCMS({
   sectionId,
   initialData,
   saveUrl = "/api/about",
-  responseKey = "AboutPhilosophy",
+  responseKey = "ClosingStatement",
   onSave,
   isOpen: controlledIsOpen,
   onToggle: controlledOnToggle,
-}: AboutPhilosophyCMSProps) {
+}: ClosingStatementCMSProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
@@ -60,20 +63,26 @@ export function AboutPhilosophyCMS({
   }, [initialData, saveUrl, responseKey]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSave = async () => {
-    if (!formData.philosophyQuote?.trim()) {
-      toast.error("Philosophy banner quote is required");
+    const errs: string[] = [];
+    if (!formData.heading?.trim()) errs.push("Heading quote statement is required");
+    if (!formData.description?.trim()) errs.push("Description tagline is required");
+    if (!formData.ctaLabel?.trim()) errs.push("CTA label is required");
+    if (!formData.ctaUrl?.trim()) errs.push("CTA redirect URL is required");
+
+    if (errs.length > 0) {
+      errs.forEach((msg) => toast.error(msg));
       return;
     }
 
     setIsSaving(true);
-    const toastId = toast.loading("Saving Philosophy Banner...");
+    const toastId = toast.loading("Saving Closing Statement section...");
     try {
       const payload = {
         ...formData,
@@ -91,7 +100,7 @@ export function AboutPhilosophyCMS({
 
       const json = await res.json();
       if (json.success) {
-        toast.success("Philosophy Banner saved successfully!", { id: toastId });
+        toast.success("Closing Statement saved successfully!", { id: toastId });
         setFormData(payload);
         if (onSave) onSave(payload as unknown as Record<string, unknown>);
       } else {
@@ -109,8 +118,8 @@ export function AboutPhilosophyCMS({
     <section>
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
-          title="About Philosophy Banner Section"
-          description="Manage the main hospitality brand banner quote highlighting proper drink, food, and village character."
+          title="Closing Statement & CTA Section"
+          description="Manage closing summary callout text, partner CTA action labels, and link redirection."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -122,27 +131,48 @@ export function AboutPhilosophyCMS({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              
-              {/* Quote Editor Block */}
               <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  Philosophy Brand Statement
-                </span>
-                
                 <TextAreaField
-                  label="Philosophy Banner Quote Text"
-                  name="philosophyQuote"
-                  value={formData.philosophyQuote}
+                  label="Closing Statement Heading Quote"
+                  name="heading"
+                  value={formData.heading}
                   onChange={handleChange}
-                  placeholder="e.g. We believe that a great British pub should serve excellent food, pour a proper drink..."
-                  containerClassName="w-full"
-                  rows={4}
+                  placeholder="e.g. Encotec integrates engineering expertise..."
+                  rows={3}
                   required
                 />
+
+                <InputField
+                  label="Description Line / Subtitle"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  placeholder="e.g. — not just at commissioning, but throughout..."
+                  required
+                />
+
+                <div className="flex flex-col md:flex-row gap-6 w-full border-t border-gray-100 pt-6">
+                  <InputField
+                    label="CTA Button Label"
+                    name="ctaLabel"
+                    value={formData.ctaLabel}
+                    onChange={handleChange}
+                    placeholder="e.g. Partner With Us"
+                    required
+                    containerClassName="flex-1"
+                  />
+                  <InputField
+                    label="CTA Action Redirect URL"
+                    name="ctaUrl"
+                    value={formData.ctaUrl}
+                    onChange={handleChange}
+                    placeholder="e.g. /contact"
+                    required
+                    containerClassName="flex-1"
+                  />
+                </div>
               </div>
 
-              {/* Save Action */}
               <div className="flex justify-end pt-4 border-t border-gray-100">
                 <SaveButton
                   onClick={handleSave}
@@ -150,7 +180,6 @@ export function AboutPhilosophyCMS({
                   className="w-44 h-12 text-sm"
                 />
               </div>
-
             </div>
           </div>
         </div>

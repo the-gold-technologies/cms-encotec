@@ -384,6 +384,182 @@ async function main() {
       });
       console.log("Created Home sections (all 10 Encotec sections)");
     }
+
+    if (createdPage.slug === "about") {
+      // 1. AboutHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "AboutHero",
+          order: 0,
+          content: {
+            tagline: "About Encotec Energy",
+            heading: "Engineering Excellence, Delivered with Ownership",
+            description: "A full-spectrum engineering and services company operating across power generation, transmission & distribution, and renewable energy sectors.",
+            backgroundImage: "https://images.unsplash.com/photo-1497435334941-8c899a9bd6a2?auto=format&fit=crop&q=80&w=2400",
+          }
+        }
+      });
+      // 2. WhoWeAre
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "WhoWeAre",
+          order: 1,
+          content: {
+            tagline: "Who We Are",
+            heading: "Energy is More Than Just Infrastructure",
+            headingHighlight: "Just Infrastructure",
+            paragraphs: [
+              "At Encotec, we believe that energy infrastructure is about more than just steel and circuits — it is about the responsibility of keeping the world moving. We have evolved from a traditional consulting firm into a Global Service Provider that offers end-to-end solutions for the entire life of your project.",
+              "We approach every plant, every substation, and every utility we manage with what we call an \"Owner's Mindset\". This means we don't just provide a service; we take total responsibility for your assets, treating them with the same care, accountability, and long-term vision as if they were our own."
+            ]
+          }
+        }
+      });
+      // 3. MissionVisionValues
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "MissionVisionValues",
+          order: 2,
+          content: {
+            tagline: "Our Heart and Soul",
+            description: "Our purpose is to bridge the gap between technical complexity and business success.",
+            missionTitle: "Mission",
+            missionDesc: "To deliver error-free, high-standard services through continuous innovation and a relentless commitment to \"finding new ways to energy solutions\".",
+            visionTitle: "Vision",
+            visionDesc: "To be the most trusted global partner in energy stewardship, leading the transition from traditional power to a sustainable future.",
+            valuesTitle: "Core Values",
+            valuesDesc: "We are defined by Accountability, Innovation, and Total Care. By adopting the owner's perspective, we ensure that safety and efficiency are never compromised.",
+            valuesList: [
+              { title: "Accountability", description: "We treat every site with the care of an owner, taking full responsibility for outcomes.", icon: "HeartHandshake" },
+              { title: "Innovation", description: "We constantly find new ways to improve energy solutions for reliability and efficiency.", icon: "Award" },
+              { title: "Safety First", description: "We ensure excellence isn't just a goal — it's our standard at every project site.", icon: "ShieldCheck" },
+              { title: "Quality Standards", description: "Triple ISO Certified in Quality (9001), Environment (14001), and Safety (45001).", icon: "TrendingUp" },
+              { title: "Client Partnership", description: "We work as trusted partners, aligning our solutions with client objectives.", icon: "Users" },
+              { title: "Sustainability", description: "Bridging the gap between traditional power and the renewable future.", icon: "Leaf" }
+            ]
+          }
+        }
+      });
+      // 4. ScaleImpact
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ScaleImpact",
+          order: 3,
+          content: {
+            heading: "Encotec by the Numbers",
+            description: "Our growth is a testament to the trust our partners place in us. As of 2025–26, our impact is felt across the industry.",
+            stats: [
+              { value: "1,800+", label: "Dedicated Staff", description: "Working across global sites", icon: "Users" },
+              { value: "300+", label: "Specialized Engineers", description: "Providing high-level expert advisory and diagnostics", icon: "Briefcase" },
+              { value: "8,000+", label: "MW Managed", description: "Total power capacity under our stewardship", icon: "Zap" },
+              { value: "Triple ISO", label: "Certified", description: "Quality (9001), Environment (14001), Safety (45001)", icon: "ShieldCheck" },
+              { value: "65+", label: "Global OEMs", description: "Tie-ups across China, Vietnam, Korea, and India", icon: "Globe" }
+            ],
+            footerNote: "Our scale is not just a measure of size, but a reflection of our ability to consistently deliver high-performance outcomes across complex engineering environments."
+          }
+        }
+      });
+      // 5. Timeline
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "Timeline",
+          order: 4,
+          content: {
+            tagline: "Our Journey",
+            heading: "A Timeline of Growth",
+            description: "We have spent over a decade building a legacy of excellence, one project at a time.",
+            phases: [
+              { title: "2011–2012: Construction Beginnings", description: "We began our major journey with complex IBR piping erection and commissioning for the massive 2x660 MW Obra 'C' project." },
+              { title: "2013: Renewable Expansion", description: "Expanded into the green frontier, successfully commissioning 10 MWp Solar PV projects in Gujarat and Solar Thermal projects in Rajasthan." },
+              { title: "2014–2021: O&M Leadership", description: "Solidified our reputation as top-tier stewards with the long-term O&M management of 2x600 MW units at Tuticorin." },
+              { title: "2018: Supercritical Excellence", description: "Embarked on our flagship O&M partnership for the 2x700 MW Supercritical Power Plant at Jhajjar." },
+              { title: "2021: Going Global", description: "Took our expertise global, managing critical commissioning projects internationally." },
+              { title: "2025 & Beyond: New Chapters", description: "We are currently providing specialized utility management for international hubs like Delhi (DIAL) and Noida (YIAPL) International Airports." }
+            ]
+          }
+        }
+      });
+      // 6. Sustainability
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "Sustainability",
+          order: 5,
+          content: {
+            tagline: "ESG Commitment",
+            heading: "Committed to a Greener Tomorrow",
+            paragraphs: [
+              "Sustainability is not a policy at Encotec; it is our promise. We are committed to sustainable development by integrating high standards of environmental management into everything we do.",
+              "Our in-house Encotec-Dornier team conducts specialized energy audits to identify savings and reduce the carbon footprints of operational plants. Through our expert advisory and Residual Life Assessments (RLA), we help owners revitalize old plants, making them more efficient and environmentally compliant."
+            ],
+            focuses: [
+              "Specialized energy audits by our in-house Encotec-Dornier team to identify savings and reduce carbon footprints",
+              "Residual Life Assessments (RLA) to help owners revitalize older plants for improved efficiency and environmental compliance",
+              "ISO 14001 environmental management integrated into daily operations across all sites",
+              "Supporting the transition from traditional power to a sustainable, renewable future"
+            ],
+            footerNote: "Our approach ensures that sustainability is not an afterthought, but an integral part of how we design, execute, and operate energy systems."
+          }
+        }
+      });
+      // 7. GlobalPresence
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "GlobalPresence",
+          order: 6,
+          content: {
+            tagline: "Our Reach",
+            heading: "A Global Presence with a Local Touch",
+            description: "While our headquarters is in Noida, our footprints span the world. In India, we are present in 13+ key cities from Jamshedpur to Vizag. Internationally, we have established strong roots in Turkey, Bahrain, and Greece, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
+            areas: [
+              { title: "International Operations", desc: "Turkey, Bahrain, Greece" },
+              { title: "Headquarters", desc: "Noida, India" },
+              { title: "Eastern & Central India", desc: "Jamshedpur, Haldia, Khandwa" },
+              { title: "Coastal & Southern India", desc: "Vizag and expanding regions" }
+            ],
+            calloutTitle: "Wherever Energy is Needed",
+            calloutDesc: "We combine local execution strength with global engineering expertise, ensuring that we bring the same \"Owner's Mindset\" to every project, no matter the geography."
+          }
+        }
+      });
+      // 8. Leadership
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "Leadership",
+          order: 7,
+          content: {
+            heading: "Leadership Team",
+            description: "Experienced leaders driving operational excellence and strategic growth",
+            leaders: [
+              { role: "Managing Director", name: "[Name]", bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations, establishing a strong presence in both domestic and international markets. Focuses on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships." },
+              { role: "Director – Operations", name: "[Name]", bio: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives." }
+            ]
+          }
+        }
+      });
+      // 9. ClosingStatement
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ClosingStatement",
+          order: 8,
+          content: {
+            heading: "Encotec integrates engineering expertise, execution capability, and operational excellence to deliver solutions that perform",
+            description: "— not just at commissioning, but throughout the lifecycle of every asset.",
+            ctaLabel: "Partner With Us",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created About sections (all 9 Encotec sections)");
+    }
   }
 
   // 5. Navigation Links

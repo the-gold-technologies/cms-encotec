@@ -1,25 +1,31 @@
 import { PageHeader } from "@/components/PageHeader";
 import { AboutHeroCMS } from "./components/AboutHeroCMS";
-import { AboutRootsCMS } from "./components/AboutRootsCMS";
-import { AboutPhilosophyCMS } from "./components/AboutPhilosophyCMS";
-import { AboutExperienceCMS } from "./components/AboutExperienceCMS";
-import { AboutAmenitiesCMS } from "./components/AboutAmenitiesCMS";
-import { AboutCtaCMS } from "./components/AboutCtaCMS";
+import { WhoWeAreCMS } from "./components/WhoWeAreCMS";
+import { MissionVisionValuesCMS } from "./components/MissionVisionValuesCMS";
+import { ScaleImpactCMS } from "./components/ScaleImpactCMS";
+import { TimelineCMS } from "./components/TimelineCMS";
+import { SustainabilityCMS } from "./components/SustainabilityCMS";
+import { GlobalPresenceCMS } from "./components/GlobalPresenceCMS";
+import { LeadershipCMS } from "./components/LeadershipCMS";
+import { ClosingStatementCMS } from "./components/ClosingStatementCMS";
 
 export default function AboutCMSPage() {
   return (
     <section className="flex flex-col gap-6">
       <PageHeader
         title="About Page Content"
-        description="Manage the content displayed on the About Us page, including brand roots, parallax hero backgrounds, hospitality statements, features, and custom CTA booking details."
+        description="Manage the content displayed on the About Us page, including Encotec's brand values, numbers, history timeline, green initiatives, and geographic reach."
       />
 
       <AboutHeroCMS />
-      <AboutRootsCMS />
-      <AboutPhilosophyCMS />
-      <AboutExperienceCMS />
-      <AboutAmenitiesCMS />
-      <AboutCtaCMS />
+      <WhoWeAreCMS />
+      <MissionVisionValuesCMS />
+      <ScaleImpactCMS />
+      <TimelineCMS />
+      <SustainabilityCMS />
+      <GlobalPresenceCMS />
+      <LeadershipCMS />
+      <ClosingStatementCMS />
     </section>
   );
 }

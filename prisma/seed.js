@@ -560,6 +560,212 @@ async function main() {
       });
       console.log("Created About sections (all 9 Encotec sections)");
     }
+
+    if (createdPage.slug === "services") {
+      // 1. ServicesHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ServicesHero",
+          order: 0,
+          content: {
+            tagline: "Our Services",
+            heading: "Integrated Solutions Across the Asset Lifecycle",
+            description: "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running."
+          }
+        }
+      });
+
+      // 2. IntroSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "IntroSection",
+          order: 1,
+          content: {
+            paragraph1: "At Encotec, we don't just provide engineering services; we provide peace of mind. We approach every facility we manage with an \"Owner's Mindset\", meaning we treat your infrastructure with the same care, precision, and long-term vision as if it were our own.",
+            paragraph2: "With a family of over 1,800 staff members and 300+ specialized engineers, we bridge the gap between technical complexity and commercial success. Below is an overview of how we provide end-to-end expertise across the asset lifecycle."
+          }
+        }
+      });
+
+      // 3. CoreServices
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CoreServices",
+          order: 2,
+          content: {
+            heading: "Core Services",
+            services: [
+              {
+                title: "Project Conceptualisation & Development",
+                icon: "Target",
+                link: "/services/project-management",
+                overview: "We help you build on a solid foundation, from pre-feasibility studies to the final selection of your EPC partners.",
+                capabilities: [
+                  "Feasibility & Pre-Feasibility Studies",
+                  "Detailed Project Reports (DPR)",
+                  "Strategic Sourcing & Technical Specifications",
+                  "EPC Contractor Selection",
+                  "Financial Assessments"
+                ],
+                value: [
+                  "Technically sound planning",
+                  "Financially viable projects",
+                  "Stakeholder confidence"
+                ]
+              },
+              {
+                title: "Construction, Commissioning & Relocation",
+                icon: "HardHat",
+                link: "/services/transmission-distribution",
+                overview: "Whether it's a new build or moving an entire plant across borders, we handle the complex installation and synchronization of your assets.",
+                capabilities: [
+                  "Multi-Sector Construction Expertise",
+                  "International Commissioning",
+                  "Grid Synchronization & Performance Tests",
+                  "Asset Dismantling & Relocation",
+                  "Complex IBR Piping Erection"
+                ],
+                value: [
+                  "Speed and safety",
+                  "Seamless cross-border transitions",
+                  "Physical realization of complex assets"
+                ]
+              },
+              {
+                title: "Asset Stewardship (O&M)",
+                icon: "Settings",
+                link: "/services/power-generation",
+                overview: "As one of India's top five O&M specialists, we provide continuous care for thermal plants, international airports, and critical utilities.",
+                capabilities: [
+                  "Thermal & Supercritical Mastery",
+                  "Airport Utility Management",
+                  "Integrated ERP Support",
+                  "Zero-Error Operations",
+                  "Risk Management & Reliability Focus"
+                ],
+                value: [
+                  "Optimized megawatt production",
+                  "Long-term asset health",
+                  "Owner-perspective care"
+                ]
+              },
+              {
+                title: "Expert Advisory & Performance Audits",
+                icon: "ClipboardCheck",
+                link: "/services/renewable-energy",
+                overview: "When problems arise or efficiency drops, our specialists provide on-site diagnostics and high-level technical solutions.",
+                capabilities: [
+                  "Specialised Testing (NDT)",
+                  "Energy Efficiency Audits",
+                  "Steam Path Audits",
+                  "5S & Process Improvement",
+                  "High-Level Problem Solving"
+                ],
+                value: [
+                  "Reduced megawatt production costs",
+                  "Improved workplace safety",
+                  "Restored operational efficiency"
+                ]
+              },
+              {
+                title: "Due Diligence & Asset Health",
+                icon: "ShieldCheck",
+                link: "/services/airport-services",
+                overview: "We evaluate the \"residual life\" of older plants to help owners make informed decisions about acquisitions or relocations.",
+                capabilities: [
+                  "Residual Life Assessment (RLA)",
+                  "Technical Due Diligence",
+                  "Independent Technical Audits",
+                  "Revamping & Restoration Strategy",
+                  "Environmental Compliance Planning"
+                ],
+                value: [
+                  "Informed investment decisions",
+                  "Understanding true asset value",
+                  "Future-proofed infrastructure"
+                ]
+              },
+              {
+                title: "Strategic Global Sourcing (Spare Parts)",
+                icon: "Package",
+                link: "/services/value-added",
+                overview: "Access our trusted network of major OEMs in China, Vietnam, and India to keep your facility running without interruption.",
+                capabilities: [
+                  "Global OEM Network (65+ tie-ups)",
+                  "Comprehensive Inventory Supply",
+                  "High-Pressure Boiler Spares",
+                  "Electrical Actuators & Mill Rollers",
+                  "Engineering Integration Support"
+                ],
+                value: [
+                  "Reduced downtime",
+                  "Strategic sourcing partnerships",
+                  "Guaranteed specification performance"
+                ]
+              }
+            ]
+          }
+        }
+      });
+
+      // 4. IndustriesSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "IndustriesSection",
+          order: 3,
+          content: {
+            heading: "Industries We Serve",
+            description: "We deliver solutions across a wide range of sectors",
+            industries: [
+              { name: "Power Generation", subtitle: "Thermal & Renewable", icon: "Flame" },
+              { name: "Transmission & Distribution", subtitle: "Grid Infrastructure", icon: "Network" },
+              { name: "Infrastructure & Industrial", subtitle: "Facilities", icon: "Building" },
+              { name: "Airports & Utility Systems", subtitle: "Critical Infrastructure", icon: "Plane" },
+              { name: "Energy & Climate Projects", subtitle: "Sustainable Solutions", icon: "Zap" }
+            ]
+          }
+        }
+      });
+
+      // 5. ProcessSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ProcessSection",
+          order: 4,
+          content: {
+            heading: "How We Deliver",
+            description: "Our structured approach ensures precision and reliability at every stage",
+            steps: [
+              { title: "Assess", description: "Technical and commercial evaluation", number: "01" },
+              { title: "Design", description: "Engineering and system planning", number: "02" },
+              { title: "Execute", description: "Construction and commissioning", number: "03" },
+              { title: "Operate", description: "Maintenance and optimization", number: "04" }
+            ]
+          }
+        }
+      });
+
+      // 6. ClosingSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ClosingSection",
+          order: 5,
+          content: {
+            heading: "Our integrated approach ensures that every project — from concept to operation — is delivered with precision, reliability, and long-term performance in mind.",
+            highlight: "from concept to operation",
+            ctaLabel: "Start Your Project",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created Services sections (all 6 Encotec sections)");
+    }
   }
 
   // 5. Navigation Links

@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Page {
+  id              String    @id @default(cuid())
+  title           String?
+  slug            String    @unique
+  parent          String    @default("-")
+  order           Int       @default(0)
+  type            String    @default("standard")
+  visibility      String    @default("draft")
+  isStatic        Boolean   @default(false)
+  description     String?
+  metaTitle       String?
+  metaDescription String?
+  targetKeywords  String?
+  canonicalUrl    String?
+  noIndex         Boolean   @default(false)
+  featuredImage   String?
+  ogTitle         String?
+  ogDescription   String?
+  ogImage         String?
+  headingOptions  Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  sections        Section[]
+}
+
+model Section {
+  id        String   @id @default(cuid())
+  pageId    String
+  type      String
+  content   Json     @default("{}")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+}
+
+model NavLink {
+  id          String   @id @default(cuid())
+  label       String
+  url         String
+  type        String   @default("Main Link")
+  parent      String   @default("-")
+  order       Int      @default(0)
+  description String?
+  title       String?
+  isStatic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
+model Enquiry {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  interestedIn String?
+  budget       String?
+  projectGoals String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model GlobalConfig {
+  id                  String   @id @default("global")
+  siteTitle           String
+  siteDescription     String
+  favicon             String?
+  googleAnalyticsId   String?
+  gtmId               String?
+  searchConsoleId     String?
+  customHeaderScripts String?
+  customFooterScripts String?
+  socialLinks         Json?
+  canonicalOrdering   String   @default("default")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+
+
+
+

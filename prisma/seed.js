@@ -115,6 +115,69 @@ async function main() {
       isStatic: true,
       visibility: "public",
     },
+    {
+      title: "Engineering Services",
+      slug: "engineering-services",
+      description: "Comprehensive engineering solutions for reliable energy infrastructure.",
+      metaTitle: "Engineering Services - Encotec",
+      metaDescription: "Comprehensive engineering solutions for reliable energy infrastructure.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Project Management",
+      slug: "project-management",
+      description: "Structured project conceptualisation and development services.",
+      metaTitle: "Project Management - Encotec",
+      metaDescription: "Structured project conceptualisation and development services.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Power Generation",
+      slug: "power-generation",
+      description: "Asset stewardship and operations & maintenance services.",
+      metaTitle: "Power Generation (O&M) - Encotec",
+      metaDescription: "Asset stewardship and operations & maintenance services.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Transmission & Distribution",
+      slug: "transmission-distribution",
+      description: "Construction, commissioning, and relocation services.",
+      metaTitle: "Transmission & Distribution - Encotec",
+      metaDescription: "Construction, commissioning, and relocation services.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Renewable Energy",
+      slug: "renewable-energy",
+      description: "Expert advisory and performance diagnostic audits.",
+      metaTitle: "Renewable Energy - Encotec",
+      metaDescription: "Expert advisory and performance diagnostic audits.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Airport Services",
+      slug: "airport-services",
+      description: "Due diligence and asset health evaluation services.",
+      metaTitle: "Airport Services - Encotec",
+      metaDescription: "Due diligence and asset health evaluation services.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Value-Added Services",
+      slug: "value-added",
+      description: "Strategic global sourcing and spare parts supply.",
+      metaTitle: "Value-Added Services - Encotec",
+      metaDescription: "Strategic global sourcing and spare parts supply.",
+      isStatic: true,
+      visibility: "public",
+    },
   ];
 
   for (const pageData of pages) {
@@ -765,6 +828,604 @@ async function main() {
         }
       });
       console.log("Created Services sections (all 6 Encotec sections)");
+    }
+
+    if (createdPage.slug === "engineering-services") {
+      // 1. EngineeringHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "EngineeringHero",
+          order: 0,
+          content: {
+            label: "Service 01",
+            headline: "ENGINEERING SERVICES",
+            description: "Comprehensive engineering solutions forming the foundation of reliable and efficient energy infrastructure across power generation, transmission, and renewable energy projects.",
+            floatingStats: [
+              "500+ Projects Engineered",
+              "8000+ MW Designed",
+              "99.2% Design Accuracy"
+            ],
+            backgroundImage: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2400"
+          }
+        }
+      });
+      // 2. OverviewSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "OverviewSection",
+          order: 1,
+          content: {
+            tagline: "Overview",
+            heading: "Building the Foundation of Reliable Energy Infrastructure",
+            paragraphs: [
+              "Our engineering services deliver comprehensive solutions that form the foundation of reliable and efficient energy infrastructure. We bring deep technical expertise across feasibility analysis, system design, and detailed engineering for power generation, transmission, and renewable energy projects.",
+              "From initial site assessment to final design validation, our engineering team ensures every project is built on a strong technical foundation that optimizes performance, minimizes risk, and delivers long-term value."
+            ],
+            quote: "Engineering excellence is not just about technical precision — it's about understanding the entire lifecycle and designing for reliability, efficiency, and sustainable performance.",
+            image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200",
+            badgeTitle: "Engineering Excellence",
+            badgeValue: "Since 2009"
+          }
+        }
+      });
+      // 3. CapabilitiesSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CapabilitiesSection",
+          order: 2,
+          content: {
+            tagline: "Capabilities",
+            heading: "Key Capabilities",
+            description: "Our engineering services span the complete project lifecycle, from initial assessment to detailed design and technical validation.",
+            capabilities: [
+              { title: "Site Assessment & Evaluation", description: "Comprehensive technical evaluation of site conditions, resource availability, and project feasibility", icon: "Target", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Energy Yield Analysis", description: "Detailed resource assessment and energy generation forecasting for optimal project planning", icon: "TrendingUp", image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Feasibility Studies", description: "Pre-feasibility and detailed feasibility studies with technical and commercial evaluation", icon: "FileText", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Design & Engineering", description: "Design review, detailed engineering, and preparation of comprehensive project reports (DPR)", icon: "Layout", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200" },
+              { title: "System Integration", description: "Power evacuation planning and system integration for seamless grid connectivity", icon: "Zap", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Transmission & Substation Design", description: "Transmission line design (33kV to 765kV) and substation design (AIS/GIS systems)", icon: "Network", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200" }
+            ]
+          }
+        }
+      });
+      // 4. ProcessSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ProcessSection",
+          order: 3,
+          content: {
+            tagline: "Our Approach",
+            heading: "Engineering Methodology",
+            description: "A systematic approach to engineering excellence, ensuring every project is built on a foundation of technical rigor and precision.",
+            steps: [
+              { title: "Assessment", description: "Comprehensive site evaluation, resource analysis, and technical feasibility assessment", icon: "Search", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Analysis", description: "Energy yield forecasting, system modeling, and detailed technical evaluation", icon: "TrendingUp", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Design", description: "Detailed engineering, system design, and comprehensive project documentation", icon: "PencilRuler", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Integration", description: "Power evacuation planning, grid connectivity design, and system integration", icon: "Settings", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200" },
+              { title: "Validation", description: "Design review, technical validation, and regulatory compliance verification", icon: "ShieldCheck", image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1200" }
+            ]
+          }
+        }
+      });
+      // 5. StatsSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "StatsSection",
+          order: 4,
+          content: {
+            heading: "Engineering Impact",
+            description: "Delivering measurable results through technical excellence and precision engineering",
+            stats: [
+              { value: 500, suffix: "+", label: "Projects Engineered" },
+              { value: 8000, suffix: "+ MW", label: "Capacity Designed" },
+              { value: 23, suffix: "+", label: "Countries Served" },
+              { value: 99.2, suffix: "%", label: "Design Accuracy" }
+            ]
+          }
+        }
+      });
+      // 6. FeaturedProjectSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "FeaturedProjectSection",
+          order: 5,
+          content: {
+            tagline: "Featured Project",
+            heading: "Engineering Excellence in Action",
+            projectTitle: "The Obra 'C' Thermal Success",
+            projectDescription: "Complete engineering services for a 2x660 MW supercritical thermal power plant in Uttar Pradesh, delivering comprehensive design, system integration, and technical validation.",
+            projectImage: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+            metrics: [
+              { value: "1,320 MW", label: "Total Capacity", icon: "Zap" },
+              { value: "Supercritical", label: "Technology", icon: "Target" },
+              { value: "On Schedule", label: "Delivery", icon: "CheckCircle2" }
+            ]
+          }
+        }
+      });
+      // 7. ValueSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ValueSection",
+          order: 6,
+          content: {
+            tagline: "Value Delivered",
+            heading: "Engineering Value",
+            description: "Our engineering approach delivers measurable value through risk reduction, performance optimization, and technical excellence.",
+            values: [
+              { title: "Reduced Project Risk", description: "Accurate planning and technical validation minimize execution risks and costly delays", icon: "ShieldCheck" },
+              { title: "Optimized System Design", description: "Performance-focused engineering ensures maximum efficiency and reliability", icon: "Target" },
+              { title: "Strong Technical Foundation", description: "Comprehensive documentation and design reviews support seamless execution", icon: "ClipboardCheck" },
+              { title: "Regulatory Compliance", description: "Designs meet all applicable standards and regulatory requirements", icon: "CheckCircle2" }
+            ]
+          }
+        }
+      });
+      // 8. RelatedServicesSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "RelatedServicesSection",
+          order: 7,
+          content: {
+            tagline: "Related Services",
+            heading: "Explore More Services",
+            services: [
+              { title: "Project Management", description: "Structured planning, coordination, and control across all project phases", link: "/services/project-management", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200" },
+              { title: "EPC & Construction", description: "Execution support across engineering, procurement, and construction", link: "/services", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200" },
+              { title: "O&M Services", description: "Long-term operational excellence and performance optimization", link: "/services", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200" }
+            ]
+          }
+        }
+      });
+      // 9. CTASection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CTASection",
+          order: 8,
+          content: {
+            heading: "Ready to Start Your Engineering Project?",
+            description: "Let our engineering team help you build a strong technical foundation for your energy infrastructure project.",
+            primaryBtnLabel: "Get Started",
+            primaryBtnUrl: "/contact",
+            secondaryBtnLabel: "View All Services",
+            secondaryBtnUrl: "/services"
+          }
+        }
+      });
+      console.log("Created Engineering Services sections");
+    }
+
+    if (createdPage.slug === "project-management") {
+      // 1. ProjectHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ProjectHero",
+          order: 0,
+          content: {
+            label: "Project Conceptualisation & Development",
+            headline: "Building Your Vision on a Logical Foundation",
+            description: "A great project doesn't start with a shovel in the ground; it starts with a logical, well-vetted plan. We are your strategic developers who ensure your project is technically sound and financially viable from day one.",
+            floatingBadges: [
+              { icon: "Map", text: "Pre-Feasibility" },
+              { icon: "FileText", text: "DPR Creation" },
+              { icon: "Briefcase", text: "EPC Selection" }
+            ]
+          }
+        }
+      });
+      // 2. PhilosophySection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "PhilosophySection",
+          order: 1,
+          content: {
+            heading: "Not Just Detailed Engineering. Strategic Development.",
+            paragraphs: [
+              "We are not a \"detailed engineering\" firm that gets lost in the minutiae. We understand that the earliest decisions in a project's lifecycle have the most profound impact on its ultimate success.",
+              "By adopting an \"Owner's Mindset\" from the very beginning, we evaluate site conditions, resource potential, and financial models to ensure your investment is built on reality, not just theory. We provide the clarity required for stakeholder confidence and project approval."
+            ],
+            features: [
+              { title: "Strategic Alignment", desc: "Aligning technical specs with business goals", icon: "Target" },
+              { title: "Financial Viability", desc: "Rigorous financial and resource assessments", icon: "FileCheck" },
+              { title: "Partner Selection", desc: "Finalising the right EPC contractors", icon: "Users" },
+              { title: "Risk Mitigation", desc: "Identifying challenges before they arise", icon: "ShieldCheck" }
+            ]
+          }
+        }
+      });
+      // 3. CoreOfferings
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CoreOfferings",
+          order: 2,
+          content: {
+            heading: "Our Development Services",
+            description: "End-to-end conceptualisation to ensure your project starts strong.",
+            offerings: [
+              { title: "Feasibility & Pre-Feasibility Studies", description: "We evaluate site conditions and resource potential to ensure your investment is built on reality, not just theory. Our comprehensive studies cover technical, economic, and environmental factors.", icon: "Map" },
+              { title: "Detailed Project Reports (DPR)", description: "We provide the technical and financial clarity required for stakeholder confidence and project approval. Our DPRs serve as the definitive blueprint for project execution and financing.", icon: "FileText" },
+              { title: "Strategic Sourcing & EPC Selection", description: "We develop rigorous technical specifications and help you finalise EPC contractors, ensuring you have the right partners by your side. We manage the entire tendering and evaluation process.", icon: "Briefcase" }
+            ]
+          }
+        }
+      });
+      // 4. StatsSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "StatsSection",
+          order: 3,
+          content: {
+            stats: [
+              { value: 8000, suffix: "+", label: "MW Conceptualised" },
+              { value: 100, suffix: "%", label: "Owner's Mindset" },
+              { value: 300, suffix: "+", label: "Specialized Engineers" }
+            ]
+          }
+        }
+      });
+      // 5. CTASection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CTASection",
+          order: 4,
+          content: {
+            heading: "Ready to Build Your Vision?",
+            description: "Let's start your project on a logical foundation with our expert conceptualisation and development services.",
+            ctaLabel: "Start the Conversation",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created Project Management sections");
+    }
+
+    if (createdPage.slug === "power-generation") {
+      // 1. StewardshipHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "StewardshipHero",
+          order: 0,
+          content: {
+            label: "Asset Stewardship (O&M)",
+            heading: "Operating With An Owner's Mindset",
+            description: "We don't just \"maintain\" plants; we steward them. By adopting the owner's perspective, we focus on reliability, risk management, and long-term health, ensuring that every megawatt produced is optimized."
+          }
+        }
+      });
+      // 2. StewardshipFeatures
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "StewardshipFeatures",
+          order: 1,
+          content: {
+            features: [
+              { title: "Thermal & Supercritical Mastery", description: "We manage some of India’s largest facilities, such as the 2x700 MW supercritical plant at Rajpura, with a focus on zero-error operations and maximum availability.", icon: "Zap" },
+              { title: "Airport Utility Management", description: "We are the silent force behind international hubs like DIAL, managing critical high-voltage assets, fire safety, and mechanical systems to ensure uninterrupted operations.", icon: "Plane" },
+              { title: "Integrated ERP Support", description: "All our sites are linked via a single ERP system, providing central project management and inventory support from our Noida headquarters for seamless operations.", icon: "Database" }
+            ]
+          }
+        }
+      });
+      // 3. StewardshipPhilosophy
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "StewardshipPhilosophy",
+          order: 2,
+          content: {
+            heading: "The Difference Between Maintenance & Stewardship",
+            paragraphs: [
+              "Maintenance is reactive; stewardship is proactive. As one of India's top five O&M specialists, we take total responsibility for the health of your assets.",
+              "Our approach integrates predictive diagnostics, rigorous safety protocols, and continuous performance optimization. We don't just fix what's broken; we prevent failures before they occur, maximizing the lifespan and profitability of your infrastructure."
+            ],
+            items: [
+              { title: "Zero-Error Focus", icon: "ShieldCheck" },
+              { title: "Predictive Diagnostics", icon: "Activity" },
+              { title: "Centralized ERP", icon: "Database" },
+              { title: "24/7 Monitoring", icon: "Settings" }
+            ]
+          }
+        }
+      });
+      // 4. CTASection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CTASection",
+          order: 3,
+          content: {
+            heading: "Experience True Stewardship",
+            description: "Let us take responsibility for your assets so you can focus on your core business.",
+            ctaLabel: "Partner With Us",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created Power Generation sections");
+    }
+
+    if (createdPage.slug === "transmission-distribution") {
+      // 1. ConstructionHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ConstructionHero",
+          order: 0,
+          content: {
+            label: "Construction, Commissioning & Relocation",
+            heading: "Bringing Complex Infrastructure to Life",
+            description: "At Encotec, we thrive on the challenge of \"physical realization\". From the massive IBR piping of a thermal plant to the precision mounting of solar modules, we bring your assets online with speed and safety."
+          }
+        }
+      });
+      // 2. CapabilitiesSection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CapabilitiesSection",
+          order: 1,
+          content: {
+            heading: "Physical Realization at Scale",
+            description: "Whether it's a new build or moving an entire plant across borders, we handle the complex installation and synchronization of your assets.",
+            capabilities: [
+              { title: "Multi-Sector Expertise", description: "We have delivered construction excellence across thermal power, solar PV, and wind projects globally. Our teams handle everything from civil works to complex mechanical erection.", icon: "HardHat" },
+              { title: "International Commissioning", description: "Our teams have managed grid synchronization and performance tests in diverse markets, including Greece and Turkey. We ensure your plant meets all local and international standards.", icon: "Globe" },
+              { title: "Asset Relocation Services", description: "Unique to Encotec, we support owners in the complex process of dismantling, shifting, and reinstalling plants from one site—or country—to another, ensuring minimal downtime.", icon: "Truck" }
+            ]
+          }
+        }
+      });
+      // 3. ProcessFlow
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ProcessFlow",
+          order: 2,
+          content: {
+            heading: "The Relocation Advantage",
+            description: "Asset relocation is a highly specialized service that requires meticulous planning, precise execution, and deep engineering knowledge. Encotec is one of the few global providers with a proven track record in cross-border plant relocations.",
+            bullets: [
+              "Detailed dismantling protocols and tagging",
+              "Logistics planning and customs clearance support",
+              "Refurbishment of critical components during transit",
+              "Re-erection and synchronization at the new site"
+            ],
+            steps: [
+              { "title": "Dismantle", "desc": "Precision teardown", "icon": "Settings" },
+              { "title": "Transport", "desc": "Global logistics", "icon": "Truck" },
+              { "title": "Erect", "desc": "Expert installation", "icon": "HardHat" },
+              { "title": "Commission", "desc": "Grid sync & testing", "icon": "Zap" }
+            ]
+          }
+        }
+      });
+      // 4. CTASection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CTASection",
+          order: 3,
+          content: {
+            heading: "Ready to Bring Your Asset Online?",
+            description: "From new builds to complex cross-border relocations, our teams are ready to execute.",
+            ctaLabel: "Discuss Your Project",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created Transmission & Distribution sections");
+    }
+
+    if (createdPage.slug === "renewable-energy") {
+      // 1. AdvisoryHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "AdvisoryHero",
+          order: 0,
+          content: {
+            label: "Expert Advisory & Performance Audits",
+            heading: "Solving the Hardest Engineering Problems",
+            description: "When a plant is running but not performing, or when technical faults disrupt your peace of mind, our expert advisory team steps in. We provide high-level problem solving that goes beyond basic maintenance."
+          }
+        }
+      });
+      // 2. AdvisoryFeatures
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "AdvisoryFeatures",
+          order: 1,
+          content: {
+            features: [
+              { title: "Specialised Testing (NDT)", description: "We use Non-Destructive Testing to assess the health of your equipment without causing further downtime. Identify micro-fractures and wear before they lead to catastrophic failure.", icon: "Search" },
+              { title: "Efficiency Audits", description: "Our in-house team conducts energy efficiency and steam path audits to identify savings and reduce your carbon footprint. We find the lost megawatts in your system.", icon: "Activity" },
+              { title: "5S & Process Improvement", description: "We implement industrial standards (5S) to improve workplace safety and operational flow. A clean, organized plant is a safe and efficient plant.", icon: "TrendingUp" }
+            ]
+          }
+        }
+      });
+      // 3. DiagnosticProcess
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "DiagnosticProcess",
+          order: 2,
+          content: {
+            heading: "Our Diagnostic Approach",
+            description: "We don't guess; we measure. Our advisory services are built on hard data and deep engineering expertise.",
+            steps: [
+              { step: "01", title: "Assess", desc: "Comprehensive site evaluation and data gathering" },
+              { step: "02", title: "Analyze", desc: "Deep dive into performance metrics and NDT results" },
+              { step: "03", title: "Advise", desc: "Actionable recommendations for improvement" },
+              { step: "04", title: "Optimize", desc: "Implementation support and verification" }
+            ]
+          }
+        }
+      });
+      // 4. CTASection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CTASection",
+          order: 3,
+          content: {
+            heading: "Is Your Asset Reaching Its Full Potential?",
+            description: "Speak with our specialized engineers about our expert advisory and performance audits.",
+            ctaLabel: "Request an Audit",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created Renewable Energy sections");
+    }
+
+    if (createdPage.slug === "airport-services") {
+      // 1. DueDiligenceHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "DueDiligenceHero",
+          order: 0,
+          content: {
+            label: "Due Diligence & Asset Health",
+            heading: "Making Informed Decisions For the Long Term",
+            description: "Before you buy an old plant or decide to move one, you need to know if it's fit for the future. Our due diligence services provide the technical truth about your assets."
+          }
+        }
+      });
+      // 2. HealthFeatures
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "HealthFeatures",
+          order: 1,
+          content: {
+            features: [
+              { title: "Residual Life Assessment (RLA)", description: "We conduct exhaustive studies to determine how many more years of efficient life your plant equipment actually has, helping you plan for replacements or upgrades.", icon: "Activity" },
+              { title: "Technical Due Diligence", description: "We provide independent technical audits for plant acquisitions, helping you understand the true value, operational risks, and hidden costs of an investment.", icon: "FileCheck" },
+              { title: "Restoration Strategy", description: "For older plants, we provide comprehensive revamping and restoration plans to improve performance, extend lifecycle, and meet modern environmental standards.", icon: "RefreshCw" }
+            ]
+          }
+        }
+      });
+      // 3. ValueProtection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ValueProtection",
+          order: 2,
+          content: {
+            heading: "Protecting Your Investment",
+            description: "Acquiring or relocating an industrial asset involves significant capital risk. Without a clear understanding of the asset's true condition, you may be inheriting expensive liabilities.",
+            bullets: [
+              "Structural integrity and material degradation",
+              "Historical O&M records and failure analysis",
+              "Environmental compliance and emissions",
+              "Control systems obsolescence",
+              "Thermodynamic performance baseline"
+            ]
+          }
+        }
+      });
+      // 4. CTASection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CTASection",
+          order: 3,
+          content: {
+            heading: "Planning an Acquisition or Relocation?",
+            description: "Get the technical truth about your assets before you make a decision.",
+            ctaLabel: "Request an Assessment",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created Airport Services sections");
+    }
+
+    if (createdPage.slug === "value-added") {
+      // 1. SourcingHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "SourcingHero",
+          order: 0,
+          content: {
+            label: "Strategic Global Sourcing",
+            heading: "The Global Link for Critical Equipment",
+            description: "Downtime is often caused by a missing part, not a missing plan. Encotec acts as your strategic sourcing partner, leveraging deep relationships with manufacturers to get you what you need, when you need it."
+          }
+        }
+      });
+      // 2. SourcingFeatures
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "SourcingFeatures",
+          order: 1,
+          content: {
+            features: [
+              { title: "Global OEM Network", description: "We have established tie-ups with over 65 major OEMs in China, Vietnam, Korea, and India, giving you direct access to high-quality components without the logistical headache.", icon: "Globe" },
+              { title: "Comprehensive Inventory", description: "We supply everything from high-pressure boiler spares to coal mill rollers and specialized electrical actuators, ensuring your entire plant is covered.", icon: "Package" },
+              { title: "Technical Support", description: "We don’t just supply parts; we provide the engineering support to ensure they are integrated correctly and perform to specification within your existing systems.", icon: "Wrench" }
+            ]
+          }
+        }
+      });
+      // 3. SourcingAdvantage
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "SourcingAdvantage",
+          order: 2,
+          content: {
+            heading: "More Than Just Procurement",
+            description: "Procurement is transactional; strategic sourcing is a partnership. Because we operate plants ourselves, we understand the critical difference between a part that \"fits\" and a part that \"performs\".",
+            paragraphs: [
+              "Our engineering team vets every supplier and verifies every specification. We handle the complex logistics, customs clearance, and quality assurance, delivering peace of mind along with your critical spares."
+            ],
+            cards: [
+              { title: "Quality Assured", icon: "ShieldCheck" },
+              { title: "65+ Global OEMs", icon: "Globe" },
+              { title: "Logistics Managed", icon: "Truck" },
+              { title: "Engineering Backed", icon: "Wrench" }
+            ]
+          }
+        }
+      });
+      // 4. CTASection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CTASection",
+          order: 3,
+          content: {
+            heading: "Sourcing Critical Spares?",
+            description: "Access our network of major OEMs in China, Vietnam, and beyond for your spare part needs.",
+            ctaLabel: "Request a Quote",
+            ctaUrl: "/contact"
+          }
+        }
+      });
+      console.log("Created Value-Added Services sections");
     }
   }
 

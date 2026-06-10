@@ -57,6 +57,19 @@ const sidebarLinks: SidebarLink[] = [
     ],
   },
   {
+    title: "Sub-Services",
+    icon: Layers,
+    sublinks: [
+      { title: "Engineering Services", href: "/static-pages/services/engineering" },
+      { title: "Project Management", href: "/static-pages/services/project-management" },
+      { title: "Power Generation", href: "/static-pages/services/power-generation" },
+      { title: "Transmission & Distribution", href: "/static-pages/services/transmission-distribution" },
+      { title: "Renewable Energy", href: "/static-pages/services/renewable-energy" },
+      { title: "Airport Services", href: "/static-pages/services/airport-services" },
+      { title: "Value-Added Services", href: "/static-pages/services/value-added" },
+    ],
+  },
+  {
     title: "SEO Management",
     icon: Globe,
     sublinks: [

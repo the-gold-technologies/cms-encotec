@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { PageHeader } from "@/app/components/PageHeader";
 import { Search, Loader2, ChevronLeft, ChevronRight, Mail, Calendar, User, Tag, MessageSquare } from "lucide-react";
 import { InputField } from "@/app/components/InputField";
@@ -31,7 +31,7 @@ export default function EnquiriesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
 
-  const fetchEnquiries = async () => {
+  const fetchEnquiries = useCallback(async () => {
     setIsLoading(true);
     try {
       const res = await fetch(`/api/enquiries?page=${page}&search=${searchQuery}`);
@@ -42,16 +42,16 @@ export default function EnquiriesPage() {
       } else {
         toast.error(json.error || "Failed to fetch enquiries");
       }
-    } catch (error) {
+    } catch {
       toast.error("Network error");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [page, searchQuery]);
 
   useEffect(() => {
     fetchEnquiries();
-  }, [page, searchQuery]);
+  }, [fetchEnquiries]);
 
   return (
     <div className="flex flex-col gap-8 pb-20">

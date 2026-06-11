@@ -32,7 +32,7 @@ function getRelativeTime(timeStr: string) {
     if (diffHours < 24) return `${diffHours}h ago`;
     if (diffDays === 1) return "Yesterday";
     return `${diffDays} days ago`;
-  } catch (error) {
+  } catch {
     return "Recent";
   }
 }

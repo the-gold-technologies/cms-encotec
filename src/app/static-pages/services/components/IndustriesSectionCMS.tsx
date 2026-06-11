@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
-import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
   heading: "",

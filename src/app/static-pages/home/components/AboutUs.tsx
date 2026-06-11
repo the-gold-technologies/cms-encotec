@@ -15,7 +15,6 @@ import {
   Zap,
   Sparkles,
   Award,
-  HelpCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";

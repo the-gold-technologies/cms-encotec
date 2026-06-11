@@ -4,7 +4,6 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Link from "next/link";
 import { InputField } from "@/app/components/InputField";
 
 export default function LoginPage() {

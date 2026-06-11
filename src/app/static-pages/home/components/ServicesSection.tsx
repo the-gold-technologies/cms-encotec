@@ -3,12 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import {
-  CloudUpload,
-  Trash2,
-  Link,
-  Image as ImageIcon,
-  Plus,
-  X,
   ClipboardCheck,
   Network,
   Flame,

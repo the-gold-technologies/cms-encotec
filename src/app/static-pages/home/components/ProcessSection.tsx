@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import {
-  Sparkles,
   Search,
   PenTool,
   HardHat,

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Sparkles, HelpCircle } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";

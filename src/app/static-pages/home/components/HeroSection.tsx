@@ -5,10 +5,8 @@ import { fetchWithCache } from "@/lib/apiCache";
 import {
   CloudUpload,
   X,
-  Plus,
   Trash2,
   Tag,
-  Sparkles,
   BarChart3,
   Award,
 } from "lucide-react";

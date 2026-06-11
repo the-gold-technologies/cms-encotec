@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Tag, Plus, X } from "lucide-react";
+import { Tag, X } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";

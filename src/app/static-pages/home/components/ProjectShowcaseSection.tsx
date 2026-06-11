@@ -2,12 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import {
-  CloudUpload,
-  Trash2,
-  Image as ImageIcon,
-  Sparkles,
-} from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";

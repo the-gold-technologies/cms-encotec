@@ -1427,6 +1427,178 @@ async function main() {
       });
       console.log("Created Value-Added Services sections");
     }
+
+    if (createdPage.slug === "leadership") {
+      // 1. LeadershipHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "LeadershipHero",
+          order: 0,
+          content: {
+            heroTitle: "Our Leadership",
+            heroSubtitle: "Meet the executive team guiding Encotec's engineering and project management operations",
+            heroBadge1: "200+ Professionals",
+            heroBadge2: "15+ Years Average Experience",
+            heroBadge3: "23+ Countries"
+          }
+        }
+      });
+
+      // 2. LeadershipPhilosophy
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "LeadershipPhilosophy",
+          order: 1,
+          content: {
+            philosophyHeading: "Leading With an Owner's Mindset",
+            philosophyPara1: "At Encotec, leadership is not just about managing teams; it's about taking full accountability for the outcomes we deliver. Our leadership team brings decades of hands-on experience from the world's most complex energy projects.",
+            philosophyPara2: "We believe that true engineering excellence requires a culture where every team member is empowered to think critically, act decisively, and prioritize long-term asset performance over short-term gains.",
+            philosophyQuote: "We don't just manage projects — we take ownership of outcomes, treating every asset as if it were our own."
+          }
+        }
+      });
+
+      // 3. ExecutiveTeam
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ExecutiveTeam",
+          order: 2,
+          content: {
+            exec1Name: "Vikram Sharma",
+            exec1Role: "Managing Director & Founder",
+            exec1Bio: "25+ years of leadership in energy infrastructure. Founded Encotec with a vision to bring an owner's mindset to every project. Under his leadership, Encotec has grown from a specialized engineering firm to a full-spectrum energy services provider operating across 23+ countries.",
+            exec1Tags: "Strategic Leadership, Business Development, Energy Policy",
+            exec2Name: "Rajesh Patel",
+            exec2Role: "Director – Operations",
+            exec2Bio: "20+ years in power plant operations and project execution. Leads operational delivery across multiple projects, ensuring efficient execution, quality standards, and optimal resource utilization across thermal, renewable, and transmission projects.",
+            exec2Tags: "Operations Management, Plant Commissioning, Asset Optimization"
+          }
+        }
+      });
+
+      // 4. SeniorLeadership
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "SeniorLeadership",
+          order: 3,
+          content: {
+            leader1Name: "Dr. Anita Desai", leader1Role: "VP Engineering", leader1Bio: "PhD in Thermal Engineering. 18+ years leading complex engineering design for power generation and transmission projects.",
+            leader2Name: "Sanjay Mehta", leader2Role: "VP Business Development", leader2Bio: "15+ years driving strategic growth across India, Middle East, and Southeast Asia.",
+            leader3Name: "Priya Krishnan", leader3Role: "Head of Renewable Energy", leader3Bio: "12+ years in solar and wind energy project development and execution.",
+            leader4Name: "Arjun Reddy", leader4Role: "Head of Project Management", leader4Bio: "16+ years managing large-scale EPC projects across diverse geographies.",
+            leader5Name: "Dr. Klaus Werner", leader5Role: "Head of Quality & Safety", leader5Bio: "20+ years in quality management systems and international safety standards.",
+            leader6Name: "Meera Iyer", leader6Role: "Chief Financial Officer", leader6Bio: "14+ years in financial strategy and corporate governance for engineering firms."
+          }
+        }
+      });
+
+      // 5. TeamByNumbers
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "TeamByNumbers",
+          order: 4,
+          content: {
+            stats1Value: "1800", stats1Label: "Total Professionals",
+            stats2Value: "150", stats2Label: "Senior Engineers",
+            stats3Value: "23", stats3Label: "Countries of Operation",
+            stats4Value: "15", stats4Label: "Years Avg Experience"
+          }
+        }
+      });
+
+      // 6. CultureValues
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CultureValues",
+          order: 5,
+          content: {
+            value1Title: "Technical Mastery", value1Desc: "Deep domain expertise across every discipline",
+            value2Title: "Collaborative Spirit", value2Desc: "Cross-functional teams solving complex challenges",
+            value3Title: "Global Perspective", value3Desc: "Diverse experiences from 23+ countries",
+            value4Title: "Continuous Growth", value4Desc: "Investment in learning and professional development"
+          }
+        }
+      });
+
+      // 7. JoinCTA
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "JoinCTA",
+          order: 6,
+          content: {
+            joinHeading: "Join Our Team of Experts",
+            joinSubtitle: "We're always looking for talented engineers and energy professionals who share our passion for excellence."
+          }
+        }
+      });
+      console.log("Created Leadership sections");
+    }
+
+    if (createdPage.slug === "insights") {
+      // 1. InsightsHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "InsightsHero",
+          order: 0,
+          content: {
+            heroTitle: "Encotech Insights",
+            heroSubtitle: "Stay updated with our latest project features, white papers, and corporate achievements"
+          }
+        }
+      });
+
+      // 2. FeaturedInsight
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "FeaturedInsight",
+          order: 1,
+          content: {
+            latestArticleTitle: "Advancing Clean Energy Infrastructure",
+            latestArticleSummary: "A comprehensive look at our recent initiatives in supporting utility-scale solar integration.",
+            latestArticleDate: "March 2024",
+            latestArticleLocation: "Uttar Pradesh, India"
+          }
+        }
+      });
+
+      // 3. StatsBanner
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "StatsBanner",
+          order: 2,
+          content: {
+            stats1Value: "15", stats1Suffix: "+", stats1Label: "Case Studies Published",
+            stats2Value: "50", stats2Suffix: "+", stats2Label: "Articles & Insights",
+            stats3Value: "8", stats3Suffix: "", stats3Label: "Countries Covered",
+            stats4Value: "10", stats4Suffix: "K+", stats4Label: "Monthly Readers"
+          }
+        }
+      });
+
+      // 4. InsightsCTA
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "InsightsCTA",
+          order: 3,
+          content: {
+            ctaHeading: "Have a Project in Mind?",
+            ctaSubtitle: "Let's discuss how our engineering expertise can bring value to your next energy infrastructure project."
+          }
+        }
+      });
+      console.log("Created Insights sections");
+    }
   }
 
   // 5. Navigation Links

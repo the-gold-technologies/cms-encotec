@@ -1,0 +1,156 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { fetchWithCache } from "@/lib/apiCache";
+import toast from "react-hot-toast";
+import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
+import { SaveButton } from "@/components/SaveButton";
+import { SectionHeader } from "@/components/SectionHeader";
+
+const defaultFormData = {
+  exec1Name: "Vikram Sharma",
+  exec1Role: "Managing Director & Founder",
+  exec1Bio: "25+ years of leadership in energy infrastructure. Founded Encotec with a vision to bring an owner's mindset to every project. Under his leadership, Encotec has grown from a specialized engineering firm to a full-spectrum energy services provider operating across 23+ countries.",
+  exec1Tags: "Strategic Leadership, Business Development, Energy Policy",
+
+  exec2Name: "Rajesh Patel",
+  exec2Role: "Director – Operations",
+  exec2Bio: "20+ years in power plant operations and project execution. Leads operational delivery across multiple projects, ensuring efficient execution, quality standards, and optimal resource utilization across thermal, renewable, and transmission projects.",
+  exec2Tags: "Operations Management, Plant Commissioning, Asset Optimization",
+};
+
+export function ExecutiveTeamCMS() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState(defaultFormData);
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    fetchWithCache("/api/leadership")
+      .then((json) => {
+        if (json.success && json.data?.ExecutiveTeam) {
+          setFormData({ ...defaultFormData, ...json.data.ExecutiveTeam });
+        }
+      })
+      .catch(console.error);
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    const toastId = toast.loading("Saving Executive Team Section...");
+    try {
+      const res = await fetch("/api/leadership", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          section: "ExecutiveTeam",
+          content: formData,
+        }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        toast.success("Executive Team Section saved successfully!", { id: toastId });
+      } else {
+        toast.error(json.error || "Save failed.", { id: toastId });
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Network error.", { id: toastId });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
+      <SectionHeader
+        title="Executive Team"
+        description="Manage details, biographies, and tags of the primary corporate founders/directors."
+        isOpen={isOpen}
+        onToggle={() => setIsOpen(!isOpen)}
+      />
+      {isOpen && (
+        <div className="flex flex-col gap-8 pt-4 border-t border-gray-50">
+          {/* Executive 1 */}
+          <div className="p-6 bg-gray-50/50 border border-gray-100 rounded-xl flex flex-col gap-4">
+            <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">Executive 1 (Managing Director)</span>
+            <InputField
+              label="Name"
+              name="exec1Name"
+              value={formData.exec1Name}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Role / Title"
+              name="exec1Role"
+              value={formData.exec1Role}
+              onChange={handleChange}
+              required
+            />
+            <TextAreaField
+              label="Biography"
+              name="exec1Bio"
+              value={formData.exec1Bio}
+              onChange={handleChange}
+              rows={4}
+              required
+            />
+            <InputField
+              label="Expertise Tags (Comma-separated)"
+              name="exec1Tags"
+              value={formData.exec1Tags}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Executive 2 */}
+          <div className="p-6 bg-gray-50/50 border border-gray-100 rounded-xl flex flex-col gap-4">
+            <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">Executive 2 (Operations Director)</span>
+            <InputField
+              label="Name"
+              name="exec2Name"
+              value={formData.exec2Name}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Role / Title"
+              name="exec2Role"
+              value={formData.exec2Role}
+              onChange={handleChange}
+              required
+            />
+            <TextAreaField
+              label="Biography"
+              name="exec2Bio"
+              value={formData.exec2Bio}
+              onChange={handleChange}
+              rows={4}
+              required
+            />
+            <InputField
+              label="Expertise Tags (Comma-separated)"
+              name="exec2Tags"
+              value={formData.exec2Tags}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="flex justify-end pt-4 border-t border-gray-50">
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12 text-sm"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

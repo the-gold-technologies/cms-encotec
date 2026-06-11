@@ -1599,6 +1599,272 @@ async function main() {
       });
       console.log("Created Insights sections");
     }
+
+    if (createdPage.slug === "careers") {
+      // 1. CareersHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CareersHero",
+          order: 0,
+          content: {
+            heroTitle: "Careers at Encotec",
+            heroSubtitle: "Shape the future of energy and infrastructure engineering with our exceptional team"
+          }
+        }
+      });
+
+      // 2. CareersCulture
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CareersCulture",
+          order: 1,
+          content: {
+            cultureHeading: "Engineering Careers That Matter",
+            culturePara1: "At Encotec, we don't just build power plants; we engineer the foundation of modern society. Our team works on some of the most complex and critical energy infrastructure projects globally, from massive supercritical thermal plants to utility-scale renewable energy parks.",
+            culturePara2: "We foster a culture of technical excellence, continuous learning, and collaborative problem-solving. When you join Encotec, you gain global exposure, working alongside industry veterans who are passionate about mentoring the next generation of engineering leaders.",
+            cultureQuote: "We empower our engineers to take ownership, innovate, and deliver solutions that have a tangible impact on global energy security."
+          }
+        }
+      });
+
+      // 3. CareersBenefits
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CareersBenefits",
+          order: 2,
+          content: {
+            benefitsList: [
+              { title: "Global Exposure", description: "Work on critical energy infrastructure projects across 23+ countries with diverse international teams." },
+              { title: "Technical Growth", description: "Access to cutting-edge technologies, specialized training, and continuous learning programs." },
+              { title: "Competitive Compensation", description: "Industry-leading salary packages with performance-based bonuses and comprehensive benefits." },
+              { title: "Health & Wellness", description: "Comprehensive medical insurance, wellness programs, and support for physical and mental health." },
+              { title: "Work-Life Balance", description: "Flexible working arrangements, generous leave policies, and a supportive team environment." },
+              { title: "Career Progression", description: "Clear growth paths, leadership development, and mentorship from seasoned industry veterans." }
+            ]
+          }
+        }
+      });
+
+      // 4. CareersOpenPositions
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CareersOpenPositions",
+          order: 3,
+          content: {
+            jobsList: [
+              { title: "Senior Power Plant Engineer", dept: "Engineering", location: "Mumbai, India", type: "Full-time", desc: "Lead engineering design and technical reviews for supercritical thermal power projects." },
+              { title: "Renewable Energy Analyst", dept: "Engineering", location: "Dubai, UAE", type: "Full-time", desc: "Conduct energy yield analysis and feasibility studies for solar and wind projects." },
+              { title: "Project Manager — EPC", dept: "Project Management", location: "Riyadh, KSA", type: "Full-time", desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East." },
+              { title: "Commissioning Engineer", dept: "Engineering", location: "Houston, USA", type: "Contract", desc: "Oversee testing and commissioning of power generation equipment and systems." },
+              { title: "O&M Site Manager", dept: "Operations", location: "Rajpura, India", type: "Full-time", desc: "Lead day-to-day operations and maintenance of a 2x700 MW supercritical plant." },
+              { title: "Electrical Design Engineer", dept: "Engineering", location: "Mumbai, India", type: "Full-time", desc: "Design transmission lines (33kV-765kV) and substation systems (AIS/GIS)." },
+              { title: "Business Development Manager", dept: "Corporate", location: "Singapore", type: "Full-time", desc: "Drive business growth across the Asia-Pacific region for energy services." },
+              { title: "Quality Assurance Lead", dept: "Operations", location: "Frankfurt, Germany", type: "Full-time", desc: "Implement and oversee quality management systems across European projects." }
+            ]
+          }
+        }
+      });
+
+      // 5. CareersGallery
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CareersGallery",
+          order: 4,
+          content: {
+            galleryList: [
+              { image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800", caption: "Team Collaboration" },
+              { image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800", caption: "On-Site Engineering" },
+              { image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800", caption: "Strategic Planning" },
+              { image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800", caption: "Field Operations" },
+              { image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=800", caption: "Team Celebrations" },
+              { image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800", caption: "Project Reviews" }
+            ]
+          }
+        }
+      });
+
+      // 6. CareersProcess
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CareersProcess",
+          order: 5,
+          content: {
+            processSteps: [
+              { title: "Apply Online", description: "Submit your resume and cover letter through our portal." },
+              { title: "Initial Screening", description: "Our HR team reviews your application within 5 business days." },
+              { title: "Technical Interview", description: "Meet with our engineering leads for a technical discussion." },
+              { title: "Final Offer", description: "Receive your offer and begin your journey with Encotec." }
+            ]
+          }
+        }
+      });
+
+      // 7. CareersCTA
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CareersCTA",
+          order: 6,
+          content: {
+            ctaHeading: "Don't See the Right Role?",
+            ctaSubtitle: "We're always looking for talented engineers and energy professionals. Send us your resume and we'll keep you in mind for future opportunities.",
+            hrEmail: "careers@encotec.com"
+          }
+        }
+      });
+      console.log("Created Careers sections");
+    }
+
+    if (createdPage.slug === "certifications") {
+      // 1. CertificationsHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CertificationsHero",
+          order: 0,
+          content: {
+            heroTitle: "Certifications",
+            heroSubtitle: "We hold ourselves to the highest standards of safety, quality, and environmental responsibility"
+          }
+        }
+      });
+
+      // 2. TrustStats
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "TrustStats",
+          order: 1,
+          content: {
+            stats1Value: "15", stats1Label: "Years of Excellence",
+            stats2Value: "100", stats2Label: "Compliance Rate",
+            stats3Value: "50", stats3Label: "Global Audits Passed",
+            stats4Value: "23", stats4Label: "Countries Recognized"
+          }
+        }
+      });
+
+      // 3. CertificationsGrid
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CertificationsGrid",
+          order: 2,
+          content: {
+            certificationsList: [
+              { title: "ISO 9001:2015", category: "Quality Management", desc: "Ensuring consistent quality in our engineering, procurement, and construction services." },
+              { title: "ISO 14001:2015", category: "Environmental Management", desc: "Commitment to minimizing our environmental footprint across all project sites." },
+              { title: "ISO 45001:2018", category: "Occupational Health & Safety", desc: "Maintaining the highest standards of workplace safety for our employees and contractors." },
+              { title: "ASME 'U' & 'S' Stamps", category: "Boiler & Pressure Vessel", desc: "Authorized to manufacture and assemble power boilers and pressure vessels." },
+              { title: "NABL Accreditation", category: "Testing & Calibration", desc: "Recognized competence of our testing and calibration laboratories." },
+              { title: "IBR Certification", category: "Indian Boiler Regulations", desc: "Certified as a special class boiler repairer and erector under IBR 1950." }
+            ]
+          }
+        }
+      });
+
+      // 4. StrategicPartners
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "StrategicPartners",
+          order: 3,
+          content: {
+            partnersList: [
+              { name: "Siemens Energy", monogram: "SE", role: "Gas Turbine Technology" },
+              { name: "GE Vernova", monogram: "GE", role: "Power Generation Systems" },
+              { name: "BHEL", monogram: "BH", role: "Heavy Electrical Equipment" },
+              { name: "NTPC", monogram: "NT", role: "Thermal Power Operations" },
+              { name: "L&T Energy", monogram: "LT", role: "EPC & Construction" },
+              { name: "Tata Power", monogram: "TP", role: "Integrated Power Solutions" },
+              { name: "Adani Power", monogram: "AP", role: "Private Sector Energy" },
+              { name: "JSW Energy", monogram: "JW", role: "Diversified Energy Portfolio" }
+            ]
+          }
+        }
+      });
+
+      // 5. IndustryMemberships
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "IndustryMemberships",
+          order: 4,
+          content: {
+            membershipsList: [
+              { name: "Confederation of Indian Industry (CII)", year: "2010" },
+              { name: "Federation of Indian Chambers of Commerce (FICCI)", year: "2012" },
+              { name: "Indian Electrical & Electronics Mfrs. Assoc. (IEEMA)", year: "2014" },
+              { name: "Central Board of Irrigation and Power (CBIP)", year: "2015" },
+              { name: "Independent Power Producers Assoc. (IPPAI)", year: "2016" },
+              { name: "Associated Chambers of Commerce (ASSOCHAM)", year: "2018" }
+            ]
+          }
+        }
+      });
+
+      // 6. CertificationsCTA
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CertificationsCTA",
+          order: 5,
+          content: {
+            ctaHeading: "Partner With Excellence",
+            ctaSubtitle: "Experience engineering services backed by global certifications and a commitment to uncompromising quality."
+          }
+        }
+      });
+      console.log("Created Certifications sections");
+    }
+
+    if (createdPage.slug === "contact") {
+      // 1. ContactHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ContactHero",
+          order: 0,
+          content: {
+            tagline: "Get in Touch",
+            headingPart1: "Let's Build the Future of",
+            headingItalicHighlight: "Energy Together",
+            backgroundImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2400"
+          }
+        }
+      });
+
+      // 2. ContactInfo
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ContactInfo",
+          order: 1,
+          content: {
+            infoHeading: "Get in",
+            infoHeadingItalic: "Touch",
+            infoDesc: "Reach out to our team of experts for project inquiries, strategic partnerships, or to learn more about our engineering capabilities.",
+            locationTitle: "Corporate Headquarters",
+            addressLine1: "Bandra Kurla Complex, BKC",
+            addressLine2: "Mumbai 400051, India",
+            phoneNumber: "+91 22 6655 0178",
+            emailAddress: "info@encotec.com",
+            openingHours: [
+              { days: "Monday - Friday", hours: "9:00 AM - 6:00 PM IST" },
+              { days: "Saturday", hours: "9:00 AM - 1:00 PM IST" },
+              { days: "Sunday", hours: "Closed" }
+            ]
+          }
+        }
+      });
+      console.log("Created Contact sections");
+    }
   }
 
   // 5. Navigation Links

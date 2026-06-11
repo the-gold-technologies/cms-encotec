@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+const slugMap: Record<string, string> = {
+  "engineering": "engineering-services",
+  "project-management": "project-management",
+  "power-generation": "power-generation",
+  "transmission-distribution": "transmission-distribution",
+  "renewable-energy": "renewable-energy",
+  "airport-services": "airport-services",
+  "value-added": "value-added",
+};
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ slug: string | string[] }> },
@@ -12,36 +22,45 @@ export async function GET(
     // Handle service sub-pages
     if (slug.startsWith("service/")) {
       const serviceId = slug.split("service/")[1];
-      const servicesPage = await prisma.page.findUnique({
-        where: { slug: "services" },
-        include: {
-          sections: {
-            where: { type: serviceId },
-          },
-        },
-      });
-
-      if (!servicesPage || servicesPage.sections.length === 0) {
+      const pageSlug = slugMap[serviceId];
+      if (!pageSlug) {
         return NextResponse.json(
           { success: false, error: "Service not found" },
           { status: 404 },
         );
       }
 
-      const section = servicesPage.sections[0];
-      const content = section.content as any;
+      const subpage = await prisma.page.findUnique({
+        where: { slug: pageSlug },
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          metaTitle: true,
+          metaDescription: true,
+          targetKeywords: true,
+          canonicalUrl: true,
+          noIndex: true,
+          featuredImage: true,
+          ogTitle: true,
+          ogDescription: true,
+          ogImage: true,
+          headingOptions: true,
+        },
+      });
+
+      if (!subpage) {
+        return NextResponse.json(
+          { success: false, error: "Service page not found in DB" },
+          { status: 404 },
+        );
+      }
 
       return NextResponse.json({
         success: true,
         data: {
-          id: `${servicesPage.id}-${serviceId}`,
-          title: content.title || serviceId,
-          slug: slug,
-          metaTitle: content.seo?.metaTitle || "",
-          metaDescription: content.seo?.metaDescription || "",
-          targetKeywords: content.seo?.targetKeywords || "",
-          canonicalUrl: content.seo?.canonicalUrl || "",
-          noIndex: content.seo?.noIndex || false,
+          ...subpage,
+          slug: slug, // Keep the requested slug format for CMS compatibility
         },
       });
     }
@@ -103,28 +122,17 @@ export async function PUT(
     // Handle service sub-pages
     if (slug.startsWith("service/")) {
       const serviceId = slug.split("service/")[1];
-      const servicesPage = await prisma.page.findUnique({
-        where: { slug: "services" },
-        include: {
-          sections: {
-            where: { type: serviceId },
-          },
-        },
-      });
-
-      if (!servicesPage || servicesPage.sections.length === 0) {
+      const pageSlug = slugMap[serviceId];
+      if (!pageSlug) {
         return NextResponse.json(
           { success: false, error: "Service not found" },
           { status: 404 },
         );
       }
 
-      const section = servicesPage.sections[0];
-      const content = section.content as any;
-
-      const updatedContent = {
-        ...content,
-        seo: {
+      const updatedPage = await prisma.page.upsert({
+        where: { slug: pageSlug },
+        update: {
           metaTitle: seo.metaTitle,
           metaDescription: seo.metaDescription,
           targetKeywords: seo.targetKeywords,
@@ -136,14 +144,30 @@ export async function PUT(
           ogImage: seo.ogImage,
           headingOptions: seo.headingOptions,
         },
-      };
-
-      await prisma.section.update({
-        where: { id: section.id },
-        data: { content: updatedContent },
+        create: {
+          slug: pageSlug,
+          title: seo.metaTitle || serviceId.charAt(0).toUpperCase() + serviceId.slice(1),
+          metaTitle: seo.metaTitle,
+          metaDescription: seo.metaDescription,
+          targetKeywords: seo.targetKeywords,
+          canonicalUrl: seo.canonicalUrl,
+          noIndex: seo.noIndex || false,
+          featuredImage: seo.featuredImage,
+          ogTitle: seo.ogTitle,
+          ogDescription: seo.ogDescription,
+          ogImage: seo.ogImage,
+          headingOptions: seo.headingOptions || {},
+          visibility: "published",
+        },
       });
 
-      return NextResponse.json({ success: true, data: updatedContent });
+      return NextResponse.json({
+        success: true,
+        data: {
+          ...updatedPage,
+          slug: slug, // Keep requested slug for compatibility
+        },
+      });
     }
 
     const updatedPage = await prisma.page.upsert({

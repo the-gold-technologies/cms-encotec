@@ -10,6 +10,11 @@ import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
   heading: "",
+  keyCapabilitiesLabel: "",
+  valueDeliveredLabel: "",
+  showLessLabel: "",
+  viewDetailsLabel: "",
+  exploreServiceLabel: "",
   // Service Card 0 to 5
   serviceTitle0: "", serviceIcon0: "", serviceLink0: "", serviceOverview0: "", serviceCapabilities0: "", serviceValue0: "",
   serviceTitle1: "", serviceIcon1: "", serviceLink1: "", serviceOverview1: "", serviceCapabilities1: "", serviceValue1: "",
@@ -56,6 +61,11 @@ export function CoreServicesCMS({
       const list = (data.services as any[]) || [];
       const updated: any = {
         heading: data.heading || "",
+        keyCapabilitiesLabel: data.keyCapabilitiesLabel || "",
+        valueDeliveredLabel: data.valueDeliveredLabel || "",
+        showLessLabel: data.showLessLabel || "",
+        viewDetailsLabel: data.viewDetailsLabel || "",
+        exploreServiceLabel: data.exploreServiceLabel || "",
       };
       for (let i = 0; i < 6; i++) {
         const item = list[i] || {};
@@ -93,6 +103,11 @@ export function CoreServicesCMS({
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.heading?.trim()) errs.push("Heading is required");
+    if (!formData.keyCapabilitiesLabel?.trim()) errs.push("Key Capabilities label is required");
+    if (!formData.valueDeliveredLabel?.trim()) errs.push("Value Delivered label is required");
+    if (!formData.showLessLabel?.trim()) errs.push("Show Less label is required");
+    if (!formData.viewDetailsLabel?.trim()) errs.push("View Details label is required");
+    if (!formData.exploreServiceLabel?.trim()) errs.push("Explore Service label is required");
 
     for (let i = 0; i < 6; i++) {
       if (!(formData as any)[`serviceTitle${i}`]?.trim()) errs.push(`Service Card ${i + 1} Title is required`);
@@ -127,6 +142,11 @@ export function CoreServicesCMS({
 
       const payload = {
         heading: formData.heading,
+        keyCapabilitiesLabel: formData.keyCapabilitiesLabel,
+        valueDeliveredLabel: formData.valueDeliveredLabel,
+        showLessLabel: formData.showLessLabel,
+        viewDetailsLabel: formData.viewDetailsLabel,
+        exploreServiceLabel: formData.exploreServiceLabel,
         services,
       };
 
@@ -181,6 +201,49 @@ export function CoreServicesCMS({
                   placeholder="e.g. Core Services"
                   required
                 />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                  <InputField
+                    label="Key Capabilities Label"
+                    name="keyCapabilitiesLabel"
+                    value={formData.keyCapabilitiesLabel}
+                    onChange={handleChange}
+                    placeholder="e.g. Key Capabilities"
+                    required
+                  />
+                  <InputField
+                    label="Value Delivered Label"
+                    name="valueDeliveredLabel"
+                    value={formData.valueDeliveredLabel}
+                    onChange={handleChange}
+                    placeholder="e.g. Value Delivered"
+                    required
+                  />
+                  <InputField
+                    label="Show Less Label"
+                    name="showLessLabel"
+                    value={formData.showLessLabel}
+                    onChange={handleChange}
+                    placeholder="e.g. Show Less"
+                    required
+                  />
+                  <InputField
+                    label="View Details Label"
+                    name="viewDetailsLabel"
+                    value={formData.viewDetailsLabel}
+                    onChange={handleChange}
+                    placeholder="e.g. View Details"
+                    required
+                  />
+                  <InputField
+                    label="Explore Service Label"
+                    name="exploreServiceLabel"
+                    value={formData.exploreServiceLabel}
+                    onChange={handleChange}
+                    placeholder="e.g. Explore Service"
+                    required
+                  />
+                </div>
 
                 {/* Service Cards list */}
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4 animate-pulse">

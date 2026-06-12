@@ -10,7 +10,8 @@ import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
   tagline: "",
-  heading: "",
+  headingPart1: "",
+  headingItalicHighlight: "",
   description: "",
 };
 
@@ -71,7 +72,8 @@ export function ServicesHeroCMS({
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
-    if (!formData.heading?.trim()) errs.push("Heading is required");
+    if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
+    if (!formData.headingItalicHighlight?.trim()) errs.push("Heading Italic Highlight is required");
     if (!formData.description?.trim()) errs.push("Description is required");
 
     if (errs.length > 0) {
@@ -134,14 +136,26 @@ export function ServicesHeroCMS({
                   placeholder="e.g. Our Services"
                   required
                 />
-                <InputField
-                  label="Heading"
-                  name="heading"
-                  value={formData.heading}
-                  onChange={handleChange}
-                  placeholder="e.g. Integrated Solutions Across the Asset Lifecycle"
-                  required
-                />
+                <div className="flex flex-col md:flex-row gap-6 w-full">
+                  <InputField
+                    label="Heading Part 1 (Normal)"
+                    name="headingPart1"
+                    value={formData.headingPart1}
+                    onChange={handleChange}
+                    placeholder="e.g. Integrated Solutions"
+                    required
+                    containerClassName="flex-1"
+                  />
+                  <InputField
+                    label="Heading Part 2 (Italic Highlight)"
+                    name="headingItalicHighlight"
+                    value={formData.headingItalicHighlight}
+                    onChange={handleChange}
+                    placeholder="e.g. Across the Asset Lifecycle"
+                    required
+                    containerClassName="flex-1"
+                  />
+                </div>
                 <TextAreaField
                   label="Description"
                   name="description"

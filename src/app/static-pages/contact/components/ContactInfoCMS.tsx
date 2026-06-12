@@ -18,6 +18,25 @@ const defaultFormData = {
   addressLine2: "",
   phoneNumber: "",
   emailAddress: "",
+  businessHoursTitle: "",
+  quickContactTitle: "",
+  generalInquiriesLabel: "",
+  careersLabel: "",
+  careersEmailAddress: "",
+  formHeading: "",
+  fullNameLabel: "",
+  emailAddressLabel: "",
+  phoneNumberLabel: "",
+  companyNameLabel: "",
+  subjectLabel: "",
+  selectSubjectDefault: "",
+  messageLabel: "",
+  submitButtonLabel: "",
+  fullNamePlaceholder: "",
+  emailAddressPlaceholder: "",
+  phoneNumberPlaceholder: "",
+  companyNamePlaceholder: "",
+  messagePlaceholder: "",
   openingHours: [{ days: "", hours: "" }],
 };
 
@@ -282,6 +301,51 @@ export function ContactInfoCMS({
                     placeholder="e.g. info@sevenstarsmarshbaldon.co.uk"
                     required
                   />
+                </div>
+              </div>
+
+              {/* Widget Titles and Extra Info */}
+              <div className="flex flex-col gap-5 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl flex-1">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+                  Widget Titles & Labels
+                </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField label="Business Hours Card Title" name="businessHoursTitle" value={formData.businessHoursTitle} onChange={handleChange} required />
+                  <InputField label="Quick Contact Card Title" name="quickContactTitle" value={formData.quickContactTitle} onChange={handleChange} required />
+                  <InputField label="General Inquiries Label" name="generalInquiriesLabel" value={formData.generalInquiriesLabel} onChange={handleChange} required />
+                  <InputField label="Careers Label" name="careersLabel" value={formData.careersLabel} onChange={handleChange} required />
+                  <InputField label="Careers Email Address" name="careersEmailAddress" value={formData.careersEmailAddress} onChange={handleChange} required />
+                </div>
+              </div>
+
+              {/* Form Labels & Placeholders */}
+              <div className="flex flex-col gap-5 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl flex-1">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+                  Contact Form Fields Configuration
+                </span>
+                <InputField label="Form Heading" name="formHeading" value={formData.formHeading} onChange={handleChange} required />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-4 border border-gray-100 p-4 rounded-xl bg-white">
+                    <h5 className="text-xs font-bold text-gray-700">Form Labels</h5>
+                    <InputField label="Full Name Label" name="fullNameLabel" value={formData.fullNameLabel} onChange={handleChange} required />
+                    <InputField label="Email Address Label" name="emailAddressLabel" value={formData.emailAddressLabel} onChange={handleChange} required />
+                    <InputField label="Phone Number Label" name="phoneNumberLabel" value={formData.phoneNumberLabel} onChange={handleChange} required />
+                    <InputField label="Company Name Label" name="companyNameLabel" value={formData.companyNameLabel} onChange={handleChange} required />
+                    <InputField label="Subject Dropdown Label" name="subjectLabel" value={formData.subjectLabel} onChange={handleChange} required />
+                    <InputField label="Subject Dropdown Default Option" name="selectSubjectDefault" value={formData.selectSubjectDefault} onChange={handleChange} required />
+                    <InputField label="Message Label" name="messageLabel" value={formData.messageLabel} onChange={handleChange} required />
+                    <InputField label="Submit Button Label" name="submitButtonLabel" value={formData.submitButtonLabel} onChange={handleChange} required />
+                  </div>
+                  <div className="flex flex-col gap-4 border border-gray-100 p-4 rounded-xl bg-white">
+                    <h5 className="text-xs font-bold text-gray-700">Input Placeholders</h5>
+                    <InputField label="Full Name Placeholder" name="fullNamePlaceholder" value={formData.fullNamePlaceholder} onChange={handleChange} required />
+                    <InputField label="Email Address Placeholder" name="emailAddressPlaceholder" value={formData.emailAddressPlaceholder} onChange={handleChange} required />
+                    <InputField label="Phone Number Placeholder" name="phoneNumberPlaceholder" value={formData.phoneNumberPlaceholder} onChange={handleChange} required />
+                    <InputField label="Company Name Placeholder" name="companyNamePlaceholder" value={formData.companyNamePlaceholder} onChange={handleChange} required />
+                    <InputField label="Message Placeholder" name="messagePlaceholder" value={formData.messagePlaceholder} onChange={handleChange} required />
+                  </div>
                 </div>
               </div>
 

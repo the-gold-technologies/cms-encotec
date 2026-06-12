@@ -176,8 +176,10 @@ export function ValueProtectionCMS({ saveUrl }: { saveUrl: string }) {
   const [isSaving, setIsSaving] = useState(false);
 
   const [formData, setFormData] = useState({
-    heading: "",
-    description: "",
+    headingPart1: "",
+    headingHighlight: "",
+    bulletHeading: "",
+    paragraphs: ["", ""],
     bullets: ["", "", "", "", ""]
   });
 
@@ -187,8 +189,10 @@ export function ValueProtectionCMS({ saveUrl }: { saveUrl: string }) {
         const sectionData = json.data?.["ValueProtection"];
         if (json.success && sectionData) {
           setFormData({
-            heading: sectionData.heading || "",
-            description: sectionData.description || "",
+            headingPart1: sectionData.headingPart1 || "",
+            headingHighlight: sectionData.headingHighlight || "",
+            bulletHeading: sectionData.bulletHeading || "",
+            paragraphs: sectionData.paragraphs || ["", ""],
             bullets: sectionData.bullets || ["", "", "", "", ""]
           });
         }
@@ -242,8 +246,37 @@ export function ValueProtectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} required rows={2} />
+          <div className="flex flex-col md:flex-row gap-6 w-full">
+            <InputField label="Heading Part 1 (Normal)" name="headingPart1" value={formData.headingPart1} onChange={handleChange} required containerClassName="flex-1" />
+            <InputField label="Heading Highlight (Pink)" name="headingHighlight" value={formData.headingHighlight} onChange={handleChange} required containerClassName="flex-1" />
+          </div>
+          <InputField label="Checklist Section Heading" name="bulletHeading" value={formData.bulletHeading} onChange={handleChange} required />
+          
+          <div className="border border-gray-100 p-4 rounded-xl flex flex-col gap-4 bg-gray-50/10">
+            <h4 className="text-sm font-bold text-gray-700">Intro Paragraphs</h4>
+            <TextAreaField
+              label="Paragraph 1"
+              value={formData.paragraphs[0] || ""}
+              onChange={(e) => {
+                const p = [...formData.paragraphs];
+                p[0] = e.target.value;
+                setFormData((prev) => ({ ...prev, paragraphs: p }));
+              }}
+              required
+              rows={2}
+            />
+            <TextAreaField
+              label="Paragraph 2"
+              value={formData.paragraphs[1] || ""}
+              onChange={(e) => {
+                const p = [...formData.paragraphs];
+                p[1] = e.target.value;
+                setFormData((prev) => ({ ...prev, paragraphs: p }));
+              }}
+              required
+              rows={2}
+            />
+          </div>
 
           <div className="border border-gray-100 p-4 rounded-xl flex flex-col gap-4 bg-gray-50/10">
             <h4 className="text-sm font-bold text-gray-700">Checklist Points</h4>

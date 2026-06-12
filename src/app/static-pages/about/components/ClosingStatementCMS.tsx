@@ -9,7 +9,9 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "",
+  headingPart1: "",
+  headingHighlight: "",
+  headingPart2: "",
   description: "",
   ctaLabel: "",
   ctaUrl: "",
@@ -71,7 +73,9 @@ export function ClosingStatementCMS({
 
   const handleSave = async () => {
     const errs: string[] = [];
-    if (!formData.heading?.trim()) errs.push("Heading quote statement is required");
+    if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
+    if (!formData.headingHighlight?.trim()) errs.push("Heading Highlight is required");
+    if (!formData.headingPart2?.trim()) errs.push("Heading Part 2 is required");
     if (!formData.description?.trim()) errs.push("Description tagline is required");
     if (!formData.ctaLabel?.trim()) errs.push("CTA label is required");
     if (!formData.ctaUrl?.trim()) errs.push("CTA redirect URL is required");
@@ -132,13 +136,30 @@ export function ClosingStatementCMS({
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
               <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
-                <TextAreaField
-                  label="Closing Statement Heading Quote"
-                  name="heading"
-                  value={formData.heading}
+                <InputField
+                  label="Heading Part 1 (Normal)"
+                  name="headingPart1"
+                  value={formData.headingPart1}
                   onChange={handleChange}
-                  placeholder="e.g. Encotec integrates engineering expertise..."
-                  rows={3}
+                  placeholder="e.g. Encotec integrates "
+                  required
+                />
+
+                <InputField
+                  label="Heading Part 2 (Highlight Accent)"
+                  name="headingHighlight"
+                  value={formData.headingHighlight}
+                  onChange={handleChange}
+                  placeholder="e.g. engineering expertise..."
+                  required
+                />
+
+                <InputField
+                  label="Heading Part 3 (Normal Trailing)"
+                  name="headingPart2"
+                  value={formData.headingPart2}
+                  onChange={handleChange}
+                  placeholder="e.g. to deliver solutions..."
                   required
                 />
 

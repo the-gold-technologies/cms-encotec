@@ -10,7 +10,7 @@ import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
   tagline: "",
-  heading: "",
+  headingPart1: "",
   headingHighlight: "",
   paragraph1: "",
   paragraph2: "",
@@ -53,7 +53,7 @@ export function WhoWeAreCMS({
       const paragraphs = (initialData.paragraphs as string[]) || [];
       setFormData({
         tagline: (initialData.tagline as string) || "",
-        heading: (initialData.heading as string) || "",
+        headingPart1: (initialData.headingPart1 as string) || "",
         headingHighlight: (initialData.headingHighlight as string) || "",
         paragraph1: paragraphs[0] || "",
         paragraph2: paragraphs[1] || "",
@@ -66,7 +66,7 @@ export function WhoWeAreCMS({
             const paragraphs = (sectionData.paragraphs as string[]) || [];
             setFormData({
               tagline: (sectionData.tagline as string) || "",
-              heading: (sectionData.heading as string) || "",
+              headingPart1: (sectionData.headingPart1 as string) || "",
               headingHighlight: (sectionData.headingHighlight as string) || "",
               paragraph1: paragraphs[0] || "",
               paragraph2: paragraphs[1] || "",
@@ -87,7 +87,7 @@ export function WhoWeAreCMS({
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
-    if (!formData.heading?.trim()) errs.push("Heading is required");
+    if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
     if (!formData.headingHighlight?.trim()) errs.push("Heading highlight is required");
     if (!formData.paragraph1?.trim()) errs.push("Paragraph 1 is required");
     if (!formData.paragraph2?.trim()) errs.push("Paragraph 2 is required");
@@ -102,7 +102,7 @@ export function WhoWeAreCMS({
     try {
       const payload = {
         tagline: formData.tagline,
-        heading: formData.heading,
+        headingPart1: formData.headingPart1,
         headingHighlight: formData.headingHighlight,
         paragraphs: [formData.paragraph1, formData.paragraph2],
       };
@@ -161,11 +161,11 @@ export function WhoWeAreCMS({
 
                 <div className="flex flex-col md:flex-row gap-6 w-full">
                   <InputField
-                    label="Heading"
-                    name="heading"
-                    value={formData.heading}
+                    label="Heading Part 1 (Normal)"
+                    name="headingPart1"
+                    value={formData.headingPart1}
                     onChange={handleChange}
-                    placeholder="e.g. Energy is More Than Just Infrastructure"
+                    placeholder="e.g. Energy is More Than "
                     required
                     containerClassName="flex-1"
                   />

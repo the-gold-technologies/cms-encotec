@@ -9,8 +9,9 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "",
-  highlight: "",
+  headingPart1: "",
+  headingHighlight: "",
+  headingPart2: "",
   ctaLabel: "",
   ctaUrl: "",
 };
@@ -71,8 +72,9 @@ export function ClosingSectionCMS({
 
   const handleSave = async () => {
     const errs: string[] = [];
-    if (!formData.heading?.trim()) errs.push("Heading quote is required");
-    if (!formData.highlight?.trim()) errs.push("Heading highlight is required");
+    if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
+    if (!formData.headingHighlight?.trim()) errs.push("Heading highlight is required");
+    if (!formData.headingPart2?.trim()) errs.push("Heading Part 2 is required");
     if (!formData.ctaLabel?.trim()) errs.push("CTA Button label is required");
     if (!formData.ctaUrl?.trim()) errs.push("CTA Redirect URL is required");
 
@@ -128,21 +130,28 @@ export function ClosingSectionCMS({
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
               <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
-                <TextAreaField
-                  label="CTA Heading Statement"
-                  name="heading"
-                  value={formData.heading}
+                <InputField
+                  label="Heading Part 1 (Normal)"
+                  name="headingPart1"
+                  value={formData.headingPart1}
                   onChange={handleChange}
-                  placeholder="e.g. Our integrated approach ensures that every project — from concept to operation..."
-                  rows={3}
+                  placeholder="e.g. Our integrated approach ensures that every project — "
                   required
                 />
                 <InputField
-                  label="Highlight Word/Phrase (Gradient Text)"
-                  name="highlight"
-                  value={formData.highlight}
+                  label="Heading Part 2 (Highlight Accent)"
+                  name="headingHighlight"
+                  value={formData.headingHighlight}
                   onChange={handleChange}
                   placeholder="e.g. from concept to operation"
+                  required
+                />
+                <InputField
+                  label="Heading Part 3 (Normal Trailing)"
+                  name="headingPart2"
+                  value={formData.headingPart2}
+                  onChange={handleChange}
+                  placeholder="e.g. — is delivered with precision..."
                   required
                 />
                 <div className="flex flex-col md:flex-row gap-6 w-full border-t border-gray-100 pt-6">

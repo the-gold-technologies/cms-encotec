@@ -10,7 +10,8 @@ import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
   tagline: "",
-  heading: "",
+  headingPart1: "",
+  headingHighlight: "",
   description: "",
   areaTitle0: "", areaDesc0: "",
   areaTitle1: "", areaDesc1: "",
@@ -57,7 +58,8 @@ export function GlobalPresenceCMS({
       const list = (data.areas as any[]) || [];
       const updated: any = {
         tagline: data.tagline || "",
-        heading: data.heading || "",
+        headingPart1: data.headingPart1 || "",
+        headingHighlight: data.headingHighlight || "",
         description: data.description || "",
         calloutTitle: data.calloutTitle || "",
         calloutDesc: data.calloutDesc || "",
@@ -93,7 +95,8 @@ export function GlobalPresenceCMS({
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
-    if (!formData.heading?.trim()) errs.push("Heading is required");
+    if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
+    if (!formData.headingHighlight?.trim()) errs.push("Heading Highlight is required");
     if (!formData.description?.trim()) errs.push("Description is required");
     if (!formData.calloutTitle?.trim()) errs.push("Callout Title is required");
     if (!formData.calloutDesc?.trim()) errs.push("Callout Description is required");
@@ -118,7 +121,8 @@ export function GlobalPresenceCMS({
 
       const payload = {
         tagline: formData.tagline,
-        heading: formData.heading,
+        headingPart1: formData.headingPart1,
+        headingHighlight: formData.headingHighlight,
         description: formData.description,
         areas,
         calloutTitle: formData.calloutTitle,
@@ -179,11 +183,20 @@ export function GlobalPresenceCMS({
                     containerClassName="flex-1"
                   />
                   <InputField
-                    label="Heading"
-                    name="heading"
-                    value={formData.heading}
+                    label="Heading Part 1 (Normal)"
+                    name="headingPart1"
+                    value={formData.headingPart1}
                     onChange={handleChange}
-                    placeholder="e.g. A Global Presence with a Local Touch"
+                    placeholder="e.g. A Global Presence"
+                    required
+                    containerClassName="flex-1"
+                  />
+                  <InputField
+                    label="Heading Part 2 (Highlight)"
+                    name="headingHighlight"
+                    value={formData.headingHighlight}
+                    onChange={handleChange}
+                    placeholder="e.g. with a Local Touch"
                     required
                     containerClassName="flex-1"
                   />

@@ -5,6 +5,7 @@ import { InsightsHeroCMS } from "./components/InsightsHeroCMS";
 import { FeaturedInsightCMS } from "./components/FeaturedInsightCMS";
 import { StatsBannerCMS } from "./components/StatsBannerCMS";
 import { InsightsCTACMS } from "./components/InsightsCTACMS";
+import { RelatedInsightsCMS } from "./components/RelatedInsightsCMS";
 
 export default function InsightsCMSPage() {
   return (
@@ -19,6 +20,7 @@ export default function InsightsCMSPage() {
         <FeaturedInsightCMS />
         <StatsBannerCMS />
         <InsightsCTACMS />
+        <RelatedInsightsCMS />
       </div>
     </section>
   );

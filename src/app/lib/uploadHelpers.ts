@@ -1,5 +1,3 @@
-import { supabase } from "@/lib/supabase";
-
 export async function uploadFiles(
   files: (File | string | null)[],
 ): Promise<(string | null)[]> {
@@ -19,29 +17,26 @@ export async function uploadFiles(
   }
 
   try {
-    const uploadedUrls: string[] = [];
+    const formData = new FormData();
+    filesToUpload.forEach((file, index) => {
+      formData.append(`file-${index}`, file);
+    });
 
-    for (const file of filesToUpload) {
-      const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, "")}`;
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-      const { error } = await supabase.storage
-        .from("myBucket")
-        .upload(fileName, file, {
-          contentType: file.type,
-          upsert: false,
-        });
-
-      if (error) {
-        console.error("Supabase Storage Error:", error);
-        throw new Error(`Supabase Storage Error: ${error.message}`);
-      }
-
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("myBucket").getPublicUrl(fileName);
-
-      uploadedUrls.push(publicUrl);
+    if (!response.ok) {
+      throw new Error(`Upload failed: ${response.statusText}`);
     }
+
+    const json = await response.json();
+    if (!json.success || !json.files) {
+      throw new Error(json.error || "Upload failed");
+    }
+
+    const uploadedUrls = json.files as string[];
 
     const result = [...files];
     let uploadIdx = 0;

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config();
 
 export async function POST(req: Request) {
   try {
@@ -11,30 +13,15 @@ export async function POST(req: Request) {
       if (file && typeof file === "object" && file.name) {
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
-        const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, "")}`;
 
-        const { error } = await supabase.storage
-          .from("uploadsFiles")
-          .upload(fileName, buffer, {
-            contentType: file.type,
-            upsert: false,
-          });
+        const base64Image = buffer.toString("base64");
+        const dataUri = `data:${file.type};base64,${base64Image}`;
 
-        if (error) {
-          console.error("Supabase Storage Error:", error);
-          return NextResponse.json(
-            {
-              success: false,
-              error: `Supabase Storage Error: ${error.message}`,
-            },
-            { status: 500 },
-          );
-        }
+        const uploadResponse = await cloudinary.uploader.upload(dataUri, {
+          folder: "Encotech-Assets",
+        });
 
-        const {
-          data: { publicUrl },
-        } = supabase.storage.from("uploadsFiles").getPublicUrl(fileName);
-        uploadedFiles.push(publicUrl);
+        uploadedFiles.push(uploadResponse.secure_url);
       }
     }
 

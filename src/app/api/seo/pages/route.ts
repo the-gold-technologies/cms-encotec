@@ -138,46 +138,7 @@ export async function GET() {
       }
     }
 
-    const insightsLink = links.find((l: any) => l.url === "/insights");
-    const insightsSubpages = [];
-    
-    const insightList = [
-      { id: "obra-c-thermal-success", title: "The Obra 'C' Thermal Success" },
-      { id: "ensuring-reliability-rajpura", title: "Ensuring Reliability for Punjab's Power Heart" },
-      { id: "greener-future-gujarat-solar", title: "Engineering a Greener Future in the Sands of Gujarat" },
-      { id: "powering-gateway-india-airport", title: "Powering the Gateway to India" },
-      { id: "insurance-surety-bonds-replace-bank-guarantees", title: "Insurance Surety Bonds Replace Bank Guarantees" },
-      { id: "india-270gw-peak-power-demand", title: "India Braces for Record 270 GW Peak Power Demand" },
-      { id: "green-signal-3200mw-thermal-projects", title: "Green Signal for 3200 MW New Thermal Projects" },
-      { id: "ghaziabad-mandates-rooftop-solar", title: "Ghaziabad Mandates Rooftop Solar" },
-      { id: "765kv-transmission-corridor-commissioned", title: "Massive 765 kV Transmission Corridor" },
-      { id: "new-directions-imported-coal-power-plants", title: "New Directions for Imported Coal Power Plants" },
-      { id: "owners-mindset-power-plant-care", title: "The Magic of the Owner's Mindset" },
-      { id: "sunbeams-to-megawatts-renewable-future", title: "From Sunbeams to Megawatts" },
-      { id: "silent-force-behind-your-flight", title: "Specialized Airport Utility Management" }
-    ];
-
-    for (let index = 0; index < insightList.length; index++) {
-      const insight = insightList[index];
-      const pageSlug = `insight-${insight.id}`;
-      const subpage = pages.find((p: any) => p.slug === pageSlug);
-
-      insightsSubpages.push({
-        id: `sub-insight-${insight.id}`,
-        pageId: subpage ? subpage.id : null,
-        title: subpage && subpage.title ? subpage.title : insight.title,
-        slug: pageSlug,
-        metaTitle: subpage ? subpage.metaTitle : null,
-        metaDescription: subpage ? subpage.metaDescription : null,
-        type: "sub-link",
-        visibility: subpage ? subpage.visibility : "published",
-        parent: insightsLink ? insightsLink.id : "-",
-        order: index + 1,
-        isStatic: false
-      });
-    }
-
-    const finalData = mergedData.concat(serviceSubpages).concat(insightsSubpages);
+    const finalData = mergedData.concat(serviceSubpages);
 
     return NextResponse.json({ success: true, data: finalData });
   } catch (error) {

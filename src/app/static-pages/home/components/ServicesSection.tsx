@@ -8,6 +8,8 @@ import {
   Flame,
   Search,
   Wrench,
+  CloudUpload,
+  Trash2,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
@@ -21,44 +23,67 @@ interface ServiceItem {
   description: string;
   icon: string;
   image: string;
+  ctaLabel: string;
+  ctaUrl: string;
 }
 
 const defaultFormData = {
   tagline: "Our Services",
   heading: "Integrated Solutions Across the Asset Lifecycle",
-  description: "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running.",
+  description:
+    "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running.",
   services: [
     {
       title: "Project Conceptualisation & Development",
-      description: "From pre-feasibility and financial assessments to finalizing EPC contractors and developing technical specifications.",
+      description:
+        "From pre-feasibility and financial assessments to finalizing EPC contractors and developing technical specifications.",
       icon: "ClipboardCheck",
-      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800"
+      image:
+        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
+      ctaLabel: "Learn More",
+      ctaUrl: "/services",
     },
     {
       title: "Construction, Commissioning & Relocation",
-      description: "Expert installation of complex power and process industries, including specialized asset shifting and relocation services across borders.",
+      description:
+        "Expert installation of complex power and process industries, including specialized asset shifting and relocation services across borders.",
       icon: "Network",
-      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800"
+      image:
+        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800",
+      ctaLabel: "Learn More",
+      ctaUrl: "/services",
     },
     {
       title: "Asset Stewardship (O&M)",
-      description: "Specialized management of thermal power plants, international airports, and critical utilities like STPs.",
+      description:
+        "Specialized management of thermal power plants, international airports, and critical utilities like STPs.",
       icon: "Flame",
-      image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800"
+      image:
+        "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
+      ctaLabel: "Learn More",
+      ctaUrl: "/services",
     },
     {
       title: "Expert Advisory & Performance Audits",
-      description: "High-level problem solving, energy efficiency audits, and specialized testing (NDT) for operational plants.",
+      description:
+        "High-level problem solving, energy efficiency audits, and specialized testing (NDT) for operational plants.",
       icon: "Search",
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800"
+      image:
+        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
+      ctaLabel: "Learn More",
+      ctaUrl: "/services",
     },
     {
       title: "Global Trading & Spare Parts",
-      description: "Strategic sourcing of critical equipment and spares from major OEMs in China, Vietnam, Korea, and India.",
+      description:
+        "Strategic sourcing of critical equipment and spares from major OEMs in China, Vietnam, Korea, and India.",
       icon: "Wrench",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
-    }
-  ] as ServiceItem[]
+      image:
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      ctaLabel: "Learn More",
+      ctaUrl: "/services",
+    },
+  ] as ServiceItem[],
 };
 
 const mergeDefaults = (data: any) => {
@@ -68,7 +93,14 @@ const mergeDefaults = (data: any) => {
   } else {
     const arr = [...merged.services];
     while (arr.length < 5) {
-      const def = defaultFormData.services[arr.length] || { title: "", description: "", icon: "Wrench", image: "" };
+      const def = defaultFormData.services[arr.length] || {
+        title: "",
+        description: "",
+        icon: "Wrench",
+        image: "",
+        ctaLabel: "",
+        ctaUrl: "",
+      };
       arr.push({ ...def });
     }
     merged.services = arr.slice(0, 5);
@@ -96,7 +128,8 @@ export function ServicesSection({
   onToggle: controlledOnToggle,
 }: ServicesSectionProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
     if (controlledOnToggle) {
       controlledOnToggle();
@@ -107,6 +140,7 @@ export function ServicesSection({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [draggingIdx, setDraggingIdx] = useState<number | null>(null);
   const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
@@ -115,7 +149,9 @@ export function ServicesSection({
     } else {
       fetchWithCache(saveUrl)
         .then((json) => {
-          const sectionData = responseKey ? json.data?.[responseKey] : json.data;
+          const sectionData = responseKey
+            ? json.data?.[responseKey]
+            : json.data;
           if (json.success && sectionData) {
             setFormData(mergeDefaults(sectionData));
           }
@@ -124,24 +160,35 @@ export function ServicesSection({
     }
   }, [initialData, saveUrl, responseKey]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCardChange = (index: number, key: keyof ServiceItem, value: string) => {
+  const handleCardChange = (
+    index: number,
+    key: keyof ServiceItem,
+    value: string,
+  ) => {
     setFormData((prev) => {
       const updated = prev.services.map((s, idx) =>
-        idx === index ? { ...s, [key]: value } : s
+        idx === index ? { ...s, [key]: value } : s,
       );
       return { ...prev, services: updated };
     });
   };
 
-  const handleFileChange = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const toastId = toast.loading(`Uploading image for Service ${index + 1}...`);
+      const toastId = toast.loading(
+        `Uploading image for Service ${index + 1}...`,
+      );
       try {
         const urls = await uploadFiles([file]);
         if (urls[0]) {
@@ -155,11 +202,34 @@ export function ServicesSection({
     }
   };
 
+  const handleDrop = async (index: number, e: React.DragEvent) => {
+    e.preventDefault();
+    setDraggingIdx(null);
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      const toastId = toast.loading(
+        `Uploading image for Service ${index + 1}...`,
+      );
+      try {
+        const urls = await uploadFiles([file]);
+        if (urls[0]) {
+          handleCardChange(index, "image", urls[0]);
+          toast.success("Image uploaded!", { id: toastId });
+        }
+      } catch (err) {
+        console.error(err);
+        toast.error("Upload failed.", { id: toastId });
+      }
+    }
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
     if (!formData.heading?.trim()) errs.push("Heading is required");
-    if (formData.services.some((s) => !s.title?.trim() || !s.description?.trim())) {
+    if (
+      formData.services.some((s) => !s.title?.trim() || !s.description?.trim())
+    ) {
       errs.push("All service titles and descriptions must be filled");
     }
 
@@ -198,12 +268,18 @@ export function ServicesSection({
 
   const renderIcon = (name: string) => {
     switch (name) {
-      case "ClipboardCheck": return <ClipboardCheck className="w-4 h-4 text-[#a0004f]" />;
-      case "Network": return <Network className="w-4 h-4 text-[#a0004f]" />;
-      case "Flame": return <Flame className="w-4 h-4 text-[#a0004f]" />;
-      case "Search": return <Search className="w-4 h-4 text-[#a0004f]" />;
-      case "Wrench": return <Wrench className="w-4 h-4 text-[#a0004f]" />;
-      default: return <Wrench className="w-4 h-4 text-[#a0004f]" />;
+      case "ClipboardCheck":
+        return <ClipboardCheck className="w-4 h-4 text-[#a0004f]" />;
+      case "Network":
+        return <Network className="w-4 h-4 text-[#a0004f]" />;
+      case "Flame":
+        return <Flame className="w-4 h-4 text-[#a0004f]" />;
+      case "Search":
+        return <Search className="w-4 h-4 text-[#a0004f]" />;
+      case "Wrench":
+        return <Wrench className="w-4 h-4 text-[#a0004f]" />;
+      default:
+        return <Wrench className="w-4 h-4 text-[#a0004f]" />;
     }
   };
 
@@ -224,7 +300,6 @@ export function ServicesSection({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              
               {/* Header Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl">
                 <InputField
@@ -263,19 +338,24 @@ export function ServicesSection({
                   {formData.services.map((service, i) => (
                     <div
                       key={i}
-                      className="border border-gray-100 p-6 rounded-2xl bg-gray-50/20 grid grid-cols-1 md:grid-cols-3 gap-6 items-start"
+                      className="border border-gray-100 p-6 rounded-2xl bg-gray-50/20 flex flex-col gap-5"
                     >
-                      <div className="flex flex-col gap-4">
-                        <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-widest">
-                          Service Card {i + 1}
-                        </span>
-                        <InputField
-                          label="Service Title"
-                          value={service.title}
-                          onChange={(e) => handleCardChange(i, "title", e.target.value)}
-                          placeholder="e.g. Asset Stewardship"
-                        />
-                        <div className="flex flex-col gap-1.5 px-0.5">
+                      {/* Top row: Card label + Title + Icon */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-3">
+                          <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-widest">
+                            Service Card {i + 1}
+                          </span>
+                          <InputField
+                            label="Service Title"
+                            value={service.title}
+                            onChange={(e) =>
+                              handleCardChange(i, "title", e.target.value)
+                            }
+                            placeholder="e.g. Asset Stewardship"
+                          />
+                        </div>
+                        <div className="flex flex-col gap-1.5 px-0.5 justify-end">
                           <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
                             Lucide Icon
                           </label>
@@ -285,10 +365,14 @@ export function ServicesSection({
                             </div>
                             <select
                               value={service.icon}
-                              onChange={(e) => handleCardChange(i, "icon", e.target.value)}
+                              onChange={(e) =>
+                                handleCardChange(i, "icon", e.target.value)
+                              }
                               className="w-full pl-12 pr-6 py-4 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 appearance-none cursor-pointer"
                             >
-                              <option value="ClipboardCheck">ClipboardCheck Icon</option>
+                              <option value="ClipboardCheck">
+                                ClipboardCheck Icon
+                              </option>
                               <option value="Network">Network Icon</option>
                               <option value="Flame">Flame Icon</option>
                               <option value="Search">Search Icon</option>
@@ -298,50 +382,135 @@ export function ServicesSection({
                         </div>
                       </div>
 
-                      <div className="md:col-span-2 flex flex-col gap-4">
-                        <TextAreaField
-                          label="Description Subtext"
-                          value={service.description}
-                          onChange={(e) => handleCardChange(i, "description", e.target.value)}
-                          placeholder="Describe this service lifecycle stage..."
-                          rows={3}
-                        />
+                      {/* Description — full width */}
+                      <TextAreaField
+                        label="Description Subtext"
+                        value={service.description}
+                        onChange={(e) =>
+                          handleCardChange(i, "description", e.target.value)
+                        }
+                        placeholder="Describe this service lifecycle stage..."
+                        rows={3}
+                      />
 
-                        {/* Image Uploader & Field */}
-                        <div className="flex flex-col gap-2">
-                          <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
-                            Showcase Image URL
-                          </label>
-                          <div className="flex gap-3 items-center">
-                            <input
-                              type="text"
-                              value={service.image}
-                              onChange={(e) => handleCardChange(i, "image", e.target.value)}
-                              placeholder="Image path or unsplash url..."
-                              className="flex-1 px-6 py-4 bg-white border border-gray-200 text-sm rounded-2xl focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 transition-all"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => fileInputRefs.current[i]?.click()}
-                              className="bg-gray-950 hover:bg-gray-800 text-white font-bold text-xs px-6 py-4 rounded-2xl transition-all cursor-pointer whitespace-nowrap"
-                            >
-                              Upload File
-                            </button>
-                            <input
-                              type="file"
-                              ref={(el) => { fileInputRefs.current[i] = el; }}
-                              onChange={(e) => handleFileChange(i, e)}
-                              accept="image/*"
-                              className="hidden"
-                            />
-                          </div>
-                          {service.image && (
-                            <div className="mt-2 w-32 h-20 rounded-lg overflow-hidden border border-gray-200">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                      {/* Image Uploader — full width, Hero Style */}
+                      <div className="flex flex-col gap-2">
+                        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
+                          Showcase Image
+                        </label>
+
+                        {service.image ? (
+                          <div className="flex items-center justify-between p-4 px-5 bg-white border border-gray-200 rounded-2xl transition-all hover:bg-gray-50/50 shadow-sm w-full">
+                            <div className="flex items-center gap-3.5 text-gray-700 min-w-0">
+                              <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 flex-shrink-0">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={service.image}
+                                  alt={service.title}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <div className="flex flex-col min-w-0">
+                                <span className="text-sm font-bold text-gray-900 truncate max-w-xs sm:max-w-md">
+                                  {service.image.split("/").pop() ||
+                                    "Service Image"}
+                                </span>
+                                <span className="text-[10px] text-gray-400 font-semibold mt-0.5">
+                                  Selected Image Asset
+                                </span>
+                              </div>
                             </div>
-                          )}
-                        </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  fileInputRefs.current[i]?.click()
+                                }
+                                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
+                              >
+                                Change
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleCardChange(i, "image", "")}
+                                className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
+                                title="Remove Image"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            onClick={() => fileInputRefs.current[i]?.click()}
+                            onDragOver={(e) => {
+                              e.preventDefault();
+                              setDraggingIdx(i);
+                            }}
+                            onDragLeave={() => setDraggingIdx(null)}
+                            onDrop={(e) => handleDrop(i, e)}
+                            className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-10 text-center cursor-pointer transition-all group ${
+                              draggingIdx === i
+                                ? "border-blue-400 bg-blue-50"
+                                : "border-gray-200 hover:border-blue-400 bg-white hover:bg-blue-50/10"
+                            }`}
+                          >
+                            <CloudUpload
+                              className={`w-9 h-9 mb-3 transition-colors ${
+                                draggingIdx === i
+                                  ? "text-blue-500"
+                                  : "text-gray-400 group-hover:text-blue-500"
+                              }`}
+                            />
+                            <p className="text-sm text-gray-500 font-semibold group-hover:text-blue-600 mb-1">
+                              {draggingIdx === i ? (
+                                <span className="text-blue-600">
+                                  Drop image here
+                                </span>
+                              ) : (
+                                <>
+                                  Drag and drop image here, or{" "}
+                                  <span className="text-blue-500 hover:underline">
+                                    browse
+                                  </span>
+                                </>
+                              )}
+                            </p>
+                            <p className="text-xs text-gray-400">
+                              Supports JPG, PNG, WEBP (Recommended 800×600px)
+                            </p>
+                          </div>
+                        )}
+
+                        <input
+                          type="file"
+                          ref={(el) => {
+                            fileInputRefs.current[i] = el;
+                          }}
+                          onChange={(e) => handleFileChange(i, e)}
+                          accept="image/*"
+                          className="hidden"
+                        />
+                      </div>
+
+                      {/* CTA Section */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <InputField
+                          label="CTA Button Text"
+                          value={service.ctaLabel || ""}
+                          onChange={(e) =>
+                            handleCardChange(i, "ctaLabel", e.target.value)
+                          }
+                          placeholder="e.g. Learn More"
+                        />
+                        <InputField
+                          label="CTA Button Link (URL)"
+                          value={service.ctaUrl || ""}
+                          onChange={(e) =>
+                            handleCardChange(i, "ctaUrl", e.target.value)
+                          }
+                          placeholder="e.g. /services"
+                        />
                       </div>
                     </div>
                   ))}
@@ -356,7 +525,6 @@ export function ServicesSection({
                   className="w-44 h-12 text-sm"
                 />
               </div>
-
             </div>
           </div>
         </div>

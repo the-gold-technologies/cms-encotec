@@ -36,11 +36,12 @@ const defaultFormData = {
   headingItalicHighlight: "Since 2011",
   paragraphs: [
     "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a team of 1800+ industry specialists operating across 13+ key locations.",
-    "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide."
+    "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide.",
   ] as string[],
   ctaLabel: "Learn More",
   ctaUrl: "#",
-  image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
+  image:
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
   imageAlt: "Engineer working on advanced equipment",
   badgeValue: "Est. 2011",
   badgeLabel: "Pioneering Energy",
@@ -49,12 +50,13 @@ const defaultFormData = {
     { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
     { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
     { value: "1800+", label: "INDUSTRY SPECIALISTS", icon: "Users" },
-    { value: "8000+", label: "MW POWER CAPACITY", icon: "Zap" }
+    { value: "8000+", label: "MW POWER CAPACITY", icon: "Zap" },
   ] as StatItem[],
   bannerHeading: "Experience Global Engineering Excellence.",
-  bannerDescription: "From India to Turkey, see how we are setting new standards in power infrastructure.",
+  bannerDescription:
+    "From India to Turkey, see how we are setting new standards in power infrastructure.",
   bannerButtonLabel: "View Our Global Reach",
-  bannerButtonUrl: "/contact"
+  bannerButtonUrl: "/contact",
 };
 
 const mergeDefaults = (data: any) => {
@@ -67,7 +69,11 @@ const mergeDefaults = (data: any) => {
   } else {
     const statsArray = [...merged.stats];
     while (statsArray.length < 4) {
-      const def = defaultFormData.stats[statsArray.length] || { value: "", label: "", icon: "Zap" };
+      const def = defaultFormData.stats[statsArray.length] || {
+        value: "",
+        label: "",
+        icon: "Zap",
+      };
       statsArray.push({ ...def });
     }
     merged.stats = statsArray;
@@ -165,10 +171,14 @@ export function AboutUs({
     }));
   };
 
-  const handleStatChange = (index: number, key: keyof StatItem, val: string) => {
+  const handleStatChange = (
+    index: number,
+    key: keyof StatItem,
+    val: string,
+  ) => {
     setFormData((prev) => {
       const newStats = prev.stats.map((s, idx) =>
-        idx === index ? { ...s, [key]: val } : s
+        idx === index ? { ...s, [key]: val } : s,
       );
       return { ...prev, stats: newStats };
     });
@@ -277,7 +287,6 @@ export function AboutUs({
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
               <div className="flex flex-col gap-8 w-full">
-                
                 {/* 1. Header Copy & Titles */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl">
                   <div className="col-span-2">
@@ -395,91 +404,102 @@ export function AboutUs({
                   />
                 </div>
 
-                {/* 4. Showcase Image & Badge (Overlay) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Left Column: Image Selector */}
-                  <div className="flex flex-col gap-3">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-2">
-                      <ImageIcon className="w-4 h-4 text-[#a0004f]" />
-                      Showcase Right Image
-                    </h4>
+                {/* 4. Showcase Image — Full Width */}
+                <div className="flex flex-col gap-3">
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-2">
+                    <ImageIcon className="w-4 h-4 text-[#a0004f]" />
+                    Showcase Right Image
+                  </h4>
 
-                    {selectedImage ? (
-                      <div className="flex items-center justify-between p-3.5 px-5 bg-gray-50/50 border border-gray-100 rounded-2xl transition-all hover:bg-gray-100/50 mt-1">
-                        <div className="flex items-center gap-3.5 text-gray-700">
-                          <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 relative flex-shrink-0">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={previewSrc}
-                              alt="About Us"
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="text-xs font-bold text-gray-900 truncate max-w-[150px] sm:max-w-xs">
-                              {typeof selectedImage === "string"
-                                ? selectedImage.split("/").pop() ||
-                                  "About Showcase Image"
-                                : selectedImage.name}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <button
-                            type="button"
-                            onClick={() => fileInputRef.current?.click()}
-                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3.5 py-1.5 rounded-xl text-[10px] font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
-                          >
-                            Change
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setSelectedImage("")}
-                            className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
-                            title="Remove Image"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                  {selectedImage ? (
+                    <div className="w-full flex items-center justify-between p-4 px-5 bg-gray-50 border border-gray-200 rounded-2xl mt-1 group hover:bg-gray-100/60 transition-all">
+                      <div className="flex items-center gap-4 min-w-0">
+                        <img
+                          src={previewSrc}
+                          alt="images"
+                          className="w-10 h-10 rounded-xl text-[#a0004f]"
+                        />
+                        <div className="min-w-0">
+                          <p className="text-sm font-bold text-gray-900 truncate max-w-xs">
+                            {typeof selectedImage === "string"
+                              ? selectedImage.split("/").pop() ||
+                                "About Showcase Image"
+                              : selectedImage.name}
+                          </p>
+                          <p className="text-[11px] text-gray-400 font-medium mt-0.5">
+                            {typeof selectedImage === "string"
+                              ? "Cloudinary · Remote"
+                              : selectedImage.size
+                                ? `Local · ${(selectedImage.size / 1024 / 1024).toFixed(2)} MB`
+                                : "Local file"}
+                          </p>
                         </div>
                       </div>
-                    ) : (
-                      <div
-                        onClick={() => fileInputRef.current?.click()}
-                        className="w-full border-2 border-dashed border-gray-200 hover:border-blue-500 bg-gray-50/50 hover:bg-blue-55 rounded-2xl flex flex-col items-center justify-center p-8 text-center cursor-pointer transition-all group mt-1"
-                      >
-                        <CloudUpload className="w-8 h-8 text-gray-400 group-hover:text-blue-500 transition-colors mb-2" />
-                        <p className="text-xs text-gray-500 font-semibold group-hover:text-blue-600">
-                          Drag and drop image here, or{" "}
-                          <span className="text-blue-500 hover:underline">
-                            browse
-                          </span>
-                        </p>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current?.click()}
+                          className="flex items-center gap-1.5 px-3.5 py-1.5 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 text-[11px] font-bold rounded-xl shadow-sm transition-all cursor-pointer hover:bg-gray-50"
+                        >
+                          <CloudUpload className="w-3.5 h-3.5" />
+                          Change
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedImage("")}
+                          className="p-2 bg-white border border-gray-200 hover:border-red-200 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all cursor-pointer"
+                          title="Remove Image"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-red-500" />
+                        </button>
                       </div>
-                    )}
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      onChange={handleFileChange}
-                      accept="image/*"
-                      className="hidden"
-                    />
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => fileInputRef.current?.click()}
+                      className="w-full border-2 border-dashed border-gray-200 hover:border-[#a0004f]/50 bg-gray-50/50 hover:bg-gray-100/50 rounded-2xl flex flex-col items-center justify-center p-10 text-center cursor-pointer transition-all group mt-1"
+                      style={{ minHeight: 160 }}
+                    >
+                      <div className="p-3 rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 mb-3 group-hover:scale-105 transition-transform">
+                        <CloudUpload className="w-7 h-7 text-gray-400 group-hover:text-[#a0004f] transition-colors" />
+                      </div>
+                      <p className="text-sm text-gray-600 font-medium mb-1">
+                        <span className="text-[#D3AF37] font-semibold hover:underline">
+                          Click to upload
+                        </span>{" "}
+                        or drag and drop
+                      </p>
+                      <p className="text-xs text-gray-400 font-medium">
+                        PNG, JPG, WEBP (Recommended 1000×620px)
+                      </p>
+                    </div>
+                  )}
 
-                    <InputField
-                      label="Image SEO Alt Tag"
-                      name="imageAlt"
-                      value={formData.imageAlt || ""}
-                      onChange={handleChange}
-                      placeholder="e.g. Engineer working on advanced equipment"
-                      containerClassName="mt-2"
-                    />
-                  </div>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    accept="image/*"
+                    className="hidden"
+                  />
 
-                  {/* Right Column: Overlay Badge */}
-                  <div className="border border-gray-100 p-5 rounded-2xl bg-gray-50/20 flex flex-col gap-4">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-105 pb-2 flex items-center gap-2">
-                      <Award className="w-4 h-4 text-amber-500" />
-                      Est. Badge Overlay
-                    </h4>
+                  <InputField
+                    label="Image SEO Alt Tag"
+                    name="imageAlt"
+                    value={formData.imageAlt || ""}
+                    onChange={handleChange}
+                    placeholder="e.g. Engineer working on advanced equipment"
+                    containerClassName="mt-1"
+                  />
+                </div>
+
+                {/* Est. Badge Overlay — Full Width */}
+                <div className="border border-gray-100 p-5 rounded-2xl bg-gray-50/20 flex flex-col gap-4">
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-2">
+                    <Award className="w-4 h-4 text-amber-500" />
+                    Est. Badge Overlay
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <InputField
                       label="Badge Value Text"
                       name="badgeValue"
@@ -620,7 +640,6 @@ export function AboutUs({
                     placeholder="e.g. /contact"
                   />
                 </div>
-
               </div>
 
               {/* Action Save Button */}

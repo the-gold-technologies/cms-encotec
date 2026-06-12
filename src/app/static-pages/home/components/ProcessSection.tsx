@@ -8,6 +8,8 @@ import {
   HardHat,
   CheckCircle2,
   Activity,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
@@ -105,6 +107,14 @@ export function ProcessSection({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [openSteps, setOpenSteps] = useState<Record<number, boolean>>({ 0: true });
+
+  const toggleStep = (idx: number) => {
+    setOpenSteps((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     if (initialData) {
@@ -230,49 +240,78 @@ export function ProcessSection({
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">
                   Workflow Step Cards (5 Items)
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
+                <div className="grid grid-cols-1 gap-6">
                   {formData.steps.map((step, i) => (
                     <div
                       key={i}
-                      className="border border-gray-100 p-5 rounded-2xl bg-gray-50/20 flex flex-col gap-4 relative group"
+                      className="border border-gray-100 p-6 rounded-2xl bg-gray-50/20 flex flex-col gap-4 relative group"
                     >
-                      <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-widest">
-                        Step 0{step.id}
-                      </span>
-                      <InputField
-                        label="Step Title"
-                        value={step.title}
-                        onChange={(e) => handleStepChange(i, "title", e.target.value)}
-                        placeholder="e.g. Logical Foundation"
-                      />
-                      <TextAreaField
-                        label="Step Description"
-                        value={step.description}
-                        onChange={(e) => handleStepChange(i, "description", e.target.value)}
-                        placeholder="Step subtext details..."
-                        rows={4}
-                      />
-                      <div className="flex flex-col gap-1.5 px-0.5">
-                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-2">
-                          Step Icon
-                        </label>
-                        <div className="relative w-full">
-                          <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                            {renderIcon(step.icon)}
-                          </div>
-                          <select
-                            value={step.icon}
-                            onChange={(e) => handleStepChange(i, "icon", e.target.value)}
-                            className="w-full pl-9 pr-6 py-2.5 bg-white border border-gray-200 rounded-xl text-xs focus:ring-1 focus:outline-none focus:border-[#a0004f] focus:ring-[#a0004f] outline-none text-gray-800 appearance-none cursor-pointer"
-                          >
-                            <option value="Search">Search</option>
-                            <option value="PenTool">PenTool</option>
-                            <option value="HardHat">HardHat</option>
-                            <option value="CheckCircle2">CheckCircle2</option>
-                            <option value="Activity">Activity</option>
-                          </select>
+                      {/* Step Header */}
+                      <div
+                        onClick={() => toggleStep(i)}
+                        className="flex items-center justify-between border-b border-gray-100 pb-2 cursor-pointer select-none group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="text-[11px] font-bold text-[#a0004f] bg-[#a0004f]/5 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                            Step 0{step.id}
+                          </span>
+                          <span className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors">
+                            {step.title || `Untitled Step 0${step.id}`}
+                          </span>
+                        </div>
+                        <div className="text-gray-400 group-hover:text-gray-600 transition-colors">
+                          {openSteps[i] ? (
+                            <ChevronUp className="w-4 h-4" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
                         </div>
                       </div>
+ 
+                      {/* Card Content Grid */}
+                      {openSteps[i] && (
+                        <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-top-1 duration-200">
+                          {/* Top row: Title and Icon (rest two) */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <InputField
+                              label="Step Title"
+                              value={step.title}
+                              onChange={(e) => handleStepChange(i, "title", e.target.value)}
+                              placeholder="e.g. Logical Foundation"
+                            />
+                            <div className="flex flex-col gap-1.5 px-0.5">
+                              <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
+                                Step Icon
+                              </label>
+                              <div className="relative w-full">
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                                  {renderIcon(step.icon)}
+                                </div>
+                                <select
+                                  value={step.icon}
+                                  onChange={(e) => handleStepChange(i, "icon", e.target.value)}
+                                  className="w-full pl-12 pr-6 py-4 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 appearance-none cursor-pointer"
+                                >
+                                  <option value="Search">Search Icon</option>
+                                  <option value="PenTool">PenTool Icon</option>
+                                  <option value="HardHat">HardHat Icon</option>
+                                  <option value="CheckCircle2">CheckCircle2 Icon</option>
+                                  <option value="Activity">Activity Icon</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+ 
+                          {/* Bottom: Description (full width) */}
+                          <TextAreaField
+                            label="Step Description"
+                            value={step.description}
+                            onChange={(e) => handleStepChange(i, "description", e.target.value)}
+                            placeholder="Step subtext details..."
+                            rows={3}
+                          />
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

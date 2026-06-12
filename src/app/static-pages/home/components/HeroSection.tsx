@@ -2,14 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import {
-  CloudUpload,
-  X,
-  Trash2,
-  Tag,
-  BarChart3,
-  Award,
-} from "lucide-react";
+import { CloudUpload, X, Trash2, Tag, BarChart3, Award } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -18,26 +11,27 @@ import { uploadFiles } from "@/lib/uploadHelpers";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Global Energy Stewardship",
-  headlineLine1: "Your Assets. Our Stewardship. End-to-End Solutions for a Global Future",
-  headlineHighlight: "Stewardship.",
-  description: 'We are more than consultants; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
-  primaryBtnLabel: "Our Services",
-  primaryBtnUrl: "/services",
-  secondaryBtnLabel: "View Case Studies",
-  secondaryBtnUrl: "/insights",
-  serviceTags: ["STEWARDSHIP", "COMMISSIONING", "ADVISORY", "GLOBAL SOURCING"] as string[],
-  projectsBadgeNumber: "150+",
-  projectsBadgeLabel: "Projects Delivered",
-  stat1Value: "2011",
-  stat1Label: "FOUNDED YEAR",
-  stat2Value: "13+",
-  stat2Label: "CITIES IN INDIA",
-  stat3Value: "300+",
-  stat3Label: "SPECIALIZED ENGINEERS",
-  stat4Value: "8000+",
-  stat4Label: "MW UNDER STEWARDSHIP",
-  backgroundImage: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=1200",
+  tagline: "",
+  headlineLine1: "",
+  headlineHighlight: "",
+  headlineLine2: "",
+  description: "",
+  primaryBtnLabel: "",
+  primaryBtnUrl: "",
+  secondaryBtnLabel: "",
+  secondaryBtnUrl: "",
+  serviceTags: [] as string[],
+  projectsBadgeNumber: "",
+  projectsBadgeLabel: "",
+  stat1Value: "",
+  stat1Label: "",
+  stat2Value: "",
+  stat2Label: "",
+  stat3Value: "",
+  stat3Label: "",
+  stat4Value: "",
+  stat4Label: "",
+  backgroundImage: "",
 };
 
 interface HeroSectionProps {
@@ -58,7 +52,8 @@ export function HeroSection({
   onToggle: controlledOnToggle,
 }: HeroSectionProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
     if (controlledOnToggle) {
       controlledOnToggle();
@@ -148,7 +143,8 @@ export function HeroSection({
     const toastId = toast.loading("Saving Home Hero section...");
     try {
       const uploadedUrls = await uploadFiles([selectedImage]);
-      const imgUrl = selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
+      const imgUrl =
+        selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
 
       const payload = {
         ...formData,
@@ -181,8 +177,14 @@ export function HeroSection({
     }
   };
 
-  const preview = selectedImage instanceof File ? URL.createObjectURL(selectedImage) : selectedImage;
-  const imageName = typeof selectedImage === "string" ? selectedImage.split("/").pop() || "Background Image" : selectedImage?.name;
+  const preview =
+    selectedImage instanceof File
+      ? URL.createObjectURL(selectedImage)
+      : selectedImage;
+  const imageName =
+    typeof selectedImage === "string"
+      ? selectedImage.split("/").pop() || "Background Image"
+      : selectedImage?.name;
 
   return (
     <section>
@@ -201,7 +203,6 @@ export function HeroSection({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              
               {/* Tagline & Headline */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
                 <div className="col-span-2">
@@ -217,25 +218,33 @@ export function HeroSection({
                   onChange={handleChange}
                   placeholder="e.g. Global Energy Stewardship"
                   required
+                  containerClassName="col-span-2"
                 />
 
+                <InputField
+                  label="Headline Title 1"
+                  name="headlineLine1"
+                  value={formData.headlineLine1 || ""}
+                  onChange={handleChange}
+                  placeholder="e.g. A passion for excellence"
+                  required
+                />
                 <InputField
                   label="Heading Highlight (renders in brand pink)"
                   name="headlineHighlight"
                   value={formData.headlineHighlight || ""}
                   onChange={handleChange}
-                  placeholder="e.g. Stewardship."
+                  placeholder="Your Assets. Our"
                   required
                 />
 
-                <TextAreaField
+                <InputField
                   label="Main Headline Title"
-                  name="headlineLine1"
-                  value={formData.headlineLine1 || ""}
+                  name="headlineLine2"
+                  value={formData.headlineLine2 || ""}
                   onChange={handleChange}
-                  placeholder="e.g. Your Assets. Our Stewardship. End-to-End Solutions..."
+                  placeholder="End-to-End Solutions for a Global Future"
                   containerClassName="col-span-2"
-                  rows={2}
                   required
                 />
 
@@ -351,13 +360,13 @@ export function HeroSection({
                 </div>
               </div>
 
-              {/* Projects Badge & Background Image */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-2 flex items-center gap-2">
-                    <Award className="w-4 h-4 text-amber-500" />
-                    Projects Delivered Badge
-                  </h3>
+              {/* Projects Badge */}
+              <div className="flex flex-col gap-4">
+                <h3 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-2 flex items-center gap-2">
+                  <Award className="w-4 h-4 text-amber-500" />
+                  Projects Delivered Badge
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <InputField
                     label="Badge Value"
                     name="projectsBadgeNumber"
@@ -373,60 +382,75 @@ export function HeroSection({
                     placeholder="e.g. Projects Delivered"
                   />
                 </div>
+              </div>
 
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-2 flex items-center gap-2">
-                    Hero Background Image
-                  </h3>
-                  {preview ? (
-                    <div className="flex items-center justify-between p-3.5 px-5 bg-white border border-gray-200 rounded-2xl transition-all hover:bg-gray-50/50 mt-1">
-                      <div className="flex items-center gap-3.5 text-gray-700">
-                        <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 relative flex-shrink-0">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={preview} alt="Hero Background" className="w-full h-full object-cover" />
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-xs font-bold text-gray-900 truncate max-w-[200px]">
-                            {imageName}
-                          </span>
-                        </div>
+              {/* Background Image */}
+              <div className="flex flex-col gap-4">
+                <h3 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-2 flex items-center gap-2">
+                  Hero Background Image
+                </h3>
+                {preview ? (
+                  <div className="flex items-center justify-between p-4 px-6 bg-white border border-gray-200 rounded-2xl transition-all hover:bg-gray-50/50 mt-1 w-full shadow-sm">
+                    <div className="flex items-center gap-3.5 text-gray-700 min-w-0">
+                      <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 relative flex-shrink-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={preview}
+                          alt="Hero Background"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          onClick={() => fileInputRef.current?.click()}
-                          className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3.5 py-1.5 rounded-xl text-[10px] font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
-                        >
-                          Change
-                        </button>
-                        <button
-                          type="button"
-                          onClick={removeImage}
-                          className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-sm font-bold text-gray-900 truncate max-w-xs sm:max-w-md md:max-w-xl lg:max-w-3xl">
+                          {imageName}
+                        </span>
+                        <span className="text-[10px] text-gray-400 font-semibold mt-0.5">
+                          Selected Image Asset
+                        </span>
                       </div>
                     </div>
-                  ) : (
-                    <div
-                      onClick={() => fileInputRef.current?.click()}
-                      className="w-full border-2 border-dashed border-gray-200 hover:border-blue-500 bg-white hover:bg-blue-50/10 rounded-2xl flex flex-col items-center justify-center p-8 text-center cursor-pointer transition-all group mt-1"
-                    >
-                      <CloudUpload className="w-8 h-8 text-gray-400 group-hover:text-blue-500 transition-colors mb-2" />
-                      <p className="text-xs text-gray-500 font-semibold group-hover:text-blue-600">
-                        Drag and drop image here, or <span className="text-blue-500 hover:underline">browse</span>
-                      </p>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
+                      >
+                        Change
+                      </button>
+                      <button
+                        type="button"
+                        onClick={removeImage}
+                        className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </div>
-                  )}
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                    accept="image/*"
-                    className="hidden"
-                  />
-                </div>
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => fileInputRef.current?.click()}
+                    className="w-full border-2 border-dashed border-gray-200 hover:border-blue-500 bg-white hover:bg-blue-50/10 rounded-2xl flex flex-col items-center justify-center p-12 text-center cursor-pointer transition-all group mt-1"
+                  >
+                    <CloudUpload className="w-10 h-10 text-gray-400 group-hover:text-blue-500 transition-colors mb-3" />
+                    <p className="text-sm text-gray-500 font-semibold group-hover:text-blue-600 mb-1">
+                      Drag and drop background image here, or{" "}
+                      <span className="text-blue-500 hover:underline">
+                        browse
+                      </span>
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      Supports JPG, PNG, WEBP, or AVIF (Recommended 1920x1080)
+                    </p>
+                  </div>
+                )}
+
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept="image/*"
+                  className="hidden"
+                />
               </div>
 
               {/* Stats Row */}
@@ -438,27 +462,83 @@ export function HeroSection({
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                   {/* Stat 1 */}
                   <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Stat 1</span>
-                    <InputField label="Value" name="stat1Value" value={formData.stat1Value} onChange={handleChange} placeholder="e.g. 2011" />
-                    <InputField label="Label" name="stat1Label" value={formData.stat1Label} onChange={handleChange} placeholder="e.g. FOUNDED YEAR" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                      Stat 1
+                    </span>
+                    <InputField
+                      label="Value"
+                      name="stat1Value"
+                      value={formData.stat1Value}
+                      onChange={handleChange}
+                      placeholder="e.g. 2011"
+                    />
+                    <InputField
+                      label="Label"
+                      name="stat1Label"
+                      value={formData.stat1Label}
+                      onChange={handleChange}
+                      placeholder="e.g. FOUNDED YEAR"
+                    />
                   </div>
                   {/* Stat 2 */}
                   <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Stat 2</span>
-                    <InputField label="Value" name="stat2Value" value={formData.stat2Value} onChange={handleChange} placeholder="e.g. 13+" />
-                    <InputField label="Label" name="stat2Label" value={formData.stat2Label} onChange={handleChange} placeholder="e.g. CITIES IN INDIA" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                      Stat 2
+                    </span>
+                    <InputField
+                      label="Value"
+                      name="stat2Value"
+                      value={formData.stat2Value}
+                      onChange={handleChange}
+                      placeholder="e.g. 13+"
+                    />
+                    <InputField
+                      label="Label"
+                      name="stat2Label"
+                      value={formData.stat2Label}
+                      onChange={handleChange}
+                      placeholder="e.g. CITIES IN INDIA"
+                    />
                   </div>
                   {/* Stat 3 */}
                   <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Stat 3</span>
-                    <InputField label="Value" name="stat3Value" value={formData.stat3Value} onChange={handleChange} placeholder="e.g. 300+" />
-                    <InputField label="Label" name="stat3Label" value={formData.stat3Label} onChange={handleChange} placeholder="e.g. SPECIALIZED ENGINEERS" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                      Stat 3
+                    </span>
+                    <InputField
+                      label="Value"
+                      name="stat3Value"
+                      value={formData.stat3Value}
+                      onChange={handleChange}
+                      placeholder="e.g. 300+"
+                    />
+                    <InputField
+                      label="Label"
+                      name="stat3Label"
+                      value={formData.stat3Label}
+                      onChange={handleChange}
+                      placeholder="e.g. SPECIALIZED ENGINEERS"
+                    />
                   </div>
                   {/* Stat 4 */}
                   <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Stat 4</span>
-                    <InputField label="Value" name="stat4Value" value={formData.stat4Value} onChange={handleChange} placeholder="e.g. 8000+" />
-                    <InputField label="Label" name="stat4Label" value={formData.stat4Label} onChange={handleChange} placeholder="e.g. MW UNDER STEWARDSHIP" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                      Stat 4
+                    </span>
+                    <InputField
+                      label="Value"
+                      name="stat4Value"
+                      value={formData.stat4Value}
+                      onChange={handleChange}
+                      placeholder="e.g. 8000+"
+                    />
+                    <InputField
+                      label="Label"
+                      name="stat4Label"
+                      value={formData.stat4Label}
+                      onChange={handleChange}
+                      placeholder="e.g. MW UNDER STEWARDSHIP"
+                    />
                   </div>
                 </div>
               </div>
@@ -471,7 +551,6 @@ export function HeroSection({
                   className="w-44 h-12 text-sm"
                 />
               </div>
-
             </div>
           </div>
         </div>

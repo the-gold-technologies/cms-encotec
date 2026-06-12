@@ -615,6 +615,7 @@ async function main() {
           order: 8,
           content: {
             heading: "Encotec integrates engineering expertise, execution capability, and operational excellence to deliver solutions that perform",
+            highlight: "engineering expertise, execution capability, and operational excellence",
             description: "— not just at commissioning, but throughout the lifecycle of every asset.",
             ctaLabel: "Partner With Us",
             ctaUrl: "/contact"
@@ -1440,7 +1441,8 @@ async function main() {
             heroSubtitle: "Meet the executive team guiding Encotec's engineering and project management operations",
             heroBadge1: "200+ Professionals",
             heroBadge2: "15+ Years Average Experience",
-            heroBadge3: "23+ Countries"
+            heroBadge3: "23+ Countries",
+            backgroundImage: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400"
           }
         }
       });
@@ -1452,10 +1454,12 @@ async function main() {
           type: "LeadershipPhilosophy",
           order: 1,
           content: {
+            philosophyTagline: "Our Philosophy",
             philosophyHeading: "Leading With an Owner's Mindset",
             philosophyPara1: "At Encotec, leadership is not just about managing teams; it's about taking full accountability for the outcomes we deliver. Our leadership team brings decades of hands-on experience from the world's most complex energy projects.",
             philosophyPara2: "We believe that true engineering excellence requires a culture where every team member is empowered to think critically, act decisively, and prioritize long-term asset performance over short-term gains.",
-            philosophyQuote: "We don't just manage projects — we take ownership of outcomes, treating every asset as if it were our own."
+            philosophyQuote: "We don't just manage projects — we take ownership of outcomes, treating every asset as if it were our own.",
+            philosophyImage: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1200"
           }
         }
       });
@@ -1550,7 +1554,8 @@ async function main() {
           order: 0,
           content: {
             heroTitle: "Encotech Insights",
-            heroSubtitle: "Stay updated with our latest project features, white papers, and corporate achievements"
+            heroSubtitle: "Stay updated with our latest project features, white papers, and corporate achievements",
+            backgroundImage: "https://images.unsplash.com/photo-1497435334941-8c899a9bd6a2?auto=format&fit=crop&q=80&w=2400"
           }
         }
       });
@@ -1609,7 +1614,8 @@ async function main() {
           order: 0,
           content: {
             heroTitle: "Careers at Encotec",
-            heroSubtitle: "Shape the future of energy and infrastructure engineering with our exceptional team"
+            heroSubtitle: "Shape the future of energy and infrastructure engineering with our exceptional team",
+            backgroundImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2400"
           }
         }
       });
@@ -1621,10 +1627,12 @@ async function main() {
           type: "CareersCulture",
           order: 1,
           content: {
+            cultureTagline: "Why Join Us",
             cultureHeading: "Engineering Careers That Matter",
             culturePara1: "At Encotec, we don't just build power plants; we engineer the foundation of modern society. Our team works on some of the most complex and critical energy infrastructure projects globally, from massive supercritical thermal plants to utility-scale renewable energy parks.",
             culturePara2: "We foster a culture of technical excellence, continuous learning, and collaborative problem-solving. When you join Encotec, you gain global exposure, working alongside industry veterans who are passionate about mentoring the next generation of engineering leaders.",
-            cultureQuote: "We empower our engineers to take ownership, innovate, and deliver solutions that have a tangible impact on global energy security."
+            cultureQuote: "We empower our engineers to take ownership, innovate, and deliver solutions that have a tangible impact on global energy security.",
+            cultureImage: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200"
           }
         }
       });
@@ -1730,7 +1738,8 @@ async function main() {
           order: 0,
           content: {
             heroTitle: "Certifications",
-            heroSubtitle: "We hold ourselves to the highest standards of safety, quality, and environmental responsibility"
+            heroSubtitle: "We hold ourselves to the highest standards of safety, quality, and environmental responsibility",
+            backgroundImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2400"
           }
         }
       });

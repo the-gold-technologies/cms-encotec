@@ -1,28 +1,27 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { fetchWithCache } from "@/lib/apiCache";
+import { useState, useEffect } from "react";
+import { fetchWithCache, clearCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 import { uploadFiles } from "@/lib/uploadHelpers";
-import { CloudUpload } from "lucide-react";
+import { ImagePickerField } from "@/components/ImagePickerField";
 
 // 1. EngineeringHeroCMS
 export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | string>("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   const [formData, setFormData] = useState({
     label: "",
     headline: "",
     description: "",
     floatingStats: ["", "", ""],
-    backgroundImage: ""
+    backgroundImage: "",
   });
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
             headline: sectionData.headline || "",
             description: sectionData.description || "",
             floatingStats: sectionData.floatingStats || ["", "", ""],
-            backgroundImage: sectionData.backgroundImage || ""
+            backgroundImage: sectionData.backgroundImage || "",
           };
           setFormData(loaded);
           if (loaded.backgroundImage) setSelectedImage(loaded.backgroundImage);
@@ -44,7 +43,9 @@ export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -62,20 +63,22 @@ export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
     const toastId = toast.loading("Saving Engineering Hero...");
     try {
       const uploadedUrls = await uploadFiles([selectedImage]);
-      const imgUrl = selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
-      
+      const imgUrl =
+        selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
+
       const payload = {
         ...formData,
-        backgroundImage: imgUrl
+        backgroundImage: imgUrl,
       };
 
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "EngineeringHero", content: payload })
+        body: JSON.stringify({ section: "EngineeringHero", content: payload }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Engineering Hero saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -88,8 +91,6 @@ export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
     }
   };
 
-  const preview = selectedImage instanceof File ? URL.createObjectURL(selectedImage) : selectedImage;
-
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
@@ -100,12 +101,33 @@ export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Hero Label" name="label" value={formData.label} onChange={handleChange} required />
-          <InputField label="Headline" name="headline" value={formData.headline} onChange={handleChange} required />
-          <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} required rows={3} />
-          
+          <InputField
+            label="Hero Label"
+            name="label"
+            value={formData.label}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Headline"
+            name="headline"
+            value={formData.headline}
+            onChange={handleChange}
+            required
+          />
+          <TextAreaField
+            label="Description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            rows={3}
+          />
+
           <div className="border border-gray-100 p-4 rounded-xl flex flex-col gap-4">
-            <h4 className="text-sm font-bold text-gray-700">Floating Badge Stats</h4>
+            <h4 className="text-sm font-bold text-gray-700">
+              Floating Badge Stats
+            </h4>
             {formData.floatingStats.map((stat, i) => (
               <InputField
                 key={i}
@@ -117,31 +139,19 @@ export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
             ))}
           </div>
 
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-medium text-gray-700">Background Image</span>
-            <div className="flex items-center gap-6">
-              {preview && <img src={preview} alt="Preview" className="w-32 h-20 object-cover rounded-xl border border-gray-200" />}
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-xl hover:bg-gray-50 text-sm font-medium"
-              >
-                <CloudUpload size={16} /> Upload New
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files?.[0]) setSelectedImage(e.target.files[0]);
-                }}
-                className="hidden"
-              />
-            </div>
-          </div>
+          <ImagePickerField
+            label="Background Image"
+            value={selectedImage}
+            onChange={(val) => setSelectedImage(val as File)}
+            containerClassName="w-full"
+          />
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -154,7 +164,6 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | string>("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
     tagline: "",
@@ -163,7 +172,7 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
     quote: "",
     image: "",
     badgeTitle: "",
-    badgeValue: ""
+    badgeValue: "",
   });
 
   useEffect(() => {
@@ -178,7 +187,7 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
             quote: sectionData.quote || "",
             image: sectionData.image || "",
             badgeTitle: sectionData.badgeTitle || "",
-            badgeValue: sectionData.badgeValue || ""
+            badgeValue: sectionData.badgeValue || "",
           };
           setFormData(loaded);
           if (loaded.image) setSelectedImage(loaded.image);
@@ -187,7 +196,9 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -205,20 +216,22 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
     const toastId = toast.loading("Saving Overview Section...");
     try {
       const uploadedUrls = await uploadFiles([selectedImage]);
-      const imgUrl = selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
+      const imgUrl =
+        selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
 
       const payload = {
         ...formData,
-        image: imgUrl
+        image: imgUrl,
       };
 
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "OverviewSection", content: payload })
+        body: JSON.stringify({ section: "OverviewSection", content: payload }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Overview saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -231,8 +244,6 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
     }
   };
 
-  const preview = selectedImage instanceof File ? URL.createObjectURL(selectedImage) : selectedImage;
-
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
@@ -243,9 +254,21 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Tagline label" name="tagline" value={formData.tagline} onChange={handleChange} required />
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          
+          <InputField
+            label="Tagline label"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
+
           <div className="border border-gray-100 p-4 rounded-xl flex flex-col gap-4">
             <h4 className="text-sm font-bold text-gray-700">Paragraphs</h4>
             {formData.paragraphs.map((p, i) => (
@@ -260,38 +283,47 @@ export function OverviewSectionCMS({ saveUrl }: { saveUrl: string }) {
             ))}
           </div>
 
-          <TextAreaField label="Quote Statement" name="quote" value={formData.quote} onChange={handleChange} required rows={2} />
-          
+          <TextAreaField
+            label="Quote Statement"
+            name="quote"
+            value={formData.quote}
+            onChange={handleChange}
+            required
+            rows={2}
+          />
+
           <div className="flex flex-col md:flex-row gap-6">
-            <InputField label="Badge Title" name="badgeTitle" value={formData.badgeTitle} onChange={handleChange} required containerClassName="flex-1" />
-            <InputField label="Badge Value" name="badgeValue" value={formData.badgeValue} onChange={handleChange} required containerClassName="flex-1" />
+            <InputField
+              label="Badge Title"
+              name="badgeTitle"
+              value={formData.badgeTitle}
+              onChange={handleChange}
+              required
+              containerClassName="flex-1"
+            />
+            <InputField
+              label="Badge Value"
+              name="badgeValue"
+              value={formData.badgeValue}
+              onChange={handleChange}
+              required
+              containerClassName="flex-1"
+            />
           </div>
 
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-medium text-gray-700">Side Image</span>
-            <div className="flex items-center gap-6">
-              {preview && <img src={preview} alt="Preview" className="w-32 h-20 object-cover rounded-xl border border-gray-200" />}
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-xl hover:bg-gray-50 text-sm font-medium"
-              >
-                <CloudUpload size={16} /> Upload New
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files?.[0]) setSelectedImage(e.target.files[0]);
-                }}
-                className="hidden"
-              />
-            </div>
-          </div>
+          <ImagePickerField
+            label="Side Image"
+            value={selectedImage}
+            onChange={(val) => setSelectedImage(val as File)}
+            containerClassName="w-full"
+          />
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -308,7 +340,7 @@ export function CapabilitiesSectionCMS({ saveUrl }: { saveUrl: string }) {
     tagline: "",
     heading: "",
     description: "",
-    capabilities: [] as any[]
+    capabilities: [] as any[],
   });
 
   useEffect(() => {
@@ -320,14 +352,16 @@ export function CapabilitiesSectionCMS({ saveUrl }: { saveUrl: string }) {
             tagline: sectionData.tagline || "",
             heading: sectionData.heading || "",
             description: sectionData.description || "",
-            capabilities: sectionData.capabilities || []
+            capabilities: sectionData.capabilities || [],
           });
         }
       })
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -363,10 +397,14 @@ export function CapabilitiesSectionCMS({ saveUrl }: { saveUrl: string }) {
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "CapabilitiesSection", content: formData })
+        body: JSON.stringify({
+          section: "CapabilitiesSection",
+          content: formData,
+        }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Capabilities saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -389,38 +427,85 @@ export function CapabilitiesSectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Tagline label" name="tagline" value={formData.tagline} onChange={handleChange} required />
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} required rows={2} />
+          <InputField
+            label="Tagline label"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
+          <TextAreaField
+            label="Description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            rows={2}
+          />
 
           <div className="flex flex-col gap-6 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
-            <h4 className="text-sm font-bold text-gray-700">Capabilities List</h4>
+            <h4 className="text-sm font-bold text-gray-700">
+              Capabilities List
+            </h4>
             {formData.capabilities.map((cap, i) => (
-              <div key={i} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0 flex flex-col gap-4">
-                <div className="text-xs font-bold text-gray-400 uppercase">Capability Card #{i + 1}</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField label="Title" value={cap.title} onChange={(e) => handleCardChange(i, "title", e.target.value)} required />
-                  <InputField label="Lucide Icon (e.g. Target, Zap)" value={cap.icon} onChange={(e) => handleCardChange(i, "icon", e.target.value)} required />
+              <div
+                key={i}
+                className="border-b border-gray-100 pb-6 last:border-0 last:pb-0 flex flex-col gap-4"
+              >
+                <div className="text-xs font-bold text-gray-400 uppercase">
+                  Capability Card #{i + 1}
                 </div>
-                <TextAreaField label="Description" value={cap.description} onChange={(e) => handleCardChange(i, "description", e.target.value)} required rows={2} />
-                
-                <div className="flex items-center gap-4">
-                  {cap.image && <img src={cap.image} alt="" className="w-24 h-16 object-cover border rounded-xl" />}
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      if (e.target.files?.[0]) handleCardImageUpload(i, e.target.files[0]);
-                    }}
-                    className="text-xs text-gray-500"
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="Title"
+                    value={cap.title}
+                    onChange={(e) =>
+                      handleCardChange(i, "title", e.target.value)
+                    }
+                    required
+                  />
+                  <InputField
+                    label="Lucide Icon (e.g. Target, Zap)"
+                    value={cap.icon}
+                    onChange={(e) =>
+                      handleCardChange(i, "icon", e.target.value)
+                    }
+                    required
                   />
                 </div>
+                <TextAreaField
+                  label="Description"
+                  value={cap.description}
+                  onChange={(e) =>
+                    handleCardChange(i, "description", e.target.value)
+                  }
+                  required
+                  rows={2}
+                />
+
+                <ImagePickerField
+                  label="Card Image"
+                  value={cap.image}
+                  onChange={(val) => handleCardImageUpload(i, val as File)}
+                  containerClassName="w-full"
+                />
               </div>
             ))}
           </div>
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -437,7 +522,7 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
     tagline: "",
     heading: "",
     description: "",
-    steps: [] as any[]
+    steps: [] as any[],
   });
 
   useEffect(() => {
@@ -449,14 +534,16 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
             tagline: sectionData.tagline || "",
             heading: sectionData.heading || "",
             description: sectionData.description || "",
-            steps: sectionData.steps || []
+            steps: sectionData.steps || [],
           });
         }
       })
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -492,10 +579,11 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "ProcessSection", content: formData })
+        body: JSON.stringify({ section: "ProcessSection", content: formData }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Process steps saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -518,38 +606,83 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Tagline label" name="tagline" value={formData.tagline} onChange={handleChange} required />
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} required rows={2} />
+          <InputField
+            label="Tagline label"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
+          <TextAreaField
+            label="Description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            rows={2}
+          />
 
           <div className="flex flex-col gap-6 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
             <h4 className="text-sm font-bold text-gray-700">Steps List</h4>
             {formData.steps.map((step, i) => (
-              <div key={i} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0 flex flex-col gap-4">
-                <div className="text-xs font-bold text-gray-400 uppercase">Step #{i + 1}</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField label="Title" value={step.title} onChange={(e) => handleStepChange(i, "title", e.target.value)} required />
-                  <InputField label="Lucide Icon (e.g. Search, Settings)" value={step.icon} onChange={(e) => handleStepChange(i, "icon", e.target.value)} required />
+              <div
+                key={i}
+                className="border-b border-gray-100 pb-6 last:border-0 last:pb-0 flex flex-col gap-4"
+              >
+                <div className="text-xs font-bold text-gray-400 uppercase">
+                  Step #{i + 1}
                 </div>
-                <TextAreaField label="Description" value={step.description} onChange={(e) => handleStepChange(i, "description", e.target.value)} required rows={2} />
-                
-                <div className="flex items-center gap-4">
-                  {step.image && <img src={step.image} alt="" className="w-24 h-16 object-cover border rounded-xl" />}
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      if (e.target.files?.[0]) handleStepImageUpload(i, e.target.files[0]);
-                    }}
-                    className="text-xs text-gray-500"
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="Title"
+                    value={step.title}
+                    onChange={(e) =>
+                      handleStepChange(i, "title", e.target.value)
+                    }
+                    required
+                  />
+                  <InputField
+                    label="Lucide Icon (e.g. Search, Settings)"
+                    value={step.icon}
+                    onChange={(e) =>
+                      handleStepChange(i, "icon", e.target.value)
+                    }
+                    required
                   />
                 </div>
+                <TextAreaField
+                  label="Description"
+                  value={step.description}
+                  onChange={(e) =>
+                    handleStepChange(i, "description", e.target.value)
+                  }
+                  required
+                  rows={2}
+                />
+
+                <ImagePickerField
+                  label="Step Image"
+                  value={step.image}
+                  onChange={(val) => handleStepImageUpload(i, val as File)}
+                  containerClassName="w-full"
+                />
               </div>
             ))}
           </div>
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -565,7 +698,7 @@ export function StatsSectionCMS({ saveUrl }: { saveUrl: string }) {
   const [formData, setFormData] = useState({
     heading: "",
     description: "",
-    stats: [] as any[]
+    stats: [] as any[],
   });
 
   useEffect(() => {
@@ -576,14 +709,16 @@ export function StatsSectionCMS({ saveUrl }: { saveUrl: string }) {
           setFormData({
             heading: sectionData.heading || "",
             description: sectionData.description || "",
-            stats: sectionData.stats || []
+            stats: sectionData.stats || [],
           });
         }
       })
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -603,10 +738,11 @@ export function StatsSectionCMS({ saveUrl }: { saveUrl: string }) {
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "StatsSection", content: formData })
+        body: JSON.stringify({ section: "StatsSection", content: formData }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Stats saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -629,25 +765,48 @@ export function StatsSectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} required rows={2} />
+          <InputField
+            label="Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
+          <TextAreaField
+            label="Description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            rows={2}
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
             {formData.stats.map((stat, i) => (
-              <div key={i} className="flex flex-col gap-3 p-4 bg-white border border-gray-100 rounded-xl">
-                <div className="text-xs font-bold text-gray-400">Stat Card #{i + 1}</div>
-                <div className="grid grid-cols-2 gap-3">
+              <div
+                key={i}
+                className="flex flex-col gap-3 p-4 bg-white border border-gray-100 rounded-xl"
+              >
+                <div className="text-xs font-bold text-gray-400">
+                  Stat Card #{i + 1}
+                </div>
+                <div className="grid grid-cols-[3fr_1fr] gap-3">
                   <InputField
-                    label="Value (Number)"
+                    label="Value"
                     type="number"
                     value={stat.value}
-                    onChange={(e) => handleStatChange(i, "value", parseFloat(e.target.value))}
+                    onChange={(e) =>
+                      handleStatChange(i, "value", parseFloat(e.target.value))
+                    }
                     required
                   />
                   <InputField
-                    label="Suffix (e.g. +, %)"
+                    label="Suffix"
                     value={stat.suffix}
-                    onChange={(e) => handleStatChange(i, "suffix", e.target.value)}
+                    onChange={(e) =>
+                      handleStatChange(i, "suffix", e.target.value)
+                    }
+                    placeholder="+, %"
                     required
                   />
                 </div>
@@ -662,7 +821,11 @@ export function StatsSectionCMS({ saveUrl }: { saveUrl: string }) {
           </div>
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -675,7 +838,6 @@ export function FeaturedProjectSectionCMS({ saveUrl }: { saveUrl: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | string>("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
     tagline: "",
@@ -683,7 +845,7 @@ export function FeaturedProjectSectionCMS({ saveUrl }: { saveUrl: string }) {
     projectTitle: "",
     projectDescription: "",
     projectImage: "",
-    metrics: [] as any[]
+    metrics: [] as any[],
   });
 
   useEffect(() => {
@@ -697,15 +859,18 @@ export function FeaturedProjectSectionCMS({ saveUrl }: { saveUrl: string }) {
             projectTitle: sectionData.projectTitle || "",
             projectDescription: sectionData.projectDescription || "",
             projectImage: sectionData.projectImage || "",
-            metrics: sectionData.metrics || []
+            metrics: sectionData.metrics || [],
           });
-          if (sectionData.projectImage) setSelectedImage(sectionData.projectImage);
+          if (sectionData.projectImage)
+            setSelectedImage(sectionData.projectImage);
         }
       })
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -723,20 +888,25 @@ export function FeaturedProjectSectionCMS({ saveUrl }: { saveUrl: string }) {
     const toastId = toast.loading("Saving Featured Project...");
     try {
       const uploadedUrls = await uploadFiles([selectedImage]);
-      const imgUrl = selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
+      const imgUrl =
+        selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
 
       const payload = {
         ...formData,
-        projectImage: imgUrl
+        projectImage: imgUrl,
       };
 
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "FeaturedProjectSection", content: payload })
+        body: JSON.stringify({
+          section: "FeaturedProjectSection",
+          content: payload,
+        }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Featured project saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -749,8 +919,6 @@ export function FeaturedProjectSectionCMS({ saveUrl }: { saveUrl: string }) {
     }
   };
 
-  const preview = selectedImage instanceof File ? URL.createObjectURL(selectedImage) : selectedImage;
-
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
@@ -761,50 +929,89 @@ export function FeaturedProjectSectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Tagline label" name="tagline" value={formData.tagline} onChange={handleChange} required />
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          
+          <InputField
+            label="Tagline label"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
+
           <div className="border border-gray-100 p-4 rounded-xl flex flex-col gap-4 bg-gray-50/10">
-            <InputField label="Project Title" name="projectTitle" value={formData.projectTitle} onChange={handleChange} required />
-            <TextAreaField label="Project Description" name="projectDescription" value={formData.projectDescription} onChange={handleChange} required rows={3} />
+            <InputField
+              label="Project Title"
+              name="projectTitle"
+              value={formData.projectTitle}
+              onChange={handleChange}
+              required
+            />
+            <TextAreaField
+              label="Project Description"
+              name="projectDescription"
+              value={formData.projectDescription}
+              onChange={handleChange}
+              required
+              rows={3}
+            />
           </div>
 
           <div className="flex flex-col gap-4 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
-            <h4 className="text-sm font-bold text-gray-700">Project Key Metrics</h4>
+            <h4 className="text-sm font-bold text-gray-700">
+              Project Key Metrics
+            </h4>
             {formData.metrics.map((metric, i) => (
-              <div key={i} className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-4 border-b last:border-0 border-gray-100">
-                <InputField label="Value (e.g. 1,320 MW)" value={metric.value} onChange={(e) => handleMetricChange(i, "value", e.target.value)} required />
-                <InputField label="Label (e.g. Total Capacity)" value={metric.label} onChange={(e) => handleMetricChange(i, "label", e.target.value)} required />
-                <InputField label="Lucide Icon (e.g. Zap, Target)" value={metric.icon} onChange={(e) => handleMetricChange(i, "icon", e.target.value)} required />
+              <div
+                key={i}
+                className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-4 border-b last:border-0 border-gray-100"
+              >
+                <InputField
+                  label="Value (e.g. 1,320 MW)"
+                  value={metric.value}
+                  onChange={(e) =>
+                    handleMetricChange(i, "value", e.target.value)
+                  }
+                  required
+                />
+                <InputField
+                  label="Label (e.g. Total Capacity)"
+                  value={metric.label}
+                  onChange={(e) =>
+                    handleMetricChange(i, "label", e.target.value)
+                  }
+                  required
+                />
+                <InputField
+                  label="Lucide Icon (e.g. Zap, Target)"
+                  value={metric.icon}
+                  onChange={(e) =>
+                    handleMetricChange(i, "icon", e.target.value)
+                  }
+                  required
+                />
               </div>
             ))}
           </div>
 
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-medium text-gray-700">Project Image</span>
-            <div className="flex items-center gap-6">
-              {preview && <img src={preview} alt="Preview" className="w-32 h-20 object-cover rounded-xl border border-gray-200" />}
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-xl hover:bg-gray-50 text-sm font-medium"
-              >
-                <CloudUpload size={16} /> Upload New
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files?.[0]) setSelectedImage(e.target.files[0]);
-                }}
-                className="hidden"
-              />
-            </div>
-          </div>
+          <ImagePickerField
+            label="Project Image"
+            value={selectedImage}
+            onChange={(val) => setSelectedImage(val as File)}
+            containerClassName="w-full"
+          />
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -821,7 +1028,7 @@ export function ValueSectionCMS({ saveUrl }: { saveUrl: string }) {
     tagline: "",
     heading: "",
     description: "",
-    values: [] as any[]
+    values: [] as any[],
   });
 
   useEffect(() => {
@@ -833,14 +1040,16 @@ export function ValueSectionCMS({ saveUrl }: { saveUrl: string }) {
             tagline: sectionData.tagline || "",
             heading: sectionData.heading || "",
             description: sectionData.description || "",
-            values: sectionData.values || []
+            values: sectionData.values || [],
           });
         }
       })
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -860,10 +1069,11 @@ export function ValueSectionCMS({ saveUrl }: { saveUrl: string }) {
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "ValueSection", content: formData })
+        body: JSON.stringify({ section: "ValueSection", content: formData }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Values saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -886,26 +1096,78 @@ export function ValueSectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Tagline label" name="tagline" value={formData.tagline} onChange={handleChange} required />
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} required rows={2} />
+          <InputField
+            label="Tagline label"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
+          <TextAreaField
+            label="Description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            rows={2}
+          />
 
           <div className="flex flex-col gap-6 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
-            <h4 className="text-sm font-bold text-gray-700">Value Statements</h4>
+            <h4 className="text-sm font-bold text-gray-700">
+              Value Statements
+            </h4>
             {formData.values.map((v, i) => (
-              <div key={i} className="border-b last:border-0 border-gray-100 pb-4 last:pb-0 flex flex-col gap-3">
-                <div className="text-xs font-bold text-gray-400">Statement Card #{i + 1}</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField label="Title" value={v.title} onChange={(e) => handleValueChange(i, "title", e.target.value)} required />
-                  <InputField label="Lucide Icon (e.g. ShieldCheck, Target)" value={v.icon} onChange={(e) => handleValueChange(i, "icon", e.target.value)} required />
+              <div
+                key={i}
+                className="border-b last:border-0 border-gray-100 pb-4 last:pb-0 flex flex-col gap-3"
+              >
+                <div className="text-xs font-bold text-gray-400">
+                  Statement Card #{i + 1}
                 </div>
-                <TextAreaField label="Description Text" value={v.description} onChange={(e) => handleValueChange(i, "description", e.target.value)} required rows={2} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="Title"
+                    value={v.title}
+                    onChange={(e) =>
+                      handleValueChange(i, "title", e.target.value)
+                    }
+                    required
+                  />
+                  <InputField
+                    label="Lucide Icon (e.g. ShieldCheck, Target)"
+                    value={v.icon}
+                    onChange={(e) =>
+                      handleValueChange(i, "icon", e.target.value)
+                    }
+                    required
+                  />
+                </div>
+                <TextAreaField
+                  label="Description Text"
+                  value={v.description}
+                  onChange={(e) =>
+                    handleValueChange(i, "description", e.target.value)
+                  }
+                  required
+                  rows={2}
+                />
               </div>
             ))}
           </div>
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -921,7 +1183,7 @@ export function RelatedServicesSectionCMS({ saveUrl }: { saveUrl: string }) {
   const [formData, setFormData] = useState({
     tagline: "",
     heading: "",
-    services: [] as any[]
+    services: [] as any[],
   });
 
   useEffect(() => {
@@ -932,14 +1194,16 @@ export function RelatedServicesSectionCMS({ saveUrl }: { saveUrl: string }) {
           setFormData({
             tagline: sectionData.tagline || "",
             heading: sectionData.heading || "",
-            services: sectionData.services || []
+            services: sectionData.services || [],
           });
         }
       })
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -975,10 +1239,14 @@ export function RelatedServicesSectionCMS({ saveUrl }: { saveUrl: string }) {
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "RelatedServicesSection", content: formData })
+        body: JSON.stringify({
+          section: "RelatedServicesSection",
+          content: formData,
+        }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("Related services saved!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -1001,29 +1269,65 @@ export function RelatedServicesSectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Tagline label" name="tagline" value={formData.tagline} onChange={handleChange} required />
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
+          <InputField
+            label="Tagline label"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
 
           <div className="flex flex-col gap-6 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
             <h4 className="text-sm font-bold text-gray-700">Services Cards</h4>
             {formData.services.map((ser, i) => (
-              <div key={i} className="border-b last:border-0 border-gray-100 pb-4 last:pb-0 flex flex-col gap-3">
-                <div className="text-xs font-bold text-gray-400">Card #{i + 1}</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField label="Title" value={ser.title} onChange={(e) => handleServiceChange(i, "title", e.target.value)} required />
-                  <InputField label="Link (e.g. /services/project-management)" value={ser.link} onChange={(e) => handleServiceChange(i, "link", e.target.value)} required />
+              <div
+                key={i}
+                className="border-b last:border-0 border-gray-100 pb-4 last:pb-0 flex flex-col gap-3"
+              >
+                <div className="text-xs font-bold text-gray-400">
+                  Card #{i + 1}
                 </div>
-                <TextAreaField label="Description" value={ser.description} onChange={(e) => handleServiceChange(i, "description", e.target.value)} required rows={2} />
-                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="Title"
+                    value={ser.title}
+                    onChange={(e) =>
+                      handleServiceChange(i, "title", e.target.value)
+                    }
+                    required
+                  />
+                  <InputField
+                    label="Link (e.g. /services/project-management)"
+                    value={ser.link}
+                    onChange={(e) =>
+                      handleServiceChange(i, "link", e.target.value)
+                    }
+                    required
+                  />
+                </div>
+                <TextAreaField
+                  label="Description"
+                  value={ser.description}
+                  onChange={(e) =>
+                    handleServiceChange(i, "description", e.target.value)
+                  }
+                  required
+                  rows={2}
+                />
+
                 <div className="flex items-center gap-4">
-                  {ser.image && <img src={ser.image} alt="" className="w-24 h-16 object-cover border rounded-xl" />}
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      if (e.target.files?.[0]) handleServiceImageUpload(i, e.target.files[0]);
-                    }}
-                    className="text-xs text-gray-500"
+                  <ImagePickerField
+                    label="Service Image"
+                    value={ser.image}
+                    onChange={(val) => handleServiceImageUpload(i, val as File)}
+                    containerClassName="w-full"
                   />
                 </div>
               </div>
@@ -1031,7 +1335,11 @@ export function RelatedServicesSectionCMS({ saveUrl }: { saveUrl: string }) {
           </div>
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}
@@ -1052,7 +1360,7 @@ export function CTASectionCMS({ saveUrl }: { saveUrl: string }) {
     secondaryBtnLabel: "",
     secondaryBtnUrl: "",
     ctaLabel: "", // Fallback
-    ctaUrl: ""   // Fallback
+    ctaUrl: "", // Fallback
   });
 
   useEffect(() => {
@@ -1063,19 +1371,23 @@ export function CTASectionCMS({ saveUrl }: { saveUrl: string }) {
           setFormData({
             heading: sectionData.heading || "",
             description: sectionData.description || "",
-            primaryBtnLabel: sectionData.primaryBtnLabel || sectionData.ctaLabel || "",
-            primaryBtnUrl: sectionData.primaryBtnUrl || sectionData.ctaUrl || "",
+            primaryBtnLabel:
+              sectionData.primaryBtnLabel || sectionData.ctaLabel || "",
+            primaryBtnUrl:
+              sectionData.primaryBtnUrl || sectionData.ctaUrl || "",
             secondaryBtnLabel: sectionData.secondaryBtnLabel || "",
             secondaryBtnUrl: sectionData.secondaryBtnUrl || "",
             ctaLabel: sectionData.ctaLabel || "",
-            ctaUrl: sectionData.ctaUrl || ""
+            ctaUrl: sectionData.ctaUrl || "",
           });
         }
       })
       .catch(console.error);
   }, [saveUrl]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -1088,16 +1400,17 @@ export function CTASectionCMS({ saveUrl }: { saveUrl: string }) {
       const payload = {
         ...formData,
         ctaLabel: formData.primaryBtnLabel || formData.ctaLabel,
-        ctaUrl: formData.primaryBtnUrl || formData.ctaUrl
+        ctaUrl: formData.primaryBtnUrl || formData.ctaUrl,
       };
 
       const res = await fetch(saveUrl, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "CTASection", content: payload })
+        body: JSON.stringify({ section: "CTASection", content: payload }),
       });
       const json = await res.json();
       if (json.success) {
+        clearCache(saveUrl);
         toast.success("CTA saved successfully!", { id: toastId });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -1120,21 +1433,64 @@ export function CTASectionCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="CTA Heading" name="heading" value={formData.heading} onChange={handleChange} required />
-          <TextAreaField label="Description / Subtitle" name="description" value={formData.description} onChange={handleChange} required rows={3} />
-          
+          <InputField
+            label="CTA Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            required
+          />
+          <TextAreaField
+            label="Description / Subtitle"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            rows={3}
+          />
+
           <div className="flex flex-col md:flex-row gap-6 border-t border-gray-100 pt-6">
-            <InputField label="Primary CTA Label" name="primaryBtnLabel" value={formData.primaryBtnLabel} onChange={handleChange} required containerClassName="flex-1" />
-            <InputField label="Primary CTA Redirect URL" name="primaryBtnUrl" value={formData.primaryBtnUrl} onChange={handleChange} required containerClassName="flex-1" />
+            <InputField
+              label="Primary CTA Label"
+              name="primaryBtnLabel"
+              value={formData.primaryBtnLabel}
+              onChange={handleChange}
+              required
+              containerClassName="flex-1"
+            />
+            <InputField
+              label="Primary CTA Redirect URL"
+              name="primaryBtnUrl"
+              value={formData.primaryBtnUrl}
+              onChange={handleChange}
+              required
+              containerClassName="flex-1"
+            />
           </div>
 
           <div className="flex flex-col md:flex-row gap-6">
-            <InputField label="Secondary CTA Label" name="secondaryBtnLabel" value={formData.secondaryBtnLabel} onChange={handleChange} containerClassName="flex-1" />
-            <InputField label="Secondary CTA Redirect URL" name="secondaryBtnUrl" value={formData.secondaryBtnUrl} onChange={handleChange} containerClassName="flex-1" />
+            <InputField
+              label="Secondary CTA Label"
+              name="secondaryBtnLabel"
+              value={formData.secondaryBtnLabel}
+              onChange={handleChange}
+              containerClassName="flex-1"
+            />
+            <InputField
+              label="Secondary CTA Redirect URL"
+              name="secondaryBtnUrl"
+              value={formData.secondaryBtnUrl}
+              onChange={handleChange}
+              containerClassName="flex-1"
+            />
           </div>
 
           <div className="flex justify-end pt-4 border-t border-gray-100">
-            <SaveButton onClick={handleSave} disabled={isSaving} className="w-44 h-12" />
+            <SaveButton
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-44 h-12"
+            />
           </div>
         </div>
       )}

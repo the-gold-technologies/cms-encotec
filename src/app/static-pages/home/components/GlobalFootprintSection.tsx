@@ -26,11 +26,12 @@ interface StatItem {
 const defaultFormData = {
   tagline: "Global Presence",
   heading: "Connected Intelligence",
-  description: "A live network of energy systems operating in synchronization across continents.",
+  description:
+    "A live network of energy systems operating in synchronization across continents.",
   stats: [
     { value: "14+", label: "India Locations" },
     { value: "8000+", label: "MW Capacity" },
-    { value: "1,800+", label: "Professionals" }
+    { value: "1,800+", label: "Professionals" },
   ] as StatItem[],
   locations: [
     {
@@ -39,7 +40,47 @@ const defaultFormData = {
       region: "India",
       address: "Corporate Headquarters",
       suite: "Noida, Uttar Pradesh",
-      phone: "+91 120 555 0100"
+      phone: "+91 120 555 0100",
+    },
+    {
+      name: "New Delhi",
+      coordinates: [77.21, 28.61],
+      region: "India",
+      address: "Regional Office",
+      suite: "New Delhi, India",
+      phone: "+91 11 555 0200",
+    },
+    {
+      name: "Jamshedpur",
+      coordinates: [86.18, 22.8],
+      region: "India",
+      address: "Project Site",
+      suite: "Jamshedpur, Jharkhand",
+      phone: "+91 657 555 0300",
+    },
+    {
+      name: "Jhajjar",
+      coordinates: [76.66, 28.61],
+      region: "India",
+      address: "Power Plant O&M",
+      suite: "Jhajjar, Haryana",
+      phone: "+91 1251 555 0400",
+    },
+    {
+      name: "Haldia",
+      coordinates: [88.06, 22.03],
+      region: "India",
+      address: "Project Site",
+      suite: "Haldia, West Bengal",
+      phone: "+91 3224 555 0500",
+    },
+    {
+      name: "Khandwa",
+      coordinates: [76.35, 21.82],
+      region: "India",
+      address: "Project Site",
+      suite: "Khandwa, Madhya Pradesh",
+      phone: "+91 733 555 0600",
     },
     {
       name: "Rajpura",
@@ -47,7 +88,71 @@ const defaultFormData = {
       region: "India",
       address: "2x700 MW Supercritical Plant",
       suite: "Rajpura, Punjab",
-      phone: "+91 1762 555 0700"
+      phone: "+91 1762 555 0700",
+    },
+    {
+      name: "Obra",
+      coordinates: [82.98, 24.42],
+      region: "India",
+      address: "2x660 MW Thermal Project",
+      suite: "Obra, Uttar Pradesh",
+      phone: "+91 5446 555 0800",
+    },
+    {
+      name: "Singrauli",
+      coordinates: [82.67, 24.2],
+      region: "India",
+      address: "Power Plant Operations",
+      suite: "Singrauli, Madhya Pradesh",
+      phone: "+91 7805 555 0900",
+    },
+    {
+      name: "Vizag",
+      coordinates: [83.3, 17.69],
+      region: "India",
+      address: "Project Site",
+      suite: "Visakhapatnam, Andhra Pradesh",
+      phone: "+91 891 555 1000",
+    },
+    {
+      name: "Panki",
+      coordinates: [80.3, 26.47],
+      region: "India",
+      address: "Power Plant",
+      suite: "Panki, Uttar Pradesh",
+      phone: "+91 512 555 1100",
+    },
+    {
+      name: "Jewar",
+      coordinates: [77.55, 28.13],
+      region: "India",
+      address: "Airport MEP Services",
+      suite: "Jewar, Uttar Pradesh",
+      phone: "+91 120 555 1200",
+    },
+    {
+      name: "Shahjahanpur",
+      coordinates: [79.91, 27.88],
+      region: "India",
+      address: "Project Site",
+      suite: "Shahjahanpur, Uttar Pradesh",
+      phone: "+91 5842 555 1300",
+    },
+    {
+      name: "Bela",
+      coordinates: [83.95, 24.65],
+      region: "India",
+      address: "Project Site",
+      suite: "Bela, Uttar Pradesh",
+      phone: "+91 5446 555 1400",
+    },
+    {
+      name: "Turkey",
+      coordinates: [32.86, 39.93],
+      region: "International",
+      address: "Celikler Energy Project",
+      suite: "Ankara, Turkey",
+      phone: "+90 312 555 0100",
     },
     {
       name: "Bahrain",
@@ -55,9 +160,9 @@ const defaultFormData = {
       region: "International",
       address: "Energy Infrastructure",
       suite: "Manama, Bahrain",
-      phone: "+973 1755 0200"
-    }
-  ] as LocationItem[]
+      phone: "+973 1755 0200",
+    },
+  ] as LocationItem[],
 };
 
 const mergeDefaults = (data: any) => {
@@ -98,7 +203,8 @@ export function GlobalFootprintSection({
   onToggle: controlledOnToggle,
 }: GlobalFootprintSectionProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
     if (controlledOnToggle) {
       controlledOnToggle();
@@ -117,7 +223,7 @@ export function GlobalFootprintSection({
     region: "India",
     address: "",
     suite: "",
-    phone: ""
+    phone: "",
   });
 
   useEffect(() => {
@@ -126,7 +232,9 @@ export function GlobalFootprintSection({
     } else {
       fetchWithCache(saveUrl)
         .then((json) => {
-          const sectionData = responseKey ? json.data?.[responseKey] : json.data;
+          const sectionData = responseKey
+            ? json.data?.[responseKey]
+            : json.data;
           if (json.success && sectionData) {
             setFormData(mergeDefaults(sectionData));
           }
@@ -135,24 +243,34 @@ export function GlobalFootprintSection({
     }
   }, [initialData, saveUrl, responseKey]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleStatChange = (index: number, key: keyof StatItem, value: string) => {
+  const handleStatChange = (
+    index: number,
+    key: keyof StatItem,
+    value: string,
+  ) => {
     setFormData((prev) => {
       const updated = prev.stats.map((s, idx) =>
-        idx === index ? { ...s, [key]: value } : s
+        idx === index ? { ...s, [key]: value } : s,
       );
       return { ...prev, stats: updated };
     });
   };
 
-  const handleLocationFieldChange = (index: number, key: keyof LocationItem, value: any) => {
+  const handleLocationFieldChange = (
+    index: number,
+    key: keyof LocationItem,
+    value: any,
+  ) => {
     setFormData((prev) => {
       const updated = prev.locations.map((loc, idx) =>
-        idx === index ? { ...loc, [key]: value } : loc
+        idx === index ? { ...loc, [key]: value } : loc,
       );
       return { ...prev, locations: updated };
     });
@@ -166,9 +284,17 @@ export function GlobalFootprintSection({
   };
 
   const addLocation = () => {
-    const coordsParts = newLoc.coordinatesStr.split(",").map((p) => parseFloat(p.trim()));
-    if (coordsParts.length !== 2 || isNaN(coordsParts[0]) || isNaN(coordsParts[1])) {
-      toast.error("Invalid coordinates. Use format: longitude, latitude (e.g. 77.39, 28.58)");
+    const coordsParts = newLoc.coordinatesStr
+      .split(",")
+      .map((p) => parseFloat(p.trim()));
+    if (
+      coordsParts.length !== 2 ||
+      isNaN(coordsParts[0]) ||
+      isNaN(coordsParts[1])
+    ) {
+      toast.error(
+        "Invalid coordinates. Use format: longitude, latitude (e.g. 77.39, 28.58)",
+      );
       return;
     }
     if (!newLoc.name.trim() || !newLoc.address.trim()) {
@@ -182,12 +308,12 @@ export function GlobalFootprintSection({
       region: newLoc.region,
       address: newLoc.address.trim(),
       suite: newLoc.suite.trim(),
-      phone: newLoc.phone.trim()
+      phone: newLoc.phone.trim(),
     };
 
     setFormData((prev) => ({
       ...prev,
-      locations: [...prev.locations, createdLoc]
+      locations: [...prev.locations, createdLoc],
     }));
 
     setNewLoc({
@@ -196,7 +322,7 @@ export function GlobalFootprintSection({
       region: "India",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     });
     toast.success("Location added successfully!");
   };
@@ -204,7 +330,7 @@ export function GlobalFootprintSection({
   const removeLocation = (indexToRemove: number) => {
     setFormData((prev) => ({
       ...prev,
-      locations: prev.locations.filter((_, idx) => idx !== indexToRemove)
+      locations: prev.locations.filter((_, idx) => idx !== indexToRemove),
     }));
   };
 
@@ -223,7 +349,10 @@ export function GlobalFootprintSection({
     try {
       const body = sectionId
         ? { id: sectionId, content: formData }
-        : { section: responseKey ?? "GlobalFootprintSection", content: formData };
+        : {
+            section: responseKey ?? "GlobalFootprintSection",
+            content: formData,
+          };
 
       const res = await fetch(sectionId ? `/api/sections` : saveUrl, {
         method: "PUT",
@@ -233,7 +362,9 @@ export function GlobalFootprintSection({
 
       const json = await res.json();
       if (json.success) {
-        toast.success("Global Presence section saved successfully!", { id: toastId });
+        toast.success("Global Presence section saved successfully!", {
+          id: toastId,
+        });
         if (onSave) onSave(formData as unknown as Record<string, unknown>);
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -263,7 +394,6 @@ export function GlobalFootprintSection({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              
               {/* Heading Configuration */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl">
                 <InputField
@@ -304,9 +434,25 @@ export function GlobalFootprintSection({
                       key={i}
                       className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3"
                     >
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Stat {i + 1}</span>
-                      <InputField label="Value" value={stat.value} onChange={(e) => handleStatChange(i, "value", e.target.value)} placeholder="e.g. 14+" />
-                      <InputField label="Label" value={stat.label} onChange={(e) => handleStatChange(i, "label", e.target.value)} placeholder="e.g. India Locations" />
+                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                        Stat {i + 1}
+                      </span>
+                      <InputField
+                        label="Value"
+                        value={stat.value}
+                        onChange={(e) =>
+                          handleStatChange(i, "value", e.target.value)
+                        }
+                        placeholder="e.g. 14+"
+                      />
+                      <InputField
+                        label="Label"
+                        value={stat.label}
+                        onChange={(e) =>
+                          handleStatChange(i, "label", e.target.value)
+                        }
+                        placeholder="e.g. India Locations"
+                      />
                     </div>
                   ))}
                 </div>
@@ -332,30 +478,56 @@ export function GlobalFootprintSection({
                     </thead>
                     <tbody>
                       {formData.locations.map((loc, i) => (
-                        <tr key={i} className="border-b border-gray-100/60 hover:bg-gray-50/30">
+                        <tr
+                          key={i}
+                          className="border-b border-gray-100/60 hover:bg-gray-50/30"
+                        >
                           <td className="p-4 px-6 font-semibold text-gray-900">
                             <input
                               type="text"
                               value={loc.name}
-                              onChange={(e) => handleLocationFieldChange(i, "name", e.target.value)}
+                              onChange={(e) =>
+                                handleLocationFieldChange(
+                                  i,
+                                  "name",
+                                  e.target.value,
+                                )
+                              }
                               className="w-full bg-transparent border-0 font-semibold text-gray-900 outline-none focus:ring-1 focus:ring-[#a0004f] rounded px-1.5 py-1"
                             />
                           </td>
                           <td className="p-4">
                             <select
                               value={loc.region}
-                              onChange={(e) => handleLocationFieldChange(i, "region", e.target.value)}
+                              onChange={(e) =>
+                                handleLocationFieldChange(
+                                  i,
+                                  "region",
+                                  e.target.value,
+                                )
+                              }
                               className="bg-transparent border-0 outline-none focus:ring-1 focus:ring-[#a0004f] rounded py-1 cursor-pointer"
                             >
                               <option value="India">India</option>
-                              <option value="International">International</option>
+                              <option value="International">
+                                International
+                              </option>
                             </select>
                           </td>
                           <td className="p-4">
                             <input
                               type="text"
-                              value={loc.coordinates ? loc.coordinates.join(", ") : ""}
-                              onChange={(e) => handleLocationCoordinatesChange(i, e.target.value)}
+                              value={
+                                loc.coordinates
+                                  ? loc.coordinates.join(", ")
+                                  : ""
+                              }
+                              onChange={(e) =>
+                                handleLocationCoordinatesChange(
+                                  i,
+                                  e.target.value,
+                                )
+                              }
                               className="w-full bg-transparent border-0 outline-none font-mono focus:ring-1 focus:ring-[#a0004f] rounded px-1.5 py-1 text-gray-500"
                             />
                           </td>
@@ -363,7 +535,13 @@ export function GlobalFootprintSection({
                             <input
                               type="text"
                               value={loc.address}
-                              onChange={(e) => handleLocationFieldChange(i, "address", e.target.value)}
+                              onChange={(e) =>
+                                handleLocationFieldChange(
+                                  i,
+                                  "address",
+                                  e.target.value,
+                                )
+                              }
                               className="w-full bg-transparent border-0 outline-none focus:ring-1 focus:ring-[#a0004f] rounded px-1.5 py-1 text-gray-600"
                             />
                           </td>
@@ -371,7 +549,13 @@ export function GlobalFootprintSection({
                             <input
                               type="text"
                               value={loc.suite}
-                              onChange={(e) => handleLocationFieldChange(i, "suite", e.target.value)}
+                              onChange={(e) =>
+                                handleLocationFieldChange(
+                                  i,
+                                  "suite",
+                                  e.target.value,
+                                )
+                              }
                               className="w-full bg-transparent border-0 outline-none focus:ring-1 focus:ring-[#a0004f] rounded px-1.5 py-1 text-gray-600"
                             />
                           </td>
@@ -379,7 +563,13 @@ export function GlobalFootprintSection({
                             <input
                               type="text"
                               value={loc.phone}
-                              onChange={(e) => handleLocationFieldChange(i, "phone", e.target.value)}
+                              onChange={(e) =>
+                                handleLocationFieldChange(
+                                  i,
+                                  "phone",
+                                  e.target.value,
+                                )
+                              }
                               className="w-full bg-transparent border-0 outline-none focus:ring-1 focus:ring-[#a0004f] rounded px-1.5 py-1 font-mono text-gray-500"
                             />
                           </td>
@@ -409,7 +599,9 @@ export function GlobalFootprintSection({
                   <InputField
                     label="Location Name"
                     value={newLoc.name}
-                    onChange={(e) => setNewLoc((prev) => ({ ...prev, name: e.target.value }))}
+                    onChange={(e) =>
+                      setNewLoc((prev) => ({ ...prev, name: e.target.value }))
+                    }
                     placeholder="e.g. Turkey"
                   />
                   <div className="flex flex-col gap-1.5 px-0.5">
@@ -418,7 +610,12 @@ export function GlobalFootprintSection({
                     </label>
                     <select
                       value={newLoc.region}
-                      onChange={(e) => setNewLoc((prev) => ({ ...prev, region: e.target.value }))}
+                      onChange={(e) =>
+                        setNewLoc((prev) => ({
+                          ...prev,
+                          region: e.target.value,
+                        }))
+                      }
                       className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 appearance-none cursor-pointer"
                     >
                       <option value="India">India</option>
@@ -428,26 +625,40 @@ export function GlobalFootprintSection({
                   <InputField
                     label="Coordinates (Lng, Lat)"
                     value={newLoc.coordinatesStr}
-                    onChange={(e) => setNewLoc((prev) => ({ ...prev, coordinatesStr: e.target.value }))}
+                    onChange={(e) =>
+                      setNewLoc((prev) => ({
+                        ...prev,
+                        coordinatesStr: e.target.value,
+                      }))
+                    }
                     placeholder="e.g. 32.86, 39.93"
                     tooltip="Use format: longitude, latitude. Lng is first, Lat is second."
                   />
                   <InputField
                     label="Address"
                     value={newLoc.address}
-                    onChange={(e) => setNewLoc((prev) => ({ ...prev, address: e.target.value }))}
+                    onChange={(e) =>
+                      setNewLoc((prev) => ({
+                        ...prev,
+                        address: e.target.value,
+                      }))
+                    }
                     placeholder="e.g. Celikler Energy Project"
                   />
                   <InputField
                     label="Suite / State"
                     value={newLoc.suite}
-                    onChange={(e) => setNewLoc((prev) => ({ ...prev, suite: e.target.value }))}
+                    onChange={(e) =>
+                      setNewLoc((prev) => ({ ...prev, suite: e.target.value }))
+                    }
                     placeholder="e.g. Ankara, Turkey"
                   />
                   <InputField
                     label="Phone Number"
                     value={newLoc.phone}
-                    onChange={(e) => setNewLoc((prev) => ({ ...prev, phone: e.target.value }))}
+                    onChange={(e) =>
+                      setNewLoc((prev) => ({ ...prev, phone: e.target.value }))
+                    }
                     placeholder="e.g. +90 312 555 0100"
                   />
                 </div>
@@ -471,7 +682,6 @@ export function GlobalFootprintSection({
                   className="w-44 h-12 text-sm"
                 />
               </div>
-
             </div>
           </div>
         </div>

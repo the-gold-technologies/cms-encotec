@@ -10,12 +10,27 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
+  heading: "How to Join Us",
   processSteps: [
-    { title: "Apply Online", description: "Submit your resume and cover letter through our portal." },
-    { title: "Initial Screening", description: "Our HR team reviews your application within 5 business days." },
-    { title: "Technical Interview", description: "Meet with our engineering leads for a technical discussion." },
-    { title: "Final Offer", description: "Receive your offer and begin your journey with Encotec." }
-  ]
+    {
+      title: "Apply Online",
+      description: "Submit your resume and cover letter through our portal.",
+    },
+    {
+      title: "Initial Screening",
+      description:
+        "Our HR team reviews your application within 5 business days.",
+    },
+    {
+      title: "Technical Interview",
+      description:
+        "Meet with our engineering leads for a technical discussion.",
+    },
+    {
+      title: "Final Offer",
+      description: "Receive your offer and begin your journey with Encotec.",
+    },
+  ],
 };
 
 export function CareersProcessCMS() {
@@ -33,7 +48,11 @@ export function CareersProcessCMS() {
       .catch(console.error);
   }, []);
 
-  const handleStepChange = (index: number, field: "title" | "description", value: string) => {
+  const handleStepChange = (
+    index: number,
+    field: "title" | "description",
+    value: string,
+  ) => {
     setFormData((prev) => {
       const updatedList = [...prev.processSteps];
       updatedList[index] = { ...updatedList[index], [field]: value };
@@ -44,7 +63,7 @@ export function CareersProcessCMS() {
   const addStep = () => {
     setFormData((prev) => ({
       ...prev,
-      processSteps: [...prev.processSteps, { title: "", description: "" }]
+      processSteps: [...prev.processSteps, { title: "", description: "" }],
     }));
     toast.success("Added new step");
   };
@@ -56,7 +75,7 @@ export function CareersProcessCMS() {
     }
     setFormData((prev) => ({
       ...prev,
-      processSteps: prev.processSteps.filter((_, i) => i !== index)
+      processSteps: prev.processSteps.filter((_, i) => i !== index),
     }));
   };
 
@@ -90,14 +109,26 @@ export function CareersProcessCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Application Process Section"
-        description="Manage the step-by-step recruitment roadmap shown on the careers page."
+        description="Manage the heading and step-by-step recruitment roadmap shown on the careers page."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
+          <InputField
+            label="Section Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, heading: e.target.value }))
+            }
+            required
+          />
+
           <div className="flex justify-between items-center">
-            <span className="text-sm font-semibold text-gray-700">Roadmap Steps ({formData.processSteps.length})</span>
+            <span className="text-sm font-semibold text-gray-700">
+              Roadmap Steps ({formData.processSteps.length})
+            </span>
             <button
               onClick={addStep}
               className="flex items-center gap-2 px-3 py-1.5 bg-brand-pink text-white rounded text-xs font-semibold hover:bg-[#a0004f] transition-all"
@@ -108,7 +139,10 @@ export function CareersProcessCMS() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {formData.processSteps.map((step, idx) => (
-              <div key={idx} className="p-4 border border-gray-100 rounded-xl flex flex-col gap-4 relative">
+              <div
+                key={idx}
+                className="p-4 border border-gray-100 rounded-xl flex flex-col gap-4 relative"
+              >
                 <button
                   onClick={() => removeStep(idx)}
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors"
@@ -121,7 +155,9 @@ export function CareersProcessCMS() {
                   label={`Step #${idx + 1} Title`}
                   name={`title-${idx}`}
                   value={step.title}
-                  onChange={(e) => handleStepChange(idx, "title", e.target.value)}
+                  onChange={(e) =>
+                    handleStepChange(idx, "title", e.target.value)
+                  }
                   required
                 />
 
@@ -129,7 +165,9 @@ export function CareersProcessCMS() {
                   label={`Step #${idx + 1} Description`}
                   name={`desc-${idx}`}
                   value={step.description}
-                  onChange={(e) => handleStepChange(idx, "description", e.target.value)}
+                  onChange={(e) =>
+                    handleStepChange(idx, "description", e.target.value)
+                  }
                   rows={2}
                   required
                 />

@@ -31,7 +31,6 @@ export default function HomeCMSPage() {
       <TestimonialsSection />
       <LogoStripSection />
       <CTASection />
-      <FooterCMS />
     </section>
   );
 }

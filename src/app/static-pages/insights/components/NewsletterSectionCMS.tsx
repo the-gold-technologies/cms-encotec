@@ -9,23 +9,23 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  ctaHeading: "Partner With Excellence",
-  ctaSubtitle:
-    "Experience engineering services backed by global certifications and a commitment to uncompromising quality.",
-  ctaLabel: "Discuss Your Project",
-  ctaUrl: "/contact",
+  tagline: "Inside Encotec",
+  heading: "Stay Ahead in Energy Engineering",
+  description:
+    "Subscribe to our newsletter to receive the latest case studies, industry insights, and technical articles directly in your inbox.",
+  privacyNote: "We respect your privacy. Unsubscribe at any time.",
 };
 
-export function CertificationsCTACMS() {
+export function NewsletterSectionCMS() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    fetchWithCache("/api/certifications")
+    fetchWithCache("/api/insights")
       .then((json) => {
-        if (json.success && json.data?.CertificationsCTA) {
-          setFormData({ ...defaultFormData, ...json.data.CertificationsCTA });
+        if (json.success && json.data?.NewsletterSection) {
+          setFormData({ ...defaultFormData, ...json.data.NewsletterSection });
         }
       })
       .catch(console.error);
@@ -40,19 +40,19 @@ export function CertificationsCTACMS() {
 
   const handleSave = async () => {
     setIsSaving(true);
-    const toastId = toast.loading("Saving Certifications CTA...");
+    const toastId = toast.loading("Saving Newsletter Section...");
     try {
-      const res = await fetch("/api/certifications", {
+      const res = await fetch("/api/insights", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          section: "CertificationsCTA",
+          section: "NewsletterSection",
           content: formData,
         }),
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Certifications CTA saved successfully!", {
+        toast.success("Newsletter Section saved successfully!", {
           id: toastId,
         });
       } else {
@@ -69,44 +69,42 @@ export function CertificationsCTACMS() {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
-        title="CTA Banner Section"
-        description="Manage the CTA banner heading and description."
+        title="Newsletter Signup Banner"
+        description="Manage the tagline, heading, and description for the newsletter subscribe card."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
           <InputField
-            label="CTA Heading"
-            name="ctaHeading"
-            value={formData.ctaHeading}
+            label="Section Tagline"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            label="Section Heading"
+            name="heading"
+            value={formData.heading}
             onChange={handleChange}
             required
           />
           <TextAreaField
-            label="CTA Subtitle"
-            name="ctaSubtitle"
-            value={formData.ctaSubtitle}
+            label="Section Description"
+            name="description"
+            value={formData.description}
             onChange={handleChange}
             rows={2}
             required
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <InputField
-              label="CTA Button Label"
-              name="ctaLabel"
-              value={formData.ctaLabel}
-              onChange={handleChange}
-              required
-            />
-            <InputField
-              label="CTA Button URL"
-              name="ctaUrl"
-              value={formData.ctaUrl}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <InputField
+            label="Privacy / Unsubscribe Note"
+            name="privacyNote"
+            value={formData.privacyNote}
+            onChange={handleChange}
+            required
+          />
           <div className="flex justify-end pt-4 border-t border-gray-50">
             <SaveButton
               onClick={handleSave}

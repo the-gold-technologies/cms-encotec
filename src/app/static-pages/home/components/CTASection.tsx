@@ -11,14 +11,17 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
   tagline: "Partner With Us",
-  heading: "Experience Global Engineering Excellence.",
-  description: "From India to Turkey, see how we are setting new standards in power infrastructure. Join the 13+ cities that rely on Encotec for their critical power needs.",
+  headingPart1: "Experience Global",
+  headingHighlight: "Engineering Excellence.",
+  description:
+    "From India to Turkey, see how we are setting new standards in power infrastructure. Join the 13+ cities that rely on Encotec for their critical power needs.",
   primaryBtnLabel: "Start Your Project",
   primaryBtnUrl: "/contact",
   secondaryBtnLabel: "Talk to an Expert",
   secondaryBtnUrl: "/contact",
-  footerNote: "Looking for precision and reliability? Get in touch to learn more about our certified quality and safety-first approach.",
-  copyright: "© 2026 Encotec Engineering."
+  footerNote:
+    "Looking for precision and reliability? Get in touch to learn more about our certified quality and safety-first approach.",
+  copyright: "© 2026 Encotec Engineering.",
 };
 
 const mergeDefaults = (data: any) => {
@@ -45,7 +48,8 @@ export function CTASection({
   onToggle: controlledOnToggle,
 }: CTASectionProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
     if (controlledOnToggle) {
       controlledOnToggle();
@@ -63,7 +67,9 @@ export function CTASection({
     } else {
       fetchWithCache(saveUrl)
         .then((json) => {
-          const sectionData = responseKey ? json.data?.[responseKey] : json.data;
+          const sectionData = responseKey
+            ? json.data?.[responseKey]
+            : json.data;
           if (json.success && sectionData) {
             setFormData(mergeDefaults(sectionData));
           }
@@ -72,7 +78,9 @@ export function CTASection({
     }
   }, [initialData, saveUrl, responseKey]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -80,7 +88,7 @@ export function CTASection({
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
-    if (!formData.heading?.trim()) errs.push("Heading is required");
+    if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
 
     if (errs.length > 0) {
       errs.forEach((m) => toast.error(m));
@@ -132,7 +140,6 @@ export function CTASection({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              
               {/* Copy Headers */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl">
                 <InputField
@@ -144,12 +151,21 @@ export function CTASection({
                   required
                 />
                 <InputField
-                  label="Section Title Heading"
-                  name="heading"
-                  value={formData.heading}
+                  label="Heading Part 1 (Regular)"
+                  name="headingPart1"
+                  value={formData.headingPart1}
                   onChange={handleChange}
-                  placeholder="e.g. Experience Global Engineering Excellence."
+                  placeholder="e.g. Experience Global"
                   required
+                />
+                <InputField
+                  label="Heading Highlight (Gradient)"
+                  name="headingHighlight"
+                  value={formData.headingHighlight}
+                  onChange={handleChange}
+                  placeholder="e.g. Engineering Excellence."
+                  required
+                  containerClassName="col-span-2"
                 />
                 <TextAreaField
                   label="Description Paragraph"
@@ -234,7 +250,6 @@ export function CTASection({
                   className="w-44 h-12 text-sm"
                 />
               </div>
-
             </div>
           </div>
         </div>

@@ -5,10 +5,15 @@ import { fetchWithCache } from "@/lib/apiCache";
 import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
+  tagline: "Strategic Alliances",
+  heading: "Trusted by Industry Leaders",
+  description:
+    "We collaborate with the world's leading technology providers and energy conglomerates to deliver state-of-the-art solutions.",
   partnersList: [
     { name: "Siemens Energy", monogram: "SE", role: "Gas Turbine Technology" },
     { name: "GE Vernova", monogram: "GE", role: "Power Generation Systems" },
@@ -17,8 +22,12 @@ const defaultFormData = {
     { name: "L&T Energy", monogram: "LT", role: "EPC & Construction" },
     { name: "Tata Power", monogram: "TP", role: "Integrated Power Solutions" },
     { name: "Adani Power", monogram: "AP", role: "Private Sector Energy" },
-    { name: "JSW Energy", monogram: "JW", role: "Diversified Energy Portfolio" }
-  ]
+    {
+      name: "JSW Energy",
+      monogram: "JW",
+      role: "Diversified Energy Portfolio",
+    },
+  ],
 };
 
 export function StrategicPartnersCMS() {
@@ -36,7 +45,11 @@ export function StrategicPartnersCMS() {
       .catch(console.error);
   }, []);
 
-  const handlePartnerChange = (index: number, field: "name" | "monogram" | "role", value: string) => {
+  const handlePartnerChange = (
+    index: number,
+    field: "name" | "monogram" | "role",
+    value: string,
+  ) => {
     setFormData((prev) => {
       const updatedList = [...prev.partnersList];
       updatedList[index] = { ...updatedList[index], [field]: value };
@@ -47,7 +60,10 @@ export function StrategicPartnersCMS() {
   const addPartner = () => {
     setFormData((prev) => ({
       ...prev,
-      partnersList: [...prev.partnersList, { name: "", monogram: "", role: "" }]
+      partnersList: [
+        ...prev.partnersList,
+        { name: "", monogram: "", role: "" },
+      ],
     }));
     toast.success("Added new partner slot");
   };
@@ -59,7 +75,7 @@ export function StrategicPartnersCMS() {
     }
     setFormData((prev) => ({
       ...prev,
-      partnersList: prev.partnersList.filter((_, i) => i !== index)
+      partnersList: prev.partnersList.filter((_, i) => i !== index),
     }));
   };
 
@@ -77,7 +93,9 @@ export function StrategicPartnersCMS() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Strategic Partners saved successfully!", { id: toastId });
+        toast.success("Strategic Partners saved successfully!", {
+          id: toastId,
+        });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -89,18 +107,52 @@ export function StrategicPartnersCMS() {
     }
   };
 
+  const handleFieldChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Strategic Partners Section"
-        description="Manage the brand alliances and strategic partners shown on the certifications page."
+        description="Manage the alliances, headings, and strategic partners shown on the certifications page."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField
+              label="Section Tagline"
+              name="tagline"
+              value={formData.tagline}
+              onChange={handleFieldChange}
+              required
+            />
+            <InputField
+              label="Section Heading"
+              name="heading"
+              value={formData.heading}
+              onChange={handleFieldChange}
+              required
+            />
+          </div>
+          <TextAreaField
+            label="Section Description"
+            name="description"
+            value={formData.description}
+            onChange={handleFieldChange}
+            rows={2}
+            required
+          />
+
           <div className="flex justify-between items-center">
-            <span className="text-sm font-semibold text-gray-700">Partners list ({formData.partnersList.length})</span>
+            <span className="text-sm font-semibold text-gray-700">
+              Partners list ({formData.partnersList.length})
+            </span>
             <button
               onClick={addPartner}
               className="flex items-center gap-2 px-3 py-1.5 bg-brand-pink text-white rounded text-xs font-semibold hover:bg-[#a0004f] transition-all"
@@ -111,7 +163,10 @@ export function StrategicPartnersCMS() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {formData.partnersList.map((partner, idx) => (
-              <div key={idx} className="p-4 border border-gray-100 rounded-xl flex flex-col gap-4 relative">
+              <div
+                key={idx}
+                className="p-4 border border-gray-100 rounded-xl flex flex-col gap-4 relative"
+              >
                 <button
                   onClick={() => removePartner(idx)}
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors"
@@ -126,7 +181,9 @@ export function StrategicPartnersCMS() {
                       label={`Partner #${idx + 1} Name`}
                       name={`name-${idx}`}
                       value={partner.name}
-                      onChange={(e) => handlePartnerChange(idx, "name", e.target.value)}
+                      onChange={(e) =>
+                        handlePartnerChange(idx, "name", e.target.value)
+                      }
                       required
                     />
                   </div>
@@ -135,7 +192,9 @@ export function StrategicPartnersCMS() {
                       label="Monogram"
                       name={`monogram-${idx}`}
                       value={partner.monogram}
-                      onChange={(e) => handlePartnerChange(idx, "monogram", e.target.value)}
+                      onChange={(e) =>
+                        handlePartnerChange(idx, "monogram", e.target.value)
+                      }
                       required
                     />
                   </div>
@@ -145,7 +204,9 @@ export function StrategicPartnersCMS() {
                   label="Role / Capability (e.g. Gas Turbine Technology)"
                   name={`role-${idx}`}
                   value={partner.role}
-                  onChange={(e) => handlePartnerChange(idx, "role", e.target.value)}
+                  onChange={(e) =>
+                    handlePartnerChange(idx, "role", e.target.value)
+                  }
                   required
                 />
               </div>

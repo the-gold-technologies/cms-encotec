@@ -1,19 +1,22 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { CloudUpload, Trash2, Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { uploadFiles } from "@/lib/uploadHelpers";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ImagePickerField } from "@/components/ImagePickerField";
 
 const defaultFormData = {
-  backgroundImage: "",
-  tagline: "",
-  headingPart1: "",
-  headingItalicHighlight: "",
+  backgroundImage:
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2400",
+  tagline: "Get in Touch",
+  headingPart1: "Let's Build the Future of",
+  headingItalicHighlight: "Energy Together",
+  heroSubtitle:
+    "Reach out to our team of experts for project inquiries, strategic partnerships, or to learn more about our engineering capabilities.",
 };
 
 interface ContactHeroCMSProps {
@@ -36,7 +39,8 @@ export function ContactHeroCMS({
   onToggle: controlledOnToggle,
 }: ContactHeroCMSProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
     if (controlledOnToggle) {
       controlledOnToggle();
@@ -47,9 +51,7 @@ export function ContactHeroCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
-  const [selectedImage, setSelectedImage] = useState<File | string>("");
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedImage, setSelectedImage] = useState<File | string | null>(null);
 
   useEffect(() => {
     if (initialData) {
@@ -59,7 +61,9 @@ export function ContactHeroCMS({
     } else {
       fetchWithCache(saveUrl)
         .then((json) => {
-          const sectionData = responseKey ? json.data?.[responseKey] : json.data;
+          const sectionData = responseKey
+            ? json.data?.[responseKey]
+            : json.data;
           if (json.success && sectionData) {
             const data = { ...defaultFormData, ...sectionData };
             setFormData(data);
@@ -75,21 +79,14 @@ export function ContactHeroCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedImage(e.target.files[0]);
-    }
-  };
-
-  const removeImage = () => {
-    setSelectedImage("");
-  };
 
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
     if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
-    if (!formData.headingItalicHighlight?.trim()) errs.push("Heading Italic Highlight is required");
+    if (!formData.headingItalicHighlight?.trim())
+      errs.push("Heading Italic Highlight is required");
+    if (!formData.heroSubtitle?.trim()) errs.push("Hero Subtitle is required");
     if (!selectedImage) errs.push("Background image is required");
 
     if (errs.length > 0) {
@@ -100,8 +97,10 @@ export function ContactHeroCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Contact Hero...");
     try {
-      const uploadedUrls = await uploadFiles([selectedImage]);
-      const imgUrl = selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
+      const imgUrl =
+        selectedImage instanceof File
+          ? (await uploadFiles([selectedImage]))[0] || ""
+          : selectedImage || "";
 
       const payload = {
         ...formData,
@@ -135,8 +134,6 @@ export function ContactHeroCMS({
     }
   };
 
-  const preview = selectedImage instanceof File ? URL.createObjectURL(selectedImage) : selectedImage;
-  const name = typeof selectedImage === "string" ? selectedImage.split("/").pop() || "Background Image" : selectedImage?.name;
 
   return (
     <section>
@@ -155,7 +152,6 @@ export function ContactHeroCMS({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              
               {/* Header Input Block */}
               <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
                 <InputField
@@ -188,69 +184,24 @@ export function ContactHeroCMS({
                     containerClassName="flex-1"
                   />
                 </div>
-              </div>
 
-              {/* Background Image Block */}
-              <div className="flex flex-col gap-3">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  Hero Parallax Background Image
-                </span>
-
-                {preview ? (
-                  <div className="flex items-center justify-between p-3.5 px-5 bg-white border border-gray-200 rounded-2xl transition-all hover:bg-gray-50/50 mt-1">
-                    <div className="flex items-center gap-3.5 text-gray-700">
-                      <div className="w-8 h-8 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 relative flex-shrink-0">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={preview} alt="Contact Hero BG" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-xs font-bold text-gray-900 truncate max-w-[200px] sm:max-w-xs md:max-w-md">
-                          {name}
-                        </span>
-                        <span className="text-[9px] text-gray-400 font-semibold mt-0.5">
-                          Parallax Background Layer
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => fileInputRef.current?.click()}
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3.5 py-1.5 rounded-xl text-[10px] font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
-                      >
-                        Change
-                      </button>
-                      <button
-                        type="button"
-                        onClick={removeImage}
-                        className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
-                        title="Remove Image"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    onClick={() => fileInputRef.current?.click()}
-                    className="w-full border-2 border-dashed border-gray-200 hover:border-blue-500 bg-white hover:bg-blue-50/10 rounded-2xl flex flex-col items-center justify-center p-8 text-center cursor-pointer transition-all group mt-1"
-                  >
-                    <CloudUpload className="w-8 h-8 text-gray-400 group-hover:text-blue-500 transition-colors mb-2" />
-                    <p className="text-xs text-gray-500 font-semibold group-hover:text-blue-600">
-                      Drag and drop image here, or <span className="text-blue-500 hover:underline animate-pulse">browse</span>
-                    </p>
-                    <p className="text-[10px] text-gray-400 mt-1">PNG, JPG or WEBP (Parallax Background)</p>
-                  </div>
-                )}
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  accept="image/*"
-                  className="hidden"
+                <InputField
+                  label="Hero Subtitle"
+                  name="heroSubtitle"
+                  value={formData.heroSubtitle}
+                  onChange={handleChange}
+                  placeholder="Reach out to our team of experts..."
+                  required
+                  containerClassName="w-full"
                 />
               </div>
+
+              <ImagePickerField
+                label="Hero Background Image"
+                sublabel="Parallax Background Layer"
+                value={selectedImage}
+                onChange={setSelectedImage}
+              />
 
               {/* Save Action */}
               <div className="flex justify-end pt-4 border-t border-gray-100">
@@ -260,7 +211,6 @@ export function ContactHeroCMS({
                   className="w-44 h-12 text-sm"
                 />
               </div>
-
             </div>
           </div>
         </div>

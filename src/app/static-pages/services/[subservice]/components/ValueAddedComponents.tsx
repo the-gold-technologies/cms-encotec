@@ -15,7 +15,8 @@ export function SourcingHeroCMS({ saveUrl }: { saveUrl: string }) {
 
   const [formData, setFormData] = useState({
     label: "",
-    heading: "",
+    headingPart1: "",
+    headingHighlight: "",
     description: ""
   });
 
@@ -26,7 +27,8 @@ export function SourcingHeroCMS({ saveUrl }: { saveUrl: string }) {
         if (json.success && sectionData) {
           setFormData({
             label: sectionData.label || "",
-            heading: sectionData.heading || "",
+            headingPart1: sectionData.headingPart1 || "",
+            headingHighlight: sectionData.headingHighlight || "",
             description: sectionData.description || ""
           });
         }
@@ -73,7 +75,10 @@ export function SourcingHeroCMS({ saveUrl }: { saveUrl: string }) {
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
           <InputField label="Hero Label" name="label" value={formData.label} onChange={handleChange} required />
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
+          <div className="flex flex-col md:flex-row gap-6 w-full">
+            <InputField label="Heading Part 1 (Normal)" name="headingPart1" value={formData.headingPart1} onChange={handleChange} required containerClassName="flex-1" />
+            <InputField label="Heading Highlight (Gradient)" name="headingHighlight" value={formData.headingHighlight} onChange={handleChange} required containerClassName="flex-1" />
+          </div>
           <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} required rows={3} />
           
           <div className="flex justify-end pt-4 border-t border-gray-100">
@@ -176,7 +181,8 @@ export function SourcingAdvantageCMS({ saveUrl }: { saveUrl: string }) {
   const [isSaving, setIsSaving] = useState(false);
 
   const [formData, setFormData] = useState({
-    heading: "",
+    headingPart1: "",
+    headingHighlight: "",
     description: "",
     paragraphs: [] as string[],
     cards: [] as any[]
@@ -188,7 +194,8 @@ export function SourcingAdvantageCMS({ saveUrl }: { saveUrl: string }) {
         const sectionData = json.data?.["SourcingAdvantage"];
         if (json.success && sectionData) {
           setFormData({
-            heading: sectionData.heading || "",
+            headingPart1: sectionData.headingPart1 || "",
+            headingHighlight: sectionData.headingHighlight || "",
             description: sectionData.description || "",
             paragraphs: sectionData.paragraphs || [],
             cards: sectionData.cards || []
@@ -252,7 +259,10 @@ export function SourcingAdvantageCMS({ saveUrl }: { saveUrl: string }) {
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-6">
-          <InputField label="Heading" name="heading" value={formData.heading} onChange={handleChange} required />
+          <div className="flex flex-col md:flex-row gap-6 w-full">
+            <InputField label="Heading Part 1 (Normal)" name="headingPart1" value={formData.headingPart1} onChange={handleChange} required containerClassName="flex-1" />
+            <InputField label="Heading Highlight (Pink)" name="headingHighlight" value={formData.headingHighlight} onChange={handleChange} required containerClassName="flex-1" />
+          </div>
           <TextAreaField label="Description" name="description" value={formData.description} onChange={handleChange} rows={2} />
           
           <div className="border border-gray-100 p-4 rounded-xl flex flex-col gap-4">

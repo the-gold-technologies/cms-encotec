@@ -10,7 +10,12 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
   joinHeading: "Join Our Team of Experts",
-  joinSubtitle: "We're always looking for talented engineers and energy professionals who share our passion for excellence.",
+  joinSubtitle:
+    "We're always looking for talented engineers and energy professionals who share our passion for excellence.",
+  ctaLabel1: "View Open Positions",
+  ctaUrl1: "/careers",
+  ctaLabel2: "Contact Us",
+  ctaUrl2: "/contact",
 };
 
 export function JoinCTACMS() {
@@ -28,7 +33,9 @@ export function JoinCTACMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -47,7 +54,9 @@ export function JoinCTACMS() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Join CTA Banner Section saved successfully!", { id: toastId });
+        toast.success("Join CTA Banner Section saved successfully!", {
+          id: toastId,
+        });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -63,7 +72,7 @@ export function JoinCTACMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Join CTA Banner"
-        description="Manage titles and context on the bottom recruits call-to-action banner."
+        description="Manage headings, subtitles, button labels and URLs on the bottom recruits call-to-action banner."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -84,6 +93,36 @@ export function JoinCTACMS() {
             rows={2}
             required
           />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField
+              label="Primary CTA Button Label"
+              name="ctaLabel1"
+              value={formData.ctaLabel1}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Primary CTA Button URL"
+              name="ctaUrl1"
+              value={formData.ctaUrl1}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Secondary CTA Button Label"
+              name="ctaLabel2"
+              value={formData.ctaLabel2}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Secondary CTA Button URL"
+              name="ctaUrl2"
+              value={formData.ctaUrl2}
+              onChange={handleChange}
+              required
+            />
+          </div>
           <div className="flex justify-end pt-4 border-t border-gray-50">
             <SaveButton
               onClick={handleSave}

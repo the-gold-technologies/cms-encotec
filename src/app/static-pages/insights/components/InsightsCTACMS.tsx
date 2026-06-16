@@ -10,7 +10,12 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
   ctaHeading: "Have a Project in Mind?",
-  ctaSubtitle: "Let's discuss how our engineering expertise can bring value to your next energy infrastructure project.",
+  ctaSubtitle:
+    "Let's discuss how our engineering expertise can bring value to your next energy infrastructure project.",
+  primaryBtnLabel: "Start Your Project",
+  primaryBtnUrl: "/contact",
+  secondaryBtnLabel: "View Our Services",
+  secondaryBtnUrl: "/services",
 };
 
 export function InsightsCTACMS() {
@@ -28,7 +33,9 @@ export function InsightsCTACMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -47,7 +54,9 @@ export function InsightsCTACMS() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("CTA Banner Section saved successfully!", { id: toastId });
+        toast.success("CTA Banner Section saved successfully!", {
+          id: toastId,
+        });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -84,6 +93,38 @@ export function InsightsCTACMS() {
             rows={2}
             required
           />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <InputField
+              label="Primary Button Label"
+              name="primaryBtnLabel"
+              value={formData.primaryBtnLabel}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Primary Button Link URL"
+              name="primaryBtnUrl"
+              value={formData.primaryBtnUrl}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <InputField
+              label="Secondary Button Label"
+              name="secondaryBtnLabel"
+              value={formData.secondaryBtnLabel}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Secondary Button Link URL"
+              name="secondaryBtnUrl"
+              value={formData.secondaryBtnUrl}
+              onChange={handleChange}
+              required
+            />
+          </div>
           <div className="flex justify-end pt-4 border-t border-gray-50">
             <SaveButton
               onClick={handleSave}

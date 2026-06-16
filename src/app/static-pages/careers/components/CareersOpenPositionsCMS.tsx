@@ -10,16 +10,65 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
+  heading: "Current Openings",
   jobsList: [
-    { title: "Senior Power Plant Engineer", dept: "Engineering", location: "Mumbai, India", type: "Full-time", desc: "Lead engineering design and technical reviews for supercritical thermal power projects." },
-    { title: "Renewable Energy Analyst", dept: "Engineering", location: "Dubai, UAE", type: "Full-time", desc: "Conduct energy yield analysis and feasibility studies for solar and wind projects." },
-    { title: "Project Manager — EPC", dept: "Project Management", location: "Riyadh, KSA", type: "Full-time", desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East." },
-    { title: "Commissioning Engineer", dept: "Engineering", location: "Houston, USA", type: "Contract", desc: "Oversee testing and commissioning of power generation equipment and systems." },
-    { title: "O&M Site Manager", dept: "Operations", location: "Rajpura, India", type: "Full-time", desc: "Lead day-to-day operations and maintenance of a 2x700 MW supercritical plant." },
-    { title: "Electrical Design Engineer", dept: "Engineering", location: "Mumbai, India", type: "Full-time", desc: "Design transmission lines (33kV-765kV) and substation systems (AIS/GIS)." },
-    { title: "Business Development Manager", dept: "Corporate", location: "Singapore", type: "Full-time", desc: "Drive business growth across the Asia-Pacific region for energy services." },
-    { title: "Quality Assurance Lead", dept: "Operations", location: "Frankfurt, Germany", type: "Full-time", desc: "Implement and oversee quality management systems across European projects." }
-  ]
+    {
+      title: "Senior Power Plant Engineer",
+      dept: "Engineering",
+      location: "Mumbai, India",
+      type: "Full-time",
+      desc: "Lead engineering design and technical reviews for supercritical thermal power projects.",
+    },
+    {
+      title: "Renewable Energy Analyst",
+      dept: "Engineering",
+      location: "Dubai, UAE",
+      type: "Full-time",
+      desc: "Conduct energy yield analysis and feasibility studies for solar and wind projects.",
+    },
+    {
+      title: "Project Manager — EPC",
+      dept: "Project Management",
+      location: "Riyadh, KSA",
+      type: "Full-time",
+      desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East.",
+    },
+    {
+      title: "Commissioning Engineer",
+      dept: "Engineering",
+      location: "Houston, USA",
+      type: "Contract",
+      desc: "Oversee testing and commissioning of power generation equipment and systems.",
+    },
+    {
+      title: "O&M Site Manager",
+      dept: "Operations",
+      location: "Rajpura, India",
+      type: "Full-time",
+      desc: "Lead day-to-day operations and maintenance of a 2x700 MW supercritical plant.",
+    },
+    {
+      title: "Electrical Design Engineer",
+      dept: "Engineering",
+      location: "Mumbai, India",
+      type: "Full-time",
+      desc: "Design transmission lines (33kV-765kV) and substation systems (AIS/GIS).",
+    },
+    {
+      title: "Business Development Manager",
+      dept: "Corporate",
+      location: "Singapore",
+      type: "Full-time",
+      desc: "Drive business growth across the Asia-Pacific region for energy services.",
+    },
+    {
+      title: "Quality Assurance Lead",
+      dept: "Operations",
+      location: "Frankfurt, Germany",
+      type: "Full-time",
+      desc: "Implement and oversee quality management systems across European projects.",
+    },
+  ],
 };
 
 export function CareersOpenPositionsCMS() {
@@ -31,7 +80,10 @@ export function CareersOpenPositionsCMS() {
     fetchWithCache("/api/careers")
       .then((json) => {
         if (json.success && json.data?.CareersOpenPositions) {
-          setFormData({ ...defaultFormData, ...json.data.CareersOpenPositions });
+          setFormData({
+            ...defaultFormData,
+            ...json.data.CareersOpenPositions,
+          });
         }
       })
       .catch(console.error);
@@ -48,7 +100,16 @@ export function CareersOpenPositionsCMS() {
   const addJob = () => {
     setFormData((prev) => ({
       ...prev,
-      jobsList: [...prev.jobsList, { title: "", dept: "Engineering", location: "", type: "Full-time", desc: "" }]
+      jobsList: [
+        ...prev.jobsList,
+        {
+          title: "",
+          dept: "Engineering",
+          location: "",
+          type: "Full-time",
+          desc: "",
+        },
+      ],
     }));
     toast.success("Added new vacancy");
   };
@@ -60,7 +121,7 @@ export function CareersOpenPositionsCMS() {
     }
     setFormData((prev) => ({
       ...prev,
-      jobsList: prev.jobsList.filter((_, i) => i !== index)
+      jobsList: prev.jobsList.filter((_, i) => i !== index),
     }));
   };
 
@@ -94,14 +155,26 @@ export function CareersOpenPositionsCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Current Openings Section"
-        description="Manage the job listings and opportunities displayed on the careers page."
+        description="Manage the heading and job listings displayed on the careers page."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
+          <InputField
+            label="Section Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, heading: e.target.value }))
+            }
+            required
+          />
+
           <div className="flex justify-between items-center">
-            <span className="text-sm font-semibold text-gray-700">Open Vacancies ({formData.jobsList.length})</span>
+            <span className="text-sm font-semibold text-gray-700">
+              Open Vacancies ({formData.jobsList.length})
+            </span>
             <button
               onClick={addJob}
               className="flex items-center gap-2 px-3 py-1.5 bg-brand-pink text-white rounded text-xs font-semibold hover:bg-[#a0004f] transition-all"
@@ -112,7 +185,10 @@ export function CareersOpenPositionsCMS() {
 
           <div className="flex flex-col gap-6">
             {formData.jobsList.map((job, idx) => (
-              <div key={idx} className="p-6 border border-gray-100 rounded-xl flex flex-col gap-4 relative bg-gray-50/30">
+              <div
+                key={idx}
+                className="p-6 border border-gray-100 rounded-xl flex flex-col gap-4 relative bg-gray-50/30"
+              >
                 <button
                   onClick={() => removeJob(idx)}
                   className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors"
@@ -126,19 +202,27 @@ export function CareersOpenPositionsCMS() {
                     label="Job Title"
                     name={`title-${idx}`}
                     value={job.title}
-                    onChange={(e) => handleJobChange(idx, "title", e.target.value)}
+                    onChange={(e) =>
+                      handleJobChange(idx, "title", e.target.value)
+                    }
                     required
                   />
 
                   <div className="flex flex-col gap-2">
-                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Department</label>
+                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">
+                      Department
+                    </label>
                     <select
                       value={job.dept}
-                      onChange={(e) => handleJobChange(idx, "dept", e.target.value)}
+                      onChange={(e) =>
+                        handleJobChange(idx, "dept", e.target.value)
+                      }
                       className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-brand-pink transition-colors text-sm"
                     >
                       <option value="Engineering">Engineering</option>
-                      <option value="Project Management">Project Management</option>
+                      <option value="Project Management">
+                        Project Management
+                      </option>
                       <option value="Operations">Operations</option>
                       <option value="Corporate">Corporate</option>
                     </select>
@@ -150,7 +234,9 @@ export function CareersOpenPositionsCMS() {
                     label="Location (City, Country)"
                     name={`location-${idx}`}
                     value={job.location}
-                    onChange={(e) => handleJobChange(idx, "location", e.target.value)}
+                    onChange={(e) =>
+                      handleJobChange(idx, "location", e.target.value)
+                    }
                     required
                   />
 
@@ -158,7 +244,9 @@ export function CareersOpenPositionsCMS() {
                     label="Employment Type (e.g. Full-time, Contract)"
                     name={`type-${idx}`}
                     value={job.type}
-                    onChange={(e) => handleJobChange(idx, "type", e.target.value)}
+                    onChange={(e) =>
+                      handleJobChange(idx, "type", e.target.value)
+                    }
                     required
                   />
                 </div>

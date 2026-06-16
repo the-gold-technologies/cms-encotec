@@ -6,10 +6,15 @@ import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ImagePickerField } from "@/components/ImagePickerField";
+import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
-  heroTitle: "Our Leadership",
-  heroSubtitle: "Meet the executive team guiding Encotec's engineering and project management operations",
+  heroTitle: "LEADERSHIP & TEAM",
+  heroSubtitle:
+    "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
+  backgroundImage:
+    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
   heroBadge1: "200+ Professionals",
   heroBadge2: "15+ Years Average Experience",
   heroBadge3: "23+ Countries",
@@ -18,13 +23,19 @@ const defaultFormData = {
 export function LeadershipHeroCMS() {
   const [isOpen, setIsOpen] = useState(true);
   const [formData, setFormData] = useState(defaultFormData);
+  const [selectedImage, setSelectedImage] = useState<File | string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     fetchWithCache("/api/leadership")
       .then((json) => {
         if (json.success && json.data?.LeadershipHero) {
-          setFormData({ ...defaultFormData, ...json.data.LeadershipHero });
+          const merged = { ...defaultFormData, ...json.data.LeadershipHero };
+          setFormData(merged);
+          if (merged.backgroundImage) setSelectedImage(merged.backgroundImage);
+        } else {
+          if (defaultFormData.backgroundImage)
+            setSelectedImage(defaultFormData.backgroundImage);
         }
       })
       .catch(console.error);
@@ -39,17 +50,23 @@ export function LeadershipHeroCMS() {
     setIsSaving(true);
     const toastId = toast.loading("Saving Hero Section...");
     try {
+      const imgUrl =
+        selectedImage instanceof File
+          ? (await uploadFiles([selectedImage]))[0] || ""
+          : selectedImage || "";
+
+      const payload = { ...formData, backgroundImage: imgUrl };
+
       const res = await fetch("/api/leadership", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          section: "LeadershipHero",
-          content: formData,
-        }),
+        body: JSON.stringify({ section: "LeadershipHero", content: payload }),
       });
       const json = await res.json();
       if (json.success) {
         toast.success("Hero Section saved successfully!", { id: toastId });
+        setFormData(payload);
+        setSelectedImage(imgUrl);
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -65,7 +82,7 @@ export function LeadershipHeroCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Hero Section"
-        description="Manage the title, subtitle, and badges on the page hero header."
+        description="Manage the title, subtitle, background image and badges on the page hero header."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -84,6 +101,12 @@ export function LeadershipHeroCMS() {
             value={formData.heroSubtitle}
             onChange={handleChange}
             required
+          />
+          <ImagePickerField
+            label="Hero Background Image"
+            sublabel="Parallax Background Layer"
+            value={selectedImage}
+            onChange={setSelectedImage}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <InputField

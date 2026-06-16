@@ -9,12 +9,32 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  leader1Name: "Dr. Anita Desai", leader1Role: "VP Engineering", leader1Bio: "PhD in Thermal Engineering. 18+ years leading complex engineering design for power generation and transmission projects.",
-  leader2Name: "Sanjay Mehta", leader2Role: "VP Business Development", leader2Bio: "15+ years driving strategic growth across India, Middle East, and Southeast Asia.",
-  leader3Name: "Priya Krishnan", leader3Role: "Head of Renewable Energy", leader3Bio: "12+ years in solar and wind energy project development and execution.",
-  leader4Name: "Arjun Reddy", leader4Role: "Head of Project Management", leader4Bio: "16+ years managing large-scale EPC projects across diverse geographies.",
-  leader5Name: "Dr. Klaus Werner", leader5Role: "Head of Quality & Safety", leader5Bio: "20+ years in quality management systems and international safety standards.",
-  leader6Name: "Meera Iyer", leader6Role: "Chief Financial Officer", leader6Bio: "14+ years in financial strategy and corporate governance for engineering firms.",
+  tagline: "Senior Leadership",
+  heading: "Department Heads",
+  leader1Name: "Dr. Anita Desai",
+  leader1Role: "VP Engineering",
+  leader1Bio:
+    "PhD in Thermal Engineering. 18+ years leading complex engineering design for power generation and transmission projects.",
+  leader2Name: "Sanjay Mehta",
+  leader2Role: "VP Business Development",
+  leader2Bio:
+    "15+ years driving strategic growth across India, Middle East, and Southeast Asia.",
+  leader3Name: "Priya Krishnan",
+  leader3Role: "Head of Renewable Energy",
+  leader3Bio:
+    "12+ years in solar and wind energy project development and execution.",
+  leader4Name: "Arjun Reddy",
+  leader4Role: "Head of Project Management",
+  leader4Bio:
+    "16+ years managing large-scale EPC projects across diverse geographies.",
+  leader5Name: "Dr. Klaus Werner",
+  leader5Role: "Head of Quality & Safety",
+  leader5Bio:
+    "20+ years in quality management systems and international safety standards.",
+  leader6Name: "Meera Iyer",
+  leader6Role: "Chief Financial Officer",
+  leader6Bio:
+    "14+ years in financial strategy and corporate governance for engineering firms.",
 };
 
 export function SeniorLeadershipCMS() {
@@ -32,7 +52,9 @@ export function SeniorLeadershipCMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -51,7 +73,9 @@ export function SeniorLeadershipCMS() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Senior Leadership Section saved successfully!", { id: toastId });
+        toast.success("Senior Leadership Section saved successfully!", {
+          id: toastId,
+        });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -67,18 +91,39 @@ export function SeniorLeadershipCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Department Heads"
-        description="Manage profiles and roles of VP leaders and department engineers."
+        description="Manage tagline, heading, profiles, and roles of VP leaders and department engineers."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+            <InputField
+              label="Section Tagline"
+              name="tagline"
+              value={formData.tagline}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Section Heading"
+              name="heading"
+              value={formData.heading}
+              onChange={handleChange}
+              required
+            />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Array.from({ length: 6 }).map((_, i) => {
               const num = i + 1;
               return (
-                <div key={i} className="p-5 bg-gray-50/30 border border-gray-100 rounded-xl flex flex-col gap-4">
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Head profile {num}</span>
+                <div
+                  key={i}
+                  className="p-5 bg-gray-50/30 border border-gray-100 rounded-xl flex flex-col gap-4"
+                >
+                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+                    Head profile {num}
+                  </span>
                   <InputField
                     label="Name"
                     name={`leader${num}Name`}

@@ -9,10 +9,16 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
+  cultureTagline: "Why Join Us",
   cultureHeading: "Engineering Careers That Matter",
-  culturePara1: "At Encotec, we don't just build power plants; we engineer the foundation of modern society. Our team works on some of the most complex and critical energy infrastructure projects globally, from massive supercritical thermal plants to utility-scale renewable energy parks.",
-  culturePara2: "We foster a culture of technical excellence, continuous learning, and collaborative problem-solving. When you join Encotec, you gain global exposure, working alongside industry veterans who are passionate about mentoring the next generation of engineering leaders.",
-  cultureQuote: "We empower our engineers to take ownership, innovate, and deliver solutions that have a tangible impact on global energy security.",
+  culturePara1:
+    "At Encotec, we don't just build power plants; we engineer the foundation of modern society. Our team works on some of the most complex and critical energy infrastructure projects globally, from massive supercritical thermal plants to utility-scale renewable energy parks.",
+  culturePara2:
+    "We foster a culture of technical excellence, continuous learning, and collaborative problem-solving. When you join Encotec, you gain global exposure, working alongside industry veterans who are passionate about mentoring the next generation of engineering leaders.",
+  cultureQuote:
+    "We empower our engineers to take ownership, innovate, and deliver solutions that have a tangible impact on global energy security.",
+  cultureImage:
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200",
 };
 
 export function CareersCultureCMS() {
@@ -30,7 +36,9 @@ export function CareersCultureCMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -72,6 +80,13 @@ export function CareersCultureCMS() {
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
           <InputField
+            label="Section Tagline"
+            name="cultureTagline"
+            value={formData.cultureTagline}
+            onChange={handleChange}
+            required
+          />
+          <InputField
             label="Section Heading"
             name="cultureHeading"
             value={formData.cultureHeading}
@@ -98,6 +113,22 @@ export function CareersCultureCMS() {
             label="Callout Quote"
             name="cultureQuote"
             value={formData.cultureQuote}
+            onChange={handleChange}
+            required
+          />
+          {formData.cultureImage && (
+            <div className="w-full h-32 rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+              <img
+                src={formData.cultureImage}
+                alt="Culture Preview"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          <InputField
+            label="Culture Image URL"
+            name="cultureImage"
+            value={formData.cultureImage}
             onChange={handleChange}
             required
           />

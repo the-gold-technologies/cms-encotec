@@ -68,7 +68,7 @@ const validSubservices = [
   "transmission-distribution",
   "renewable-energy",
   "airport-services",
-  "value-added"
+  "value-added",
 ];
 
 export default async function SubServicePage({ params }: PageProps) {

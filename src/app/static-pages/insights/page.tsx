@@ -6,6 +6,9 @@ import { FeaturedInsightCMS } from "./components/FeaturedInsightCMS";
 import { StatsBannerCMS } from "./components/StatsBannerCMS";
 import { InsightsCTACMS } from "./components/InsightsCTACMS";
 import { RelatedInsightsCMS } from "./components/RelatedInsightsCMS";
+import { ArticlesListCMS } from "./components/ArticlesListCMS";
+import { NewsletterSectionCMS } from "./components/NewsletterSectionCMS";
+import { InsightDetailCMS } from "./components/InsightDetailCMS";
 
 export default function InsightsCMSPage() {
   return (
@@ -18,9 +21,12 @@ export default function InsightsCMSPage() {
       <div className="flex flex-col gap-6">
         <InsightsHeroCMS />
         <FeaturedInsightCMS />
+        <ArticlesListCMS />
         <StatsBannerCMS />
+        <NewsletterSectionCMS />
         <InsightsCTACMS />
         <RelatedInsightsCMS />
+        <InsightDetailCMS />
       </div>
     </section>
   );

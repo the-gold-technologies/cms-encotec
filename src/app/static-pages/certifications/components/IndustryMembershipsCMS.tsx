@@ -5,10 +5,13 @@ import { fetchWithCache } from "@/lib/apiCache";
 import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
+  heading: "INDUSTRY MEMBERSHIPS",
+  description: "Active participation in shaping the future of India's energy sector through key industry bodies and associations.",
   membershipsList: [
     { name: "Confederation of Indian Industry (CII)", year: "2010" },
     { name: "Federation of Indian Chambers of Commerce (FICCI)", year: "2012" },
@@ -87,16 +90,37 @@ export function IndustryMembershipsCMS() {
     }
   };
 
+  const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Industry Memberships Section"
-        description="Manage the industry affiliations and memberships shown on the certifications page."
+        description="Manage the industry affiliations, headings, and memberships shown on the certifications page."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
+          <InputField
+            label="Section Heading"
+            name="heading"
+            value={formData.heading}
+            onChange={handleFieldChange}
+            required
+          />
+          <TextAreaField
+            label="Section Description"
+            name="description"
+            value={formData.description}
+            onChange={handleFieldChange}
+            rows={2}
+            required
+          />
+
           <div className="flex justify-between items-center">
             <span className="text-sm font-semibold text-gray-700">Memberships ({formData.membershipsList.length})</span>
             <button

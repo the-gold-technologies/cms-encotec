@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { CloudUpload, X, Trash2, Tag, BarChart3, Award } from "lucide-react";
+import { X, Tag, BarChart3, Award } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { TextAreaField } from "@/components/TextAreaField";
 import { uploadFiles } from "@/lib/uploadHelpers";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ImagePickerField } from "@/components/ImagePickerField";
 
 const defaultFormData = {
   tagline: "",
@@ -63,10 +64,7 @@ export function HeroSection({
   };
 
   const [formData, setFormData] = useState(defaultFormData);
-  const [selectedImage, setSelectedImage] = useState<File | string>("");
-  const [newTagText, setNewTagText] = useState("");
-  const [isSaving, setIsSaving] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedImage, setSelectedImage] = useState<File | string | null>(null);
 
   useEffect(() => {
     if (initialData) {
@@ -95,15 +93,8 @@ export function HeroSection({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedImage(e.target.files[0]);
-    }
-  };
-
-  const removeImage = () => {
-    setSelectedImage("");
-  };
+  const [newTagText, setNewTagText] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
 
   // Service Tags
   const addTag = () => {
@@ -142,9 +133,10 @@ export function HeroSection({
     setIsSaving(true);
     const toastId = toast.loading("Saving Home Hero section...");
     try {
-      const uploadedUrls = await uploadFiles([selectedImage]);
       const imgUrl =
-        selectedImage instanceof File ? uploadedUrls[0] || "" : selectedImage;
+        selectedImage instanceof File
+          ? (await uploadFiles([selectedImage]))[0] || ""
+          : selectedImage || "";
 
       const payload = {
         ...formData,
@@ -177,14 +169,6 @@ export function HeroSection({
     }
   };
 
-  const preview =
-    selectedImage instanceof File
-      ? URL.createObjectURL(selectedImage)
-      : selectedImage;
-  const imageName =
-    typeof selectedImage === "string"
-      ? selectedImage.split("/").pop() || "Background Image"
-      : selectedImage?.name;
 
   return (
     <section>
@@ -384,74 +368,12 @@ export function HeroSection({
                 </div>
               </div>
 
-              {/* Background Image */}
-              <div className="flex flex-col gap-4">
-                <h3 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-2 flex items-center gap-2">
-                  Hero Background Image
-                </h3>
-                {preview ? (
-                  <div className="flex items-center justify-between p-4 px-6 bg-white border border-gray-200 rounded-2xl transition-all hover:bg-gray-50/50 mt-1 w-full shadow-sm">
-                    <div className="flex items-center gap-3.5 text-gray-700 min-w-0">
-                      <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 relative flex-shrink-0">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={preview}
-                          alt="Hero Background"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="flex flex-col min-w-0">
-                        <span className="text-sm font-bold text-gray-900 truncate max-w-xs sm:max-w-md md:max-w-xl lg:max-w-3xl">
-                          {imageName}
-                        </span>
-                        <span className="text-[10px] text-gray-400 font-semibold mt-0.5">
-                          Selected Image Asset
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => fileInputRef.current?.click()}
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
-                      >
-                        Change
-                      </button>
-                      <button
-                        type="button"
-                        onClick={removeImage}
-                        className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    onClick={() => fileInputRef.current?.click()}
-                    className="w-full border-2 border-dashed border-gray-200 hover:border-blue-500 bg-white hover:bg-blue-50/10 rounded-2xl flex flex-col items-center justify-center p-12 text-center cursor-pointer transition-all group mt-1"
-                  >
-                    <CloudUpload className="w-10 h-10 text-gray-400 group-hover:text-blue-500 transition-colors mb-3" />
-                    <p className="text-sm text-gray-500 font-semibold group-hover:text-blue-600 mb-1">
-                      Drag and drop background image here, or{" "}
-                      <span className="text-blue-500 hover:underline">
-                        browse
-                      </span>
-                    </p>
-                    <p className="text-xs text-gray-400">
-                      Supports JPG, PNG, WEBP, or AVIF (Recommended 1920x1080)
-                    </p>
-                  </div>
-                )}
-
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  accept="image/*"
-                  className="hidden"
-                />
-              </div>
+              <ImagePickerField
+                label="Hero Background Image"
+                sublabel="Selected Image Asset"
+                value={selectedImage}
+                onChange={setSelectedImage}
+              />
 
               {/* Stats Row */}
               <div className="flex flex-col gap-4">

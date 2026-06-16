@@ -9,14 +9,18 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
+  tagline: "Executive Leadership",
+  heading: "Visionaries Driving Our Mission",
   exec1Name: "Vikram Sharma",
   exec1Role: "Managing Director & Founder",
-  exec1Bio: "25+ years of leadership in energy infrastructure. Founded Encotec with a vision to bring an owner's mindset to every project. Under his leadership, Encotec has grown from a specialized engineering firm to a full-spectrum energy services provider operating across 23+ countries.",
+  exec1Bio:
+    "25+ years of leadership in energy infrastructure. Founded Encotec with a vision to bring an owner's mindset to every project. Under his leadership, Encotec has grown from a specialized engineering firm to a full-spectrum energy services provider operating across 23+ countries.",
   exec1Tags: "Strategic Leadership, Business Development, Energy Policy",
 
   exec2Name: "Rajesh Patel",
   exec2Role: "Director – Operations",
-  exec2Bio: "20+ years in power plant operations and project execution. Leads operational delivery across multiple projects, ensuring efficient execution, quality standards, and optimal resource utilization across thermal, renewable, and transmission projects.",
+  exec2Bio:
+    "20+ years in power plant operations and project execution. Leads operational delivery across multiple projects, ensuring efficient execution, quality standards, and optimal resource utilization across thermal, renewable, and transmission projects.",
   exec2Tags: "Operations Management, Plant Commissioning, Asset Optimization",
 };
 
@@ -35,7 +39,9 @@ export function ExecutiveTeamCMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -54,7 +60,9 @@ export function ExecutiveTeamCMS() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Executive Team Section saved successfully!", { id: toastId });
+        toast.success("Executive Team Section saved successfully!", {
+          id: toastId,
+        });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -70,15 +78,33 @@ export function ExecutiveTeamCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Executive Team"
-        description="Manage details, biographies, and tags of the primary corporate founders/directors."
+        description="Manage corporate tagline, heading, details, biographies, and tags of the primary corporate founders/directors."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-8 pt-4 border-t border-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField
+              label="Section Tagline"
+              name="tagline"
+              value={formData.tagline}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Section Heading"
+              name="heading"
+              value={formData.heading}
+              onChange={handleChange}
+              required
+            />
+          </div>
           {/* Executive 1 */}
           <div className="p-6 bg-gray-50/50 border border-gray-100 rounded-xl flex flex-col gap-4">
-            <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">Executive 1 (Managing Director)</span>
+            <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">
+              Executive 1 (Managing Director)
+            </span>
             <InputField
               label="Name"
               name="exec1Name"
@@ -111,7 +137,9 @@ export function ExecutiveTeamCMS() {
 
           {/* Executive 2 */}
           <div className="p-6 bg-gray-50/50 border border-gray-100 rounded-xl flex flex-col gap-4">
-            <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">Executive 2 (Operations Director)</span>
+            <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">
+              Executive 2 (Operations Director)
+            </span>
             <InputField
               label="Name"
               name="exec2Name"

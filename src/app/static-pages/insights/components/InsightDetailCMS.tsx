@@ -9,19 +9,16 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  latestArticleTitle: "The Obra 'C' Thermal Success",
-  latestArticleSummary:
-    "Executing complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh, delivering on time and exceeding quality standards.",
-  latestArticleDate: "March 2024",
-  latestArticleLocation: "Uttar Pradesh, India",
-  latestArticleSlug: "obra-c-thermal-success",
-  latestArticleImage:
-    "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
-  badgeLabel: "Featured Case Study",
-  btnLabel: "Read Full Case Study",
+  backLabel: "Back to Insights",
+  loadingText: "Loading insight details...",
+  notFoundTitle: "Article Not Found",
+  notFoundText:
+    "The insight you are looking for doesn't exist or has been moved.",
+  notFoundBtnLabel: "Back to Insights",
+  shareLabel: "Share this article",
 };
 
-export function FeaturedInsightCMS() {
+export function InsightDetailCMS() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [isSaving, setIsSaving] = useState(false);
@@ -29,8 +26,8 @@ export function FeaturedInsightCMS() {
   useEffect(() => {
     fetchWithCache("/api/insights")
       .then((json) => {
-        if (json.success && json.data?.FeaturedInsight) {
-          setFormData({ ...defaultFormData, ...json.data.FeaturedInsight });
+        if (json.success && json.data?.InsightDetail) {
+          setFormData({ ...defaultFormData, ...json.data.InsightDetail });
         }
       })
       .catch(console.error);
@@ -45,19 +42,19 @@ export function FeaturedInsightCMS() {
 
   const handleSave = async () => {
     setIsSaving(true);
-    const toastId = toast.loading("Saving Featured Article Section...");
+    const toastId = toast.loading("Saving Insight Detail Section...");
     try {
       const res = await fetch("/api/insights", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          section: "FeaturedInsight",
+          section: "InsightDetail",
           content: formData,
         }),
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Featured Article Section saved successfully!", {
+        toast.success("Insight Detail Section saved successfully!", {
           id: toastId,
         });
       } else {
@@ -74,8 +71,8 @@ export function FeaturedInsightCMS() {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
-        title="Featured Article Section"
-        description="Manage the highlights, summary, date, links, and text labels for the top featured article."
+        title="Single Insight Detail View Labels"
+        description="Manage the labels, loaders, share headers, and 'Not Found' messaging for the detailed single article view."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -83,16 +80,16 @@ export function FeaturedInsightCMS() {
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InputField
-              label="Badge Label (e.g. Featured Case Study)"
-              name="badgeLabel"
-              value={formData.badgeLabel}
+              label="Back Button Label"
+              name="backLabel"
+              value={formData.backLabel}
               onChange={handleChange}
               required
             />
             <InputField
-              label="Button Text (e.g. Read Full Case Study)"
-              name="btnLabel"
-              value={formData.btnLabel}
+              label="Share Banner Header"
+              name="shareLabel"
+              value={formData.shareLabel}
               onChange={handleChange}
               required
             />
@@ -100,50 +97,39 @@ export function FeaturedInsightCMS() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InputField
-              label="Article URL Slug"
-              name="latestArticleSlug"
-              value={formData.latestArticleSlug}
+              label="Loading State Text"
+              name="loadingText"
+              value={formData.loadingText}
               onChange={handleChange}
               required
             />
             <InputField
-              label="Featured Image URL"
-              name="latestArticleImage"
-              value={formData.latestArticleImage}
+              label="Not Found Title"
+              name="notFoundTitle"
+              value={formData.notFoundTitle}
               onChange={handleChange}
               required
             />
           </div>
 
-          <InputField
-            label="Featured Article Title"
-            name="latestArticleTitle"
-            value={formData.latestArticleTitle}
-            onChange={handleChange}
-            required
-          />
-          <TextAreaField
-            label="Article Summary"
-            name="latestArticleSummary"
-            value={formData.latestArticleSummary}
-            onChange={handleChange}
-            rows={3}
-            required
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InputField
-              label="Featured Date / Month"
-              name="latestArticleDate"
-              value={formData.latestArticleDate}
+              label="Not Found Back Button Label"
+              name="notFoundBtnLabel"
+              value={formData.notFoundBtnLabel}
               onChange={handleChange}
+              required
             />
-            <InputField
-              label="Featured Location"
-              name="latestArticleLocation"
-              value={formData.latestArticleLocation}
+            <TextAreaField
+              label="Not Found Description"
+              name="notFoundText"
+              value={formData.notFoundText}
               onChange={handleChange}
+              rows={2}
+              required
             />
           </div>
+
           <div className="flex justify-end pt-4 border-t border-gray-50">
             <SaveButton
               onClick={handleSave}

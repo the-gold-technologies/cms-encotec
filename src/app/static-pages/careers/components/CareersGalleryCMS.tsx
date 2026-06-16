@@ -9,14 +9,40 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
+  tagline: "Inside Encotec",
+  heading: "Life at Encotec",
   galleryList: [
-    { image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800", caption: "Team Collaboration" },
-    { image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800", caption: "On-Site Engineering" },
-    { image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800", caption: "Strategic Planning" },
-    { image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800", caption: "Field Operations" },
-    { image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=800", caption: "Team Celebrations" },
-    { image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800", caption: "Project Reviews" }
-  ]
+    {
+      image:
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
+      caption: "Team Collaboration",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
+      caption: "On-Site Engineering",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+      caption: "Strategic Planning",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      caption: "Field Operations",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=800",
+      caption: "Team Celebrations",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+      caption: "Project Reviews",
+    },
+  ],
 };
 
 export function CareersGalleryCMS() {
@@ -34,7 +60,11 @@ export function CareersGalleryCMS() {
       .catch(console.error);
   }, []);
 
-  const handleImageChange = (index: number, field: "image" | "caption", value: string) => {
+  const handleImageChange = (
+    index: number,
+    field: "image" | "caption",
+    value: string,
+  ) => {
     setFormData((prev) => {
       const updatedList = [...prev.galleryList];
       updatedList[index] = { ...updatedList[index], [field]: value };
@@ -45,7 +75,7 @@ export function CareersGalleryCMS() {
   const addImage = () => {
     setFormData((prev) => ({
       ...prev,
-      galleryList: [...prev.galleryList, { image: "", caption: "" }]
+      galleryList: [...prev.galleryList, { image: "", caption: "" }],
     }));
     toast.success("Added new gallery slot");
   };
@@ -57,7 +87,7 @@ export function CareersGalleryCMS() {
     }
     setFormData((prev) => ({
       ...prev,
-      galleryList: prev.galleryList.filter((_, i) => i !== index)
+      galleryList: prev.galleryList.filter((_, i) => i !== index),
     }));
   };
 
@@ -91,14 +121,37 @@ export function CareersGalleryCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Life at Encotec Gallery Section"
-        description="Manage corporate photos and activities in the gallery strip."
+        description="Manage corporate tagline, heading, and photos/activities in the gallery strip."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField
+              label="Section Tagline"
+              name="tagline"
+              value={formData.tagline}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, tagline: e.target.value }))
+              }
+              required
+            />
+            <InputField
+              label="Section Heading"
+              name="heading"
+              value={formData.heading}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, heading: e.target.value }))
+              }
+              required
+            />
+          </div>
+
           <div className="flex justify-between items-center">
-            <span className="text-sm font-semibold text-gray-700">Gallery Items ({formData.galleryList.length})</span>
+            <span className="text-sm font-semibold text-gray-700">
+              Gallery Items ({formData.galleryList.length})
+            </span>
             <button
               onClick={addImage}
               className="flex items-center gap-2 px-3 py-1.5 bg-brand-pink text-white rounded text-xs font-semibold hover:bg-[#a0004f] transition-all"
@@ -109,7 +162,10 @@ export function CareersGalleryCMS() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {formData.galleryList.map((item, idx) => (
-              <div key={idx} className="p-4 border border-gray-100 rounded-xl flex flex-col gap-4 relative">
+              <div
+                key={idx}
+                className="p-4 border border-gray-100 rounded-xl flex flex-col gap-4 relative"
+              >
                 <button
                   onClick={() => removeImage(idx)}
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors"
@@ -120,7 +176,11 @@ export function CareersGalleryCMS() {
 
                 {item.image && (
                   <div className="w-full h-32 rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
-                    <img src={item.image} alt={item.caption} className="w-full h-full object-cover" />
+                    <img
+                      src={item.image}
+                      alt={item.caption}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 )}
 
@@ -128,7 +188,9 @@ export function CareersGalleryCMS() {
                   label={`Image URL #${idx + 1}`}
                   name={`image-${idx}`}
                   value={item.image}
-                  onChange={(e) => handleImageChange(idx, "image", e.target.value)}
+                  onChange={(e) =>
+                    handleImageChange(idx, "image", e.target.value)
+                  }
                   required
                 />
 
@@ -136,7 +198,9 @@ export function CareersGalleryCMS() {
                   label={`Caption #${idx + 1}`}
                   name={`caption-${idx}`}
                   value={item.caption}
-                  onChange={(e) => handleImageChange(idx, "caption", e.target.value)}
+                  onChange={(e) =>
+                    handleImageChange(idx, "caption", e.target.value)
+                  }
                   required
                 />
               </div>

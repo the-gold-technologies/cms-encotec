@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { PageHeader } from "@/app/components/PageHeader";
-import { Search, Loader2, ChevronLeft, ChevronRight, Mail, Calendar, User, Tag, MessageSquare } from "lucide-react";
+import { Search, Loader2, ChevronLeft, ChevronRight, Mail, Calendar, User, Tag, MessageSquare, Phone } from "lucide-react";
 import { InputField } from "@/app/components/InputField";
 import toast from "react-hot-toast";
 
@@ -125,6 +125,12 @@ export default function EnquiriesPage() {
                             <Mail className="w-3.5 h-3.5 text-gray-400" />
                             {enquiry.email}
                           </span>
+                          {parsed.phone && parsed.phone !== "N/A" && (
+                            <span className="text-xs text-gray-400 flex items-center gap-2 mt-0.5">
+                              <Phone className="w-3 h-3 text-gray-400" />
+                              {parsed.phone}
+                            </span>
+                          )}
                         </div>
                       </td>
                       <td className="px-6 py-5 text-[13px] text-gray-700 font-medium">

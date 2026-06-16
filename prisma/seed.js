@@ -31,13 +31,14 @@ async function main() {
       siteTitle: "Encotech",
       siteDescription:
         "Engineering & Project Management Services - Member of Dornier Group",
-      favicon: "",
-      googleAnalyticsId: "G-XXXXXXXXXX",
-      gtmId: "GTM-XXXXXXX",
-      socialLinks: {
-        twitter: "https://twitter.com/encotech",
-        linkedin: "https://linkedin.com/company/encotech",
-      },
+      favicon: null,
+      googleAnalyticsId: "G-CT894VPLS1",
+      gtmId: "GTM-59DCSVDV",
+      searchConsoleId: "4kD9H2fqRgqKEk",
+      customHeaderScripts: null,
+      customFooterScripts: null,
+      socialLinks: [],
+      canonicalOrdering: "default",
     },
   });
   console.log("Created global config");

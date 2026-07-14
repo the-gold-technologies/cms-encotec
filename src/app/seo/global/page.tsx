@@ -19,6 +19,10 @@ interface GlobalConfig {
   searchConsoleId: string;
   customHeaderScripts: string;
   customFooterScripts: string;
+  schema?: string;
+  headingOptions?: {
+    heroHeadingTag?: string;
+  };
 }
 
 const defaultData: GlobalConfig = {
@@ -30,6 +34,10 @@ const defaultData: GlobalConfig = {
   searchConsoleId: "",
   customHeaderScripts: "",
   customFooterScripts: "",
+  schema: "",
+  headingOptions: {
+    heroHeadingTag: "h1",
+  },
 };
 
 export default function GlobalSEOPage() {
@@ -48,6 +56,7 @@ export default function GlobalSEOPage() {
             ...defaultData,
             ...data,
             favicon: data.favicon ? [data.favicon] : [],
+            headingOptions: data.headingOptions || { heroHeadingTag: "h1" },
             socialLinks: Array.isArray(data.socialLinks)
               ? data.socialLinks
               : [],
@@ -258,6 +267,47 @@ Paste only XXXXXXXX`}
               rows={8}
               className="font-mono text-xs"
             />
+            <TextAreaField
+              label="Structured Data (Schema Markup JSON-LD)"
+              value={formData.schema || ""}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  schema: e.target.value,
+                })
+              }
+              placeholder='e.g. { "@context": "https://schema.org", "@type": "Organization", "name": "Encotech" }'
+              rows={8}
+              className="font-mono text-xs md:col-span-2"
+              containerClassName="md:col-span-2"
+              allowJsonUpload={true}
+            />
+
+            <div className="flex flex-col gap-1.5 px-0.5 md:col-span-2">
+              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4 flex items-center gap-1.5 relative">
+                Hero Headline Tag (SEO)
+              </span>
+              <select
+                value={formData.headingOptions?.heroHeadingTag || "h1"}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    headingOptions: {
+                      ...formData.headingOptions,
+                      heroHeadingTag: e.target.value,
+                    },
+                  })
+                }
+                className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] text-gray-800 cursor-pointer h-[54px]"
+              >
+                <option value="h1">H1 (Recommended standard title tag)</option>
+                <option value="h2">H2 (Alternative heading tag)</option>
+                <option value="h3">H3 (Sub-heading tag)</option>
+                <option value="h4">H4 (Sub-heading tag)</option>
+                <option value="h5">H5 (Sub-heading tag)</option>
+                <option value="h6">H6 (Sub-heading tag)</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

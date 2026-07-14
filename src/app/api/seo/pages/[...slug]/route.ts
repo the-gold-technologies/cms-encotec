@@ -45,6 +45,7 @@ export async function GET(
           ogTitle: true,
           ogDescription: true,
           ogImage: true,
+          schema: true,
           headingOptions: true,
         },
       });
@@ -80,6 +81,7 @@ export async function GET(
         ogTitle: true,
         ogDescription: true,
         ogImage: true,
+        schema: true,
         headingOptions: true,
       },
     });
@@ -142,6 +144,7 @@ export async function PUT(
           ogTitle: seo.ogTitle,
           ogDescription: seo.ogDescription,
           ogImage: seo.ogImage,
+          schema: seo.schema,
           headingOptions: seo.headingOptions,
         },
         create: {
@@ -156,6 +159,7 @@ export async function PUT(
           ogTitle: seo.ogTitle,
           ogDescription: seo.ogDescription,
           ogImage: seo.ogImage,
+          schema: seo.schema,
           headingOptions: seo.headingOptions || {},
           visibility: "published",
         },
@@ -182,6 +186,7 @@ export async function PUT(
         ogTitle: seo.ogTitle,
         ogDescription: seo.ogDescription,
         ogImage: seo.ogImage,
+        schema: seo.schema,
         headingOptions: seo.headingOptions,
       },
       create: {
@@ -196,6 +201,7 @@ export async function PUT(
         ogTitle: seo.ogTitle,
         ogDescription: seo.ogDescription,
         ogImage: seo.ogImage,
+        schema: seo.schema,
         headingOptions: seo.headingOptions || {},
         visibility: "published",
       },

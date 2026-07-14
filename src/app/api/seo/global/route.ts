@@ -56,6 +56,11 @@ export async function PUT(request: Request) {
         customFooterScripts: config.customFooterScripts,
         socialLinks: config.socialLinks,
         canonicalOrdering: config.canonicalOrdering,
+        sitemapEnabled: config.sitemapEnabled,
+        sitemapCustomContent: config.sitemapCustomContent,
+        robotsTxt: config.robotsTxt,
+        schema: config.schema,
+        headingOptions: config.headingOptions,
       },
       create: {
         id: "global",
@@ -69,6 +74,11 @@ export async function PUT(request: Request) {
         customFooterScripts: config.customFooterScripts,
         socialLinks: config.socialLinks,
         canonicalOrdering: config.canonicalOrdering,
+        sitemapEnabled: config.sitemapEnabled,
+        sitemapCustomContent: config.sitemapCustomContent,
+        robotsTxt: config.robotsTxt,
+        schema: config.schema,
+        headingOptions: config.headingOptions || {},
       },
     });
 

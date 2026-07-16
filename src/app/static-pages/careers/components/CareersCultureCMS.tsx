@@ -11,14 +11,10 @@ import { SectionHeader } from "@/components/SectionHeader";
 const defaultFormData = {
   cultureTagline: "Why Join Us",
   cultureHeading: "Engineering Careers That Matter",
-  culturePara1:
-    "At Encotec, we don't just build power plants; we engineer the foundation of modern society. Our team works on some of the most complex and critical energy infrastructure projects globally, from massive supercritical thermal plants to utility-scale renewable energy parks.",
-  culturePara2:
-    "We foster a culture of technical excellence, continuous learning, and collaborative problem-solving. When you join Encotec, you gain global exposure, working alongside industry veterans who are passionate about mentoring the next generation of engineering leaders.",
-  cultureQuote:
-    "We empower our engineers to take ownership, innovate, and deliver solutions that have a tangible impact on global energy security.",
-  cultureImage:
-    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200",
+  culturePara1: "At Encotec, we don't just build power plants; we engineer the foundation of modern society. Our team works on some of the most complex and critical energy infrastructure projects globally, from massive supercritical thermal plants to utility-scale renewable energy parks.",
+  culturePara2: "We foster a culture of technical excellence, continuous learning, and collaborative problem-solving. When you join Encotec, you gain global exposure, working alongside industry veterans who are passionate about mentoring the next generation of engineering leaders.",
+  cultureQuote: "We empower our engineers to take ownership, innovate, and deliver solutions that have a tangible impact on global energy security.",
+  cultureImage: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200"
 };
 
 export function CareersCultureCMS() {

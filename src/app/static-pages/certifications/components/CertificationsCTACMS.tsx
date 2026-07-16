@@ -10,10 +10,9 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
   ctaHeading: "Partner With Excellence",
-  ctaSubtitle:
-    "Experience engineering services backed by global certifications and a commitment to uncompromising quality.",
+  ctaSubtitle: "Experience engineering services backed by global certifications and a commitment to uncompromising quality.",
   ctaLabel: "Discuss Your Project",
-  ctaUrl: "/contact",
+  ctaUrl: "/contact"
 };
 
 export function CertificationsCTACMS() {

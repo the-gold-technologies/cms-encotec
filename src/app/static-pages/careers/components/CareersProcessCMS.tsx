@@ -14,23 +14,21 @@ const defaultFormData = {
   processSteps: [
     {
       title: "Apply Online",
-      description: "Submit your resume and cover letter through our portal.",
+      description: "Submit your resume and cover letter through our portal."
     },
     {
       title: "Initial Screening",
-      description:
-        "Our HR team reviews your application within 5 business days.",
+      description: "Our HR team reviews your application within 5 business days."
     },
     {
       title: "Technical Interview",
-      description:
-        "Meet with our engineering leads for a technical discussion.",
+      description: "Meet with our engineering leads for a technical discussion."
     },
     {
       title: "Final Offer",
-      description: "Receive your offer and begin your journey with Encotec.",
-    },
-  ],
+      description: "Receive your offer and begin your journey with Encotec."
+    }
+  ]
 };
 
 export function CareersProcessCMS() {

@@ -11,9 +11,8 @@ import { SectionHeader } from "@/components/SectionHeader";
 const defaultFormData = {
   tagline: "Inside Encotec",
   heading: "Stay Ahead in Energy Engineering",
-  description:
-    "Subscribe to our newsletter to receive the latest case studies, industry insights, and technical articles directly in your inbox.",
-  privacyNote: "We respect your privacy. Unsubscribe at any time.",
+  description: "Subscribe to our newsletter to receive the latest case studies, industry insights, and technical articles directly in your inbox.",
+  privacyNote: "We respect your privacy. Unsubscribe at any time."
 };
 
 export function NewsletterSectionCMS() {

@@ -58,7 +58,7 @@ const defaultFormData = {
       description: "Through regular performance diagnostics and energy audits, we ensure your asset remains efficient and reliable for its entire lifecycle.",
       icon: "Activity"
     }
-  ] as StepItem[]
+  ]
 };
 
 const mergeDefaults = (data: any) => {

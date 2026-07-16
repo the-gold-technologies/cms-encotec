@@ -9,12 +9,20 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "",
+  heading: "Workflow Followed for Each Project",
   description: "",
-  stepTitle0: "", stepDesc0: "", stepNumber0: "",
-  stepTitle1: "", stepDesc1: "", stepNumber1: "",
-  stepTitle2: "", stepDesc2: "", stepNumber2: "",
-  stepTitle3: "", stepDesc3: "", stepNumber3: "",
+  stepTitle0: "",
+  stepDesc0: "",
+  stepNumber0: "",
+  stepTitle1: "",
+  stepDesc1: "",
+  stepNumber1: "",
+  stepTitle2: "",
+  stepDesc2: "",
+  stepNumber2: "",
+  stepTitle3: "",
+  stepDesc3: "",
+  stepNumber3: ""
 };
 
 interface ProcessSectionCMSProps {

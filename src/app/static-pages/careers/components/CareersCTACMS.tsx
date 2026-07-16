@@ -11,7 +11,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 const defaultFormData = {
   ctaHeading: "Don't See the Right Role?",
   ctaSubtitle: "We're always looking for talented engineers and energy professionals. Send us your resume and we'll keep you in mind for future opportunities.",
-  hrEmail: "careers@encotec.com",
+  hrEmail: "careers@encotec.com"
 };
 
 export function CareersCTACMS() {

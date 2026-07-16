@@ -30,60 +30,49 @@ interface ServiceItem {
 const defaultFormData = {
   tagline: "Our Services",
   heading: "Integrated Solutions Across the Asset Lifecycle",
-  description:
-    "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running.",
+  description: "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running.",
   services: [
     {
       title: "Project Conceptualisation & Development",
-      description:
-        "From pre-feasibility and financial assessments to finalizing EPC contractors and developing technical specifications.",
+      description: "From pre-feasibility and financial assessments to finalizing EPC contractors and developing technical specifications.",
       icon: "ClipboardCheck",
-      image:
-        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
       ctaLabel: "Learn More",
-      ctaUrl: "/services",
+      ctaUrl: "/services"
     },
     {
       title: "Construction, Commissioning & Relocation",
-      description:
-        "Expert installation of complex power and process industries, including specialized asset shifting and relocation services across borders.",
+      description: "Expert installation of complex power and process industries, including specialized asset shifting and relocation services across borders.",
       icon: "Network",
-      image:
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800",
       ctaLabel: "Learn More",
-      ctaUrl: "/services",
+      ctaUrl: "/services"
     },
     {
       title: "Asset Stewardship (O&M)",
-      description:
-        "Specialized management of thermal power plants, international airports, and critical utilities like STPs.",
+      description: "Specialized management of thermal power plants, international airports, and critical utilities like STPs.",
       icon: "Flame",
-      image:
-        "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
       ctaLabel: "Learn More",
-      ctaUrl: "/services",
+      ctaUrl: "/services"
     },
     {
       title: "Expert Advisory & Performance Audits",
-      description:
-        "High-level problem solving, energy efficiency audits, and specialized testing (NDT) for operational plants.",
+      description: "High-level problem solving, energy efficiency audits, and specialized testing (NDT) for operational plants.",
       icon: "Search",
-      image:
-        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
       ctaLabel: "Learn More",
-      ctaUrl: "/services",
+      ctaUrl: "/services"
     },
     {
       title: "Global Trading & Spare Parts",
-      description:
-        "Strategic sourcing of critical equipment and spares from major OEMs in China, Vietnam, Korea, and India.",
+      description: "Strategic sourcing of critical equipment and spares from major OEMs in China, Vietnam, Korea, and India.",
       icon: "Wrench",
-      image:
-        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
       ctaLabel: "Learn More",
-      ctaUrl: "/services",
-    },
-  ] as ServiceItem[],
+      ctaUrl: "/services"
+    }
+  ]
 };
 
 const mergeDefaults = (data: any) => {

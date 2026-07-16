@@ -12,7 +12,7 @@ const defaultFormData = {
   philosophyHeading: "Leading With an Owner's Mindset",
   philosophyPara1: "At Encotec, leadership is not just about managing teams; it's about taking full accountability for the outcomes we deliver. Our leadership team brings decades of hands-on experience from the world's most complex energy projects.",
   philosophyPara2: "We believe that true engineering excellence requires a culture where every team member is empowered to think critically, act decisively, and prioritize long-term asset performance over short-term gains.",
-  philosophyQuote: "We don't just manage projects — we take ownership of outcomes, treating every asset as if it were our own.",
+  philosophyQuote: "We don't just manage projects — we take ownership of outcomes, treating every asset as if it were our own."
 };
 
 export function LeadershipPhilosophyCMS() {

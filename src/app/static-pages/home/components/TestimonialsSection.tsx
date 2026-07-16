@@ -34,8 +34,22 @@ const defaultFormData = {
       title: "Project Director, Renewable Energy",
       company: "Gulf Energy Solutions",
       initials: "SA"
+    },
+    {
+      quote: "Working with Encotec on our 765 kV substation was exceptional. Their deep expertise in transmission infrastructure and commitment to safety standards gave us complete confidence throughout the project.",
+      name: "Dr. Klaus Werner",
+      title: "Chief Engineer, Grid Infrastructure",
+      company: "European Power Networks",
+      initials: "KW"
+    },
+    {
+      quote: "Encotec's project management capabilities are world-class. They coordinated complex multi-disciplinary teams across three countries, delivering our airport MEP systems with zero safety incidents.",
+      name: "Priya Sharma",
+      title: "Managing Director",
+      company: "Apex Infrastructure Group",
+      initials: "PS"
     }
-  ] as TestimonialItem[],
+  ]
 };
 
 const mergeDefaults = (data: any) => {

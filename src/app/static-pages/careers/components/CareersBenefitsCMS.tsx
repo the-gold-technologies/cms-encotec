@@ -15,35 +15,29 @@ const defaultFormData = {
   benefitsList: [
     {
       title: "Global Exposure",
-      description:
-        "Work on critical energy infrastructure projects across 23+ countries with diverse international teams.",
+      description: "Work on critical energy infrastructure projects across 10+ countries with diverse international teams."
     },
     {
       title: "Technical Growth",
-      description:
-        "Access to cutting-edge technologies, specialized training, and continuous learning programs.",
+      description: "Access to cutting-edge technologies, specialized training, and continuous learning programs."
     },
     {
       title: "Competitive Compensation",
-      description:
-        "Industry-leading salary packages with performance-based bonuses and comprehensive benefits.",
+      description: "Industry-leading salary packages with performance-based bonuses and comprehensive benefits."
     },
     {
       title: "Health & Wellness",
-      description:
-        "Comprehensive medical insurance, wellness programs, and support for physical and mental health.",
+      description: "Comprehensive medical insurance, wellness programs, and support for physical and mental health."
     },
     {
       title: "Work-Life Balance",
-      description:
-        "Flexible working arrangements, generous leave policies, and a supportive team environment.",
+      description: "Flexible working arrangements, generous leave policies, and a supportive team environment."
     },
     {
       title: "Career Progression",
-      description:
-        "Clear growth paths, leadership development, and mentorship from seasoned industry veterans.",
-    },
-  ],
+      description: "Clear growth paths, leadership development, and mentorship from seasoned industry veterans."
+    }
+  ]
 };
 
 export function CareersBenefitsCMS() {

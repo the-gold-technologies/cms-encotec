@@ -9,11 +9,11 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  headingPart1: "",
-  headingHighlight: "",
-  headingPart2: "",
-  ctaLabel: "",
-  ctaUrl: "",
+  headingPart1: "Our integrated approach ensures that every project — ",
+  headingHighlight: "from concept to operation",
+  headingPart2: " — is delivered with precision, reliability, and long-term performance in mind.",
+  ctaLabel: "Start Your Project",
+  ctaUrl: "/contact"
 };
 
 interface ClosingSectionCMSProps {

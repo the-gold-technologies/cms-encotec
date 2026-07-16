@@ -10,13 +10,11 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ImagePickerField } from "@/components/ImagePickerField";
 
 const defaultFormData = {
-  backgroundImage:
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2400",
+  backgroundImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2400",
   tagline: "Get in Touch",
   headingPart1: "Let's Build the Future of",
   headingItalicHighlight: "Energy Together",
-  heroSubtitle:
-    "Reach out to our team of experts for project inquiries, strategic partnerships, or to learn more about our engineering capabilities.",
+  heroSubtitle: "Reach out to our team of experts for project inquiries, strategic partnerships, or to learn more about our engineering capabilities."
 };
 
 interface ContactHeroCMSProps {

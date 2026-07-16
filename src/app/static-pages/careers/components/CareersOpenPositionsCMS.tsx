@@ -17,58 +17,58 @@ const defaultFormData = {
       dept: "Engineering",
       location: "Mumbai, India",
       type: "Full-time",
-      desc: "Lead engineering design and technical reviews for supercritical thermal power projects.",
+      desc: "Lead engineering design and technical reviews for supercritical thermal power projects."
     },
     {
       title: "Renewable Energy Analyst",
       dept: "Engineering",
       location: "Dubai, UAE",
       type: "Full-time",
-      desc: "Conduct energy yield analysis and feasibility studies for solar and wind projects.",
+      desc: "Conduct energy yield analysis and feasibility studies for solar and wind projects."
     },
     {
       title: "Project Manager — EPC",
       dept: "Project Management",
-      location: "Riyadh, KSA",
+      location: "Ankara, Turkey",
       type: "Full-time",
-      desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East.",
+      desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East & Europe."
     },
     {
       title: "Commissioning Engineer",
       dept: "Engineering",
-      location: "Houston, USA",
+      location: "Dar es Salaam, Tanzania",
       type: "Contract",
-      desc: "Oversee testing and commissioning of power generation equipment and systems.",
+      desc: "Oversee testing and commissioning of power generation equipment and systems."
     },
     {
       title: "O&M Site Manager",
       dept: "Operations",
       location: "Rajpura, India",
       type: "Full-time",
-      desc: "Lead day-to-day operations and maintenance of a 2x700 MW supercritical plant.",
+      desc: "Lead day-to-day operations and maintenance of a 2x700 MW supercritical plant."
     },
     {
       title: "Electrical Design Engineer",
       dept: "Engineering",
       location: "Mumbai, India",
       type: "Full-time",
-      desc: "Design transmission lines (33kV-765kV) and substation systems (AIS/GIS).",
+      desc: "Design transmission lines (33kV-765kV) and substation systems (AIS/GIS)."
     },
     {
       title: "Business Development Manager",
       dept: "Corporate",
       location: "Singapore",
       type: "Full-time",
-      desc: "Drive business growth across the Asia-Pacific region for energy services.",
+      desc: "Drive business growth across the Asia-Pacific region for energy services."
     },
     {
       title: "Quality Assurance Lead",
       dept: "Operations",
       location: "Frankfurt, Germany",
       type: "Full-time",
-      desc: "Implement and oversee quality management systems across European projects.",
-    },
-  ],
+      desc: "Implement and oversee quality management systems across European projects."
+    }
+  ]
 };
 
 export function CareersOpenPositionsCMS() {

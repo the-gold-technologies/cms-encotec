@@ -10,7 +10,15 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
   tagline: "Trusted by Industry Leaders",
-  logos: ["Siemens Energy", "General Electric", "Vestas", "NextEra", "Orsted", "Enel", "Iberdrola"] as string[]
+  logos: [
+    "Siemens Energy",
+    "General Electric",
+    "Vestas",
+    "NextEra",
+    "Orsted",
+    "Enel",
+    "Iberdrola"
+  ]
 };
 
 const mergeDefaults = (data: any) => {

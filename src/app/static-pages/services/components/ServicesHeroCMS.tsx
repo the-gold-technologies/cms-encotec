@@ -9,10 +9,10 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "",
-  headingPart1: "",
-  headingItalicHighlight: "",
-  description: "",
+  tagline: "Our Services",
+  headingPart1: "Integrated Solutions Across the",
+  headingItalicHighlight: "Asset Lifecycle",
+  description: "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running."
 };
 
 interface ServicesHeroCMSProps {

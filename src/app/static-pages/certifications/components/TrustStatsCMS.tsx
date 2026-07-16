@@ -8,10 +8,14 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  stats1Value: "15", stats1Label: "Years of Excellence",
-  stats2Value: "100", stats2Label: "Compliance Rate",
-  stats3Value: "50", stats3Label: "Global Audits Passed",
-  stats4Value: "23", stats4Label: "Countries Recognized",
+  stats1Value: "15",
+  stats1Label: "Years of Excellence",
+  stats2Value: "100",
+  stats2Label: "Compliance Rate",
+  stats3Value: "",
+  stats3Label: "",
+  stats4Value: "",
+  stats4Label: ""
 };
 
 export function TrustStatsCMS() {

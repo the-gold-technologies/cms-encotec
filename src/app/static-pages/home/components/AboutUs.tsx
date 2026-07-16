@@ -30,33 +30,47 @@ interface StatItem {
 }
 
 const defaultFormData = {
-  sectionNumber: "02",
+  sectionNumber: "",
   upperTag: "About Us",
   headingLabel: "Human-Centric Engineering",
   headingItalicHighlight: "Since 2011",
   paragraphs: [
     "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a 600+ industry specialist operating across 13+ key locations.",
-    "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide.",
-  ] as string[],
+    "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide."
+  ],
   ctaLabel: "Learn More",
   ctaUrl: "#",
-  image:
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
+  image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
   imageAlt: "Engineer working on advanced equipment",
   badgeValue: "Est. 2011",
   badgeLabel: "Pioneering Energy",
   badgeIcon: "Zap",
   stats: [
-    { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
-    { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
-    { value: "1800+", label: "MANPOWER", icon: "Users" },
-    { value: "20+ GW", label: "POWER CAPACITY O&M EXECUTED", icon: "Zap" },
-  ] as StatItem[],
+    {
+      value: "2011",
+      label: "FOUNDED YEAR",
+      icon: "Calendar"
+    },
+    {
+      value: "13+",
+      label: "KEY LOCATIONS",
+      icon: "Globe"
+    },
+    {
+      value: "1800+",
+      label: "MANPOWER",
+      icon: "Users"
+    },
+    {
+      value: "20+ GW",
+      label: "POWER CAPACITY O&M EXECUTED",
+      icon: "Zap"
+    }
+  ],
   bannerHeading: "Experience Global Engineering Excellence.",
-  bannerDescription:
-    "From India to Global, see how we are setting new standards in power infrastructure.",
+  bannerDescription: "From India to Global, see how we are setting new standards in power infrastructure.",
   bannerButtonLabel: "View Our Global Reach",
-  bannerButtonUrl: "/contact",
+  bannerButtonUrl: "/contact"
 };
 
 const mergeDefaults = (data: any) => {

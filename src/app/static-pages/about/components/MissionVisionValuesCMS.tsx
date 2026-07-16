@@ -9,21 +9,32 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "",
-  description: "",
-  missionTitle: "",
-  missionDesc: "",
-  visionTitle: "",
-  visionDesc: "",
-  valuesTitle: "",
-  valuesDesc: "",
-  // Values cards
-  valueTitle0: "", valueDesc0: "", valueIcon0: "",
-  valueTitle1: "", valueDesc1: "", valueIcon1: "",
-  valueTitle2: "", valueDesc2: "", valueIcon2: "",
-  valueTitle3: "", valueDesc3: "", valueIcon3: "",
-  valueTitle4: "", valueDesc4: "", valueIcon4: "",
-  valueTitle5: "", valueDesc5: "", valueIcon5: "",
+  tagline: "Our Heart and Soul",
+  description: "Our purpose is to bridge the gap between technical complexity and business success.",
+  missionTitle: "Mission",
+  missionDesc: "To deliver error-free, high-standard services through continuous innovation and a relentless commitment to \"finding new ways to energy solutions\".",
+  visionTitle: "Vision",
+  visionDesc: "To be the most trusted global partner in energy stewardship, leading the transition from traditional power to a sustainable future.",
+  valuesTitle: "Core Values",
+  valuesDesc: "We are defined by Accountability, Innovation, and Total Care. By adopting the owner's perspective, we ensure that safety and efficiency are never compromised.",
+  valueTitle0: "Accountability",
+  valueDesc0: "We treat every site with the care of an owner, taking full responsibility for outcomes.",
+  valueIcon0: "HeartHandshake",
+  valueTitle1: "Innovation",
+  valueDesc1: "We constantly find new ways to improve energy solutions for reliability and efficiency.",
+  valueIcon1: "Award",
+  valueTitle2: "Safety First",
+  valueDesc2: "We ensure excellence isn't just a goal — it's our standard at every project site.",
+  valueIcon2: "ShieldCheck",
+  valueTitle3: "Quality Standards",
+  valueDesc3: "Triple ISO Certified in Quality (9001), Environment (14001), and Safety (45001).",
+  valueIcon3: "TrendingUp",
+  valueTitle4: "Client Partnership",
+  valueDesc4: "We work as trusted partners, aligning our solutions with client objectives.",
+  valueIcon4: "Users",
+  valueTitle5: "Sustainability",
+  valueDesc5: "Bridging the gap between traditional power and the renewable future.",
+  valueIcon5: "Leaf"
 };
 
 interface MissionVisionValuesCMSProps {

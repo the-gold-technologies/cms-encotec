@@ -8,13 +8,23 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  heading: "",
-  description: "",
-  industryName0: "", industrySubtitle0: "", industryIcon0: "",
-  industryName1: "", industrySubtitle1: "", industryIcon1: "",
-  industryName2: "", industrySubtitle2: "", industryIcon2: "",
-  industryName3: "", industrySubtitle3: "", industryIcon3: "",
-  industryName4: "", industrySubtitle4: "", industryIcon4: "",
+  heading: "Industries We Serve",
+  description: "We deliver solutions across a wide range of sectors",
+  industryName0: "",
+  industrySubtitle0: "",
+  industryIcon0: "",
+  industryName1: "",
+  industrySubtitle1: "",
+  industryIcon1: "",
+  industryName2: "",
+  industrySubtitle2: "",
+  industryIcon2: "",
+  industryName3: "",
+  industrySubtitle3: "",
+  industryIcon3: "",
+  industryName4: "",
+  industrySubtitle4: "",
+  industryIcon4: ""
 };
 
 interface IndustriesSectionCMSProps {

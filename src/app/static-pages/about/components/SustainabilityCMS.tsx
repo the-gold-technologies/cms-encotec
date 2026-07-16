@@ -9,15 +9,15 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "",
-  heading: "",
-  paragraph1: "",
-  paragraph2: "",
-  focus0: "",
-  focus1: "",
-  focus2: "",
-  focus3: "",
-  footerNote: "",
+  tagline: "ESG Commitment",
+  heading: "Committed to a Greener Tomorrow",
+  paragraph1: "Sustainability is not a policy at Encotec; it is our promise. We are committed to sustainable development by integrating high standards of environmental management into everything we do.",
+  paragraph2: "Our in-house Encotec team conducts specialized energy audits to identify savings and reduce the carbon footprints of operational plants. Through our expert advisory and Residual Life Assessments (RLA), we help owners revitalize old plants, making them more efficient and environmentally compliant.",
+  focus0: "Specialized energy audits by our in-house Encotec team to identify savings and reduce carbon footprints",
+  focus1: "Residual Life Assessments (RLA) to help owners revitalize older plants for improved efficiency and environmental compliance",
+  focus2: "ISO 14001 environmental management integrated into daily operations across all sites",
+  focus3: "Supporting the transition from traditional power to a sustainable, renewable future",
+  footerNote: "Our approach ensures that sustainability is not an afterthought, but an integral part of how we design, execute, and operate energy systems."
 };
 
 interface SustainabilityCMSProps {

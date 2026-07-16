@@ -26,143 +26,199 @@ interface StatItem {
 const defaultFormData = {
   tagline: "Global Presence",
   heading: "Connected Intelligence",
-  description:
-    "A live network of energy systems operating in synchronization across continents.",
+  description: "A live network of energy systems operating in synchronization across continents.",
   stats: [
-    { value: "10+", label: "GLOBAL LOCATIONS" },
-    { value: "10+ GW", label: "CAPACITY" },
-    { value: "1,800+", label: "MANPOWER" },
-  ] as StatItem[],
+    {
+      value: "10+",
+      label: "GLOBAL LOCATIONS"
+    },
+    {
+      value: "10+ GW",
+      label: "CAPACITY"
+    },
+    {
+      value: "1,800+",
+      label: "MANPOWER"
+    }
+  ],
   locations: [
     {
-      name: "Noida (HQ)",
-      coordinates: [77.39, 28.58],
+      name: "India (HQ)",
+      coordinates: [
+        77.39,
+        28.58
+      ],
       region: "India",
       address: "Corporate Headquarters",
       suite: "Noida, Uttar Pradesh",
-      phone: "+91 120 555 0100",
-    },
-    {
-      name: "New Delhi",
-      coordinates: [77.21, 28.61],
-      region: "India",
-      address: "Regional Office",
-      suite: "New Delhi, India",
-      phone: "+91 11 555 0200",
-    },
-    {
-      name: "Jamshedpur",
-      coordinates: [86.18, 22.8],
-      region: "India",
-      address: "Project Site",
-      suite: "Jamshedpur, Jharkhand",
-      phone: "+91 657 555 0300",
-    },
-    {
-      name: "Jhajjar",
-      coordinates: [76.66, 28.61],
-      region: "India",
-      address: "Power Plant O&M",
-      suite: "Jhajjar, Haryana",
-      phone: "+91 1251 555 0400",
-    },
-    {
-      name: "Haldia",
-      coordinates: [88.06, 22.03],
-      region: "India",
-      address: "Project Site",
-      suite: "Haldia, West Bengal",
-      phone: "+91 3224 555 0500",
-    },
-    {
-      name: "Khandwa",
-      coordinates: [76.35, 21.82],
-      region: "India",
-      address: "Project Site",
-      suite: "Khandwa, Madhya Pradesh",
-      phone: "+91 733 555 0600",
-    },
-    {
-      name: "Rajpura",
-      coordinates: [76.59, 30.48],
-      region: "India",
-      address: "2x700 MW Supercritical Plant",
-      suite: "Rajpura, Punjab",
-      phone: "+91 1762 555 0700",
-    },
-    {
-      name: "Obra",
-      coordinates: [82.98, 24.42],
-      region: "India",
-      address: "2x660 MW Thermal Project",
-      suite: "Obra, Uttar Pradesh",
-      phone: "+91 5446 555 0800",
-    },
-    {
-      name: "Singrauli",
-      coordinates: [82.67, 24.2],
-      region: "India",
-      address: "Power Plant Operations",
-      suite: "Singrauli, Madhya Pradesh",
-      phone: "+91 7805 555 0900",
-    },
-    {
-      name: "Vizag",
-      coordinates: [83.3, 17.69],
-      region: "India",
-      address: "Project Site",
-      suite: "Visakhapatnam, Andhra Pradesh",
-      phone: "+91 891 555 1000",
-    },
-    {
-      name: "Panki",
-      coordinates: [80.3, 26.47],
-      region: "India",
-      address: "Power Plant",
-      suite: "Panki, Uttar Pradesh",
-      phone: "+91 512 555 1100",
-    },
-    {
-      name: "Jewar",
-      coordinates: [77.55, 28.13],
-      region: "India",
-      address: "Airport MEP Services",
-      suite: "Jewar, Uttar Pradesh",
-      phone: "+91 120 555 1200",
-    },
-    {
-      name: "Shahjahanpur",
-      coordinates: [79.91, 27.88],
-      region: "India",
-      address: "Project Site",
-      suite: "Shahjahanpur, Uttar Pradesh",
-      phone: "+91 5842 555 1300",
-    },
-    {
-      name: "Bela",
-      coordinates: [83.95, 24.65],
-      region: "India",
-      address: "Project Site",
-      suite: "Bela, Uttar Pradesh",
-      phone: "+91 5446 555 1400",
+      phone: "+91 120 555 0100"
     },
     {
       name: "Turkey",
-      coordinates: [32.86, 39.93],
+      coordinates: [
+        32.86,
+        39.93
+      ],
       region: "International",
       address: "Celikler Energy Project",
       suite: "Ankara, Turkey",
-      phone: "+90 312 555 0100",
+      phone: "+90 312 555 0100"
     },
     {
       name: "Bahrain",
-      coordinates: [50.58, 26.07],
+      coordinates: [
+        50.58,
+        26.07
+      ],
       region: "International",
       address: "Energy Infrastructure",
       suite: "Manama, Bahrain",
-      phone: "+973 1755 0200",
+      phone: "+973 1755 0200"
     },
-  ] as LocationItem[],
+    {
+      name: "UAE",
+      coordinates: [
+        55.27,
+        25.2
+      ],
+      region: "International",
+      address: "Regional Infrastructure Project",
+      suite: "Dubai, UAE",
+      phone: "+971 4 555 0199"
+    },
+    {
+      name: "Indonesia",
+      coordinates: [
+        106.84,
+        -6.21
+      ],
+      region: "International",
+      address: "Power Plant Operations",
+      suite: "Jakarta, Indonesia",
+      phone: "+62 21 555 0188"
+    },
+    {
+      name: "Vietnam",
+      coordinates: [
+        105.83,
+        21.03
+      ],
+      region: "International",
+      address: "Renewable Project Site",
+      suite: "Hanoi, Vietnam",
+      phone: "+84 24 555 0177"
+    },
+    {
+      name: "Germany",
+      coordinates: [
+        13.4,
+        52.52
+      ],
+      region: "International",
+      address: "Dornier Group Hub",
+      suite: "Berlin, Germany",
+      phone: "+49 30 555 0166"
+    },
+    {
+      name: "Tanzania",
+      coordinates: [
+        39.2,
+        -6.79
+      ],
+      region: "International",
+      address: "Grid Commissioning Project",
+      suite: "Dar es Salaam, Tanzania",
+      phone: "+255 22 555 0155"
+    },
+    {
+      name: "China",
+      coordinates: [
+        116.4,
+        39.9
+      ],
+      region: "International",
+      address: "Sourcing & Procurement Hub",
+      suite: "Beijing, China",
+      phone: "+86 10 555 0144"
+    },
+    {
+      name: "Croatia",
+      coordinates: [
+        15.98,
+        45.81
+      ],
+      region: "International",
+      address: "Engineering Services",
+      suite: "Zagreb, Croatia",
+      phone: "+385 1 555 0133"
+    },
+    {
+      name: "Panki",
+      coordinates: [
+        80.3,
+        26.47
+      ],
+      region: "India",
+      address: "Power Plant",
+      suite: "Panki, Uttar Pradesh",
+      phone: "+91 512 555 1100"
+    },
+    {
+      name: "Jewar",
+      coordinates: [
+        77.55,
+        28.13
+      ],
+      region: "India",
+      address: "Airport MEP Services",
+      suite: "Jewar, Uttar Pradesh",
+      phone: "+91 120 555 1200"
+    },
+    {
+      name: "Shahjahanpur",
+      coordinates: [
+        79.91,
+        27.88
+      ],
+      region: "India",
+      address: "Project Site",
+      suite: "Shahjahanpur, Uttar Pradesh",
+      phone: "+91 5842 555 1300"
+    },
+    {
+      name: "Bela",
+      coordinates: [
+        83.95,
+        24.65
+      ],
+      region: "India",
+      address: "Project Site",
+      suite: "Bela, Uttar Pradesh",
+      phone: "+91 5446 555 1400"
+    },
+    {
+      name: "Turkey",
+      coordinates: [
+        32.86,
+        39.93
+      ],
+      region: "International",
+      address: "Celikler Energy Project",
+      suite: "Ankara, Turkey",
+      phone: "+90 312 555 0100"
+    },
+    {
+      name: "Bahrain",
+      coordinates: [
+        50.58,
+        26.07
+      ],
+      region: "International",
+      address: "Energy Infrastructure",
+      suite: "Manama, Bahrain",
+      phone: "+973 1755 0200"
+    }
+  ]
 };
 
 const mergeDefaults = (data: any) => {

@@ -16,34 +16,34 @@ const defaultFormData = {
     {
       title: "ISO 9001:2015",
       category: "Quality Management",
-      desc: "Ensuring consistent quality in our engineering, procurement, and construction services.",
+      desc: "Ensuring consistent quality in our engineering, procurement, and construction services."
     },
     {
       title: "ISO 14001:2015",
       category: "Environmental Management",
-      desc: "Commitment to minimizing our environmental footprint across all project sites.",
+      desc: "Commitment to minimizing our environmental footprint across all project sites."
     },
     {
       title: "ISO 45001:2018",
       category: "Occupational Health & Safety",
-      desc: "Maintaining the highest standards of workplace safety for our employees and contractors.",
+      desc: "Maintaining the highest standards of workplace safety for our employees and contractors."
     },
     {
-      title: "ASME 'U' & 'S' Stamps",
-      category: "Boiler & Pressure Vessel",
-      desc: "Authorized to manufacture and assemble power boilers and pressure vessels.",
-    },
-    {
-      title: "NABL Accreditation",
+      title: "partner with the (NABL approved laboratories)",
       category: "Testing & Calibration",
-      desc: "Recognized competence of our testing and calibration laboratories.",
+      desc: "Recognized competence of testing and calibration laboratories."
     },
     {
       title: "IBR Certification",
       category: "Indian Boiler Regulations",
-      desc: "Certified as a special class boiler repairer and erector under IBR 1950.",
+      desc: "Certified as a special class boiler repairer and erector under IBR 1950."
     },
-  ],
+    {
+      title: "IBR Certification",
+      category: "Indian Boiler Regulations",
+      desc: "Certified."
+    }
+  ]
 };
 
 export function CertificationsGridCMS() {

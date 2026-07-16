@@ -9,10 +9,14 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "",
-  description: "",
-  leaderRole0: "", leaderName0: "", leaderBio0: "",
-  leaderRole1: "", leaderName1: "", leaderBio1: "",
+  heading: "Leadership Team",
+  description: "Experienced leaders driving operational excellence and strategic growth",
+  leaderRole0: "Managing Director",
+  leaderName0: "Arun Kumar Sarna",
+  leaderBio0: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations, establishing a strong presence in both domestic and international markets. Focuses on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
+  leaderRole1: "Director – Operations",
+  leaderName1: "Rajan Saxena",
+  leaderBio1: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives."
 };
 
 interface LeadershipCMSProps {

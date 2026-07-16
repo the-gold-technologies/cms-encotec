@@ -12,10 +12,9 @@ const defaultFormData = {
   backLabel: "Back to Insights",
   loadingText: "Loading insight details...",
   notFoundTitle: "Article Not Found",
-  notFoundText:
-    "The insight you are looking for doesn't exist or has been moved.",
+  notFoundText: "The insight you are looking for doesn't exist or has been moved.",
   notFoundBtnLabel: "Back to Insights",
-  shareLabel: "Share this article",
+  shareLabel: "Share this article"
 };
 
 export function InsightDetailCMS() {

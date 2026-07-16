@@ -11,13 +11,11 @@ import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
   heroTitle: "LEADERSHIP & TEAM",
-  heroSubtitle:
-    "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
-  backgroundImage:
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
-  heroBadge1: "200+ Professionals",
+  heroSubtitle: "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
+  backgroundImage: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
+  heroBadge1: "1,800+ Manpower",
   heroBadge2: "15+ Years Average Experience",
-  heroBadge3: "23+ Countries",
+  heroBadge3: "10+ Countries"
 };
 
 export function LeadershipHeroCMS() {

@@ -29,21 +29,21 @@ const defaultFormData = {
     },
     {
       headline: "Is Your Asset Reaching Its Full Potential?",
-      text: "Speak with our 300+ engineers about our expert advisory and performance audits."
+      text: "Improve your 24x7 alignment about asset advisory and performance audits."
     },
     {
       headline: "Sourcing Critical Spares? We've Got the Global Reach.",
-      text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare part needs."
+      text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare parts need."
     },
     {
-      headline: "Join the 13+ Cities That Trust Encotec.",
-      text: "Experience the peace of mind that comes with a top-tier O&M partner."
+      headline: "Join the 13+ Projects That Trust Encotec.",
+      text: "Experience the power of the full owner mindset — from concept to operation."
     },
     {
       headline: "Planning an Asset Relocation?",
-      text: "Let our experts manage the complex transition of your plant from one site — or country — to another."
+      text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with zero downtime and optimum timeline."
     }
-  ] as CTABlock[]
+  ]
 };
 
 const mergeDefaults = (data: any) => {

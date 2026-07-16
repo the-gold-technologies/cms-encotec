@@ -10,12 +10,11 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
   joinHeading: "Join Our Team of Experts",
-  joinSubtitle:
-    "We're always looking for talented engineers and energy professionals who share our passion for excellence.",
+  joinSubtitle: "We're always looking for talented engineers and energy professionals who share our passion for excellence.",
   ctaLabel1: "View Open Positions",
   ctaUrl1: "/careers",
   ctaLabel2: "Contact Us",
-  ctaUrl2: "/contact",
+  ctaUrl2: "/contact"
 };
 
 export function JoinCTACMS() {

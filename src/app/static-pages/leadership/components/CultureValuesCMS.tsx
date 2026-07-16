@@ -16,9 +16,9 @@ const defaultFormData = {
   value2Title: "Collaborative Spirit",
   value2Desc: "Cross-functional teams solving complex challenges",
   value3Title: "Global Perspective",
-  value3Desc: "Diverse experiences from 23+ countries",
+  value3Desc: "Diverse experiences from 10+ countries",
   value4Title: "Continuous Growth",
-  value4Desc: "Investment in learning and professional development",
+  value4Desc: "Investment in learning and professional development"
 };
 
 export function CultureValuesCMS() {

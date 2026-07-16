@@ -10,12 +10,11 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
   ctaHeading: "Have a Project in Mind?",
-  ctaSubtitle:
-    "Let's discuss how our engineering expertise can bring value to your next energy infrastructure project.",
+  ctaSubtitle: "Let's discuss how our engineering expertise can bring value to your next energy infrastructure project.",
   primaryBtnLabel: "Start Your Project",
   primaryBtnUrl: "/contact",
   secondaryBtnLabel: "View Our Services",
-  secondaryBtnUrl: "/services",
+  secondaryBtnUrl: "/services"
 };
 
 export function InsightsCTACMS() {

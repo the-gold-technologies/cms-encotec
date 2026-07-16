@@ -9,16 +9,20 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "",
-  headingPart1: "",
-  headingHighlight: "",
-  description: "",
-  areaTitle0: "", areaDesc0: "",
-  areaTitle1: "", areaDesc1: "",
-  areaTitle2: "", areaDesc2: "",
-  areaTitle3: "", areaDesc3: "",
-  calloutTitle: "",
-  calloutDesc: "",
+  tagline: "Our Reach",
+  headingPart1: "A Global Presence",
+  headingHighlight: "with a Local Touch",
+  description: "While our headquarters is in Noida, our footprint spans the world. In India, we are present in 13+ key locations pan India. Internationally, we have established strong roots in Turkey, UAE, Indonesia, Vietnam, Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
+  areaTitle0: "International Operations",
+  areaDesc0: "Turkey, UAE, Indonesia, Vietnam, Germany",
+  areaTitle1: "Headquarters",
+  areaDesc1: "Noida, India",
+  areaTitle2: "Eastern & Central India",
+  areaDesc2: "Jamshedpur, Raipur, Kharagpur",
+  areaTitle3: "Coastal & Southern India",
+  areaDesc3: "Vizag and upcoming projects",
+  calloutTitle: "Wherever Energy is Needed",
+  calloutDesc: "We combine local execution strength with global engineering expertise, ensuring that we bring the same \"Owner's Mindset\" to every project, no matter the geography."
 };
 
 interface GlobalPresenceCMSProps {

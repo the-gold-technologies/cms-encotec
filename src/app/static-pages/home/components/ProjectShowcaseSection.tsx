@@ -36,7 +36,7 @@ const defaultFormData = {
       description: "Five years of flawless utility management at Delhi International Airport, recently renewed for another five years due to exceptional performance.",
       image: "https://images.unsplash.com/photo-1436491865332-7a61a109db05?auto=format&fit=crop&q=80&w=2000"
     }
-  ] as ProjectItem[]
+  ]
 };
 
 const mergeDefaults = (data: any) => {

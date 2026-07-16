@@ -9,12 +9,12 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  headingPart1: "",
-  headingHighlight: "",
-  headingPart2: "",
-  description: "",
-  ctaLabel: "",
-  ctaUrl: "",
+  headingPart1: "Encotec integrates ",
+  headingHighlight: "engineering expertise, execution capability, and operational excellence",
+  headingPart2: " to deliver solutions that perform",
+  description: "— not just at commissioning, but throughout the lifecycle of every asset.",
+  ctaLabel: "Partner With Us",
+  ctaUrl: "/contact"
 };
 
 interface ClosingStatementCMSProps {

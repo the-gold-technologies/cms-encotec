@@ -12,22 +12,49 @@ import { SectionHeader } from "@/components/SectionHeader";
 const defaultFormData = {
   tagline: "Strategic Alliances",
   heading: "Trusted by Industry Leaders",
-  description:
-    "We collaborate with the world's leading technology providers and energy conglomerates to deliver state-of-the-art solutions.",
+  description: "We collaborate with the world's leading technology providers and energy conglomerates to deliver state-of-the-art solutions.",
   partnersList: [
-    { name: "Siemens Energy", monogram: "SE", role: "Gas Turbine Technology" },
-    { name: "GE Vernova", monogram: "GE", role: "Power Generation Systems" },
-    { name: "BHEL", monogram: "BH", role: "Heavy Electrical Equipment" },
-    { name: "NTPC", monogram: "NT", role: "Thermal Power Operations" },
-    { name: "L&T Energy", monogram: "LT", role: "EPC & Construction" },
-    { name: "Tata Power", monogram: "TP", role: "Integrated Power Solutions" },
-    { name: "Adani Power", monogram: "AP", role: "Private Sector Energy" },
+    {
+      name: "Siemens Energy",
+      monogram: "SE",
+      role: "Gas Turbine Technology"
+    },
+    {
+      name: "GE Vernova",
+      monogram: "GE",
+      role: "Power Generation Systems"
+    },
+    {
+      name: "BHEL",
+      monogram: "BH",
+      role: "Heavy Electrical Equipment"
+    },
+    {
+      name: "NTPC",
+      monogram: "NT",
+      role: "Thermal Power Operations"
+    },
+    {
+      name: "L&T Energy",
+      monogram: "LT",
+      role: "EPC & Construction"
+    },
+    {
+      name: "Tata Power",
+      monogram: "TP",
+      role: "Integrated Power Solutions"
+    },
+    {
+      name: "Adani Power",
+      monogram: "AP",
+      role: "Private Sector Energy"
+    },
     {
       name: "JSW Energy",
       monogram: "JW",
-      role: "Diversified Energy Portfolio",
-    },
-  ],
+      role: "Diversified Energy Portfolio"
+    }
+  ]
 };
 
 export function StrategicPartnersCMS() {

@@ -32,6 +32,8 @@ const defaultFormData = {
   stat3Label: "",
   stat4Value: "",
   stat4Label: "",
+  stat5Value: "",
+  stat5Label: "",
   backgroundImage: "",
 };
 
@@ -460,6 +462,26 @@ export function HeroSection({
                       value={formData.stat4Label}
                       onChange={handleChange}
                       placeholder="e.g. MW UNDER STEWARDSHIP"
+                    />
+                  </div>
+                  {/* Stat 5 */}
+                  <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                      Stat 5
+                    </span>
+                    <InputField
+                      label="Value"
+                      name="stat5Value"
+                      value={formData.stat5Value}
+                      onChange={handleChange}
+                      placeholder="e.g. 2009"
+                    />
+                    <InputField
+                      label="Label"
+                      name="stat5Label"
+                      value={formData.stat5Label}
+                      onChange={handleChange}
+                      placeholder="e.g. FOUNDING YEAR"
                     />
                   </div>
                 </div>

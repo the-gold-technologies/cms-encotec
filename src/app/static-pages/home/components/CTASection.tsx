@@ -14,7 +14,7 @@ const defaultFormData = {
   headingPart1: "Experience Global",
   headingHighlight: "Engineering Excellence.",
   description:
-    "From India to Turkey, see how we are setting new standards in power infrastructure. Join the 13+ cities that rely on Encotec for their critical power needs.",
+    "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ Projects that rely on Encotec for their critical power needs.",
   primaryBtnLabel: "Start Your Project",
   primaryBtnUrl: "/contact",
   secondaryBtnLabel: "Talk to an Expert",

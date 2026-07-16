@@ -18,7 +18,7 @@ const defaultFormData = {
       title: "The Obra 'C' Thermal Success",
       category: "Case Study",
       description:
-        "Executing complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh.",
+        "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh.",
       date: "March 2024",
       location: "Uttar Pradesh, India",
       readTime: "",

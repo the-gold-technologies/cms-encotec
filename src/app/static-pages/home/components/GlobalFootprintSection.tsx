@@ -29,9 +29,9 @@ const defaultFormData = {
   description:
     "A live network of energy systems operating in synchronization across continents.",
   stats: [
-    { value: "14+", label: "India Locations" },
-    { value: "8000+", label: "MW Capacity" },
-    { value: "1,800+", label: "Professionals" },
+    { value: "10+", label: "GLOBAL LOCATIONS" },
+    { value: "10+ GW", label: "CAPACITY" },
+    { value: "1,800+", label: "MANPOWER" },
   ] as StatItem[],
   locations: [
     {

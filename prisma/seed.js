@@ -203,9 +203,9 @@ async function main() {
           order: 0,
           content: {
             tagline: "Global Energy Stewardship",
-            headlineLine1:
-              "Your Assets. Our Stewardship. End-to-End Solutions for a Global Future",
+            headlineLine1: "Your Assets. Our",
             headlineHighlight: "Stewardship.",
+            headlineLine2: "End-to-End Solutions for a Global Future",
             description:
               'We are more than consultants; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
             primaryBtnLabel: "Our Services",
@@ -218,16 +218,18 @@ async function main() {
               "ADVISORY",
               "GLOBAL SOURCING",
             ],
-            projectsBadgeNumber: "150+",
-            projectsBadgeLabel: "Projects Delivered",
-            stat1Value: "2011",
-            stat1Label: "FOUNDED YEAR",
-            stat2Value: "13+",
-            stat2Label: "CITIES IN INDIA",
-            stat3Value: "300+",
-            stat3Label: "SPECIALIZED ENGINEERS",
-            stat4Value: "8000+",
-            stat4Label: "MW UNDER STEWARDSHIP",
+            projectsBadgeNumber: "",
+            projectsBadgeLabel: "",
+            stat1Value: "2009",
+            stat1Label: "FOUNDING YEAR",
+            stat2Value: "2011",
+            stat2Label: "STARTED OPERATIONS",
+            stat3Value: "13+",
+            stat3Label: "KEY LOCATIONS",
+            stat4Value: "1800+",
+            stat4Label: "MANPOWER",
+            stat5Value: "20+",
+            stat5Label: "GW Under Stewardship",
             backgroundImage:
               "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=1200",
           },
@@ -245,7 +247,7 @@ async function main() {
             headingLabel: "Human-Centric Engineering",
             headingItalicHighlight: "Since 2011",
             paragraphs: [
-              "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a team of 1800+ industry specialists operating across 13+ key locations.",
+              "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a 600+ industry specialist operating across 13+ key locations.",
               "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide.",
             ],
             ctaLabel: "Learn More",
@@ -259,12 +261,16 @@ async function main() {
             stats: [
               { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
               { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
-              { value: "1800+", label: "INDUSTRY SPECIALISTS", icon: "Users" },
-              { value: "8000+", label: "MW POWER CAPACITY", icon: "Zap" },
+              { value: "1800+", label: "MANPOWER", icon: "Users" },
+              {
+                value: "20+ GW",
+                label: "POWER CAPACITY O&M EXECUTED",
+                icon: "Zap",
+              },
             ],
             bannerHeading: "Experience Global Engineering Excellence.",
             bannerDescription:
-              "From India to Turkey, see how we are setting new standards in power infrastructure.",
+              "From India to Global, see how we are setting new standards in power infrastructure.",
             bannerButtonLabel: "View Our Global Reach",
             bannerButtonUrl: "/contact",
           },
@@ -342,7 +348,7 @@ async function main() {
                 id: 1,
                 title: "Logical Foundation",
                 description:
-                  "We start by conceptualizing the project through rigorous feasibility studies and Detailed Project Reports (DPR).",
+                  "We start by conceptualizing the project through rigorous feasibility studies and Detailed Project Reports (DPRs).",
                 icon: "Search",
               },
               {
@@ -361,7 +367,7 @@ async function main() {
               },
               {
                 id: 4,
-                title: "Owner's O&M",
+                title: "Operations / Optimization",
                 description:
                   "We transition into long-term stewardship, providing operation and maintenance with the same care as the asset owner.",
                 icon: "CheckCircle2",
@@ -395,7 +401,7 @@ async function main() {
                 location: "Rajpura, Punjab",
                 category: "Asset Stewardship",
                 description:
-                  "Providing comprehensive O&M for a 2x700 MW Supercritical plant, ensuring long-term reliability for Punjab's energy heart.",
+                  "Providing O&M services for a 2x700 MW Supercritical plant, ensuring long-term reliability for Punjab's energy heart.",
                 image:
                   "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2000",
               },
@@ -425,122 +431,18 @@ async function main() {
             description:
               "A live network of energy systems operating in synchronization across continents.",
             stats: [
-              { value: "14+", label: "India Locations" },
-              { value: "8000+", label: "MW Capacity" },
-              { value: "1,800+", label: "Professionals" },
+              { value: "10+", label: "GLOBAL LOCATIONS" },
+              { value: "10+ GW", label: "CAPACITY" },
+              { value: "1,800+", label: "MANPOWER" },
             ],
             locations: [
               {
-                name: "Noida (HQ)",
+                name: "India (HQ)",
                 coordinates: [77.39, 28.58],
                 region: "India",
                 address: "Corporate Headquarters",
                 suite: "Noida, Uttar Pradesh",
                 phone: "+91 120 555 0100",
-              },
-              {
-                name: "New Delhi",
-                coordinates: [77.21, 28.61],
-                region: "India",
-                address: "Regional Office",
-                suite: "New Delhi, India",
-                phone: "+91 11 555 0200",
-              },
-              {
-                name: "Jamshedpur",
-                coordinates: [86.18, 22.8],
-                region: "India",
-                address: "Project Site",
-                suite: "Jamshedpur, Jharkhand",
-                phone: "+91 657 555 0300",
-              },
-              {
-                name: "Jhajjar",
-                coordinates: [76.66, 28.61],
-                region: "India",
-                address: "Power Plant O&M",
-                suite: "Jhajjar, Haryana",
-                phone: "+91 1251 555 0400",
-              },
-              {
-                name: "Haldia",
-                coordinates: [88.06, 22.03],
-                region: "India",
-                address: "Project Site",
-                suite: "Haldia, West Bengal",
-                phone: "+91 3224 555 0500",
-              },
-              {
-                name: "Khandwa",
-                coordinates: [76.35, 21.82],
-                region: "India",
-                address: "Project Site",
-                suite: "Khandwa, Madhya Pradesh",
-                phone: "+91 733 555 0600",
-              },
-              {
-                name: "Rajpura",
-                coordinates: [76.59, 30.48],
-                region: "India",
-                address: "2x700 MW Supercritical Plant",
-                suite: "Rajpura, Punjab",
-                phone: "+91 1762 555 0700",
-              },
-              {
-                name: "Obra",
-                coordinates: [82.98, 24.42],
-                region: "India",
-                address: "2x660 MW Thermal Project",
-                suite: "Obra, Uttar Pradesh",
-                phone: "+91 5446 555 0800",
-              },
-              {
-                name: "Singrauli",
-                coordinates: [82.67, 24.2],
-                region: "India",
-                address: "Power Plant Operations",
-                suite: "Singrauli, Madhya Pradesh",
-                phone: "+91 7805 555 0900",
-              },
-              {
-                name: "Vizag",
-                coordinates: [83.3, 17.69],
-                region: "India",
-                address: "Project Site",
-                suite: "Visakhapatnam, Andhra Pradesh",
-                phone: "+91 891 555 1000",
-              },
-              {
-                name: "Panki",
-                coordinates: [80.3, 26.47],
-                region: "India",
-                address: "Power Plant",
-                suite: "Panki, Uttar Pradesh",
-                phone: "+91 512 555 1100",
-              },
-              {
-                name: "Jewar",
-                coordinates: [77.55, 28.13],
-                region: "India",
-                address: "Airport MEP Services",
-                suite: "Jewar, Uttar Pradesh",
-                phone: "+91 120 555 1200",
-              },
-              {
-                name: "Shahjahanpur",
-                coordinates: [79.91, 27.88],
-                region: "India",
-                address: "Project Site",
-                suite: "Shahjahanpur, Uttar Pradesh",
-                phone: "+91 5842 555 1300",
-              },
-              {
-                name: "Bela",
-                coordinates: [83.95, 24.65],
-                region: "India",
-                address: "Project Site",
-                suite: "Bela, Uttar Pradesh",
-                phone: "+91 5446 555 1400",
               },
               {
                 name: "Turkey",
@@ -557,6 +459,62 @@ async function main() {
                 address: "Energy Infrastructure",
                 suite: "Manama, Bahrain",
                 phone: "+973 1755 0200",
+              },
+              {
+                name: "UAE",
+                coordinates: [55.27, 25.2],
+                region: "International",
+                address: "Regional Infrastructure Project",
+                suite: "Dubai, UAE",
+                phone: "+971 4 555 0199",
+              },
+              {
+                name: "Indonesia",
+                coordinates: [106.84, -6.21],
+                region: "International",
+                address: "Power Plant Operations",
+                suite: "Jakarta, Indonesia",
+                phone: "+62 21 555 0188",
+              },
+              {
+                name: "Vietnam",
+                coordinates: [105.83, 21.03],
+                region: "International",
+                address: "Renewable Project Site",
+                suite: "Hanoi, Vietnam",
+                phone: "+84 24 555 0177",
+              },
+              {
+                name: "Germany",
+                coordinates: [13.4, 52.52],
+                region: "International",
+                address: "Dornier Group Hub",
+                suite: "Berlin, Germany",
+                phone: "+49 30 555 0166",
+              },
+              {
+                name: "Tanzania",
+                coordinates: [39.2, -6.79],
+                region: "International",
+                address: "Grid Commissioning Project",
+                suite: "Dar es Salaam, Tanzania",
+                phone: "+255 22 555 0155",
+              },
+              {
+                name: "China",
+                coordinates: [116.4, 39.9],
+                region: "International",
+                address: "Sourcing & Procurement Hub",
+                suite: "Beijing, China",
+                phone: "+86 10 555 0144",
+              },
+              {
+                name: "Croatia",
+                coordinates: [15.98, 45.81],
+                region: "International",
+                address: "Engineering Services",
+                suite: "Zagreb, Croatia",
+                phone: "+385 1 555 0133",
               },
             ],
           },
@@ -584,20 +542,20 @@ async function main() {
               },
               {
                 headline: "Is Your Asset Reaching Its Full Potential?",
-                text: "Speak with our 300+ engineers about our expert advisory and performance audits.",
+                text: "Improve your 24x7 alignment about asset advisory and performance audits.",
               },
               {
                 headline:
                   "Sourcing Critical Spares? We've Got the Global Reach.",
-                text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare part needs.",
+                text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare parts need.",
               },
               {
-                headline: "Join the 13+ Cities That Trust Encotec.",
-                text: "Experience the peace of mind that comes with a top-tier O&M partner.",
+                headline: "Join the 13+ Projects That Trust Encotec.",
+                text: "Experience the power of the full owner mindset — from concept to operation.",
               },
               {
                 headline: "Planning an Asset Relocation?",
-                text: "Let our experts manage the complex transition of your plant from one site — or country — to another.",
+                text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with zero downtime and optimum timeline.",
               },
             ],
           },
@@ -683,7 +641,7 @@ async function main() {
             headingPart1: "Experience Global",
             headingHighlight: "Engineering Excellence.",
             description:
-              "From India to Turkey, see how we are setting new standards in power infrastructure. Join the 13+ cities that rely on Encotec for their critical power needs.",
+              "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ Projects that rely on Encotec for their critical power needs.",
             primaryBtnLabel: "Start Your Project",
             primaryBtnUrl: "/contact",
             secondaryBtnLabel: "Talk to an Expert",
@@ -726,7 +684,7 @@ async function main() {
             headingPart1: "Energy is More Than ",
             headingHighlight: "Just Infrastructure",
             paragraphs: [
-              "At Encotec, we believe that energy infrastructure is about more than just steel and circuits — it is about the responsibility of keeping the world moving. We have evolved from a traditional consulting firm into a Global Service Provider that offers end-to-end solutions for the entire life of your project.",
+              "At Encotec, we believe that energy infrastructure is about more than just steel and circuits — it is about the responsibility of keeping the world moving. We have evolved from a traditional O&M service provider into a Global Service Provider that offers end-to-end solutions for the entire life of your project.",
               "We approach every plant, every substation, and every utility we manage with what we call an \"Owner's Mindset\". This means we don't just provide a service; we take total responsibility for your assets, treating them with the same care, accountability, and long-term vision as if they were our own.",
             ],
           },
@@ -805,20 +763,20 @@ async function main() {
             stats: [
               {
                 value: "1,800+",
-                label: "Dedicated Staff",
+                label: "Manpower",
                 description: "Working across global sites",
                 icon: "Users",
               },
               {
-                value: "300+",
-                label: "Specialized Engineers",
+                value: "100+",
+                label: "Industry specialist",
                 description:
                   "Providing high-level expert advisory and diagnostics",
                 icon: "Briefcase",
               },
               {
-                value: "8,000+",
-                label: "MW Managed",
+                value: "20+ GW",
+                label: "Managed capacity under stewardship",
                 description: "Total power capacity under our stewardship",
                 icon: "Zap",
               },
@@ -830,9 +788,10 @@ async function main() {
                 icon: "ShieldCheck",
               },
               {
-                value: "65+",
-                label: "Global OEMs",
-                description: "Tie-ups across China, Vietnam, Korea, and India",
+                value: "10+",
+                label: "presence in Asia, Europe & Africa",
+                description:
+                  "Across India, Vietnam, Tanzania, Indonesia, UAE, Germany, Kenya, Oman, and Turkey.",
                 icon: "Globe",
               },
             ],
@@ -856,22 +815,22 @@ async function main() {
               {
                 title: "2011–2012: Construction Beginnings",
                 description:
-                  "We began our major journey with complex IBR piping erection and commissioning for the massive 2x660 MW Obra 'C' project.",
+                  "We began our major journey into the green frontier, successfully contributed 35+ MW Solar PV projects in Gujarat and 125 MW Solar Thermal projects in Rajasthan.",
               },
               {
-                title: "2013: Renewable Expansion",
+                title: "2013 & Beyond: O&M Leadership",
                 description:
-                  "Expanded into the green frontier, successfully commissioning 10 MWp Solar PV projects in Gujarat and Solar Thermal projects in Rajasthan.",
+                  "Solidified our reputation as top-tier stewards with the long-term O&M contracts, Annual Maintenance contracts, Overhauling jobs. etc.",
               },
               {
-                title: "2014–2021: O&M Leadership",
+                title: "2016: Supercritical Excellence",
                 description:
-                  "Solidified our reputation as top-tier stewards with the long-term O&M management of 2x600 MW units at Tuticorin.",
+                  "Embarked on our flagship O&M partnership for the 2x700 MW supercritical power plant at Nabha Power / Rajpura and 2x660 MW supercritical power plant at Jhajjar.",
               },
               {
-                title: "2018: Supercritical Excellence",
+                title: "2018 & Beyond: Environmental Stewardship",
                 description:
-                  "Embarked on our flagship O&M partnership for the 2x700 MW Supercritical Power Plant at Jhajjar.",
+                  "Helping industries meet stringent environmental standards through specialized FGD O&M excellence.",
               },
               {
                 title: "2021: Going Global",
@@ -881,7 +840,7 @@ async function main() {
               {
                 title: "2025 & Beyond: New Chapters",
                 description:
-                  "We are currently providing specialized utility management for international hubs like Delhi (DIAL) and Noida (YIAPL) International Airports.",
+                  "We are currently providing specialized utility management for international airports like Indira Gandhi International Airport, Delhi (DIAL) and Noida International Airport (NIA), newly inaugurated.",
               },
             ],
           },
@@ -898,10 +857,10 @@ async function main() {
             heading: "Committed to a Greener Tomorrow",
             paragraphs: [
               "Sustainability is not a policy at Encotec; it is our promise. We are committed to sustainable development by integrating high standards of environmental management into everything we do.",
-              "Our in-house Encotec-Dornier team conducts specialized energy audits to identify savings and reduce the carbon footprints of operational plants. Through our expert advisory and Residual Life Assessments (RLA), we help owners revitalize old plants, making them more efficient and environmentally compliant.",
+              "Our in-house Encotec team conducts specialized energy audits to identify savings and reduce the carbon footprints of operational plants. Through our expert advisory and Residual Life Assessments (RLA), we help owners revitalize old plants, making them more efficient and environmentally compliant.",
             ],
             focuses: [
-              "Specialized energy audits by our in-house Encotec-Dornier team to identify savings and reduce carbon footprints",
+              "Specialized energy audits by our in-house Encotec team to identify savings and reduce carbon footprints",
               "Residual Life Assessments (RLA) to help owners revitalize older plants for improved efficiency and environmental compliance",
               "ISO 14001 environmental management integrated into daily operations across all sites",
               "Supporting the transition from traditional power to a sustainable, renewable future",
@@ -922,20 +881,20 @@ async function main() {
             headingPart1: "A Global Presence",
             headingHighlight: "with a Local Touch",
             description:
-              "While our headquarters is in Noida, our footprints span the world. In India, we are present in 13+ key cities from Jamshedpur to Vizag. Internationally, we have established strong roots in Turkey, Bahrain, and Greece, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
+              "While our headquarters is in Noida, our footprint spans the world. In India, we are present in 13+ key locations pan India. Internationally, we have established strong roots in Turkey, UAE, Indonesia, Vietnam, Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
             areas: [
               {
                 title: "International Operations",
-                desc: "Turkey, Bahrain, Greece",
+                desc: "Turkey, UAE, Indonesia, Vietnam, Germany",
               },
               { title: "Headquarters", desc: "Noida, India" },
               {
                 title: "Eastern & Central India",
-                desc: "Jamshedpur, Haldia, Khandwa",
+                desc: "Jamshedpur, Raipur, Kharagpur",
               },
               {
                 title: "Coastal & Southern India",
-                desc: "Vizag and expanding regions",
+                desc: "Vizag and upcoming projects",
               },
             ],
             calloutTitle: "Wherever Energy is Needed",
@@ -957,13 +916,18 @@ async function main() {
             leaders: [
               {
                 role: "Managing Director",
-                name: "[Name]",
+                name: "Arun Kumar Sarna",
                 bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations, establishing a strong presence in both domestic and international markets. Focuses on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
               },
               {
                 role: "Director – Operations",
-                name: "[Name]",
+                name: "Rajan Saxena",
                 bio: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
+              },
+              {
+                role: "Director – Corporate",
+                name: "Rajeev Ahuja",
+                bio: "Leads corporate strategy, business development, and global partnerships. With a focus on long-term growth and corporate governance, plays a key role in expanding Encotec's market footprint and driving operational efficiency.",
               },
             ],
           },
@@ -1655,7 +1619,11 @@ async function main() {
           order: 3,
           content: {
             stats: [
-              { value: 8000, suffix: "+", label: "MW Conceptualised" },
+              {
+                value: 20,
+                suffix: "+ GW",
+                label: "Managed capacity under stewardship",
+              },
               { value: 100, suffix: "%", label: "Owner's Mindset" },
               { value: 300, suffix: "+", label: "Specialized Engineers" },
             ],
@@ -2077,13 +2045,13 @@ async function main() {
               {
                 title: "Global OEM Network",
                 description:
-                  "We have established tie-ups with over 65 major OEMs in China, Vietnam, Korea, and India, giving you direct access to high-quality components without the logistical headache.",
+                  "We have established tie-ups with over 65 major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
                 icon: "Globe",
               },
               {
                 title: "Comprehensive Inventory",
                 description:
-                  "We supply everything from high-pressure boiler spares to coal mill rollers and specialized electrical actuators, ensuring your entire plant is covered.",
+                  "We supply everything from high-pressure boiler spares to coal mill rollers, specialized electrical actuators, turbines, and generators.",
                 icon: "Package",
               },
               {
@@ -2112,8 +2080,9 @@ async function main() {
             ],
             cards: [
               { title: "Quality Assured", icon: "ShieldCheck" },
-              { title: "65+ Global OEMs", icon: "Globe" },
               { title: "Logistics Managed", icon: "Truck" },
+              { title: "Vast network", icon: "Network" },
+              { title: "Global OEMs", icon: "Globe" },
               { title: "Engineering Backed", icon: "Wrench" },
             ],
           },
@@ -2148,9 +2117,9 @@ async function main() {
             heroTitle: "LEADERSHIP & TEAM",
             heroSubtitle:
               "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
-            heroBadge1: "200+ Professionals",
+            heroBadge1: "1,800+ Manpower",
             heroBadge2: "15+ Years Average Experience",
-            heroBadge3: "23+ Countries",
+            heroBadge3: "10+ Countries",
             backgroundImage:
               "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
           },
@@ -2187,18 +2156,24 @@ async function main() {
           content: {
             tagline: "Executive Leadership",
             heading: "Visionaries Driving Our Mission",
-            exec1Name: "Vikram Sharma",
-            exec1Role: "Managing Director & Founder",
+            exec1Name: "Arun Kumar Sarna",
+            exec1Role: "Managing Director",
             exec1Bio:
-              "25+ years of leadership in energy infrastructure. Founded Encotec with a vision to bring an owner's mindset to every project. Under his leadership, Encotec has grown from a specialized engineering firm to a full-spectrum energy services provider operating across 23+ countries.",
+              "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations, establishing a strong presence in both domestic and international markets. Focuses on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
             exec1Tags:
-              "Strategic Leadership, Business Development, Energy Policy",
-            exec2Name: "Rajesh Patel",
+              "Strategic Leadership, Business Development, Energy Infrastructure",
+            exec2Name: "Rajan Saxena",
             exec2Role: "Director – Operations",
             exec2Bio:
-              "20+ years in power plant operations and project execution. Leads operational delivery across multiple projects, ensuring efficient execution, quality standards, and optimal resource utilization across thermal, renewable, and transmission projects.",
+              "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization across thermal, renewable, and transmission projects. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
             exec2Tags:
               "Operations Management, Plant Commissioning, Asset Optimization",
+            exec3Name: "Rajeev Ahuja",
+            exec3Role: "Director – Corporate",
+            exec3Bio:
+              "Leads corporate strategy, business development, and global partnerships. With a focus on long-term growth and corporate governance, plays a key role in expanding Encotec's market footprint and driving operational efficiency.",
+            exec3Tags:
+              "Corporate Strategy, Business Development, Global Partnerships",
           },
         },
       });
@@ -2248,12 +2223,16 @@ async function main() {
           order: 4,
           content: {
             stats1Value: "1800",
-            stats1Label: "Total Professionals",
-            stats2Value: "150",
-            stats2Label: "Senior Engineers",
-            stats3Value: "23",
+            stats1Suffix: "+",
+            stats1Label: "Manpower",
+            stats2Value: "300",
+            stats2Suffix: "+",
+            stats2Label: "Industry specialists",
+            stats3Value: "10",
+            stats3Suffix: "+",
             stats3Label: "Countries of Operation",
-            stats4Value: "15",
+            stats4Value: "12",
+            stats4Suffix: "+",
             stats4Label: "Years Avg Experience",
           },
         },
@@ -2273,7 +2252,7 @@ async function main() {
             value2Title: "Collaborative Spirit",
             value2Desc: "Cross-functional teams solving complex challenges",
             value3Title: "Global Perspective",
-            value3Desc: "Diverse experiences from 23+ countries",
+            value3Desc: "Diverse experiences from 10+ countries",
             value4Title: "Continuous Growth",
             value4Desc: "Investment in learning and professional development",
           },
@@ -2332,7 +2311,7 @@ async function main() {
             btnLabel: "Read Full Case Study",
             latestArticleTitle: "The Obra 'C' Thermal Success",
             latestArticleSummary:
-              "Executing complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh, delivering on time and exceeding quality standards.",
+              "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh, delivering on time and exceeding quality standards.",
             latestArticleDate: "March 2024",
             latestArticleLocation: "Uttar Pradesh, India",
             latestArticleSlug: "obra-c-thermal-success",
@@ -2342,25 +2321,25 @@ async function main() {
         },
       });
 
-      // 3. StatsBanner
+      // 3. InsightsStats
       await prisma.section.create({
         data: {
           pageId: createdPage.id,
-          type: "StatsBanner",
+          type: "InsightsStats",
           order: 2,
           content: {
-            stats1Value: "15",
-            stats1Suffix: "+",
-            stats1Label: "Case Studies Published",
-            stats2Value: "50",
-            stats2Suffix: "+",
-            stats2Label: "Articles & Insights",
-            stats3Value: "8",
-            stats3Suffix: "",
-            stats3Label: "Countries Covered",
-            stats4Value: "10",
-            stats4Suffix: "K+",
-            stats4Label: "Monthly Readers",
+            stat1Value: "15",
+            stat1Suffix: "+",
+            stat1Label: "Case Studies Published",
+            stat2Value: "50",
+            stat2Suffix: "+",
+            stat2Label: "Articles & Insights",
+            stat3Value: "10",
+            stat3Suffix: "+",
+            stat3Label: "Countries Covered",
+            stat4Value: "10",
+            stat4Suffix: "K+",
+            stat4Label: "Monthly Readers",
           },
         },
       });
@@ -2413,7 +2392,7 @@ async function main() {
                 title: "The Obra 'C' Thermal Success",
                 category: "Case Study",
                 description:
-                  "Executing complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh.",
+                  "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh.",
                 date: "March 2024",
                 location: "Uttar Pradesh, India",
                 readTime: "",
@@ -2459,8 +2438,8 @@ async function main() {
                 title: "Ensuring Reliability for Punjab's Power Heart",
                 category: "Case Study",
                 description:
-                  "Comprehensive O&M for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
-                date: "January 2024",
+                  "O&M services for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
+                date: "2018 & Beyond",
                 location: "Rajpura, Punjab",
                 readTime: "",
                 image:
@@ -2478,7 +2457,7 @@ async function main() {
                   { type: "heading", text: "Our Hands-On Approach" },
                   {
                     type: "paragraph",
-                    text: "Our 250+ engineers provide a full spectrum of services to keep the heart of this plant beating at peak efficiency. This includes:",
+                    text: "Our 300+ engineers provide a full spectrum of services to keep the heart of this plant beating at peak efficiency. This includes:",
                   },
                   {
                     type: "list",
@@ -2506,7 +2485,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "End-to-end installation and commissioning of a 10 MWp ground-mounted solar project, turning intense sun into sustainable power.",
-                date: "November 2023",
+                date: "2013",
                 location: "Jainabad, Gujarat",
                 readTime: "",
                 image:
@@ -2915,11 +2894,11 @@ async function main() {
           content: {
             heroTitle: "SHAPE THE FUTURE OF GLOBAL ENERGY",
             heroSubtitle:
-              "Join a team of world-class engineers and energy professionals delivering critical infrastructure across 23+ countries.",
+              "Join a team of world-class engineers and energy professionals delivering critical infrastructure across 10+ countries.",
             backgroundImage:
               "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2400",
-            badge1Text: "200+ Team Members",
-            badge2Text: "Offices in 8 Countries",
+            badge1Text: "1,800+ Manpower",
+            badge2Text: "Presence in 10 Countries",
           },
         },
       });
@@ -2958,7 +2937,7 @@ async function main() {
               {
                 title: "Global Exposure",
                 description:
-                  "Work on critical energy infrastructure projects across 23+ countries with diverse international teams.",
+                  "Work on critical energy infrastructure projects across 10+ countries with diverse international teams.",
               },
               {
                 title: "Technical Growth",
@@ -3016,14 +2995,14 @@ async function main() {
               {
                 title: "Project Manager — EPC",
                 dept: "Project Management",
-                location: "Riyadh, KSA",
+                location: "Ankara, Turkey",
                 type: "Full-time",
-                desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East.",
+                desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East & Europe.",
               },
               {
                 title: "Commissioning Engineer",
                 dept: "Engineering",
-                location: "Houston, USA",
+                location: "Dar es Salaam, Tanzania",
                 type: "Contract",
                 desc: "Oversee testing and commissioning of power generation equipment and systems.",
               },
@@ -3171,7 +3150,7 @@ async function main() {
             backgroundImage:
               "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2400",
             badge1Text: "ISO Certified",
-            badge2Text: "ASME Compliant",
+            badge2Text: "Boiler & Electrical Licenses, BCAS",
             badge3Text: "15+ Years Excellence",
           },
         },
@@ -3188,10 +3167,10 @@ async function main() {
             stats1Label: "Years of Excellence",
             stats2Value: "100",
             stats2Label: "Compliance Rate",
-            stats3Value: "50",
-            stats3Label: "Global Audits Passed",
-            stats4Value: "23",
-            stats4Label: "Countries Recognized",
+            stats3Value: "",
+            stats3Label: "",
+            stats4Value: "",
+            stats4Label: "",
           },
         },
       });
@@ -3222,14 +3201,9 @@ async function main() {
                 desc: "Maintaining the highest standards of workplace safety for our employees and contractors.",
               },
               {
-                title: "ASME 'U' & 'S' Stamps",
-                category: "Boiler & Pressure Vessel",
-                desc: "Authorized to manufacture and assemble power boilers and pressure vessels.",
-              },
-              {
-                title: "NABL Accreditation",
+                title: "partner with the (NABL approved laboratories)",
                 category: "Testing & Calibration",
-                desc: "Recognized competence of our testing and calibration laboratories.",
+                desc: "Recognized competence of testing and calibration laboratories.",
               },
               {
                 title: "IBR Certification",
@@ -3384,15 +3358,15 @@ async function main() {
             infoDesc:
               "Reach out to our team of experts for project inquiries, strategic partnerships, or to learn more about our engineering capabilities.",
             locationTitle: "Corporate Headquarters",
-            addressLine1: "Bandra Kurla Complex, BKC",
-            addressLine2: "Mumbai 400051, India",
-            phoneNumber: "+91 22 6655 0178",
-            emailAddress: "info@encotec.com",
+            addressLine1: "Noida, Uttar Pradesh",
+            addressLine2: "India",
+            phoneNumber: "+91 120 555 0100",
+            emailAddress: "sales@encotecenergy.com",
             businessHoursTitle: "Business Hours",
             quickContactTitle: "Quick Contact",
             generalInquiriesLabel: "General Inquiries",
             careersLabel: "Careers",
-            careersEmailAddress: "careers@encotec.com",
+            careersEmailAddress: "careers@encotecenergy.com",
             formHeading: "Send us a message",
             fullNameLabel: "Full Name *",
             emailAddressLabel: "Email Address *",

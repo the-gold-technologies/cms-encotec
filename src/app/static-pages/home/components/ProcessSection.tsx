@@ -31,7 +31,7 @@ const defaultFormData = {
     {
       id: 1,
       title: "Logical Foundation",
-      description: "We start by conceptualizing the project through rigorous feasibility studies and Detailed Project Reports (DPR).",
+      description: "We start by conceptualizing the project through rigorous feasibility studies and Detailed Project Reports (DPRs).",
       icon: "Search"
     },
     {
@@ -48,7 +48,7 @@ const defaultFormData = {
     },
     {
       id: 4,
-      title: "Owner's O&M",
+      title: "Operations / Optimization",
       description: "We transition into long-term stewardship, providing operation and maintenance with the same care as the asset owner.",
       icon: "CheckCircle2"
     },

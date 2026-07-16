@@ -26,7 +26,7 @@ const defaultFormData = {
       title: "Supercritical Mastery at Rajpura",
       location: "Rajpura, Punjab",
       category: "Asset Stewardship",
-      description: "Providing comprehensive O&M for a 2x700 MW Supercritical plant, ensuring long-term reliability for Punjab's energy heart.",
+      description: "Providing O&M services for a 2x700 MW Supercritical plant, ensuring long-term reliability for Punjab's energy heart.",
       image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2000"
     },
     {

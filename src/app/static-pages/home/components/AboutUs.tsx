@@ -35,7 +35,7 @@ const defaultFormData = {
   headingLabel: "Human-Centric Engineering",
   headingItalicHighlight: "Since 2011",
   paragraphs: [
-    "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a team of 1800+ industry specialists operating across 13+ key locations.",
+    "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a 600+ industry specialist operating across 13+ key locations.",
     "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide.",
   ] as string[],
   ctaLabel: "Learn More",
@@ -49,12 +49,12 @@ const defaultFormData = {
   stats: [
     { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
     { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
-    { value: "1800+", label: "INDUSTRY SPECIALISTS", icon: "Users" },
-    { value: "8000+", label: "MW POWER CAPACITY", icon: "Zap" },
+    { value: "1800+", label: "MANPOWER", icon: "Users" },
+    { value: "20+ GW", label: "POWER CAPACITY O&M EXECUTED", icon: "Zap" },
   ] as StatItem[],
   bannerHeading: "Experience Global Engineering Excellence.",
   bannerDescription:
-    "From India to Turkey, see how we are setting new standards in power infrastructure.",
+    "From India to Global, see how we are setting new standards in power infrastructure.",
   bannerButtonLabel: "View Our Global Reach",
   bannerButtonUrl: "/contact",
 };

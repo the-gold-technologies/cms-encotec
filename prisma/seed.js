@@ -2224,7 +2224,7 @@ async function main() {
           content: {
             stats1Value: "1800",
             stats1Suffix: "+",
-            stats1Label: "Manpower",
+            stats1Label: "Total Professionals",
             stats2Value: "300",
             stats2Suffix: "+",
             stats2Label: "Industry specialists",

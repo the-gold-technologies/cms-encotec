@@ -10,23 +10,23 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "How to Join Us",
+  heading: "",
   processSteps: [
     {
-      title: "Apply Online",
-      description: "Submit your resume and cover letter through our portal."
+      title: "",
+      description: ""
     },
     {
-      title: "Initial Screening",
-      description: "Our HR team reviews your application within 5 business days."
+      title: "",
+      description: ""
     },
     {
-      title: "Technical Interview",
-      description: "Meet with our engineering leads for a technical discussion."
+      title: "",
+      description: ""
     },
     {
-      title: "Final Offer",
-      description: "Receive your offer and begin your journey with Encotec."
+      title: "",
+      description: ""
     }
   ]
 };

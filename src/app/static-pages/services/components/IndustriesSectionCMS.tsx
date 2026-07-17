@@ -8,8 +8,8 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  heading: "Industries We Serve",
-  description: "We deliver solutions across a wide range of sectors",
+  heading: "",
+  description: "",
   industryName0: "",
   industrySubtitle0: "",
   industryIcon0: "",

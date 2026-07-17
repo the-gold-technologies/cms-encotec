@@ -8,10 +8,10 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  stats1Value: "15", stats1Suffix: "+", stats1Label: "Case Studies Published",
-  stats2Value: "50", stats2Suffix: "+", stats2Label: "Articles & Insights",
-  stats3Value: "8", stats3Suffix: "", stats3Label: "Countries Covered",
-  stats4Value: "10", stats4Suffix: "K+", stats4Label: "Monthly Readers",
+  stats1Value: "", stats1Suffix: "", stats1Label: "",
+  stats2Value: "", stats2Suffix: "", stats2Label: "",
+  stats3Value: "", stats3Suffix: "", stats3Label: "",
+  stats4Value: "", stats4Suffix: "", stats4Label: "",
 };
 
 export function StatsBannerCMS() {

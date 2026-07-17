@@ -10,45 +10,45 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  infoHeading: "Get in",
-  infoHeadingItalic: "Touch",
-  infoDesc: "Reach out to our team of experts for project inquiries, strategic partnerships, or to learn more about our engineering capabilities.",
-  locationTitle: "Corporate Headquarters",
-  addressLine1: "Noida, Uttar Pradesh",
-  addressLine2: "India",
-  phoneNumber: "+91 120 555 0100",
-  emailAddress: "sales@encotecenergy.com",
-  businessHoursTitle: "Business Hours",
-  quickContactTitle: "Quick Contact",
-  generalInquiriesLabel: "General Inquiries",
-  careersLabel: "Careers",
-  careersEmailAddress: "careers@encotecenergy.com",
-  formHeading: "Send us a message",
-  fullNameLabel: "Full Name *",
-  emailAddressLabel: "Email Address *",
-  phoneNumberLabel: "Phone Number",
-  companyNameLabel: "Company Name",
-  subjectLabel: "Subject *",
-  selectSubjectDefault: "Select a subject",
-  messageLabel: "Message *",
-  submitButtonLabel: "Send Message",
-  fullNamePlaceholder: "John Doe",
-  emailAddressPlaceholder: "john@company.com",
-  phoneNumberPlaceholder: "+1 (555) 000-0000",
-  companyNamePlaceholder: "Company Ltd.",
-  messagePlaceholder: "How can we help you?",
+  infoHeading: "",
+  infoHeadingItalic: "",
+  infoDesc: "",
+  locationTitle: "",
+  addressLine1: "",
+  addressLine2: "",
+  phoneNumber: "",
+  emailAddress: "",
+  businessHoursTitle: "",
+  quickContactTitle: "",
+  generalInquiriesLabel: "",
+  careersLabel: "",
+  careersEmailAddress: "",
+  formHeading: "",
+  fullNameLabel: "",
+  emailAddressLabel: "",
+  phoneNumberLabel: "",
+  companyNameLabel: "",
+  subjectLabel: "",
+  selectSubjectDefault: "",
+  messageLabel: "",
+  submitButtonLabel: "",
+  fullNamePlaceholder: "",
+  emailAddressPlaceholder: "",
+  phoneNumberPlaceholder: "",
+  companyNamePlaceholder: "",
+  messagePlaceholder: "",
   openingHours: [
     {
-      days: "Monday - Friday",
-      hours: "9:00 AM - 6:00 PM IST"
+      days: "",
+      hours: ""
     },
     {
-      days: "Saturday",
-      hours: "9:00 AM - 1:00 PM IST"
+      days: "",
+      hours: ""
     },
     {
-      days: "Sunday",
-      hours: "Closed"
+      days: "",
+      hours: ""
     }
   ]
 };

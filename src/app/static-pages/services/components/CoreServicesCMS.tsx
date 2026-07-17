@@ -9,12 +9,12 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "Core Services",
-  keyCapabilitiesLabel: "Key Capabilities",
-  valueDeliveredLabel: "Value Delivered",
-  showLessLabel: "Show Less",
-  viewDetailsLabel: "View Details",
-  exploreServiceLabel: "Explore Service",
+  heading: "",
+  keyCapabilitiesLabel: "",
+  valueDeliveredLabel: "",
+  showLessLabel: "",
+  viewDetailsLabel: "",
+  exploreServiceLabel: "",
   serviceTitle0: "",
   serviceIcon0: "",
   serviceLink0: "",

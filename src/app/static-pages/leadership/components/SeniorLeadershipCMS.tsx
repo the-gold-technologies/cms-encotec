@@ -9,26 +9,26 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Senior Leadership",
-  heading: "Department Heads",
-  leader1Name: "Dr. Anita Desai",
-  leader1Role: "VP Engineering",
-  leader1Bio: "PhD in Thermal Engineering. 18+ years leading complex engineering design for power generation and transmission projects.",
-  leader2Name: "Sanjay Mehta",
-  leader2Role: "VP Business Development",
-  leader2Bio: "15+ years driving strategic growth across India, Middle East, and Southeast Asia.",
-  leader3Name: "Priya Krishnan",
-  leader3Role: "Head of Renewable Energy",
-  leader3Bio: "12+ years in solar and wind energy project development and execution.",
-  leader4Name: "Arjun Reddy",
-  leader4Role: "Head of Project Management",
-  leader4Bio: "16+ years managing large-scale EPC projects across diverse geographies.",
-  leader5Name: "Dr. Klaus Werner",
-  leader5Role: "Head of Quality & Safety",
-  leader5Bio: "20+ years in quality management systems and international safety standards.",
-  leader6Name: "Meera Iyer",
-  leader6Role: "Chief Financial Officer",
-  leader6Bio: "14+ years in financial strategy and corporate governance for engineering firms."
+  tagline: "",
+  heading: "",
+  leader1Name: "",
+  leader1Role: "",
+  leader1Bio: "",
+  leader2Name: "",
+  leader2Role: "",
+  leader2Bio: "",
+  leader3Name: "",
+  leader3Role: "",
+  leader3Bio: "",
+  leader4Name: "",
+  leader4Role: "",
+  leader4Bio: "",
+  leader5Name: "",
+  leader5Role: "",
+  leader5Bio: "",
+  leader6Name: "",
+  leader6Role: "",
+  leader6Bio: ""
 };
 
 export function SeniorLeadershipCMS() {

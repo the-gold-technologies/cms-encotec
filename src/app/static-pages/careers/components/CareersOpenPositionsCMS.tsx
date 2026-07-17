@@ -10,63 +10,63 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "Current Openings",
+  heading: "",
   jobsList: [
     {
-      title: "Senior Power Plant Engineer",
-      dept: "Engineering",
-      location: "Mumbai, India",
-      type: "Full-time",
-      desc: "Lead engineering design and technical reviews for supercritical thermal power projects."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     },
     {
-      title: "Renewable Energy Analyst",
-      dept: "Engineering",
-      location: "Dubai, UAE",
-      type: "Full-time",
-      desc: "Conduct energy yield analysis and feasibility studies for solar and wind projects."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     },
     {
-      title: "Project Manager — EPC",
-      dept: "Project Management",
-      location: "Ankara, Turkey",
-      type: "Full-time",
-      desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East & Europe."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     },
     {
-      title: "Commissioning Engineer",
-      dept: "Engineering",
-      location: "Dar es Salaam, Tanzania",
-      type: "Contract",
-      desc: "Oversee testing and commissioning of power generation equipment and systems."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     },
     {
-      title: "O&M Site Manager",
-      dept: "Operations",
-      location: "Rajpura, India",
-      type: "Full-time",
-      desc: "Lead day-to-day operations and maintenance of a 2x700 MW supercritical plant."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     },
     {
-      title: "Electrical Design Engineer",
-      dept: "Engineering",
-      location: "Mumbai, India",
-      type: "Full-time",
-      desc: "Design transmission lines (33kV-765kV) and substation systems (AIS/GIS)."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     },
     {
-      title: "Business Development Manager",
-      dept: "Corporate",
-      location: "Singapore",
-      type: "Full-time",
-      desc: "Drive business growth across the Asia-Pacific region for energy services."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     },
     {
-      title: "Quality Assurance Lead",
-      dept: "Operations",
-      location: "Frankfurt, Germany",
-      type: "Full-time",
-      desc: "Implement and oversee quality management systems across European projects."
+      title: "",
+      dept: "",
+      location: "",
+      type: "",
+      desc: ""
     }
   ]
 };

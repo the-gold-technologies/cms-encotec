@@ -10,32 +10,32 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "What We Offer",
-  heading: "Benefits & Perks",
+  tagline: "",
+  heading: "",
   benefitsList: [
     {
-      title: "Global Exposure",
-      description: "Work on critical energy infrastructure projects across 10+ countries with diverse international teams."
+      title: "",
+      description: ""
     },
     {
-      title: "Technical Growth",
-      description: "Access to cutting-edge technologies, specialized training, and continuous learning programs."
+      title: "",
+      description: ""
     },
     {
-      title: "Competitive Compensation",
-      description: "Industry-leading salary packages with performance-based bonuses and comprehensive benefits."
+      title: "",
+      description: ""
     },
     {
-      title: "Health & Wellness",
-      description: "Comprehensive medical insurance, wellness programs, and support for physical and mental health."
+      title: "",
+      description: ""
     },
     {
-      title: "Work-Life Balance",
-      description: "Flexible working arrangements, generous leave policies, and a supportive team environment."
+      title: "",
+      description: ""
     },
     {
-      title: "Career Progression",
-      description: "Clear growth paths, leadership development, and mentorship from seasoned industry veterans."
+      title: "",
+      description: ""
     }
   ]
 };

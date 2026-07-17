@@ -11,11 +11,11 @@ import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 
 const defaultFormData = {
-  tagline: "About Encotec Energy",
-  headingPart1: "Engineering Excellence,",
-  headingItalicHighlight: "Delivered with Ownership",
-  description: "A full-spectrum engineering and services company operating across power generation, transmission & distribution, and renewable energy sectors.",
-  backgroundImage: "https://images.unsplash.com/photo-1497435334941-8c899a9bd6a2?auto=format&fit=crop&q=80&w=2400"
+  tagline: "",
+  headingPart1: "",
+  headingItalicHighlight: "",
+  description: "",
+  backgroundImage: ""
 };
 
 interface AboutHeroCMSProps {

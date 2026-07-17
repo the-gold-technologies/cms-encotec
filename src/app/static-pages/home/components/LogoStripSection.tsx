@@ -9,7 +9,7 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Trusted by Industry Leaders",
+  tagline: "",
   logos: [
     "Siemens Energy",
     "General Electric",

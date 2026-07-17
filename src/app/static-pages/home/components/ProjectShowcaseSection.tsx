@@ -18,23 +18,23 @@ interface ProjectItem {
 }
 
 const defaultFormData = {
-  tagline: "Case Studies",
-  heading: "Stewardship in Action",
-  description: "Delivering critical energy infrastructure with precision engineering and an owner's mindset.",
+  tagline: "",
+  heading: "",
+  description: "",
   projects: [
     {
-      title: "Supercritical Mastery at Rajpura",
-      location: "Rajpura, Punjab",
-      category: "Asset Stewardship",
-      description: "Providing O&M services for a 2x700 MW Supercritical plant, ensuring long-term reliability for Punjab's energy heart.",
-      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2000"
+      title: "",
+      location: "",
+      category: "",
+      description: "",
+      image: ""
     },
     {
-      title: "Powering India's Gateway (DIAL)",
-      location: "New Delhi",
-      category: "Airport Utility Management",
-      description: "Five years of flawless utility management at Delhi International Airport, recently renewed for another five years due to exceptional performance.",
-      image: "https://images.unsplash.com/photo-1436491865332-7a61a109db05?auto=format&fit=crop&q=80&w=2000"
+      title: "",
+      location: "",
+      category: "",
+      description: "",
+      image: ""
     }
   ]
 };

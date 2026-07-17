@@ -9,11 +9,11 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "Who We Are",
-  headingPart1: "Energy is More Than ",
-  headingHighlight: "Just Infrastructure",
-  paragraph1: "At Encotec, we believe that energy infrastructure is about more than just steel and circuits — it is about the responsibility of keeping the world moving. We have evolved from a traditional O&M service provider into a Global Service Provider that offers end-to-end solutions for the entire life of your project.",
-  paragraph2: "We approach every plant, every substation, and every utility we manage with what we call an \"Owner's Mindset\". This means we don't just provide a service; we take total responsibility for your assets, treating them with the same care, accountability, and long-term vision as if they were our own."
+  tagline: "",
+  headingPart1: "",
+  headingHighlight: "",
+  paragraph1: "",
+  paragraph2: ""
 };
 
 interface WhoWeAreCMSProps {

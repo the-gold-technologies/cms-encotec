@@ -9,16 +9,16 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Our Culture",
-  heading: "What Defines Us",
-  value1Title: "Technical Mastery",
-  value1Desc: "Deep domain expertise across every discipline",
-  value2Title: "Collaborative Spirit",
-  value2Desc: "Cross-functional teams solving complex challenges",
-  value3Title: "Global Perspective",
-  value3Desc: "Diverse experiences from 10+ countries",
-  value4Title: "Continuous Growth",
-  value4Desc: "Investment in learning and professional development"
+  tagline: "",
+  heading: "",
+  value1Title: "",
+  value1Desc: "",
+  value2Title: "",
+  value2Desc: "",
+  value3Title: "",
+  value3Desc: "",
+  value4Title: "",
+  value4Desc: ""
 };
 
 export function CultureValuesCMS() {

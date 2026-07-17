@@ -9,32 +9,32 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Inside Encotec",
-  heading: "Life at Encotec",
+  tagline: "",
+  heading: "",
   galleryList: [
     {
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
-      caption: "Team Collaboration"
+      image: "",
+      caption: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
-      caption: "On-Site Engineering"
+      image: "",
+      caption: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
-      caption: "Strategic Planning"
+      image: "",
+      caption: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-      caption: "Field Operations"
+      image: "",
+      caption: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=800",
-      caption: "Team Celebrations"
+      image: "",
+      caption: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
-      caption: "Project Reviews"
+      image: "",
+      caption: ""
     }
   ]
 };

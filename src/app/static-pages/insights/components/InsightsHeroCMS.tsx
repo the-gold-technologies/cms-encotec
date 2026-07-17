@@ -10,13 +10,13 @@ import { ImagePickerField } from "@/components/ImagePickerField";
 import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
-  tagline: "Insights & Resources",
-  heroTitle: "INSIGHTS, CASE STUDIES & INDUSTRY PERSPECTIVES",
-  heroSubtitle: "Explore our thought leadership, project successes, and the latest updates from the forefront of global energy engineering.",
-  backgroundImage: "https://images.unsplash.com/photo-1497435334941-8c899a9bd6a2?auto=format&fit=crop&q=80&w=2400",
-  tab1Label: "Case Studies",
-  tab2Label: "News & Updates",
-  tab3Label: "Blog & Articles"
+  tagline: "",
+  heroTitle: "",
+  heroSubtitle: "",
+  backgroundImage: "",
+  tab1Label: "",
+  tab2Label: "",
+  tab3Label: ""
 };
 
 export function InsightsHeroCMS() {

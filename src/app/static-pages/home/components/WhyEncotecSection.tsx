@@ -15,33 +15,33 @@ interface CTABlock {
 }
 
 const defaultFormData = {
-  revealWord1: "Engineering Precision.",
-  revealWord2: "Global Execution.",
-  revealWord3: "Reliable Energy Solutions.",
+  revealWord1: "",
+  revealWord2: "",
+  revealWord3: "",
   ctaBlocks: [
     {
-      headline: "Ready to Move from Consultancy to Partnership?",
-      text: "Discover how our \"Owner's Mindset\" can transform your project's performance."
+      headline: "",
+      text: ""
     },
     {
-      headline: "Let's Build Your Project's Future Together.",
-      text: "Contact us for end-to-end solutions, from conceptualization to commissioning."
+      headline: "",
+      text: ""
     },
     {
-      headline: "Is Your Asset Reaching Its Full Potential?",
-      text: "Improve your 24x7 alignment about asset advisory and performance audits."
+      headline: "",
+      text: ""
     },
     {
-      headline: "Sourcing Critical Spares? We've Got the Global Reach.",
-      text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare parts need."
+      headline: "",
+      text: ""
     },
     {
-      headline: "Join the 13+ Projects That Trust Encotec.",
-      text: "Experience the power of the full owner mindset — from concept to operation."
+      headline: "",
+      text: ""
     },
     {
-      headline: "Planning an Asset Relocation?",
-      text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with zero downtime and optimum timeline."
+      headline: "",
+      text: ""
     }
   ]
 };

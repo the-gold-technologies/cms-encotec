@@ -31,46 +31,46 @@ interface StatItem {
 
 const defaultFormData = {
   sectionNumber: "",
-  upperTag: "About Us",
-  headingLabel: "Human-Centric Engineering",
-  headingItalicHighlight: "Since 2011",
+  upperTag: "",
+  headingLabel: "",
+  headingItalicHighlight: "",
   paragraphs: [
     "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a 600+ industry specialist operating across 13+ key locations.",
     "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide."
   ],
-  ctaLabel: "Learn More",
-  ctaUrl: "#",
-  image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
-  imageAlt: "Engineer working on advanced equipment",
-  badgeValue: "Est. 2011",
-  badgeLabel: "Pioneering Energy",
-  badgeIcon: "Zap",
+  ctaLabel: "",
+  ctaUrl: "",
+  image: "",
+  imageAlt: "",
+  badgeValue: "",
+  badgeLabel: "",
+  badgeIcon: "",
   stats: [
     {
-      value: "2011",
-      label: "FOUNDED YEAR",
-      icon: "Calendar"
+      value: "",
+      label: "",
+      icon: ""
     },
     {
-      value: "13+",
-      label: "KEY LOCATIONS",
-      icon: "Globe"
+      value: "",
+      label: "",
+      icon: ""
     },
     {
-      value: "1800+",
-      label: "MANPOWER",
-      icon: "Users"
+      value: "",
+      label: "",
+      icon: ""
     },
     {
-      value: "20+ GW",
-      label: "POWER CAPACITY O&M EXECUTED",
-      icon: "Zap"
+      value: "",
+      label: "",
+      icon: ""
     }
   ],
-  bannerHeading: "Experience Global Engineering Excellence.",
-  bannerDescription: "From India to Global, see how we are setting new standards in power infrastructure.",
-  bannerButtonLabel: "View Our Global Reach",
-  bannerButtonUrl: "/contact"
+  bannerHeading: "",
+  bannerDescription: "",
+  bannerButtonLabel: "",
+  bannerButtonUrl: ""
 };
 
 const mergeDefaults = (data: any) => {

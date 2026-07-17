@@ -1,17 +1,9 @@
-<div align="center">
-  <img src="https://sevenstarsatmarshbaldon.co.uk/wp-content/uploads/2023/06/FINAL-SEVEN-STARS-GREY-BACKGROUND-2023-trimmed.png" alt="Seven Stars Logo" width="200" style="margin-bottom: 20px;" />
+# **Encotech CMS (Content Management System)**
 
-# **Seven Stars CMS (Pub Club Content Management System)**
+A high-performance, custom-built, premium Content Management Dashboard built with Next.js 14, Prisma, PostgreSQL, Tailwind CSS, and NextAuth.
 
-  <p>
-    <b>A high-performance, custom-built, premium Content Management Dashboard</b><br>
-    <i>Next.js 14 • Prisma • PostgreSQL • Tailwind CSS • Supabase</i>
-  </p>
-
-  <p>
-    <strong>Live CMS Dashboard:</strong> <a href="https://cms-seven-star.vercel.app">https://cms-seven-star.vercel.app</a><br>
-    <strong>Live Website:</strong> <a href="https://pub-club-mu.vercel.app/">https://pub-club-mu.vercel.app/</a>
-  </p>
+**Live CMS Dashboard:** [https://cms-encotec.tgtpartner.com](https://cms-encotec.tgtpartner.com)  
+**Live Website:** [https://encotech-six.vercel.app](https://encotech-six.vercel.app)
 
 ---
 
@@ -21,11 +13,9 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v3-38B2AC.svg)]()
 [![Prisma](https://img.shields.io/badge/Prisma-ORM-5A67D8.svg)]()
 
-</div>
-
 <br />
 
-Welcome to **Seven Stars CMS** — a dedicated platform built from the ground up to securely and dynamically map out the Seven Stars Pub Club digital footprint. This centralized portal offers a seamless, fast, and highly customizable UI for managing dining menus, event galleries, page content, and direct client enquiries without ever having to touch code.
+Welcome to **Encotech CMS** — a dedicated portal designed to securely and dynamically manage the Encotec digital footprint. This centralized portal offers a seamless, fast, and responsive UI for managing dynamic page sections, services details, SEO parameters, and direct client enquiries without touching code.
 
 ---
 
@@ -35,58 +25,52 @@ Welcome to **Seven Stars CMS** — a dedicated platform built from the ground up
 - [System Architecture](#-system-architecture)
 - [Folder Structure](#-folder-structure)
 - [Developer Setup](#-developer-setup)
+- [Production Deployment](#-production-deployment)
 - [Design Language](#-design-language)
-- [Component Development](#-component-development)
 
 ---
 
 ## ✨ Core Principles & Features
 
-Seven Stars CMS bridges the gap between static site generation and dynamic database-driven views by exposing real-time API integrations that are tightly cached.
+Encotech CMS bridges the gap between static site generation and dynamic database-driven views by exposing real-time API integrations that feed the main website's serverless pre-renderer.
 
 | Feature Area             | Capabilities                                                                            |
 | :----------------------- | :-------------------------------------------------------------------------------------- |
-| **Modular Page Control** | Section-based layout mapping for rapid edits to Home, About, Dining, and Events views.  |
-| **Dynamic Galleries**    | Structured tracking for event galleries, food menus, and venue highlights.              |
-| **Blogging & Story**     | SEO-ready authoring tools with custom layouts, pull-quotes, and rich image uploads.     |
-| **Enquiry & Lead CRM**   | Unified dashboard tracing direct form submissions, table bookings, and CRM integration. |
-| **Performance Matrix**   | Advanced API endpoints feeding Next.js client stores seamlessly.                        |
+| **Modular Page Control** | Section-based layout mapping for rapid edits to Home, About, Services, and Careers.     |
+| **SEO & Meta Engine**    | Page-by-page title, description, canonical link, social tags, and custom schema markup.  |
+| **Sitemap & Robots**     | Dynamic robots.txt rules editing and custom/auto sitemap generator link mappings.       |
+| **Enquiry & Lead CRM**   | Unified dashboard tracing direct form submissions, CRM integrations, and notifications. |
+| **Asset Lifecycle O&M**  | Core CMS widgets to update capacity stats, locations, services data, and team profiles. |
 
 ---
 
 ## 🚀 System Architecture
 
-Built relentlessly for Speed, Security, and Scale.
+Built for Speed, Security, and Scale.
 
-- **Frontend**: `Next.js 14 (App Router)` running `React 18` under the hood.
-- **Database Engine**: `PostgreSQL` managed strictly via `Prisma ORM` schema migrations.
-- **Styling Structure**: `Tailwind CSS`, paired dynamically with `Framer Motion` and `Lucide React` icons.
-- **State Control**: Modular React Hooks, integrated `react-hook-form` validation, and real-time state alerts via `react-toastify`.
+- **Frontend**: `Next.js 14 (App Router)` running `React 18` and `NextAuth` for authentication.
+- **Database Engine**: `PostgreSQL` managed via `Prisma ORM` schema migrations.
+- **Styling & Layout**: `Tailwind CSS`, paired with `Framer Motion` and `Lucide React` icons.
 
 ---
 
 ## 📂 Folder Structure
 
-The repository is modularly segmented. Keeping UI components apart from specific dashboard layouts allows for high reusability.
-
+The repository is modularly segmented:
 ```text
-client/
-├── prisma/                    # Schema models, seeds, and database configs
-├── public/                    # Root static assets, fonts, and local images
+encotech-cms/
+├── prisma/                    # Schema models, seed scripts, and migrations
+├── public/                    # Root static assets and images
 ├── src/
-│   ├── app/                   # Root directory for Next.js 14 App Router
-│   │   ├── api/               # Server-side logic (GET, POST, PUT, DELETE)
-│   │   ├── components/        # Universal components (Sidebar, TopNav)
-│   │   └── static-pages/      # The heartbeat of the CMS
-│   │       ├── home/          # Homepage Sections UI
-│   │       ├── about/         # About TGT Modules
-│   │       ├── portfolio/     # Case Studies & Work Profiles
-│   │       └── products/      # Products & Specialized Packages
+│   ├── app/                   # Next.js App Router folders
+│   │   ├── api/               # API endpoints (GET, POST, PUT, DELETE)
+│   │   ├── components/        # Layout components (Sidebar, TopNav)
+│   │   ├── seo/               # Sitemap & Robots management forms
+│   │   └── static-pages/      # Dynamic section controls for Encotec pages
 │   ├── components/            # Reusable core elements (Inputs, Uploaders, Modals)
-│   └── lib/                   # Integrations (API handlers, Prisma instance)
-├── .env                       # Local secrets (Database URLs, API Keys)
+│   └── lib/                   # Integrations (Prisma client database instance)
+├── .env                       # Local secrets (Database URLs, NextAuth configuration)
 ├── next.config.mjs            # Application compilation configuration
-├── tailwind.config.ts         # Unified design tokens and strict styling rules
 └── README.md                  # Project documentation (You are here!)
 ```
 
@@ -94,88 +78,80 @@ client/
 
 ## 💻 Developer Setup
 
-Follow the steps below to initialize and serve the CMS locally on your machine.
+Follow the steps below to initialize and serve the CMS locally.
 
 ### 1. Requirements
-
-Ensure the target machine has the following dependencies initialized in the global environment:
-
-- [Node.js](https://nodejs.org/) (v18.0.0 or later)
-- [npm](https://docs.npmjs.com/) (v9.0.0 or later)
-- [PostgreSQL](https://www.postgresql.org/download/)
+Ensure the target machine has the following dependencies initialized:
+- **Node.js** (v18.0.0 or later)
+- **npm** (v9.0.0 or later)
+- **PostgreSQL**
 
 ### 2. Install Dependencies
-
-Clone this monorepo locally, navigate strictly into the `client` directory, and hydrate the application:
-
+Clone this repository and hydrate the application:
 ```bash
 git clone <repository-url>
-cd pub-club-cms
+cd encotech-cms
 npm install
 ```
 
 ### 3. Environment Allocation
-
-Generate a secure `.env` file at the root of `client/` containing your connection parameters.
-
+Generate a secure `.env` file at the root of `encotech-cms/`:
 ```env
-# Primary PostgreSQL URI
-DATABASE_URL="postgresql://username:password@localhost:5432/tgt_database?schema=public"
+# Database Connection (PostgreSQL URI)
+DATABASE_URL="postgresql://username:password@localhost:5432/encotech_cms?schema=public"
+DIRECT_URL="postgresql://username:password@localhost:5432/encotech_cms?schema=public"
 
-# File Storage Configuration (If executing external S3/Supabase bindings)
-NEXT_PUBLIC_STORAGE_URL="https://your-object-storage-endpoint"
+# Cloudinary media configurations
+CLOUDINARY_URL="cloudinary://..."
+
+# Auth configuration (Secret can be any random 32-character string)
+AUTH_SECRET="some-random-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+ALLOWED_ORIGINS="*"
+
+# Website & CMS API URLs for SEO & Sitemap fallback
+NEXT_PUBLIC_WEBSITE_URL="https://encotech-six.vercel.app"
 ```
 
 ### 4. Database Syncing
-
-With the credentials applied, inform Prisma to construct the required tables automatically, and seed any starting parameters.
-
+Sync the schema structure with the database and seed the default admin credentials and section parameters:
 ```bash
 # Push schema structure into the database
 npx prisma db push
 
-# Create local Prisma client TS definitions
-npx prisma generate
+# Seed the database
+node prisma/seed.js
 ```
 
-_(If you require sample data, you can build custom scripts and fire them utilizing `npx tsx your-script.ts`)_
-
-### 5. Initialization
-
-To boot the instance up safely locally across your network:
-
+### 5. Run the Application
+Start the development server:
 ```bash
 npm run dev
 ```
+The dashboard is now running at `http://localhost:3000`.
 
-Your system is now successfully running at `http://localhost:3000`.
+---
+
+## 🚀 Production Deployment
+
+When deploying to production (such as Vercel), ensure the following environment variables are set in your deployment project dashboard:
+
+* **`NEXTAUTH_URL`**: Set this to `https://cms-encotec.tgtpartner.com` (Your live CMS URL).
+* **`AUTH_TRUST_HOST`**: Set this to `true` (Mandatory for NextAuth v5 to trust Vercel/custom domains).
+* **`NEXT_PUBLIC_WEBSITE_URL`**: Set this to `https://encotech-six.vercel.app` (The live frontend website).
 
 ---
 
 ## 🎨 Design Language
 
-Do not stray wildly from the core principles of Seven Stars. The application relies entirely on maintaining a high-fidelity "premium pub" visual aesthetic:
-
-- **Deep Dark Core (`#0A0F29`)**: Utilize heavily shaded blues and blacks to simulate high digital depth.
-- **The Gold Accent (`#D4AF37`)**: Explicitly to be utilized for primary CTAs, highlight trims, borders, and hovering animations. Overusing gold neutralizes the premium tone.
-- **The Glassmorphism Matrix**: For modals and overlapping cards, ensure you leverage the `backdrop-blur` utility backed securely by translucent dark layers (`bg-black/50`).
-- **Fluid Motion**: Framer motion triggers should feel native—no aggressive pacing. Fast fading logic with low spring bounces.
-
----
-
-## ⚡ Component Development
-
-### Standard Operating Procedure (SOP)
-
-When patching or developing brand-new endpoints:
-
-1.  **API Integration**: The platform handles rigorous `GET` requests using the internal `lib/apiCache.ts`.
-2.  **Stale Invalidation**: **CRITICAL** - Whenever constructing `POST`, `PUT`, or `DELETE` directives within the interface, you **MUST** formally evict the cache directly using `apiCache.clear('/api/targeted-route')`. Failing to do so forces users to hard-reload natively.
-3.  **Client/Server Separation**: Strict adherence to inserting `"use client"` inside interactive React models to prevent SSR compilation errors spanning the `app/` directory.
+The application relies on maintaining the high-fidelity corporate engineering identity of Encotec:
+- **Corporate Slate Backgrounds**: Clean, modern dark grids simulating a high-tech engineering workstation.
+- **Accents**: Brand-pink accents (`#a0004f`) used sparingly for primary status states, CTAs, highlight badges, and hover animations.
+- **Transitions**: Low-friction Framer Motion transitions for smooth sidebar interactions.
 
 ---
 
 <p align="center">
-  <b>© 2026 Seven Stars Pub Club</b><br>
+  <b>© 2026 Encotec Engineering</b><br>
   Strictly Private and Confidential Codebase.
 </p>

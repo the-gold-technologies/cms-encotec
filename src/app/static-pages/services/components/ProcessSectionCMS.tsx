@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  heading: "Workflow Followed for Each Project",
+  heading: "",
   description: "",
   stepTitle0: "",
   stepDesc0: "",

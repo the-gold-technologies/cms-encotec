@@ -11,11 +11,11 @@ import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
   heroTagline: "",
-  heroTitle: "SHAPE THE FUTURE OF GLOBAL ENERGY",
-  heroSubtitle: "Join a team of world-class engineers and energy professionals delivering critical infrastructure across 10+ countries.",
-  backgroundImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2400",
-  badge1Text: "1,800+ Manpower",
-  badge2Text: "Presence in 10 Countries"
+  heroTitle: "",
+  heroSubtitle: "",
+  backgroundImage: "",
+  badge1Text: "",
+  badge2Text: ""
 };
 
 export function CareersHeroCMS() {

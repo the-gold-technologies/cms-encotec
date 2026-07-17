@@ -10,32 +10,32 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  heading: "INDUSTRY MEMBERSHIPS",
-  description: "Active participation in shaping the future of India's energy sector through key industry bodies and associations.",
+  heading: "",
+  description: "",
   membershipsList: [
     {
-      name: "Confederation of Indian Industry (CII)",
-      year: "2010"
+      name: "",
+      year: ""
     },
     {
-      name: "Federation of Indian Chambers of Commerce (FICCI)",
-      year: "2012"
+      name: "",
+      year: ""
     },
     {
-      name: "Indian Electrical & Electronics Mfrs. Assoc. (IEEMA)",
-      year: "2014"
+      name: "",
+      year: ""
     },
     {
-      name: "Central Board of Irrigation and Power (CBIP)",
-      year: "2015"
+      name: "",
+      year: ""
     },
     {
-      name: "Independent Power Producers Assoc. (IPPAI)",
-      year: "2016"
+      name: "",
+      year: ""
     },
     {
-      name: "Associated Chambers of Commerce (ASSOCHAM)",
-      year: "2018"
+      name: "",
+      year: ""
     }
   ]
 };

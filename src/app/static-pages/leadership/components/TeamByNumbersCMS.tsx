@@ -8,14 +8,14 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  stats1Value: "1800",
-  stats1Label: "Total Professionals",
-  stats2Value: "300",
-  stats2Label: "Industry specialists",
-  stats3Value: "10",
-  stats3Label: "Countries of Operation",
-  stats4Value: "12",
-  stats4Label: "Years Avg Experience"
+  stats1Value: "",
+  stats1Label: "",
+  stats2Value: "",
+  stats2Label: "",
+  stats3Value: "",
+  stats3Label: "",
+  stats4Value: "",
+  stats4Label: ""
 };
 
 export function TeamByNumbersCMS() {

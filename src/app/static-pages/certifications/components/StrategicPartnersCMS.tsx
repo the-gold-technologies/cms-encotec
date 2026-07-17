@@ -10,49 +10,49 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Strategic Alliances",
-  heading: "Trusted by Industry Leaders",
-  description: "We collaborate with the world's leading technology providers and energy conglomerates to deliver state-of-the-art solutions.",
+  tagline: "",
+  heading: "",
+  description: "",
   partnersList: [
     {
-      name: "Siemens Energy",
-      monogram: "SE",
-      role: "Gas Turbine Technology"
+      name: "",
+      monogram: "",
+      role: ""
     },
     {
-      name: "GE Vernova",
-      monogram: "GE",
-      role: "Power Generation Systems"
+      name: "",
+      monogram: "",
+      role: ""
     },
     {
-      name: "BHEL",
-      monogram: "BH",
-      role: "Heavy Electrical Equipment"
+      name: "",
+      monogram: "",
+      role: ""
     },
     {
-      name: "NTPC",
-      monogram: "NT",
-      role: "Thermal Power Operations"
+      name: "",
+      monogram: "",
+      role: ""
     },
     {
-      name: "L&T Energy",
-      monogram: "LT",
-      role: "EPC & Construction"
+      name: "",
+      monogram: "",
+      role: ""
     },
     {
-      name: "Tata Power",
-      monogram: "TP",
-      role: "Integrated Power Solutions"
+      name: "",
+      monogram: "",
+      role: ""
     },
     {
-      name: "Adani Power",
-      monogram: "AP",
-      role: "Private Sector Energy"
+      name: "",
+      monogram: "",
+      role: ""
     },
     {
-      name: "JSW Energy",
-      monogram: "JW",
-      role: "Diversified Energy Portfolio"
+      name: "",
+      monogram: "",
+      role: ""
     }
   ]
 };

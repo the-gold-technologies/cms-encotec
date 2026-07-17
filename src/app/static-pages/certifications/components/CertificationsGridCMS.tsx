@@ -10,38 +10,38 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "Global Standards",
-  heading: "Accreditations That Define Our Quality",
+  tagline: "",
+  heading: "",
   certificationsList: [
     {
-      title: "ISO 9001:2015",
-      category: "Quality Management",
-      desc: "Ensuring consistent quality in our engineering, procurement, and construction services."
+      title: "",
+      category: "",
+      desc: ""
     },
     {
-      title: "ISO 14001:2015",
-      category: "Environmental Management",
-      desc: "Commitment to minimizing our environmental footprint across all project sites."
+      title: "",
+      category: "",
+      desc: ""
     },
     {
-      title: "ISO 45001:2018",
-      category: "Occupational Health & Safety",
-      desc: "Maintaining the highest standards of workplace safety for our employees and contractors."
+      title: "",
+      category: "",
+      desc: ""
     },
     {
-      title: "partner with the (NABL approved laboratories)",
-      category: "Testing & Calibration",
-      desc: "Recognized competence of testing and calibration laboratories."
+      title: "",
+      category: "",
+      desc: ""
     },
     {
-      title: "IBR Certification",
-      category: "Indian Boiler Regulations",
-      desc: "Certified as a special class boiler repairer and erector under IBR 1950."
+      title: "",
+      category: "",
+      desc: ""
     },
     {
-      title: "IBR Certification",
-      category: "Indian Boiler Regulations",
-      desc: "Certified."
+      title: "",
+      category: "",
+      desc: ""
     }
   ]
 };

@@ -9,12 +9,12 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  backLabel: "Back to Insights",
-  loadingText: "Loading insight details...",
-  notFoundTitle: "Article Not Found",
-  notFoundText: "The insight you are looking for doesn't exist or has been moved.",
-  notFoundBtnLabel: "Back to Insights",
-  shareLabel: "Share this article"
+  backLabel: "",
+  loadingText: "",
+  notFoundTitle: "",
+  notFoundText: "",
+  notFoundBtnLabel: "",
+  shareLabel: ""
 };
 
 export function InsightDetailCMS() {

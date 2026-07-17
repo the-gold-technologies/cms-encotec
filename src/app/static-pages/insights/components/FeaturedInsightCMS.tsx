@@ -9,14 +9,14 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  latestArticleTitle: "The Obra 'C' Thermal Success",
-  latestArticleSummary: "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh, delivering on time and exceeding quality standards.",
-  latestArticleDate: "March 2024",
-  latestArticleLocation: "Uttar Pradesh, India",
-  latestArticleSlug: "obra-c-thermal-success",
-  latestArticleImage: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
-  badgeLabel: "Featured Case Study",
-  btnLabel: "Read Full Case Study"
+  latestArticleTitle: "",
+  latestArticleSummary: "",
+  latestArticleDate: "",
+  latestArticleLocation: "",
+  latestArticleSlug: "",
+  latestArticleImage: "",
+  badgeLabel: "",
+  btnLabel: ""
 };
 
 export function FeaturedInsightCMS() {

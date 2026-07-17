@@ -9,16 +9,16 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Executive Leadership",
-  heading: "Visionaries Driving Our Mission",
-  exec1Name: "Arun Kumar Sarna",
-  exec1Role: "Managing Director",
-  exec1Bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations, establishing a strong presence in both domestic and international markets. Focuses on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
-  exec1Tags: "Strategic Leadership, Business Development, Energy Infrastructure",
-  exec2Name: "Rajan Saxena",
-  exec2Role: "Director – Operations",
-  exec2Bio: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization across thermal, renewable, and transmission projects. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
-  exec2Tags: "Operations Management, Plant Commissioning, Asset Optimization"
+  tagline: "",
+  heading: "",
+  exec1Name: "",
+  exec1Role: "",
+  exec1Bio: "",
+  exec1Tags: "",
+  exec2Name: "",
+  exec2Role: "",
+  exec2Bio: "",
+  exec2Tags: ""
 };
 
 export function ExecutiveTeamCMS() {

@@ -8,10 +8,10 @@ import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  stats1Value: "15",
-  stats1Label: "Years of Excellence",
-  stats2Value: "100",
-  stats2Label: "Compliance Rate",
+  stats1Value: "",
+  stats1Label: "",
+  stats2Value: "",
+  stats2Label: "",
   stats3Value: "",
   stats3Label: "",
   stats4Value: "",

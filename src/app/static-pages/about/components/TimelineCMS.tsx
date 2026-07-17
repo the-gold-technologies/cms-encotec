@@ -9,21 +9,21 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
-  tagline: "Our Journey",
-  heading: "A Timeline of Growth",
-  description: "We have spent over a decade building a legacy of excellence, one project at a time.",
-  phaseTitle0: "2011–2012: Construction Beginnings",
-  phaseDesc0: "We began our major journey into the green frontier, successfully contributed 35+ MW Solar PV projects in Gujarat and 125 MW Solar Thermal projects in Rajasthan.",
-  phaseTitle1: "2013 & Beyond: O&M Leadership",
-  phaseDesc1: "Solidified our reputation as top-tier stewards with the long-term O&M contracts, Annual Maintenance contracts, Overhauling jobs. etc.",
-  phaseTitle2: "2016: Supercritical Excellence",
-  phaseDesc2: "Embarked on our flagship O&M partnership for the 2x700 MW supercritical power plant at Nabha Power / Rajpura and 2x660 MW supercritical power plant at Jhajjar.",
-  phaseTitle3: "2018 & Beyond: Environmental Stewardship",
-  phaseDesc3: "Helping industries meet stringent environmental standards through specialized FGD O&M excellence.",
-  phaseTitle4: "2021: Going Global",
-  phaseDesc4: "Took our expertise global, managing critical commissioning projects internationally.",
-  phaseTitle5: "2025 & Beyond: New Chapters",
-  phaseDesc5: "We are currently providing specialized utility management for international airports like Indira Gandhi International Airport, Delhi (DIAL) and Noida International Airport (NIA), newly inaugurated."
+  tagline: "",
+  heading: "",
+  description: "",
+  phaseTitle0: "",
+  phaseDesc0: "",
+  phaseTitle1: "",
+  phaseDesc1: "",
+  phaseTitle2: "",
+  phaseDesc2: "",
+  phaseTitle3: "",
+  phaseDesc3: "",
+  phaseTitle4: "",
+  phaseDesc4: "",
+  phaseTitle5: "",
+  phaseDesc5: ""
 };
 
 interface TimelineCMSProps {

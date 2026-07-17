@@ -10,16 +10,16 @@ import { TextAreaField } from "@/components/TextAreaField";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const defaultFormData = {
-  tagline: "Partner With Us",
-  headingPart1: "Experience Global",
-  headingHighlight: "Engineering Excellence.",
-  description: "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ Projects that rely on Encotec for their critical power needs.",
-  primaryBtnLabel: "Start Your Project",
-  primaryBtnUrl: "/contact",
-  secondaryBtnLabel: "Talk to an Expert",
-  secondaryBtnUrl: "/contact",
-  footerNote: "Looking for precision and reliability? Get in touch to learn more about our certified quality and safety-first approach.",
-  copyright: "© 2026 Encotec Engineering."
+  tagline: "",
+  headingPart1: "",
+  headingHighlight: "",
+  description: "",
+  primaryBtnLabel: "",
+  primaryBtnUrl: "",
+  secondaryBtnLabel: "",
+  secondaryBtnUrl: "",
+  footerNote: "",
+  copyright: ""
 };
 
 const mergeDefaults = (data: any) => {

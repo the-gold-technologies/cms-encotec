@@ -10,12 +10,12 @@ import { ImagePickerField } from "@/components/ImagePickerField";
 import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
-  heroTitle: "LEADERSHIP & TEAM",
-  heroSubtitle: "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
-  backgroundImage: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
-  heroBadge1: "1,800+ Manpower",
-  heroBadge2: "15+ Years Average Experience",
-  heroBadge3: "10+ Countries"
+  heroTitle: "",
+  heroSubtitle: "",
+  backgroundImage: "",
+  heroBadge1: "",
+  heroBadge2: "",
+  heroBadge3: ""
 };
 
 export function LeadershipHeroCMS() {

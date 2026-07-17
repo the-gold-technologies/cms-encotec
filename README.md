@@ -97,20 +97,21 @@ npm install
 ### 3. Environment Allocation
 Generate a secure `.env` file at the root of `encotech-cms/`:
 ```env
-# Database Connection (PostgreSQL URI)
-DATABASE_URL="postgresql://username:password@localhost:5432/encotech_cms?schema=public"
-DIRECT_URL="postgresql://username:password@localhost:5432/encotech_cms?schema=public"
+# Database Connection
+DATABASE_URL="" # PostgreSQL connection string
+DIRECT_URL=""   # PostgreSQL direct connection string
 
-# Cloudinary media configurations
-CLOUDINARY_URL="cloudinary://..."
+# Cloudinary configuration
+CLOUDINARY_URL="" # Cloudinary URL API key/secret
 
-# Auth configuration (Secret can be any random 32-character string)
-AUTH_SECRET="some-random-secret-key"
+# NextAuth configuration
+AUTH_SECRET=""      # A random 32-character secret key
 NEXTAUTH_URL="http://localhost:3000"
 ALLOWED_ORIGINS="*"
 
-# Website & CMS API URLs for SEO & Sitemap fallback
-NEXT_PUBLIC_WEBSITE_URL="https://encotech-six.vercel.app"
+# Website URL for sitemap fallback
+NEXT_PUBLIC_WEBSITE_URL="" # Live frontend website domain
+
 ```
 
 ### 4. Database Syncing
@@ -134,11 +135,11 @@ The dashboard is now running at `http://localhost:3000`.
 
 ## 🚀 Production Deployment
 
-When deploying to production (such as Vercel), ensure the following environment variables are set in your deployment project dashboard:
+When deploying to production, configure these environment variables in your hosting provider's settings:
 
-* **`NEXTAUTH_URL`**: Set this to `https://cms-encotec.tgtpartner.com` (Your live CMS URL).
-* **`AUTH_TRUST_HOST`**: Set this to `true` (Mandatory for NextAuth v5 to trust Vercel/custom domains).
-* **`NEXT_PUBLIC_WEBSITE_URL`**: Set this to `https://encotech-six.vercel.app` (The live frontend website).
+* **`NEXTAUTH_URL`**: Your production CMS URL (e.g. `https://cms.yourdomain.com`).
+* **`AUTH_TRUST_HOST`**: Set this to `true` (Mandatory for NextAuth v5 to trust custom domains).
+* **`NEXT_PUBLIC_WEBSITE_URL`**: Your production frontend website URL (e.g. `https://yourdomain.com`).
 
 ---
 

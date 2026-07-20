@@ -7,6 +7,17 @@ import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
+import { IconPickerField } from "@/app/components/IconPickerField";
+
+const MAX_CARDS = 6;
+
+interface ValueCard {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const emptyCard = (): ValueCard => ({ title: "", description: "", icon: "" });
 
 const defaultFormData = {
   tagline: "",
@@ -17,24 +28,6 @@ const defaultFormData = {
   visionDesc: "",
   valuesTitle: "",
   valuesDesc: "",
-  valueTitle0: "",
-  valueDesc0: "",
-  valueIcon0: "",
-  valueTitle1: "",
-  valueDesc1: "",
-  valueIcon1: "",
-  valueTitle2: "",
-  valueDesc2: "",
-  valueIcon2: "",
-  valueTitle3: "",
-  valueDesc3: "",
-  valueIcon3: "",
-  valueTitle4: "",
-  valueDesc4: "",
-  valueIcon4: "",
-  valueTitle5: "",
-  valueDesc5: "",
-  valueIcon5: ""
 };
 
 interface MissionVisionValuesCMSProps {
@@ -68,28 +61,34 @@ export function MissionVisionValuesCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [valueCards, setValueCards] = useState<ValueCard[]>([emptyCard()]);
+
+  const unpackData = (data: any) => {
+    const list = (data.valuesList as any[]) || [];
+    setFormData({
+      tagline: data.tagline || "",
+      description: data.description || "",
+      missionTitle: data.missionTitle || "",
+      missionDesc: data.missionDesc || "",
+      visionTitle: data.visionTitle || "",
+      visionDesc: data.visionDesc || "",
+      valuesTitle: data.valuesTitle || "",
+      valuesDesc: data.valuesDesc || "",
+    });
+    if (list.length > 0) {
+      setValueCards(
+        list.slice(0, MAX_CARDS).map((item: any) => ({
+          title: item?.title || "",
+          description: item?.description || "",
+          icon: item?.icon || "",
+        }))
+      );
+    } else {
+      setValueCards([emptyCard()]);
+    }
+  };
 
   useEffect(() => {
-    const unpackData = (data: any) => {
-      const list = (data.valuesList as any[]) || [];
-      const updated: any = {
-        tagline: data.tagline || "",
-        description: data.description || "",
-        missionTitle: data.missionTitle || "",
-        missionDesc: data.missionDesc || "",
-        visionTitle: data.visionTitle || "",
-        visionDesc: data.visionDesc || "",
-        valuesTitle: data.valuesTitle || "",
-        valuesDesc: data.valuesDesc || "",
-      };
-      for (let i = 0; i < 6; i++) {
-        updated[`valueTitle${i}`] = list[i]?.title || "";
-        updated[`valueDesc${i}`] = list[i]?.description || "";
-        updated[`valueIcon${i}`] = list[i]?.icon || "";
-      }
-      setFormData(updated);
-    };
-
     if (initialData) {
       unpackData(initialData);
     } else {
@@ -111,6 +110,32 @@ export function MissionVisionValuesCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleCardChange = (
+    index: number,
+    field: keyof ValueCard,
+    value: string
+  ) => {
+    setValueCards((prev) =>
+      prev.map((card, i) => (i === index ? { ...card, [field]: value } : card))
+    );
+  };
+
+  const handleAddCard = () => {
+    if (valueCards.length >= MAX_CARDS) {
+      toast.error(`Maximum ${MAX_CARDS} cards allowed.`);
+      return;
+    }
+    setValueCards((prev) => [...prev, emptyCard()]);
+  };
+
+  const handleDeleteCard = (index: number) => {
+    if (valueCards.length <= 1) {
+      toast.error("At least 1 value card is required.");
+      return;
+    }
+    setValueCards((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
@@ -122,11 +147,11 @@ export function MissionVisionValuesCMS({
     if (!formData.valuesTitle?.trim()) errs.push("Values title is required");
     if (!formData.valuesDesc?.trim()) errs.push("Values description is required");
 
-    for (let i = 0; i < 6; i++) {
-      if (!(formData as any)[`valueTitle${i}`]?.trim()) errs.push(`Value Card ${i + 1} Title is required`);
-      if (!(formData as any)[`valueDesc${i}`]?.trim()) errs.push(`Value Card ${i + 1} Description is required`);
-      if (!(formData as any)[`valueIcon${i}`]?.trim()) errs.push(`Value Card ${i + 1} Icon is required`);
-    }
+    valueCards.forEach((card, i) => {
+      if (!card.title?.trim()) errs.push(`Value Card ${i + 1} Title is required`);
+      if (!card.description?.trim()) errs.push(`Value Card ${i + 1} Description is required`);
+      if (!card.icon?.trim()) errs.push(`Value Card ${i + 1} Icon is required`);
+    });
 
     if (errs.length > 0) {
       errs.forEach((msg) => toast.error(msg));
@@ -136,22 +161,9 @@ export function MissionVisionValuesCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Mission, Vision & Values section...");
     try {
-      const valuesList = Array.from({ length: 6 }).map((_, i) => ({
-        title: (formData as any)[`valueTitle${i}`],
-        description: (formData as any)[`valueDesc${i}`],
-        icon: (formData as any)[`valueIcon${i}`],
-      }));
-
       const payload = {
-        tagline: formData.tagline,
-        description: formData.description,
-        missionTitle: formData.missionTitle,
-        missionDesc: formData.missionDesc,
-        visionTitle: formData.visionTitle,
-        visionDesc: formData.visionDesc,
-        valuesTitle: formData.valuesTitle,
-        valuesDesc: formData.valuesDesc,
-        valuesList,
+        ...formData,
+        valuesList: valueCards,
       };
 
       const body = sectionId
@@ -184,7 +196,7 @@ export function MissionVisionValuesCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Mission, Vision & Values Section"
-          description="Manage corporate mission, vision statements, and 6 core value cards."
+          description="Manage corporate mission, vision statements, and core value cards (up to 6)."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -197,6 +209,8 @@ export function MissionVisionValuesCMS({
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
               <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
+
+                {/* Tag + Description */}
                 <div className="flex flex-col md:flex-row gap-6 w-full">
                   <InputField
                     label="Section Tag Label"
@@ -218,8 +232,8 @@ export function MissionVisionValuesCMS({
                   />
                 </div>
 
+                {/* Mission + Vision */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full border-t border-gray-100 pt-6">
-                  {/* Mission */}
                   <div className="flex flex-col gap-4">
                     <InputField
                       label="Mission Title"
@@ -239,8 +253,6 @@ export function MissionVisionValuesCMS({
                       required
                     />
                   </div>
-
-                  {/* Vision */}
                   <div className="flex flex-col gap-4">
                     <InputField
                       label="Vision Title"
@@ -283,43 +295,88 @@ export function MissionVisionValuesCMS({
                   />
                 </div>
 
-                {/* Core Values Cards */}
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4">
-                  Edit 6 Core Value Cards
-                </span>
+                {/* Core Values Cards — Dynamic */}
+                <div className="flex items-center justify-between border-b border-gray-100 pb-2 mt-4">
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                    Core Value Cards&nbsp;
+                    <span className="text-blue-400">({valueCards.length}/{MAX_CARDS})</span>
+                  </span>
+                  {valueCards.length < MAX_CARDS && (
+                    <button
+                      type="button"
+                      onClick={handleAddCard}
+                      className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                      Add Card
+                    </button>
+                  )}
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm">
-                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                        Card {i + 1}
-                      </span>
+                  {valueCards.map((card, i) => (
+                    <div
+                      key={i}
+                      className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group"
+                    >
+                      {/* Card header */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                          Card {i + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteCard(i)}
+                          title="Delete card"
+                          className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center w-6 h-6 rounded-full bg-red-50 hover:bg-red-100 text-red-400 hover:text-red-600"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M18 6 6 18M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+
                       <InputField
                         label="Title"
                         name={`valueTitle${i}`}
-                        value={(formData as any)[`valueTitle${i}`]}
-                        onChange={handleChange}
+                        value={card.title}
+                        onChange={(e) => handleCardChange(i, "title", e.target.value)}
                         placeholder="e.g. Accountability"
                         required
                       />
                       <TextAreaField
                         label="Description"
                         name={`valueDesc${i}`}
-                        value={(formData as any)[`valueDesc${i}`]}
-                        onChange={handleChange}
+                        value={card.description}
+                        onChange={(e) => handleCardChange(i, "description", e.target.value)}
                         placeholder="Description of value..."
                         rows={3}
                         required
                       />
-                      <InputField
-                        label="Lucide Icon Name"
-                        name={`valueIcon${i}`}
-                        value={(formData as any)[`valueIcon${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. HeartHandshake, Award, ShieldCheck..."
+                      <IconPickerField
+                        label="Icon"
+                        value={card.icon}
+                        onChange={(iconName) => handleCardChange(i, "icon", iconName)}
                         required
                       />
                     </div>
                   ))}
+
+                  {/* Add-card placeholder slot */}
+                  {valueCards.length < MAX_CARDS && (
+                    <button
+                      type="button"
+                      onClick={handleAddCard}
+                      className="p-5 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center gap-2 text-gray-400 hover:border-blue-300 hover:text-blue-400 hover:bg-blue-50/30 transition-all min-h-[180px] cursor-pointer"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                      <span className="text-xs font-semibold uppercase tracking-wide">Add Card</span>
+                    </button>
+                  )}
                 </div>
               </div>
 

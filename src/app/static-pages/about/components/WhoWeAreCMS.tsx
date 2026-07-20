@@ -13,7 +13,9 @@ const defaultFormData = {
   headingPart1: "",
   headingHighlight: "",
   paragraph1: "",
-  paragraph2: ""
+  paragraph2: "",
+  heritageTagline: "",
+  heritageDescription: "",
 };
 
 interface WhoWeAreCMSProps {
@@ -36,7 +38,8 @@ export function WhoWeAreCMS({
   onToggle: controlledOnToggle,
 }: WhoWeAreCMSProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (val: any) => {
     if (controlledOnToggle) {
       controlledOnToggle();
@@ -49,28 +52,29 @@ export function WhoWeAreCMS({
   const [formData, setFormData] = useState(defaultFormData);
 
   useEffect(() => {
-    if (initialData) {
-      const paragraphs = (initialData.paragraphs as string[]) || [];
+    const unpack = (data: any) => {
+      const paragraphs = (data.paragraphs as string[]) || [];
       setFormData({
-        tagline: (initialData.tagline as string) || "",
-        headingPart1: (initialData.headingPart1 as string) || "",
-        headingHighlight: (initialData.headingHighlight as string) || "",
+        tagline: (data.tagline as string) || "",
+        headingPart1: (data.headingPart1 as string) || "",
+        headingHighlight: (data.headingHighlight as string) || "",
         paragraph1: paragraphs[0] || "",
         paragraph2: paragraphs[1] || "",
+        heritageTagline: (data.heritageTagline as string) || "",
+        heritageDescription: (data.heritageDescription as string) || "",
       });
+    };
+
+    if (initialData) {
+      unpack(initialData);
     } else {
       fetchWithCache(saveUrl)
         .then((json) => {
-          const sectionData = responseKey ? json.data?.[responseKey] : json.data;
+          const sectionData = responseKey
+            ? json.data?.[responseKey]
+            : json.data;
           if (json.success && sectionData) {
-            const paragraphs = (sectionData.paragraphs as string[]) || [];
-            setFormData({
-              tagline: (sectionData.tagline as string) || "",
-              headingPart1: (sectionData.headingPart1 as string) || "",
-              headingHighlight: (sectionData.headingHighlight as string) || "",
-              paragraph1: paragraphs[0] || "",
-              paragraph2: paragraphs[1] || "",
-            });
+            unpack(sectionData);
           }
         })
         .catch(console.error);
@@ -78,7 +82,7 @@ export function WhoWeAreCMS({
   }, [initialData, saveUrl, responseKey]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -88,7 +92,8 @@ export function WhoWeAreCMS({
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
     if (!formData.headingPart1?.trim()) errs.push("Heading Part 1 is required");
-    if (!formData.headingHighlight?.trim()) errs.push("Heading highlight is required");
+    if (!formData.headingHighlight?.trim())
+      errs.push("Heading highlight is required");
     if (!formData.paragraph1?.trim()) errs.push("Paragraph 1 is required");
     if (!formData.paragraph2?.trim()) errs.push("Paragraph 2 is required");
 
@@ -105,6 +110,8 @@ export function WhoWeAreCMS({
         headingPart1: formData.headingPart1,
         headingHighlight: formData.headingHighlight,
         paragraphs: [formData.paragraph1, formData.paragraph2],
+        heritageTagline: formData.heritageTagline,
+        heritageDescription: formData.heritageDescription,
       };
 
       const body = sectionId
@@ -137,7 +144,7 @@ export function WhoWeAreCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Who We Are Section"
-          description="Manage tagline, headings, and detailed mission statement paragraphs."
+          description="Manage tagline, headings, main paragraphs, and Heritage block."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -199,6 +206,24 @@ export function WhoWeAreCMS({
                   rows={3}
                   required
                 />
+
+                <div className="border-t border-gray-100 pt-6 flex flex-col gap-4">
+                  <InputField
+                    label="Heritage Tagline"
+                    name="heritageTagline"
+                    value={formData.heritageTagline}
+                    onChange={handleChange}
+                    placeholder="e.g. Our Heritage. Our Future."
+                  />
+                  <TextAreaField
+                    label="Heritage Description (Italic)"
+                    name="heritageDescription"
+                    value={formData.heritageDescription}
+                    onChange={handleChange}
+                    placeholder="Heritage description..."
+                    rows={4}
+                  />
+                </div>
               </div>
 
               <div className="flex justify-end pt-4 border-t border-gray-100">

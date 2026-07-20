@@ -687,6 +687,9 @@ async function main() {
               "At Encotec, we believe that energy infrastructure is about more than just steel and circuits — it is about the responsibility of keeping the world moving. We have evolved from a traditional O&M service provider into a Global Service Provider that offers end-to-end solutions for the entire life of your project.",
               "We approach every plant, every substation, and every utility we manage with what we call an \"Owner's Mindset\". This means we don't just provide a service; we take total responsibility for your assets, treating them with the same care, accountability, and long-term vision as if they were our own.",
             ],
+            heritageTagline: "Our Heritage. Our Future.",
+            heritageDescription:
+              "Founded in 2009, Encotec spent its formative years as a proud member of the German Dornier/VPC Group, inheriting a legacy of rigorous European engineering, precision, and quality. In January 2026, Encotec achieved a historic milestone, transitioning into a 100% independent, Indian-owned enterprise. Today, we offer the global market a rare and powerful combination: the meticulous technical discipline of our European roots, supercharged by the agility, scale, and ingenuity of Indian enterprise. Whether optimizing mega-power plants or managing the critical utilities of international airports, we are proudly Indian, globally benchmarked, and ready to engineer the future of energy and infrastructure.",
           },
         },
       });
@@ -702,48 +705,42 @@ async function main() {
               "Our purpose is to bridge the gap between technical complexity and business success.",
             missionTitle: "Mission",
             missionDesc:
-              'To deliver error-free, high-standard services through continuous innovation and a relentless commitment to "finding new ways to energy solutions".',
+              "To empower the global energy and infrastructure sectors by delivering comprehensive, lifecycle-optimized O&M and EPC solutions. We operate every asset with an 'Owner's Mindset,' ensuring maximum reliability, uncompromising safety, and sustainable value creation for our clients.",
             visionTitle: "Vision",
             visionDesc:
-              "To be the most trusted global partner in energy stewardship, leading the transition from traditional power to a sustainable future.",
+              "To be the globally preferred engineering and O&M partner, driving the future of sustainable energy and critical infrastructure through Indian ingenuity and world-class execution.",
             valuesTitle: "Core Values",
             valuesDesc:
               "We are defined by Accountability, Innovation, and Total Care. By adopting the owner's perspective, we ensure that safety and efficiency are never compromised.",
             valuesList: [
               {
-                title: "Accountability",
+                title: "Safety First (Zero Harm)",
                 description:
-                  "We treat every site with the care of an owner, taking full responsibility for outcomes.",
-                icon: "HeartHandshake",
-              },
-              {
-                title: "Innovation",
-                description:
-                  "We constantly find new ways to improve energy solutions for reliability and efficiency.",
-                icon: "Award",
-              },
-              {
-                title: "Safety First",
-                description:
-                  "We ensure excellence isn't just a goal — it's our standard at every project site.",
+                  "Safety is not just a policy; it is our culture. We believe in zero fatalities, zero injuries, and zero excuses. We protect our people, our partners, and the communities we operate in.",
                 icon: "ShieldCheck",
               },
               {
-                title: "Quality Standards",
+                title: "The Owner's Mindset",
                 description:
-                  "Triple ISO Certified in Quality (9001), Environment (14001), and Safety (45001).",
-                icon: "TrendingUp",
+                  "We do not just maintain assets; we optimize them. We make proactive, cost-effective decisions as if the facility's balance sheet were our own.",
+                icon: "BrainCircuit",
               },
               {
-                title: "Client Partnership",
+                title: "Engineering Excellence",
                 description:
-                  "We work as trusted partners, aligning our solutions with client objectives.",
-                icon: "Users",
+                  "Born from European precision and powered by Indian innovation, we deliver technically robust, predictable, and world-class solutions to the most complex energy and infrastructure challenges.",
+                icon: "Cog",
               },
               {
-                title: "Sustainability",
+                title: "Unshakable Integrity",
                 description:
-                  "Bridging the gap between traditional power and the renewable future.",
+                  "We build trust through transparency. We honor our commitments, maintain strict ethical standards, and operate with absolute honesty in every global market.",
+                icon: "HandshakeIcon",
+              },
+              {
+                title: "Sustainable Agility",
+                description:
+                  "We are adaptable and forward-looking. From supercritical thermal overhauls and greenfield solar EPC, to managing the utilities of world-class international airports, we continuously evolve our skills to meet the demands of a changing world.",
                 icon: "Leaf",
               },
             ],
@@ -2312,7 +2309,7 @@ async function main() {
             latestArticleTitle: "The Obra 'C' Thermal Success",
             latestArticleSummary:
               "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh, delivering on time and exceeding quality standards.",
-            latestArticleDate: "March 2024",
+            latestArticleDate: "Sep 2023",
             latestArticleLocation: "Uttar Pradesh, India",
             latestArticleSlug: "obra-c-thermal-success",
             latestArticleImage:
@@ -2393,7 +2390,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh.",
-                date: "March 2024",
+                date: "Sep 2023",
                 location: "Uttar Pradesh, India",
                 readTime: "",
                 image:
@@ -2439,7 +2436,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "O&M services for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
-                date: "2018 & Beyond",
+                date: "Feb 2018",
                 location: "Rajpura, Punjab",
                 readTime: "",
                 image:
@@ -2485,7 +2482,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "End-to-end installation and commissioning of a 10 MWp ground-mounted solar project, turning intense sun into sustainable power.",
-                date: "2013",
+                date: "March 2012",
                 location: "Jainabad, Gujarat",
                 readTime: "",
                 image:

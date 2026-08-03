@@ -1526,7 +1526,7 @@ async function main() {
           type: "ProjectHero",
           order: 0,
           content: {
-            label: "Project Conceptualisation & Development",
+            label: "PROJECT CONCEPTUALIZATION & DEVELOPMENT",
             headingPart1: "Building Your Vision on a ",
             headingHighlight: "Logical Foundation",
             description:
@@ -1549,28 +1549,28 @@ async function main() {
             headingPart1: "Not Just Detailed Engineering. ",
             headingHighlight: "Strategic Development.",
             paragraphs: [
-              'We are not a "detailed engineering" firm that gets lost in the minutiae. We understand that the earliest decisions in a project\'s lifecycle have the most profound impact on its ultimate success.',
+              'We are not "detailed engineering" firms that gets lost in the minutiae. We understand that the earliest decisions in a project lifecycle have the most profound impact on its ultimate success.',
               'By adopting an "Owner\'s Mindset" from the very beginning, we evaluate site conditions, resource potential, and financial models to ensure your investment is built on reality, not just theory. We provide the clarity required for stakeholder confidence and project approval.',
             ],
             features: [
               {
                 title: "Strategic Alignment",
-                desc: "Aligning technical specs with business goals",
+                desc: "Aligning technical goals with business goals.",
                 icon: "Target",
               },
               {
                 title: "Financial Viability",
-                desc: "Rigorous financial and resource assessments",
+                desc: "Rigorous financial and economic analysis.",
                 icon: "FileCheck",
               },
               {
                 title: "Partner Selection",
-                desc: "Finalising the right EPC contractors",
+                desc: "Facilitating the right contracting.",
                 icon: "Users",
               },
               {
                 title: "Risk Mitigation",
-                desc: "Identifying challenges before they arise",
+                desc: "Identifying challenges before they arise.",
                 icon: "ShieldCheck",
               },
             ],
@@ -1586,24 +1586,24 @@ async function main() {
           content: {
             heading: "Our Development Services",
             description:
-              "End-to-end conceptualisation to ensure your project starts strong.",
+              "End-to-end conceptualization to ensure your project starts strong.",
             offerings: [
               {
                 title: "Feasibility & Pre-Feasibility Studies",
                 description:
-                  "We evaluate site conditions and resource potential to ensure your investment is built on reality, not just theory. Our comprehensive studies cover technical, economic, and environmental factors.",
+                  "We evaluate the conditions and resource potential to ensure your investment is built on reality, not just theory. Our comprehensive studies cover technical, economic, and environmental factors.",
                 icon: "Map",
               },
               {
                 title: "Detailed Project Reports (DPR)",
                 description:
-                  "We provide the technical and financial clarity required for stakeholder confidence and project approval. Our DPRs serve as the definitive blueprint for project execution and financing.",
+                  "We provide the technical and financial clarity required for stakeholder confidence and project approval. Our DPRs are an effective blueprint for project execution and financing.",
                 icon: "FileText",
               },
               {
                 title: "Strategic Sourcing & EPC Selection",
                 description:
-                  "We develop rigorous technical specifications and help you finalise EPC contractors, ensuring you have the right partners by your side. We manage the entire tendering and evaluation process.",
+                  "We develop rigorous technical specifications and help you finalize EPC contractors, ensuring you have the right partners by your side. We manage the entire tendering and evaluation process.",
                 icon: "Briefcase",
               },
             ],
@@ -1638,7 +1638,7 @@ async function main() {
           content: {
             heading: "Ready to Build Your Vision?",
             description:
-              "Let's start your project on a logical foundation with our expert conceptualisation and development services.",
+              "Let's start your project on a logical foundation with our expert conceptualization and development services.",
             ctaLabel: "Start the Conversation",
             ctaUrl: "/contact",
           },
@@ -1741,7 +1741,7 @@ async function main() {
           type: "ConstructionHero",
           order: 0,
           content: {
-            label: "Construction, Commissioning & Relocation",
+            label: "CONSTRUCTION, COMMISSIONING & RELOCATION",
             headingPart1: "Bringing Complex ",
             headingHighlight: "Infrastructure to Life",
             description:
@@ -1968,7 +1968,7 @@ async function main() {
               {
                 title: "Restoration Strategy",
                 description:
-                  "For older plants, we provide comprehensive revamping and restoration plans to improve performance, extend lifecycle, and meet modern environmental standards.",
+                  "For older plants, we provide comprehensive revamping and restoration plans to improve performance, extend lifecycle, and meet environmental standards.",
                 icon: "RefreshCw",
               },
             ],
@@ -1993,7 +1993,7 @@ async function main() {
               "Structural integrity and material degradation",
               "Historical O&M records and failure analysis",
               "Environmental compliance and emissions",
-              "Control systems obsolescence",
+              "Control system obsolescence",
               "Thermodynamic performance baseline",
             ],
           },
@@ -2025,7 +2025,7 @@ async function main() {
           type: "SourcingHero",
           order: 0,
           content: {
-            label: "Strategic Global Sourcing",
+            label: "STRATEGIC GLOBAL SOURCING",
             headingPart1: "The Global Link for ",
             headingHighlight: "Critical Equipment",
             description:
@@ -2044,19 +2044,19 @@ async function main() {
               {
                 title: "Global OEM Network",
                 description:
-                  "We have established tie-ups with over 65 major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
+                  "We have established tie-ups with over 85 major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
                 icon: "Globe",
               },
               {
                 title: "Comprehensive Inventory",
                 description:
-                  "We supply everything from high-pressure boiler spares to coal mill rollers, specialized electrical actuators, turbines, and generators.",
+                  "We supply everything from high-pressure boiler spares to coal mill rollers, specialized electrical actuators, and valves.",
                 icon: "Package",
               },
               {
                 title: "Technical Support",
                 description:
-                  "We don’t just supply parts; we provide the engineering support to ensure they are integrated correctly and perform to specification within your existing systems.",
+                  "We don't just supply parts; we provide the engineering support to ensure they are integrated correctly and perform to specification within your existing systems.",
                 icon: "Wrench",
               },
             ],
@@ -2117,7 +2117,7 @@ async function main() {
             heroSubtitle:
               "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
             heroBadge1: "1,800+ Manpower",
-            heroBadge2: "15+ Years Average Experience",
+            heroBadge2: "12+ Years Average Experience",
             heroBadge3: "10+ Countries",
             backgroundImage:
               "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
@@ -2132,14 +2132,14 @@ async function main() {
           type: "LeadershipPhilosophy",
           order: 1,
           content: {
-            philosophyTagline: "Our Philosophy",
-            philosophyHeading: "Leading With an Owner's Mindset",
+            philosophyTagline: "OUR PHILOSOPHY",
+            philosophyHeading: "LEADING WITH AN OWNER'S MINDSET",
             philosophyPara1:
               "At Encotec, leadership is not just about managing teams; it's about taking full accountability for the outcomes we deliver. Our leadership team brings decades of hands-on experience from the world's most complex energy projects.",
             philosophyPara2:
               "We believe that true engineering excellence requires a culture where every team member is empowered to think critically, act decisively, and prioritize long-term asset performance over short-term gains.",
             philosophyQuote:
-              "We don't just manage projects — we take ownership of outcomes, treating every asset as if it were our own.",
+              "We don't just manage projects — we take ownership of outcomes, ensuring every asset is future-ready.",
             philosophyImage:
               "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1200",
           },
@@ -2226,8 +2226,8 @@ async function main() {
             stats1Label: "Total Professionals",
             stats2Value: "300",
             stats2Suffix: "+",
-            stats2Label: "Industry specialists",
-            stats3Value: "10",
+            stats2Label: "Senior Engineers",
+            stats3Value: "23",
             stats3Suffix: "+",
             stats3Label: "Countries of Operation",
             stats4Value: "12",
@@ -2244,16 +2244,16 @@ async function main() {
           type: "CultureValues",
           order: 5,
           content: {
-            tagline: "Our Culture",
-            heading: "What Defines Us",
+            tagline: "OUR CULTURE",
+            heading: "WHAT DEFINES US",
             value1Title: "Technical Mastery",
-            value1Desc: "Deep domain expertise across every discipline",
+            value1Desc: "Deep domain expertise across every discipline.",
             value2Title: "Collaborative Spirit",
-            value2Desc: "Cross-functional teams solving complex challenges",
+            value2Desc: "Cross-functional teamwork solving complex challenges.",
             value3Title: "Global Perspective",
-            value3Desc: "Diverse experiences from 10+ countries",
+            value3Desc: "Diverse experiences from 23+ countries.",
             value4Title: "Continuous Growth",
-            value4Desc: "Investment in learning and professional development",
+            value4Desc: "Investment in learning and professional development.",
           },
         },
       });
@@ -2311,7 +2311,7 @@ async function main() {
             latestArticleTitle: "The Obra 'C' Thermal Success",
             latestArticleSummary:
               "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh, delivering on time and exceeding quality standards.",
-            latestArticleDate: "Sep 2023",
+            latestArticleDate: "March 2024",
             latestArticleLocation: "Uttar Pradesh, India",
             latestArticleSlug: "obra-c-thermal-success",
             latestArticleImage:
@@ -2333,8 +2333,8 @@ async function main() {
             stat2Value: "50",
             stat2Suffix: "+",
             stat2Label: "Articles & Insights",
-            stat3Value: "10",
-            stat3Suffix: "+",
+            stat3Value: "8",
+            stat3Suffix: "",
             stat3Label: "Countries Covered",
             stat4Value: "10",
             stat4Suffix: "K+",
@@ -2392,7 +2392,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh.",
-                date: "Sep 2023",
+                date: "March 2024",
                 location: "Uttar Pradesh, India",
                 readTime: "",
                 image:
@@ -2437,8 +2437,8 @@ async function main() {
                 title: "Ensuring Reliability for Punjab's Power Heart",
                 category: "Case Study",
                 description:
-                  "O&M services for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
-                date: "Feb 2018",
+                  "Comprehensive O&M for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
+                date: "January 2024",
                 location: "Rajpura, Punjab",
                 readTime: "",
                 image:
@@ -2484,7 +2484,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "End-to-end installation and commissioning of a 10 MWp ground-mounted solar project, turning intense sun into sustainable power.",
-                date: "March 2012",
+                date: "November 2023",
                 location: "Jainabad, Gujarat",
                 readTime: "",
                 image:
@@ -2744,7 +2744,7 @@ async function main() {
                 id: 11,
                 slug: "owners-mindset-power-plant-care",
                 title:
-                  "Treating Your Power Plant Like Our Own: The Magic of the Owner's Mindset",
+                  "Treating Your Power Plant Like Our Own: The Owner's Mindset",
                 category: "Blog",
                 description:
                   "What does having an Owner's Mindset mean for the people on the ground? It means our 250+ engineers see a vital asset that supports thousands of lives.",
@@ -2891,13 +2891,14 @@ async function main() {
           type: "CareersHero",
           order: 0,
           content: {
+            heroTagline: "CAREERS AT ENCOTEC",
             heroTitle: "SHAPE THE FUTURE OF GLOBAL ENERGY",
             heroSubtitle:
-              "Join a team of world-class engineers and energy professionals delivering critical infrastructure across 10+ countries.",
+              "Join a team of world-class engineers and energy professionals delivering critical infrastructure across 23+ countries.",
             backgroundImage:
               "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2400",
-            badge1Text: "1,800+ Manpower",
-            badge2Text: "Presence in 10 Countries",
+            badge1Text: "200+ Team Members",
+            badge2Text: "Offices in 8 Countries",
           },
         },
       });
@@ -2909,7 +2910,7 @@ async function main() {
           type: "CareersCulture",
           order: 1,
           content: {
-            cultureTagline: "Why Join Us",
+            cultureTagline: "WHY JOIN US",
             cultureHeading: "Engineering Careers That Matter",
             culturePara1:
               "At Encotec, we don't just build power plants; we engineer the foundation of modern society. Our team works on some of the most complex and critical energy infrastructure projects globally, from massive supercritical thermal plants to utility-scale renewable energy parks.",
@@ -2930,13 +2931,13 @@ async function main() {
           type: "CareersBenefits",
           order: 2,
           content: {
-            tagline: "What We Offer",
+            tagline: "WHAT WE OFFER",
             heading: "Benefits & Perks",
             benefitsList: [
               {
                 title: "Global Exposure",
                 description:
-                  "Work on critical energy infrastructure projects across 10+ countries with diverse international teams.",
+                  "Work on critical energy infrastructure projects across 23+ countries with diverse international teams.",
               },
               {
                 title: "Technical Growth",
@@ -2989,49 +2990,14 @@ async function main() {
                 dept: "Engineering",
                 location: "Dubai, UAE",
                 type: "Full-time",
-                desc: "Conduct energy yield analysis and feasibility studies for solar and wind projects.",
+                desc: "Conduct energy yield analysis for solar and wind projects.",
               },
               {
                 title: "Project Manager — EPC",
                 dept: "Project Management",
-                location: "Ankara, Turkey",
+                location: "Riyadh, KSA",
                 type: "Full-time",
-                desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East & Europe.",
-              },
-              {
-                title: "Commissioning Engineer",
-                dept: "Engineering",
-                location: "Dar es Salaam, Tanzania",
-                type: "Contract",
-                desc: "Oversee testing and commissioning of power generation equipment and systems.",
-              },
-              {
-                title: "O&M Site Manager",
-                dept: "Operations",
-                location: "Rajpura, India",
-                type: "Full-time",
-                desc: "Lead day-to-day operations and maintenance of a 2x700 MW supercritical plant.",
-              },
-              {
-                title: "Electrical Design Engineer",
-                dept: "Engineering",
-                location: "Mumbai, India",
-                type: "Full-time",
-                desc: "Design transmission lines (33kV-765kV) and substation systems (AIS/GIS).",
-              },
-              {
-                title: "Business Development Manager",
-                dept: "Corporate",
-                location: "Singapore",
-                type: "Full-time",
-                desc: "Drive business growth across the Asia-Pacific region for energy services.",
-              },
-              {
-                title: "Quality Assurance Lead",
-                dept: "Operations",
-                location: "Frankfurt, Germany",
-                type: "Full-time",
-                desc: "Implement and oversee quality management systems across European projects.",
+                desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East.",
               },
             ],
           },
@@ -3045,7 +3011,7 @@ async function main() {
           type: "CareersGallery",
           order: 4,
           content: {
-            tagline: "Inside Encotec",
+            tagline: "INSIDE ENCOTEC",
             heading: "Life at Encotec",
             galleryList: [
               {
@@ -3194,9 +3160,11 @@ async function main() {
                 certNumber: "UCSPL09802500815",
                 issueDate: "28/03/2025",
                 expiryDate: "27/03/2028",
-                issuer: "Universal Certification Services Private Limited (UCSPL)",
+                issuer:
+                  "Universal Certification Services Private Limited (UCSPL)",
                 accreditation: "IAF & KAB (KAB-QC-80)",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784530188/encotech/certificates/iso-9001-certificate.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784530188/encotech/certificates/iso-9001-certificate.jpg",
                 scope:
                   "Designing, Consultancy, Engineering, Erection, Commissioning, Inspection, Testing, Operation and Maintenance of Plant and Machinery in Energy & Infrastructure Sector.",
               },
@@ -3208,9 +3176,11 @@ async function main() {
                 certNumber: "UCSPL14612500168",
                 issueDate: "28/03/2025",
                 expiryDate: "27/03/2028",
-                issuer: "Universal Certification Services Private Limited (UCSPL)",
+                issuer:
+                  "Universal Certification Services Private Limited (UCSPL)",
                 accreditation: "IAF & KAB (KAB-EC-61)",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784530189/encotech/certificates/iso-14001-certificate.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784530189/encotech/certificates/iso-14001-certificate.jpg",
                 scope:
                   "Designing, Consultancy, Engineering, Erection, Commissioning, Inspection, Testing, Operation and Maintenance of Plant and Machinery in Energy & Infrastructure Sector.",
               },
@@ -3222,9 +3192,11 @@ async function main() {
                 certNumber: "UCSPL45612500154",
                 issueDate: "28/03/2025",
                 expiryDate: "27/03/2028",
-                issuer: "Universal Certification Services Private Limited (UCSPL)",
+                issuer:
+                  "Universal Certification Services Private Limited (UCSPL)",
                 accreditation: "IAF & KAB (KAB-OC-61)",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784530191/encotech/certificates/iso-45001-certificate.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784530191/encotech/certificates/iso-45001-certificate.jpg",
                 scope:
                   "Designing, Consultancy, Engineering, Erection, Commissioning, Inspection, Testing, Operation and Maintenance of Plant and Machinery in Energy & Infrastructure Sector.",
               },
@@ -3236,9 +3208,11 @@ async function main() {
                 certNumber: "30/DOB/BE/SC/Boil./2025",
                 issueDate: "21/05/2025",
                 expiryDate: "20/05/2027",
-                issuer: "Boiler Directorate, Government of Uttar Pradesh, Kanpur",
+                issuer:
+                  "Boiler Directorate, Government of Uttar Pradesh, Kanpur",
                 accreditation: "Indian Boiler Regulations (IBR 1950)",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784529235/encotech/certificates/ibr-boiler-approval-certificate.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529235/encotech/certificates/ibr-boiler-approval-certificate.jpg",
                 scope:
                   "Certificate of approval as Category 'Special Class (WP > 125 Kg/cm²)' Boiler Erector/Repairer and Steam/Feed Pipe Line Fabricator.",
               },
@@ -3250,9 +3224,11 @@ async function main() {
                 certNumber: "109320520004032024",
                 issueDate: "04/03/2024",
                 expiryDate: "03/03/2027",
-                issuer: "Licensing Board, Industry, Energy & Labour Dept., Govt. of Maharashtra",
+                issuer:
+                  "Licensing Board, Industry, Energy & Labour Dept., Govt. of Maharashtra",
                 accreditation: "Govt. of Maharashtra Energy Dept.",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784529236/encotech/certificates/maharashtra-electrical-license.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529236/encotech/certificates/maharashtra-electrical-license.jpg",
                 scope:
                   "Official License for execution of electrical contractor works and high-voltage power installations in Maharashtra.",
               },
@@ -3266,7 +3242,8 @@ async function main() {
                 expiryDate: "08/08/2046",
                 issuer: "Labour Department, Govt. of NCT of Delhi",
                 accreditation: "Govt. of NCT of Delhi",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784529237/encotech/certificates/delhi-electrical-license.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529237/encotech/certificates/delhi-electrical-license.jpg",
                 scope:
                   "Class-I Electrical Contractor Licence for electrical installation works across National Capital Territory of Delhi.",
               },
@@ -3280,21 +3257,25 @@ async function main() {
                 expiryDate: "24/05/2024",
                 issuer: "ASTI - DIAL (GMRAA), New Delhi",
                 accreditation: "BCAS Accredited ASTI",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784529238/encotech/certificates/avsec-induction-certificate.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529238/encotech/certificates/avsec-induction-certificate.jpg",
                 scope:
                   "Certification of AVSEC Induction Course completion for Aviation Security Compliance Officer at international airports.",
               },
               {
                 id: "bcas-airport-clearance",
                 title: "BCAS Airport Auxiliary Service Clearance",
-                subtitle: "Bureau of Civil Aviation Security, Ministry of Civil Aviation",
+                subtitle:
+                  "Bureau of Civil Aviation Security, Ministry of Civil Aviation",
                 category: "Airport Aviation Security",
                 certNumber: "E20220286415",
                 issueDate: "31/03/2023",
                 expiryDate: "30/03/2028",
-                issuer: "Bureau of Civil Aviation Security (BCAS), Govt. of India",
+                issuer:
+                  "Bureau of Civil Aviation Security (BCAS), Govt. of India",
                 accreditation: "Ministry of Civil Aviation (MoCA)",
-                image: "https://res.cloudinary.com/dpa93copz/image/upload/v1784529239/encotech/certificates/bcas-airport-security-clearance.jpg",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529239/encotech/certificates/bcas-airport-security-clearance.jpg",
                 scope:
                   "Official Security Clearance for Encotec Energy India Pvt. Ltd. and its Directors as Auxiliary Service Provider at Airports.",
               },

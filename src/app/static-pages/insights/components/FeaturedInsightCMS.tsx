@@ -7,6 +7,8 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ImagePickerField } from "@/components/ImagePickerField";
+import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
   latestArticleTitle: "",
@@ -14,7 +16,7 @@ const defaultFormData = {
   latestArticleDate: "",
   latestArticleLocation: "",
   latestArticleSlug: "",
-  latestArticleImage: "",
+  latestArticleImage: null as File | string | null,
   badgeLabel: "",
   btnLabel: ""
 };
@@ -41,16 +43,27 @@ export function FeaturedInsightCMS() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleImageChange = (file: File | string | null) => {
+    setFormData((prev) => ({ ...prev, latestArticleImage: file }));
+  };
+
   const handleSave = async () => {
     setIsSaving(true);
     const toastId = toast.loading("Saving Featured Article Section...");
     try {
+      // Upload image file if needed
+      const [uploadedUrl] = await uploadFiles([formData.latestArticleImage]);
+      const payload = {
+        ...formData,
+        latestArticleImage: uploadedUrl || (typeof formData.latestArticleImage === "string" ? formData.latestArticleImage : ""),
+      };
+
       const res = await fetch("/api/insights", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           section: "FeaturedInsight",
-          content: formData,
+          content: payload,
         }),
       });
       const json = await res.json();
@@ -58,6 +71,7 @@ export function FeaturedInsightCMS() {
         toast.success("Featured Article Section saved successfully!", {
           id: toastId,
         });
+        setFormData((prev) => ({ ...prev, latestArticleImage: payload.latestArticleImage }));
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -96,7 +110,7 @@ export function FeaturedInsightCMS() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
             <InputField
               label="Article URL Slug"
               name="latestArticleSlug"
@@ -104,12 +118,11 @@ export function FeaturedInsightCMS() {
               onChange={handleChange}
               required
             />
-            <InputField
-              label="Featured Image URL"
-              name="latestArticleImage"
+            <ImagePickerField
+              label="Featured Article Cover Image"
               value={formData.latestArticleImage}
-              onChange={handleChange}
-              required
+              onChange={handleImageChange}
+              sublabel="Drag and drop or browse featured cover image"
             />
           </div>
 

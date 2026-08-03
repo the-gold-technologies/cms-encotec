@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
@@ -8,13 +8,14 @@ import { SaveButton } from "@/components/SaveButton";
 import { TextAreaField } from "@/components/TextAreaField";
 import { uploadFiles } from "@/lib/uploadHelpers";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ImagePickerField } from "@/components/ImagePickerField";
 
 interface ProjectItem {
   title: string;
   location: string;
   category: string;
   description: string;
-  image: string;
+  image: File | string | null;
 }
 
 const defaultFormData = {
@@ -27,14 +28,14 @@ const defaultFormData = {
       location: "",
       category: "",
       description: "",
-      image: ""
+      image: null as File | string | null
     },
     {
       title: "",
       location: "",
       category: "",
       description: "",
-      image: ""
+      image: null as File | string | null
     }
   ]
 };
@@ -46,7 +47,7 @@ const mergeDefaults = (data: any) => {
   } else {
     const arr = [...merged.projects];
     while (arr.length < 2) {
-      const def = defaultFormData.projects[arr.length] || { title: "", location: "", category: "", description: "", image: "" };
+      const def = defaultFormData.projects[arr.length] || { title: "", location: "", category: "", description: "", image: null };
       arr.push({ ...def });
     }
     merged.projects = arr.slice(0, 2);
@@ -85,7 +86,6 @@ export function ProjectShowcaseSection({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
-  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -107,30 +107,13 @@ export function ProjectShowcaseSection({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleProjectChange = (index: number, key: keyof ProjectItem, value: string) => {
+  const handleProjectChange = (index: number, key: keyof ProjectItem, value: File | string | null) => {
     setFormData((prev) => {
       const updated = prev.projects.map((p, idx) =>
         idx === index ? { ...p, [key]: value } : p
       );
       return { ...prev, projects: updated };
     });
-  };
-
-  const handleFileChange = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const toastId = toast.loading(`Uploading image for Case Study ${index + 1}...`);
-      try {
-        const urls = await uploadFiles([file]);
-        if (urls[0]) {
-          handleProjectChange(index, "image", urls[0]);
-          toast.success("Image uploaded successfully!", { id: toastId });
-        }
-      } catch (err) {
-        console.error(err);
-        toast.error("Upload failed.", { id: toastId });
-      }
-    }
   };
 
   const handleSave = async () => {
@@ -149,9 +132,23 @@ export function ProjectShowcaseSection({
     setIsSaving(true);
     const toastId = toast.loading("Saving Case Studies showcase section...");
     try {
+      // Upload any File objects in projects
+      const imageSources = formData.projects.map((p) => p.image);
+      const uploadedUrls = await uploadFiles(imageSources);
+
+      const processedProjects = formData.projects.map((p, idx) => ({
+        ...p,
+        image: uploadedUrls[idx] || "",
+      }));
+
+      const payload = {
+        ...formData,
+        projects: processedProjects,
+      };
+
       const body = sectionId
-        ? { id: sectionId, content: formData }
-        : { section: responseKey ?? "ProjectShowcaseSection", content: formData };
+        ? { id: sectionId, content: payload }
+        : { section: responseKey ?? "ProjectShowcaseSection", content: payload };
 
       const res = await fetch(sectionId ? `/api/sections` : saveUrl, {
         method: "PUT",
@@ -162,7 +159,8 @@ export function ProjectShowcaseSection({
       const json = await res.json();
       if (json.success) {
         toast.success("Case Studies section saved successfully!", { id: toastId });
-        if (onSave) onSave(formData as unknown as Record<string, unknown>);
+        setFormData((prev) => ({ ...prev, projects: processedProjects }));
+        if (onSave) onSave(payload as unknown as Record<string, unknown>);
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -261,41 +259,13 @@ export function ProjectShowcaseSection({
                         rows={3}
                       />
 
-                      {/* Image selector */}
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
-                          Case Study Showcase Image URL
-                        </label>
-                        <div className="flex gap-3 items-center">
-                          <input
-                            type="text"
-                            value={project.image}
-                            onChange={(e) => handleProjectChange(i, "image", e.target.value)}
-                            placeholder="Image url path..."
-                            className="flex-1 px-6 py-4 bg-white border border-gray-200 text-sm rounded-2xl focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 transition-all text-xs"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => fileInputRefs.current[i]?.click()}
-                            className="bg-gray-950 hover:bg-gray-800 text-white font-bold text-[10px] px-4 py-4 rounded-2xl transition-all cursor-pointer whitespace-nowrap"
-                          >
-                            Upload File
-                          </button>
-                          <input
-                            type="file"
-                            ref={(el) => { fileInputRefs.current[i] = el; }}
-                            onChange={(e) => handleFileChange(i, e)}
-                            accept="image/*"
-                            className="hidden"
-                          />
-                        </div>
-                        {project.image && (
-                          <div className="mt-2 w-full h-36 rounded-lg overflow-hidden border border-gray-200">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                          </div>
-                        )}
-                      </div>
+                      {/* Image picker */}
+                      <ImagePickerField
+                        label={`Case Study Showcase Image #${i + 1}`}
+                        value={project.image}
+                        onChange={(file) => handleProjectChange(i, "image", file)}
+                        sublabel="Drag and drop or browse case study image asset"
+                      />
                     </div>
                   ))}
                 </div>

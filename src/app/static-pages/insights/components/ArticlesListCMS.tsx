@@ -8,6 +8,9 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ContentBlocksEditor } from "@/components/ContentBlocksEditor";
+import { ImagePickerField } from "@/components/ImagePickerField";
+import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
   emptyMessage: "",
@@ -535,11 +538,19 @@ export function ArticlesListCMS() {
   const handleArticleFieldChange = (
     index: number,
     field: string,
-    value: string,
+    value: any,
   ) => {
     setFormData((prev) => {
       const updatedList = [...prev.articles];
       updatedList[index] = { ...updatedList[index], [field]: value };
+      return { ...prev, articles: updatedList };
+    });
+  };
+
+  const handleContentBlocksChange = (index: number, newBlocks: any[]) => {
+    setFormData((prev) => {
+      const updatedList = [...prev.articles];
+      updatedList[index] = { ...updatedList[index], content: newBlocks };
       return { ...prev, articles: updatedList };
     });
   };
@@ -616,15 +627,21 @@ export function ArticlesListCMS() {
       return;
     }
 
-    // Clean rawContent temp fields before saving
-    const cleanArticles = formData.articles.map((art: any) => {
-      const { rawContent, ...rest } = art;
-      return rest;
-    });
-
     setIsSaving(true);
     const toastId = toast.loading("Saving Insights & Case Studies List...");
     try {
+      // Upload any File objects in article cover images
+      const imageSources = formData.articles.map((art: any) => art.image);
+      const uploadedUrls = await uploadFiles(imageSources);
+
+      const cleanArticles = formData.articles.map((art: any, i: number) => {
+        const { rawContent, ...rest } = art;
+        return {
+          ...rest,
+          image: uploadedUrls[i] || (typeof art.image === "string" ? art.image : ""),
+        };
+      });
+
       const res = await fetch("/api/insights", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -636,6 +653,7 @@ export function ArticlesListCMS() {
       const json = await res.json();
       if (json.success) {
         toast.success("Insights list saved successfully!", { id: toastId });
+        setFormData((prev) => ({ ...prev, articles: cleanArticles }));
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -723,7 +741,7 @@ export function ArticlesListCMS() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                   <InputField
                     label="Unique URL Slug"
                     value={art.slug}
@@ -733,13 +751,13 @@ export function ArticlesListCMS() {
                     required
                   />
 
-                  <InputField
-                    label="Cover Image URL"
+                  <ImagePickerField
+                    label="Article Cover Image"
                     value={art.image}
-                    onChange={(e) =>
-                      handleArticleFieldChange(idx, "image", e.target.value)
+                    onChange={(file) =>
+                      handleArticleFieldChange(idx, "image", file)
                     }
-                    required
+                    sublabel="Drag and drop or browse cover image file"
                   />
                 </div>
 
@@ -780,30 +798,10 @@ export function ArticlesListCMS() {
                   required
                 />
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                    Rich Content Blocks JSON (Paragraphs, Headings, Quotes,
-                    Lists)
-                  </label>
-                  <textarea
-                    value={
-                      art.rawContent !== undefined
-                        ? art.rawContent
-                        : JSON.stringify(art.content, null, 2)
-                    }
-                    onChange={(e) =>
-                      handleContentJSONChange(idx, e.target.value)
-                    }
-                    rows={8}
-                    className="w-full font-mono p-4 border border-gray-200 rounded text-xs focus:outline-none focus:border-brand-pink"
-                    required
-                  />
-                  <span className="text-[10px] text-gray-400">
-                    Format: [{"{"} "type": "paragraph" | "heading" | "quote",
-                    "text": "..." {"}"}, {"{"} "type": "list", "items":
-                    ["item1", "item2"] {"}"}]
-                  </span>
-                </div>
+                <ContentBlocksEditor
+                  blocks={art.content || []}
+                  onChange={(newBlocks) => handleContentBlocksChange(idx, newBlocks)}
+                />
               </div>
             ))}
           </div>

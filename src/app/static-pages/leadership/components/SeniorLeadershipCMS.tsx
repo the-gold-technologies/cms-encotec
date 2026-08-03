@@ -2,45 +2,63 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
+import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
+interface HeadProfile {
+  name: string;
+  role: string;
+  bio: string;
+}
+
+const emptyHead = (): HeadProfile => ({ name: "", role: "", bio: "" });
+
 const defaultFormData = {
   tagline: "",
   heading: "",
-  leader1Name: "",
-  leader1Role: "",
-  leader1Bio: "",
-  leader2Name: "",
-  leader2Role: "",
-  leader2Bio: "",
-  leader3Name: "",
-  leader3Role: "",
-  leader3Bio: "",
-  leader4Name: "",
-  leader4Role: "",
-  leader4Bio: "",
-  leader5Name: "",
-  leader5Role: "",
-  leader5Bio: "",
-  leader6Name: "",
-  leader6Role: "",
-  leader6Bio: ""
 };
 
 export function SeniorLeadershipCMS() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [headsList, setHeadsList] = useState<HeadProfile[]>([emptyHead()]);
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     fetchWithCache("/api/leadership")
       .then((json) => {
         if (json.success && json.data?.SeniorLeadership) {
-          setFormData({ ...defaultFormData, ...json.data.SeniorLeadership });
+          const data = json.data.SeniorLeadership;
+          setFormData({
+            tagline: data.tagline || "",
+            heading: data.heading || "",
+          });
+
+          if (Array.isArray(data.heads) && data.heads.length > 0) {
+            setHeadsList(
+              data.heads.map((item: any) => ({
+                name: item?.name || "",
+                role: item?.role || "",
+                bio: item?.bio || "",
+              }))
+            );
+          } else {
+            const legacy: HeadProfile[] = [];
+            for (let i = 1; i <= 6; i++) {
+              if (data[`leader${i}Name`] || data[`leader${i}Role`]) {
+                legacy.push({
+                  name: data[`leader${i}Name`] || "",
+                  role: data[`leader${i}Role`] || "",
+                  bio: data[`leader${i}Bio`] || "",
+                });
+              }
+            }
+            setHeadsList(legacy.length > 0 ? legacy : [emptyHead()]);
+          }
         }
       })
       .catch(console.error);
@@ -53,16 +71,51 @@ export function SeniorLeadershipCMS() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleHeadChange = (index: number, field: keyof HeadProfile, value: string) => {
+    setHeadsList((prev) =>
+      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
+    );
+  };
+
+  const addHead = () => {
+    setHeadsList((prev) => [...prev, emptyHead()]);
+    toast.success("Added new department head profile");
+  };
+
+  const deleteHead = (index: number) => {
+    if (headsList.length <= 1) {
+      toast.error("At least 1 department head profile is required");
+      return;
+    }
+    setHeadsList((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed department head profile");
+  };
+
   const handleSave = async () => {
     setIsSaving(true);
     const toastId = toast.loading("Saving Senior Leadership Section...");
     try {
+      const payload: any = {
+        tagline: formData.tagline,
+        heading: formData.heading,
+        heads: headsList,
+      };
+
+      headsList.forEach((head, i) => {
+        const num = i + 1;
+        if (num <= 6) {
+          payload[`leader${num}Name`] = head.name;
+          payload[`leader${num}Role`] = head.role;
+          payload[`leader${num}Bio`] = head.bio;
+        }
+      });
+
       const res = await fetch("/api/leadership", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           section: "SeniorLeadership",
-          content: formData,
+          content: payload,
         }),
       });
       const json = await res.json();
@@ -85,7 +138,7 @@ export function SeniorLeadershipCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Department Heads"
-        description="Manage tagline, heading, profiles, and roles of VP leaders and department engineers."
+        description="Manage tagline, heading, profiles, and roles of VP leaders and department engineers. Add or remove profiles dynamically."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -107,43 +160,66 @@ export function SeniorLeadershipCMS() {
               required
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {Array.from({ length: 6 }).map((_, i) => {
-              const num = i + 1;
-              return (
-                <div
-                  key={i}
-                  className="p-5 bg-gray-50/30 border border-gray-100 rounded-xl flex flex-col gap-4"
-                >
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
-                    Head profile {num}
-                  </span>
-                  <InputField
-                    label="Name"
-                    name={`leader${num}Name`}
-                    value={(formData as any)[`leader${num}Name`]}
-                    onChange={handleChange}
-                    required
-                  />
-                  <InputField
-                    label="Role"
-                    name={`leader${num}Role`}
-                    value={(formData as any)[`leader${num}Role`]}
-                    onChange={handleChange}
-                    required
-                  />
-                  <TextAreaField
-                    label="Short Bio"
-                    name={`leader${num}Bio`}
-                    value={(formData as any)[`leader${num}Bio`]}
-                    onChange={handleChange}
-                    rows={3}
-                    required
-                  />
-                </div>
-              );
-            })}
+
+          <div className="flex items-center justify-between border-b border-gray-100 pb-3 mt-2">
+            <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+              Department Head Profiles <span className="text-neutral-600 font-semibold">({headsList.length})</span>
+            </span>
+            <button
+              type="button"
+              onClick={addHead}
+              className="flex items-center gap-1.5 text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 active:scale-95 transition-all px-3.5 py-2 rounded-lg shadow-sm cursor-pointer"
+            >
+              <Plus size={14} />
+              <span>Add Head Profile</span>
+            </button>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {headsList.map((head, i) => (
+              <div
+                key={i}
+                className="p-5 bg-gray-50/30 border border-gray-100 rounded-xl flex flex-col gap-4 relative group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+                    Head profile {i + 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => deleteHead(i)}
+                    className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                    title="Delete Head Profile"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+                <InputField
+                  label="Name"
+                  name={`leader${i + 1}Name`}
+                  value={head.name}
+                  onChange={(e) => handleHeadChange(i, "name", e.target.value)}
+                  required
+                />
+                <InputField
+                  label="Role"
+                  name={`leader${i + 1}Role`}
+                  value={head.role}
+                  onChange={(e) => handleHeadChange(i, "role", e.target.value)}
+                  required
+                />
+                <TextAreaField
+                  label="Short Bio"
+                  name={`leader${i + 1}Bio`}
+                  value={head.bio}
+                  onChange={(e) => handleHeadChange(i, "bio", e.target.value)}
+                  rows={3}
+                  required
+                />
+              </div>
+            ))}
+          </div>
+
           <div className="flex justify-end pt-4 border-t border-gray-50">
             <SaveButton
               onClick={handleSave}

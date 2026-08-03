@@ -2,29 +2,27 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
+import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 
+interface IndustryItem {
+  name: string;
+  subtitle: string;
+  icon: string;
+}
+
+const emptyIndustry = (): IndustryItem => ({
+  name: "",
+  subtitle: "",
+  icon: "Briefcase",
+});
+
 const defaultFormData = {
   heading: "",
   description: "",
-  industryName0: "",
-  industrySubtitle0: "",
-  industryIcon0: "",
-  industryName1: "",
-  industrySubtitle1: "",
-  industryIcon1: "",
-  industryName2: "",
-  industrySubtitle2: "",
-  industryIcon2: "",
-  industryName3: "",
-  industrySubtitle3: "",
-  industryIcon3: "",
-  industryName4: "",
-  industrySubtitle4: "",
-  industryIcon4: ""
 };
 
 interface IndustriesSectionCMSProps {
@@ -58,20 +56,37 @@ export function IndustriesSectionCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [industriesList, setIndustriesList] = useState<IndustryItem[]>([emptyIndustry()]);
 
   useEffect(() => {
     const unpackData = (data: any) => {
-      const list = (data.industries as any[]) || [];
-      const updated: any = {
+      setFormData({
         heading: data.heading || "",
         description: data.description || "",
-      };
-      for (let i = 0; i < 5; i++) {
-        updated[`industryName${i}`] = list[i]?.name || "";
-        updated[`industrySubtitle${i}`] = list[i]?.subtitle || "";
-        updated[`industryIcon${i}`] = list[i]?.icon || "";
+      });
+
+      const list = (data.industries as any[]) || [];
+      if (Array.isArray(list) && list.length > 0) {
+        setIndustriesList(
+          list.map((item: any) => ({
+            name: item?.name || "",
+            subtitle: item?.subtitle || "",
+            icon: item?.icon || "Briefcase",
+          }))
+        );
+      } else {
+        const legacy: IndustryItem[] = [];
+        for (let i = 0; i < 5; i++) {
+          if (data[`industryName${i}`] || data[`industrySubtitle${i}`]) {
+            legacy.push({
+              name: data[`industryName${i}`] || "",
+              subtitle: data[`industrySubtitle${i}`] || "",
+              icon: data[`industryIcon${i}`] || "Briefcase",
+            });
+          }
+        }
+        setIndustriesList(legacy.length > 0 ? legacy : [emptyIndustry()]);
       }
-      setFormData(updated);
     };
 
     if (initialData) {
@@ -95,16 +110,36 @@ export function IndustriesSectionCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleIndustryChange = (index: number, field: keyof IndustryItem, value: string) => {
+    setIndustriesList((prev) =>
+      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
+    );
+  };
+
+  const addIndustry = () => {
+    setIndustriesList((prev) => [...prev, emptyIndustry()]);
+    toast.success("Added new industry card");
+  };
+
+  const deleteIndustry = (index: number) => {
+    if (industriesList.length <= 1) {
+      toast.error("At least 1 industry card is required");
+      return;
+    }
+    setIndustriesList((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed industry card");
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.heading?.trim()) errs.push("Heading is required");
     if (!formData.description?.trim()) errs.push("Description is required");
 
-    for (let i = 0; i < 5; i++) {
-      if (!(formData as any)[`industryName${i}`]?.trim()) errs.push(`Industry Card ${i + 1} Name is required`);
-      if (!(formData as any)[`industrySubtitle${i}`]?.trim()) errs.push(`Industry Card ${i + 1} Subtitle is required`);
-      if (!(formData as any)[`industryIcon${i}`]?.trim()) errs.push(`Industry Card ${i + 1} Icon is required`);
-    }
+    industriesList.forEach((ind, i) => {
+      if (!ind.name?.trim()) errs.push(`Industry Card ${i + 1} Name is required`);
+      if (!ind.subtitle?.trim()) errs.push(`Industry Card ${i + 1} Subtitle is required`);
+      if (!ind.icon?.trim()) errs.push(`Industry Card ${i + 1} Icon is required`);
+    });
 
     if (errs.length > 0) {
       errs.forEach((msg) => toast.error(msg));
@@ -114,17 +149,19 @@ export function IndustriesSectionCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Industries section...");
     try {
-      const industries = Array.from({ length: 5 }).map((_, i) => ({
-        name: (formData as any)[`industryName${i}`],
-        subtitle: (formData as any)[`industrySubtitle${i}`],
-        icon: (formData as any)[`industryIcon${i}`],
-      }));
-
-      const payload = {
+      const payload: any = {
         heading: formData.heading,
         description: formData.description,
-        industries,
+        industries: industriesList,
       };
+
+      industriesList.forEach((ind, i) => {
+        if (i < 5) {
+          payload[`industryName${i}`] = ind.name;
+          payload[`industrySubtitle${i}`] = ind.subtitle;
+          payload[`industryIcon${i}`] = ind.icon;
+        }
+      });
 
       const body = sectionId
         ? { id: sectionId, content: payload }
@@ -156,7 +193,7 @@ export function IndustriesSectionCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Industries We Serve Section"
-          description="Manage industries header, general descriptions, and 5 sector highlight cards."
+          description="Manage industries header, general descriptions, and sector highlight cards. Add or delete cards dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -190,38 +227,58 @@ export function IndustriesSectionCMS({
                   />
                 </div>
 
-                {/* Industry Cards */}
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4 animate-in">
-                  Edit 5 Industry Cards
-                </span>
+                <div className="flex items-center justify-between border-b border-gray-100 pb-3 mt-4">
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Industry Cards <span className="text-blue-500 font-semibold">({industriesList.length})</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={addIndustry}
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3.5 py-2 rounded-lg shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add Industry Card</span>
+                  </button>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm">
-                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                        Industry Card {i + 1}
-                      </span>
+                  {industriesList.map((ind, i) => (
+                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                          Industry Card {i + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => deleteIndustry(i)}
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                          title="Delete Industry Card"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                       <InputField
                         label="Industry Name"
                         name={`industryName${i}`}
-                        value={(formData as any)[`industryName${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. Power Generation"
+                        value={ind.name}
+                        onChange={(e) => handleIndustryChange(i, "name", e.target.value)}
+                        placeholder="e.g. Thermal Power"
                         required
                       />
                       <InputField
-                        label="Subtitle"
+                        label="Subtitle / Summary"
                         name={`industrySubtitle${i}`}
-                        value={(formData as any)[`industrySubtitle${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. Thermal & Renewable"
+                        value={ind.subtitle}
+                        onChange={(e) => handleIndustryChange(i, "subtitle", e.target.value)}
+                        placeholder="e.g. Coal & Gas fired assets"
                         required
                       />
                       <InputField
-                        label="Lucide Icon (e.g. Flame, Network, Building, Plane, Zap...)"
+                        label="Lucide Icon Name"
                         name={`industryIcon${i}`}
-                        value={(formData as any)[`industryIcon${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. Flame"
+                        value={ind.icon}
+                        onChange={(e) => handleIndustryChange(i, "icon", e.target.value)}
+                        placeholder="e.g. Flame, Zap, Wind, Sun..."
                         required
                       />
                     </div>

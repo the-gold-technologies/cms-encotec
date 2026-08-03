@@ -28,197 +28,142 @@ const defaultFormData = {
   heading: "",
   description: "",
   stats: [
-    {
-      value: "",
-      label: ""
-    },
-    {
-      value: "",
-      label: ""
-    },
-    {
-      value: "",
-      label: ""
-    }
+    { value: "", label: "" },
+    { value: "", label: "" },
+    { value: "", label: "" },
+    { value: "", label: "" },
+    { value: "", label: "" },
   ],
   locations: [
     {
       name: "",
-      coordinates: [
-        77.39,
-        28.58
-      ],
+      coordinates: [77.39, 28.58],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        32.86,
-        39.93
-      ],
+      coordinates: [32.86, 39.93],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        50.58,
-        26.07
-      ],
+      coordinates: [50.58, 26.07],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        55.27,
-        25.2
-      ],
+      coordinates: [55.27, 25.2],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        106.84,
-        -6.21
-      ],
+      coordinates: [106.84, -6.21],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        105.83,
-        21.03
-      ],
+      coordinates: [105.83, 21.03],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        13.4,
-        52.52
-      ],
+      coordinates: [13.4, 52.52],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        39.2,
-        -6.79
-      ],
+      coordinates: [39.2, -6.79],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        116.4,
-        39.9
-      ],
+      coordinates: [116.4, 39.9],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        15.98,
-        45.81
-      ],
+      coordinates: [15.98, 45.81],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        80.3,
-        26.47
-      ],
+      coordinates: [80.3, 26.47],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        77.55,
-        28.13
-      ],
+      coordinates: [77.55, 28.13],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        79.91,
-        27.88
-      ],
+      coordinates: [79.91, 27.88],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        83.95,
-        24.65
-      ],
+      coordinates: [83.95, 24.65],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        32.86,
-        39.93
-      ],
+      coordinates: [32.86, 39.93],
       region: "",
       address: "",
       suite: "",
-      phone: ""
+      phone: "",
     },
     {
       name: "",
-      coordinates: [
-        50.58,
-        26.07
-      ],
+      coordinates: [50.58, 26.07],
       region: "",
       address: "",
       suite: "",
-      phone: ""
-    }
-  ]
+      phone: "",
+    },
+  ],
 };
 
 const mergeDefaults = (data: any) => {
@@ -227,11 +172,11 @@ const mergeDefaults = (data: any) => {
     merged.stats = defaultFormData.stats.map((s) => ({ ...s }));
   } else {
     const arr = [...merged.stats];
-    while (arr.length < 3) {
+    while (arr.length < 5) {
       const def = defaultFormData.stats[arr.length] || { value: "", label: "" };
       arr.push({ ...def });
     }
-    merged.stats = arr.slice(0, 3);
+    merged.stats = arr;
   }
   if (!merged.locations || !Array.isArray(merged.locations)) {
     merged.locations = defaultFormData.locations.map((l) => ({ ...l }));
@@ -317,6 +262,26 @@ export function GlobalFootprintSection({
       );
       return { ...prev, stats: updated };
     });
+  };
+
+  const addStat = () => {
+    setFormData((prev) => ({
+      ...prev,
+      stats: [...prev.stats, { value: "", label: "" }],
+    }));
+    toast.success("Added new footprint stat card");
+  };
+
+  const deleteStat = (index: number) => {
+    if (formData.stats.length <= 1) {
+      toast.error("At least 1 footprint stat card is required");
+      return;
+    }
+    setFormData((prev) => ({
+      ...prev,
+      stats: prev.stats.filter((_, i) => i !== index),
+    }));
+    toast.success("Removed stat card");
   };
 
   const handleLocationFieldChange = (
@@ -481,18 +446,42 @@ export function GlobalFootprintSection({
 
               {/* Statistics Grid */}
               <div className="flex flex-col gap-3">
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">
-                  Footprint Statistics (3 Items)
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Footprint Statistics{" "}
+                    <span className="text-emerald-600 font-semibold">
+                      ({formData.stats.length} Items)
+                    </span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={addStat}
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 transition-all px-3.5 py-2 rounded-lg shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add Footprint Stat</span>
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                   {formData.stats.map((stat, i) => (
                     <div
                       key={i}
-                      className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3"
+                      className="border border-gray-200 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3 relative group shadow-sm"
                     >
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                        Stat {i + 1}
-                      </span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">
+                          Stat {i + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => deleteStat(i)}
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                          title="Delete Stat Card"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                       <InputField
                         label="Value"
                         value={stat.value}
@@ -500,6 +489,7 @@ export function GlobalFootprintSection({
                           handleStatChange(i, "value", e.target.value)
                         }
                         placeholder="e.g. 14+"
+                        required
                       />
                       <InputField
                         label="Label"
@@ -508,6 +498,7 @@ export function GlobalFootprintSection({
                           handleStatChange(i, "label", e.target.value)
                         }
                         placeholder="e.g. India Locations"
+                        required
                       />
                     </div>
                   ))}

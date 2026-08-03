@@ -434,6 +434,8 @@ async function main() {
               { value: "10+", label: "GLOBAL LOCATIONS" },
               { value: "10+ GW", label: "CAPACITY" },
               { value: "1,800+", label: "MANPOWER" },
+              { value: "300+", label: "ENGINEERS" },
+              { value: "100+", label: "INDUSTRY SPECIALISTS" },
             ],
             locations: [
               {

@@ -2,28 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
+import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
+interface TimelinePhase {
+  title: string;
+  description: string;
+}
+
+const emptyPhase = (): TimelinePhase => ({ title: "", description: "" });
+
 const defaultFormData = {
   tagline: "",
   heading: "",
   description: "",
-  phaseTitle0: "",
-  phaseDesc0: "",
-  phaseTitle1: "",
-  phaseDesc1: "",
-  phaseTitle2: "",
-  phaseDesc2: "",
-  phaseTitle3: "",
-  phaseDesc3: "",
-  phaseTitle4: "",
-  phaseDesc4: "",
-  phaseTitle5: "",
-  phaseDesc5: ""
 };
 
 interface TimelineCMSProps {
@@ -57,20 +53,37 @@ export function TimelineCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [phasesList, setPhasesList] = useState<TimelinePhase[]>([emptyPhase()]);
 
   useEffect(() => {
     const unpackData = (data: any) => {
-      const list = (data.phases as any[]) || [];
-      const updated: any = {
+      setFormData({
         tagline: data.tagline || "",
         heading: data.heading || "",
         description: data.description || "",
-      };
-      for (let i = 0; i < 6; i++) {
-        updated[`phaseTitle${i}`] = list[i]?.title || "";
-        updated[`phaseDesc${i}`] = list[i]?.description || "";
+      });
+
+      const list = (data.phases as any[]) || [];
+      if (Array.isArray(list) && list.length > 0) {
+        setPhasesList(
+          list.map((item: any) => ({
+            title: item?.title || "",
+            description: item?.description || item?.desc || "",
+          }))
+        );
+      } else {
+        // Fallback from legacy phaseTitle0..5
+        const legacy: TimelinePhase[] = [];
+        for (let i = 0; i < 6; i++) {
+          if (data[`phaseTitle${i}`] || data[`phaseDesc${i}`]) {
+            legacy.push({
+              title: data[`phaseTitle${i}`] || "",
+              description: data[`phaseDesc${i}`] || "",
+            });
+          }
+        }
+        setPhasesList(legacy.length > 0 ? legacy : [emptyPhase()]);
       }
-      setFormData(updated);
     };
 
     if (initialData) {
@@ -94,16 +107,36 @@ export function TimelineCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handlePhaseChange = (index: number, field: keyof TimelinePhase, value: string) => {
+    setPhasesList((prev) =>
+      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
+    );
+  };
+
+  const addPhase = () => {
+    setPhasesList((prev) => [...prev, emptyPhase()]);
+    toast.success("Added new timeline phase card");
+  };
+
+  const deletePhase = (index: number) => {
+    if (phasesList.length <= 1) {
+      toast.error("At least 1 timeline phase card is required");
+      return;
+    }
+    setPhasesList((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed timeline phase card");
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
     if (!formData.heading?.trim()) errs.push("Heading is required");
     if (!formData.description?.trim()) errs.push("Description is required");
 
-    for (let i = 0; i < 6; i++) {
-      if (!(formData as any)[`phaseTitle${i}`]?.trim()) errs.push(`Phase ${i + 1} Title is required`);
-      if (!(formData as any)[`phaseDesc${i}`]?.trim()) errs.push(`Phase ${i + 1} Description is required`);
-    }
+    phasesList.forEach((phase, i) => {
+      if (!phase.title?.trim()) errs.push(`Phase ${i + 1} Title is required`);
+      if (!phase.description?.trim()) errs.push(`Phase ${i + 1} Description is required`);
+    });
 
     if (errs.length > 0) {
       errs.forEach((msg) => toast.error(msg));
@@ -113,17 +146,20 @@ export function TimelineCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Timeline section...");
     try {
-      const phases = Array.from({ length: 6 }).map((_, i) => ({
-        title: (formData as any)[`phaseTitle${i}`],
-        description: (formData as any)[`phaseDesc${i}`],
-      }));
-
-      const payload = {
+      const payload: any = {
         tagline: formData.tagline,
         heading: formData.heading,
         description: formData.description,
-        phases,
+        phases: phasesList,
       };
+
+      // Keep legacy properties synced
+      phasesList.forEach((phase, i) => {
+        if (i < 6) {
+          payload[`phaseTitle${i}`] = phase.title;
+          payload[`phaseDesc${i}`] = phase.description;
+        }
+      });
 
       const body = sectionId
         ? { id: sectionId, content: payload }
@@ -155,7 +191,7 @@ export function TimelineCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Timeline of Growth Section"
-          description="Manage timeline badges, headers, and historical milestones."
+          description="Manage timeline badges, headers, and historical milestones. Add or delete phases dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -199,29 +235,50 @@ export function TimelineCMS({
                   required
                 />
 
-                {/* Timeline Phases */}
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4">
-                  Edit 6 Timeline Phases
-                </span>
+                {/* Timeline Phases Header */}
+                <div className="flex items-center justify-between border-b border-gray-100 pb-3 mt-4">
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Timeline Phases <span className="text-blue-500 font-semibold">({phasesList.length})</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={addPhase}
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3.5 py-2 rounded-lg shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add Timeline Phase</span>
+                  </button>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm">
-                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                        Phase {i + 1}
-                      </span>
+                  {phasesList.map((phase, i) => (
+                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                          Phase {i + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => deletePhase(i)}
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                          title="Delete Phase"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                       <InputField
                         label="Phase Title (e.g. Year & Milestone)"
                         name={`phaseTitle${i}`}
-                        value={(formData as any)[`phaseTitle${i}`]}
-                        onChange={handleChange}
+                        value={phase.title}
+                        onChange={(e) => handlePhaseChange(i, "title", e.target.value)}
                         placeholder="e.g. 2011–2012: Construction Beginnings"
                         required
                       />
                       <TextAreaField
                         label="Phase Description"
                         name={`phaseDesc${i}`}
-                        value={(formData as any)[`phaseDesc${i}`]}
-                        onChange={handleChange}
+                        value={phase.description}
+                        onChange={(e) => handlePhaseChange(i, "description", e.target.value)}
                         placeholder="Description of the milestone..."
                         rows={3}
                         required

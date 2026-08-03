@@ -14,58 +14,9 @@ const defaultFormData = {
   jobsList: [
     {
       title: "",
-      dept: "",
+      dept: "Engineering",
       location: "",
-      type: "",
-      desc: ""
-    },
-    {
-      title: "",
-      dept: "",
-      location: "",
-      type: "",
-      desc: ""
-    },
-    {
-      title: "",
-      dept: "",
-      location: "",
-      type: "",
-      desc: ""
-    },
-    {
-      title: "",
-      dept: "",
-      location: "",
-      type: "",
-      desc: ""
-    },
-    {
-      title: "",
-      dept: "",
-      location: "",
-      type: "",
-      desc: ""
-    },
-    {
-      title: "",
-      dept: "",
-      location: "",
-      type: "",
-      desc: ""
-    },
-    {
-      title: "",
-      dept: "",
-      location: "",
-      type: "",
-      desc: ""
-    },
-    {
-      title: "",
-      dept: "",
-      location: "",
-      type: "",
+      type: "Full-time",
       desc: ""
     }
   ]
@@ -80,9 +31,10 @@ export function CareersOpenPositionsCMS() {
     fetchWithCache("/api/careers")
       .then((json) => {
         if (json.success && json.data?.CareersOpenPositions) {
+          const list = json.data.CareersOpenPositions.jobsList;
           setFormData({
-            ...defaultFormData,
-            ...json.data.CareersOpenPositions,
+            heading: json.data.CareersOpenPositions.heading || "",
+            jobsList: Array.isArray(list) && list.length > 0 ? list : defaultFormData.jobsList,
           });
         }
       })
@@ -111,18 +63,19 @@ export function CareersOpenPositionsCMS() {
         },
       ],
     }));
-    toast.success("Added new vacancy");
+    toast.success("Added new vacancy card");
   };
 
   const removeJob = (index: number) => {
     if (formData.jobsList.length <= 1) {
-      toast.error("At least one job opening is required");
+      toast.error("At least one job opening card is required");
       return;
     }
     setFormData((prev) => ({
       ...prev,
       jobsList: prev.jobsList.filter((_, i) => i !== index),
     }));
+    toast.success("Removed vacancy card");
   };
 
   const handleSave = async () => {
@@ -155,7 +108,7 @@ export function CareersOpenPositionsCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Current Openings Section"
-        description="Manage the heading and job listings displayed on the careers page."
+        description="Manage the heading and job listings displayed on the careers page. Add or delete openings dynamically."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -171,15 +124,16 @@ export function CareersOpenPositionsCMS() {
             required
           />
 
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-semibold text-gray-700">
-              Open Vacancies ({formData.jobsList.length})
+          <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+            <span className="text-sm font-bold text-gray-700">
+              Open Vacancies Cards <span className="text-[#a0004f] font-semibold">({formData.jobsList.length})</span>
             </span>
             <button
+              type="button"
               onClick={addJob}
-              className="flex items-center gap-2 px-3 py-1.5 bg-brand-pink text-white rounded text-xs font-semibold hover:bg-[#a0004f] transition-all"
+              className="flex items-center gap-2 px-3.5 py-2 bg-[#a0004f] hover:bg-[#8c0045] text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
             >
-              <Plus size={14} /> Add Position
+              <Plus size={15} /> Add Position Card
             </button>
           </div>
 
@@ -187,15 +141,22 @@ export function CareersOpenPositionsCMS() {
             {formData.jobsList.map((job, idx) => (
               <div
                 key={idx}
-                className="p-6 border border-gray-100 rounded-xl flex flex-col gap-4 relative bg-gray-50/30"
+                className="p-6 border border-gray-200 rounded-xl flex flex-col gap-4 relative bg-gray-50/30 group shadow-sm"
               >
-                <button
-                  onClick={() => removeJob(idx)}
-                  className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors"
-                  title="Remove Position"
-                >
-                  <Trash2 size={18} />
-                </button>
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-wider">
+                    Position Vacancy #{idx + 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeJob(idx)}
+                    className="flex items-center gap-1 text-xs font-semibold text-gray-400 hover:text-red-600 bg-white border border-gray-200 hover:border-red-200 hover:bg-red-50/50 px-2.5 py-1 rounded-md transition-all cursor-pointer"
+                    title="Delete Position"
+                  >
+                    <Trash2 size={14} />
+                    <span>Delete</span>
+                  </button>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <InputField
@@ -217,7 +178,7 @@ export function CareersOpenPositionsCMS() {
                       onChange={(e) =>
                         handleJobChange(idx, "dept", e.target.value)
                       }
-                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-brand-pink transition-colors text-sm"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a0004f] transition-colors text-sm rounded-lg"
                     >
                       <option value="Engineering">Engineering</option>
                       <option value="Project Management">

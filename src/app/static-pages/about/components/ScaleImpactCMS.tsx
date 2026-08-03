@@ -2,36 +2,31 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
+import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
+interface StatItem {
+  value: string;
+  label: string;
+  description: string;
+  icon: string;
+}
+
+const emptyStat = (): StatItem => ({
+  value: "",
+  label: "",
+  description: "",
+  icon: "Briefcase",
+});
+
 const defaultFormData = {
   heading: "",
   description: "",
   footerNote: "",
-  statValue0: "",
-  statLabel0: "",
-  statDesc0: "",
-  statIcon0: "",
-  statValue1: "",
-  statLabel1: "",
-  statDesc1: "",
-  statIcon1: "",
-  statValue2: "",
-  statLabel2: "",
-  statDesc2: "",
-  statIcon2: "",
-  statValue3: "",
-  statLabel3: "",
-  statDesc3: "",
-  statIcon3: "",
-  statValue4: "",
-  statLabel4: "",
-  statDesc4: "",
-  statIcon4: ""
 };
 
 interface ScaleImpactCMSProps {
@@ -65,22 +60,41 @@ export function ScaleImpactCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [statsList, setStatsList] = useState<StatItem[]>([emptyStat()]);
 
   useEffect(() => {
     const unpackData = (data: any) => {
-      const list = (data.stats as any[]) || [];
-      const updated: any = {
+      setFormData({
         heading: data.heading || "",
         description: data.description || "",
         footerNote: data.footerNote || "",
-      };
-      for (let i = 0; i < 5; i++) {
-        updated[`statValue${i}`] = list[i]?.value || "";
-        updated[`statLabel${i}`] = list[i]?.label || "";
-        updated[`statDesc${i}`] = list[i]?.description || "";
-        updated[`statIcon${i}`] = list[i]?.icon || "";
+      });
+
+      const list = (data.stats as any[]) || [];
+      if (Array.isArray(list) && list.length > 0) {
+        setStatsList(
+          list.map((item: any) => ({
+            value: item?.value || "",
+            label: item?.label || "",
+            description: item?.description || item?.desc || "",
+            icon: item?.icon || "Briefcase",
+          }))
+        );
+      } else {
+        // Fallback from legacy statValue0..4
+        const legacy: StatItem[] = [];
+        for (let i = 0; i < 5; i++) {
+          if (data[`statValue${i}`] || data[`statLabel${i}`]) {
+            legacy.push({
+              value: data[`statValue${i}`] || "",
+              label: data[`statLabel${i}`] || "",
+              description: data[`statDesc${i}`] || "",
+              icon: data[`statIcon${i}`] || "Briefcase",
+            });
+          }
+        }
+        setStatsList(legacy.length > 0 ? legacy : [emptyStat()]);
       }
-      setFormData(updated);
     };
 
     if (initialData) {
@@ -104,18 +118,36 @@ export function ScaleImpactCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleStatChange = (index: number, field: keyof StatItem, value: string) => {
+    setStatsList((prev) =>
+      prev.map((stat, i) => (i === index ? { ...stat, [field]: value } : stat))
+    );
+  };
+
+  const addStat = () => {
+    setStatsList((prev) => [...prev, emptyStat()]);
+    toast.success("Added new KPI stat card");
+  };
+
+  const deleteStat = (index: number) => {
+    if (statsList.length <= 1) {
+      toast.error("At least 1 KPI stat card is required");
+      return;
+    }
+    setStatsList((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed KPI stat card");
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.heading?.trim()) errs.push("Heading is required");
     if (!formData.description?.trim()) errs.push("Description is required");
     if (!formData.footerNote?.trim()) errs.push("Footer note is required");
 
-    for (let i = 0; i < 5; i++) {
-      if (!(formData as any)[`statValue${i}`]?.trim()) errs.push(`Stat ${i + 1} Value is required`);
-      if (!(formData as any)[`statLabel${i}`]?.trim()) errs.push(`Stat ${i + 1} Label is required`);
-      if (!(formData as any)[`statDesc${i}`]?.trim()) errs.push(`Stat ${i + 1} Description is required`);
-      if (!(formData as any)[`statIcon${i}`]?.trim()) errs.push(`Stat ${i + 1} Icon is required`);
-    }
+    statsList.forEach((stat, i) => {
+      if (!stat.value?.trim()) errs.push(`Stat Card ${i + 1} Value is required`);
+      if (!stat.label?.trim()) errs.push(`Stat Card ${i + 1} Label is required`);
+    });
 
     if (errs.length > 0) {
       errs.forEach((msg) => toast.error(msg));
@@ -125,19 +157,22 @@ export function ScaleImpactCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Scale & Impact section...");
     try {
-      const stats = Array.from({ length: 5 }).map((_, i) => ({
-        value: (formData as any)[`statValue${i}`],
-        label: (formData as any)[`statLabel${i}`],
-        description: (formData as any)[`statDesc${i}`],
-        icon: (formData as any)[`statIcon${i}`],
-      }));
-
-      const payload = {
+      const payload: any = {
         heading: formData.heading,
         description: formData.description,
         footerNote: formData.footerNote,
-        stats,
+        stats: statsList,
       };
+
+      // Keep legacy properties synced for first 5 stats
+      statsList.forEach((stat, i) => {
+        if (i < 5) {
+          payload[`statValue${i}`] = stat.value;
+          payload[`statLabel${i}`] = stat.label;
+          payload[`statDesc${i}`] = stat.description;
+          payload[`statIcon${i}`] = stat.icon;
+        }
+      });
 
       const body = sectionId
         ? { id: sectionId, content: payload }
@@ -169,7 +204,7 @@ export function ScaleImpactCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Scale & Impact Section"
-          description="Manage Encotec by the numbers KPIs, descriptions, and callouts."
+          description="Manage Encotec by the numbers KPIs, descriptions, and callouts. Add or delete stat cards dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -210,48 +245,67 @@ export function ScaleImpactCMS({
                   required
                 />
 
-                {/* Stats Cards */}
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4">
-                  Edit 5 KPI Stat Cards
-                </span>
+                {/* Dynamic Stats Cards Header */}
+                <div className="flex items-center justify-between border-b border-gray-100 pb-3 mt-4">
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    KPI Stat Cards <span className="text-blue-500 font-semibold">({statsList.length})</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={addStat}
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add KPI Stat Card</span>
+                  </button>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm">
-                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                        Stat Card {i + 1}
-                      </span>
+                  {statsList.map((stat, i) => (
+                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                          Stat Card {i + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => deleteStat(i)}
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                          title="Delete Stat Card"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                       <InputField
                         label="Metric Value"
                         name={`statValue${i}`}
-                        value={(formData as any)[`statValue${i}`]}
-                        onChange={handleChange}
+                        value={stat.value}
+                        onChange={(e) => handleStatChange(i, "value", e.target.value)}
                         placeholder="e.g. 1,800+"
                         required
                       />
                       <InputField
                         label="Label"
                         name={`statLabel${i}`}
-                        value={(formData as any)[`statLabel${i}`]}
-                        onChange={handleChange}
+                        value={stat.label}
+                        onChange={(e) => handleStatChange(i, "label", e.target.value)}
                         placeholder="e.g. Dedicated Staff"
                         required
                       />
                       <TextAreaField
                         label="Description"
                         name={`statDesc${i}`}
-                        value={(formData as any)[`statDesc${i}`]}
-                        onChange={handleChange}
+                        value={stat.description}
+                        onChange={(e) => handleStatChange(i, "description", e.target.value)}
                         placeholder="Description..."
                         rows={2}
-                        required
                       />
                       <InputField
                         label="Lucide Icon Name"
                         name={`statIcon${i}`}
-                        value={(formData as any)[`statIcon${i}`]}
-                        onChange={handleChange}
+                        value={stat.icon}
+                        onChange={(e) => handleStatChange(i, "icon", e.target.value)}
                         placeholder="e.g. Users, Zap, Briefcase, ShieldCheck, Globe..."
-                        required
                       />
                     </div>
                   ))}

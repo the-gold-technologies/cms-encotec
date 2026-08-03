@@ -148,8 +148,9 @@ export function CareersBenefitsCMS() {
               Benefits cards list ({formData.benefitsList.length})
             </span>
             <button
+              type="button"
               onClick={addBenefit}
-              className="flex items-center gap-2 px-3 py-1.5 bg-brand-pink text-white rounded text-xs font-semibold hover:bg-[#a0004f] transition-all"
+              className="flex items-center gap-2 px-3.5 py-2 bg-[#a0004f] hover:bg-[#8c0045] text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
             >
               <Plus size={14} /> Add Benefit
             </button>

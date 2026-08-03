@@ -2,25 +2,25 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
+import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
+interface AreaCard {
+  title: string;
+  desc: string;
+}
+
+const emptyArea = (): AreaCard => ({ title: "", desc: "" });
+
 const defaultFormData = {
   tagline: "",
   headingPart1: "",
   headingHighlight: "",
   description: "",
-  areaTitle0: "",
-  areaDesc0: "",
-  areaTitle1: "",
-  areaDesc1: "",
-  areaTitle2: "",
-  areaDesc2: "",
-  areaTitle3: "",
-  areaDesc3: "",
   calloutTitle: "",
   calloutDesc: ""
 };
@@ -56,23 +56,40 @@ export function GlobalPresenceCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [areaCards, setAreaCards] = useState<AreaCard[]>([emptyArea()]);
 
   useEffect(() => {
     const unpackData = (data: any) => {
-      const list = (data.areas as any[]) || [];
-      const updated: any = {
+      setFormData({
         tagline: data.tagline || "",
         headingPart1: data.headingPart1 || "",
         headingHighlight: data.headingHighlight || "",
         description: data.description || "",
         calloutTitle: data.calloutTitle || "",
         calloutDesc: data.calloutDesc || "",
-      };
-      for (let i = 0; i < 4; i++) {
-        updated[`areaTitle${i}`] = list[i]?.title || "";
-        updated[`areaDesc${i}`] = list[i]?.desc || "";
+      });
+
+      const list = (data.areas as any[]) || [];
+      if (Array.isArray(list) && list.length > 0) {
+        setAreaCards(
+          list.map((item: any) => ({
+            title: item?.title || "",
+            desc: item?.desc || item?.description || "",
+          }))
+        );
+      } else {
+        // Fallback to legacy areaTitle0..3
+        const legacy: AreaCard[] = [];
+        for (let i = 0; i < 4; i++) {
+          if (data[`areaTitle${i}`] || data[`areaDesc${i}`]) {
+            legacy.push({
+              title: data[`areaTitle${i}`] || "",
+              desc: data[`areaDesc${i}`] || "",
+            });
+          }
+        }
+        setAreaCards(legacy.length > 0 ? legacy : [emptyArea(), emptyArea(), emptyArea()]);
       }
-      setFormData(updated);
     };
 
     if (initialData) {
@@ -96,6 +113,26 @@ export function GlobalPresenceCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleAreaChange = (index: number, field: keyof AreaCard, value: string) => {
+    setAreaCards((prev) =>
+      prev.map((card, i) => (i === index ? { ...card, [field]: value } : card))
+    );
+  };
+
+  const handleAddArea = () => {
+    setAreaCards((prev) => [...prev, emptyArea()]);
+    toast.success("Added new region card");
+  };
+
+  const handleDeleteArea = (index: number) => {
+    if (areaCards.length <= 1) {
+      toast.error("At least 1 region card is required.");
+      return;
+    }
+    setAreaCards((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed region card");
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
@@ -105,10 +142,10 @@ export function GlobalPresenceCMS({
     if (!formData.calloutTitle?.trim()) errs.push("Callout Title is required");
     if (!formData.calloutDesc?.trim()) errs.push("Callout Description is required");
 
-    for (let i = 0; i < 4; i++) {
-      if (!(formData as any)[`areaTitle${i}`]?.trim()) errs.push(`Area Card ${i + 1} Title is required`);
-      if (!(formData as any)[`areaDesc${i}`]?.trim()) errs.push(`Area Card ${i + 1} Description is required`);
-    }
+    areaCards.forEach((card, i) => {
+      if (!card.title?.trim()) errs.push(`Region Card ${i + 1} Title is required`);
+      if (!card.desc?.trim()) errs.push(`Region Card ${i + 1} Description is required`);
+    });
 
     if (errs.length > 0) {
       errs.forEach((msg) => toast.error(msg));
@@ -118,20 +155,21 @@ export function GlobalPresenceCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Global Presence section...");
     try {
-      const areas = Array.from({ length: 4 }).map((_, i) => ({
-        title: (formData as any)[`areaTitle${i}`],
-        desc: (formData as any)[`areaDesc${i}`],
-      }));
-
-      const payload = {
+      const payload: any = {
         tagline: formData.tagline,
         headingPart1: formData.headingPart1,
         headingHighlight: formData.headingHighlight,
         description: formData.description,
-        areas,
+        areas: areaCards,
         calloutTitle: formData.calloutTitle,
         calloutDesc: formData.calloutDesc,
       };
+
+      // Keep legacy properties synced
+      areaCards.forEach((card, i) => {
+        payload[`areaTitle${i}`] = card.title;
+        payload[`areaDesc${i}`] = card.desc;
+      });
 
       const body = sectionId
         ? { id: sectionId, content: payload }
@@ -163,7 +201,7 @@ export function GlobalPresenceCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Global Presence Section"
-          description="Manage corporate reach, headers, descriptions, geographic region cards, and bottom highlights."
+          description="Manage corporate reach, headers, descriptions, geographic region cards, and bottom highlights. Add or remove cards dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -216,29 +254,50 @@ export function GlobalPresenceCMS({
                   required
                 />
 
-                {/* Area Cards */}
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4">
-                  Edit 4 Region Area Cards
-                </span>
+                {/* Area Cards — Dynamic Header CTA */}
+                <div className="flex items-center justify-between border-b border-gray-100 pb-3 mt-4">
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Geographic Region Cards <span className="text-blue-500 font-semibold">({areaCards.length})</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleAddArea}
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add Region Card</span>
+                  </button>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm">
-                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                        Region Card {i + 1}
-                      </span>
+                  {areaCards.map((card, i) => (
+                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                          Region Card {i + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteArea(i)}
+                          title="Delete Region Card"
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                       <InputField
                         label="Region Title"
                         name={`areaTitle${i}`}
-                        value={(formData as any)[`areaTitle${i}`]}
-                        onChange={handleChange}
+                        value={card.title}
+                        onChange={(e) => handleAreaChange(i, "title", e.target.value)}
                         placeholder="e.g. Headquarters"
                         required
                       />
                       <InputField
                         label="Region Description"
                         name={`areaDesc${i}`}
-                        value={(formData as any)[`areaDesc${i}`]}
-                        onChange={handleChange}
+                        value={card.desc}
+                        onChange={(e) => handleAreaChange(i, "desc", e.target.value)}
                         placeholder="e.g. Noida, India"
                         required
                       />

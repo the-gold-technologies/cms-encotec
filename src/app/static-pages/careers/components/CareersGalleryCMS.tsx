@@ -7,36 +7,25 @@ import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ImagePickerField } from "@/components/ImagePickerField";
+import { uploadFiles } from "@/app/lib/uploadHelpers";
+
+export interface GalleryItem {
+  image: File | string | null;
+  caption: string;
+}
 
 const defaultFormData = {
   tagline: "",
   heading: "",
   galleryList: [
-    {
-      image: "",
-      caption: ""
-    },
-    {
-      image: "",
-      caption: ""
-    },
-    {
-      image: "",
-      caption: ""
-    },
-    {
-      image: "",
-      caption: ""
-    },
-    {
-      image: "",
-      caption: ""
-    },
-    {
-      image: "",
-      caption: ""
-    }
-  ]
+    { image: null, caption: "" },
+    { image: null, caption: "" },
+    { image: null, caption: "" },
+    { image: null, caption: "" },
+    { image: null, caption: "" },
+    { image: null, caption: "" },
+  ] as GalleryItem[],
 };
 
 export function CareersGalleryCMS() {
@@ -48,7 +37,18 @@ export function CareersGalleryCMS() {
     fetchWithCache("/api/careers")
       .then((json) => {
         if (json.success && json.data?.CareersGallery) {
-          setFormData({ ...defaultFormData, ...json.data.CareersGallery });
+          const data = json.data.CareersGallery;
+          setFormData({
+            tagline: data.tagline || "",
+            heading: data.heading || "",
+            galleryList:
+              Array.isArray(data.galleryList) && data.galleryList.length > 0
+                ? data.galleryList.map((item: any) => ({
+                    image: item.image || null,
+                    caption: item.caption || "",
+                  }))
+                : defaultFormData.galleryList,
+          });
         }
       })
       .catch(console.error);
@@ -57,7 +57,7 @@ export function CareersGalleryCMS() {
   const handleImageChange = (
     index: number,
     field: "image" | "caption",
-    value: string,
+    value: File | string | null,
   ) => {
     setFormData((prev) => {
       const updatedList = [...prev.galleryList];
@@ -69,7 +69,7 @@ export function CareersGalleryCMS() {
   const addImage = () => {
     setFormData((prev) => ({
       ...prev,
-      galleryList: [...prev.galleryList, { image: "", caption: "" }],
+      galleryList: [...prev.galleryList, { image: null, caption: "" }],
     }));
     toast.success("Added new gallery slot");
   };
@@ -83,23 +83,41 @@ export function CareersGalleryCMS() {
       ...prev,
       galleryList: prev.galleryList.filter((_, i) => i !== index),
     }));
+    toast.success("Removed gallery slot");
   };
 
   const handleSave = async () => {
     setIsSaving(true);
     const toastId = toast.loading("Saving Gallery Section...");
     try {
+      // 1. Upload any File objects in galleryList
+      const imageSources = formData.galleryList.map((item) => item.image);
+      const uploadedUrls = await uploadFiles(imageSources);
+
+      const processedGallery = formData.galleryList.map((item, idx) => ({
+        image: uploadedUrls[idx] || "",
+        caption: item.caption,
+      }));
+
+      const payload = {
+        tagline: formData.tagline,
+        heading: formData.heading,
+        galleryList: processedGallery,
+      };
+
       const res = await fetch("/api/careers", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           section: "CareersGallery",
-          content: formData,
+          content: payload,
         }),
       });
+
       const json = await res.json();
       if (json.success) {
         toast.success("Gallery Section saved successfully!", { id: toastId });
+        setFormData((prev) => ({ ...prev, galleryList: processedGallery }));
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -115,7 +133,7 @@ export function CareersGalleryCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Life at Encotec Gallery Section"
-        description="Manage corporate tagline, heading, and photos/activities in the gallery strip."
+        description="Manage corporate tagline, heading, and upload photos/activities in the gallery strip."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -142,15 +160,16 @@ export function CareersGalleryCMS() {
             />
           </div>
 
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-semibold text-gray-700">
-              Gallery Items ({formData.galleryList.length})
+          <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+            <span className="text-sm font-bold text-gray-700">
+              Gallery Items <span className="text-[#a0004f] font-semibold">({formData.galleryList.length})</span>
             </span>
             <button
+              type="button"
               onClick={addImage}
-              className="flex items-center gap-2 px-3 py-1.5 bg-brand-pink text-white rounded text-xs font-semibold hover:bg-[#a0004f] transition-all"
+              className="flex items-center gap-2 px-3.5 py-2 bg-[#a0004f] hover:bg-[#8c0045] text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
             >
-              <Plus size={14} /> Add Image
+              <Plus size={15} /> Add Image
             </button>
           </div>
 
@@ -158,34 +177,27 @@ export function CareersGalleryCMS() {
             {formData.galleryList.map((item, idx) => (
               <div
                 key={idx}
-                className="p-4 border border-gray-100 rounded-xl flex flex-col gap-4 relative"
+                className="p-5 border border-gray-200 rounded-xl flex flex-col gap-4 relative bg-gray-50/20 group shadow-sm"
               >
-                <button
-                  onClick={() => removeImage(idx)}
-                  className="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors"
-                  title="Remove Image"
-                >
-                  <Trash2 size={16} />
-                </button>
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-wider">
+                    Gallery Slot #{idx + 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeImage(idx)}
+                    className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                    title="Remove Image Slot"
+                  >
+                    <Trash2 size={15} />
+                  </button>
+                </div>
 
-                {item.image && (
-                  <div className="w-full h-32 rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
-                    <img
-                      src={item.image}
-                      alt={item.caption}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-
-                <InputField
-                  label={`Image URL #${idx + 1}`}
-                  name={`image-${idx}`}
+                <ImagePickerField
+                  label={`Gallery Image #${idx + 1}`}
                   value={item.image}
-                  onChange={(e) =>
-                    handleImageChange(idx, "image", e.target.value)
-                  }
-                  required
+                  onChange={(file) => handleImageChange(idx, "image", file)}
+                  sublabel="Drag and drop or browse photo file"
                 />
 
                 <InputField
@@ -195,6 +207,7 @@ export function CareersGalleryCMS() {
                   onChange={(e) =>
                     handleImageChange(idx, "caption", e.target.value)
                   }
+                  placeholder="e.g. Team Celebration / Site Visit"
                   required
                 />
               </div>

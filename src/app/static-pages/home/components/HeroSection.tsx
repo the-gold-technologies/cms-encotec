@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { X, Tag, BarChart3, Award } from "lucide-react";
+import { X, Tag, BarChart3, Award, Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -10,6 +10,11 @@ import { TextAreaField } from "@/components/TextAreaField";
 import { uploadFiles } from "@/lib/uploadHelpers";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ImagePickerField } from "@/components/ImagePickerField";
+
+interface StatItem {
+  value: string;
+  label: string;
+}
 
 const defaultFormData = {
   tagline: "",
@@ -29,16 +34,6 @@ const defaultFormData = {
   ],
   projectsBadgeNumber: "",
   projectsBadgeLabel: "",
-  stat1Value: "",
-  stat1Label: "",
-  stat2Value: "",
-  stat2Label: "",
-  stat3Value: "",
-  stat3Label: "",
-  stat4Value: "",
-  stat4Label: "",
-  stat5Value: "",
-  stat5Label: "",
   backgroundImage: ""
 };
 
@@ -72,12 +67,40 @@ export function HeroSection({
 
   const [formData, setFormData] = useState(defaultFormData);
   const [selectedImage, setSelectedImage] = useState<File | string | null>(null);
+  const [statsList, setStatsList] = useState<StatItem[]>([
+    { value: "", label: "" }
+  ]);
+
+  const unpackStats = (data: any) => {
+    const rawList = (data.stats || data.statsList) as any[];
+    if (Array.isArray(rawList) && rawList.length > 0) {
+      setStatsList(rawList.map((s: any) => ({ value: s.value || "", label: s.label || "" })));
+    } else {
+      // Fallback from stat1Value..stat5Value
+      const legacy: StatItem[] = [];
+      for (let i = 1; i <= 5; i++) {
+        if (data[`stat${i}Value`] || data[`stat${i}Label`]) {
+          legacy.push({
+            value: data[`stat${i}Value`] || "",
+            label: data[`stat${i}Label`] || "",
+          });
+        }
+      }
+      setStatsList(legacy.length > 0 ? legacy : [
+        { value: "", label: "" },
+        { value: "", label: "" },
+        { value: "", label: "" },
+        { value: "", label: "" },
+      ]);
+    }
+  };
 
   useEffect(() => {
     if (initialData) {
       const merged = { ...defaultFormData, ...initialData };
       setFormData(merged);
-      if (merged.backgroundImage) setSelectedImage(merged.backgroundImage);
+      if (merged.backgroundImage) setSelectedImage(merged.backgroundImage as string);
+      unpackStats(initialData);
     } else if (saveUrl === "/api/home") {
       fetchWithCache("/api/home")
         .then((json) => {
@@ -85,6 +108,7 @@ export function HeroSection({
             const data = { ...defaultFormData, ...json.data.HeroSection };
             setFormData(data);
             if (data.backgroundImage) setSelectedImage(data.backgroundImage);
+            unpackStats(json.data.HeroSection);
           } else {
             setSelectedImage(defaultFormData.backgroundImage);
           }
@@ -92,6 +116,26 @@ export function HeroSection({
         .catch(console.error);
     }
   }, [initialData, saveUrl]);
+
+  const handleStatChange = (index: number, field: keyof StatItem, value: string) => {
+    setStatsList((prev) =>
+      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
+    );
+  };
+
+  const addStatCard = () => {
+    setStatsList((prev) => [...prev, { value: "", label: "" }]);
+    toast.success("Added new hero stat card");
+  };
+
+  const deleteStatCard = (index: number) => {
+    if (statsList.length <= 1) {
+      toast.error("At least 1 hero stat card is required");
+      return;
+    }
+    setStatsList((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed hero stat card");
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -132,6 +176,11 @@ export function HeroSection({
     if (!formData.description?.trim()) errs.push("Description is required");
     if (!selectedImage) errs.push("Hero background image is required");
 
+    statsList.forEach((stat, i) => {
+      if (!stat.value?.trim()) errs.push(`Stat Card ${i + 1} Value is required`);
+      if (!stat.label?.trim()) errs.push(`Stat Card ${i + 1} Label is required`);
+    });
+
     if (errs.length > 0) {
       errs.forEach((m) => toast.error(m));
       return;
@@ -145,10 +194,20 @@ export function HeroSection({
           ? (await uploadFiles([selectedImage]))[0] || ""
           : selectedImage || "";
 
-      const payload = {
+      const payload: any = {
         ...formData,
+        stats: statsList,
+        statsList,
         backgroundImage: imgUrl,
       };
+
+      // Keep legacy properties synced
+      statsList.forEach((s, idx) => {
+        if (idx < 5) {
+          payload[`stat${idx + 1}Value`] = s.value;
+          payload[`stat${idx + 1}Label`] = s.label;
+        }
+      });
 
       const body = sectionId
         ? { id: sectionId, content: payload }
@@ -182,7 +241,7 @@ export function HeroSection({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Home Hero Section"
-          description="Manage Encotec's hero banner tagline, headline, description, primary and secondary CTA links, projects delivery badge, and foundation year stats."
+          description="Manage Encotec's hero banner tagline, headline, description, primary and secondary CTA links, projects delivery badge, and stat cards. Add or remove stats dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -382,113 +441,57 @@ export function HeroSection({
                 onChange={setSelectedImage}
               />
 
-              {/* Stats Row */}
+              {/* Stats Row — Dynamic Array */}
               <div className="flex flex-col gap-4">
-                <h3 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-2 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-emerald-500" />
-                  Hero Stats Row (4 Items)
-                </h3>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                  {/* Stat 1 */}
-                  <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                      Stat 1
-                    </span>
-                    <InputField
-                      label="Value"
-                      name="stat1Value"
-                      value={formData.stat1Value}
-                      onChange={handleChange}
-                      placeholder="e.g. 2011"
-                    />
-                    <InputField
-                      label="Label"
-                      name="stat1Label"
-                      value={formData.stat1Label}
-                      onChange={handleChange}
-                      placeholder="e.g. FOUNDED YEAR"
-                    />
-                  </div>
-                  {/* Stat 2 */}
-                  <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                      Stat 2
-                    </span>
-                    <InputField
-                      label="Value"
-                      name="stat2Value"
-                      value={formData.stat2Value}
-                      onChange={handleChange}
-                      placeholder="e.g. 13+"
-                    />
-                    <InputField
-                      label="Label"
-                      name="stat2Label"
-                      value={formData.stat2Label}
-                      onChange={handleChange}
-                      placeholder="e.g. CITIES IN INDIA"
-                    />
-                  </div>
-                  {/* Stat 3 */}
-                  <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                      Stat 3
-                    </span>
-                    <InputField
-                      label="Value"
-                      name="stat3Value"
-                      value={formData.stat3Value}
-                      onChange={handleChange}
-                      placeholder="e.g. 300+"
-                    />
-                    <InputField
-                      label="Label"
-                      name="stat3Label"
-                      value={formData.stat3Label}
-                      onChange={handleChange}
-                      placeholder="e.g. SPECIALIZED ENGINEERS"
-                    />
-                  </div>
-                  {/* Stat 4 */}
-                  <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                      Stat 4
-                    </span>
-                    <InputField
-                      label="Value"
-                      name="stat4Value"
-                      value={formData.stat4Value}
-                      onChange={handleChange}
-                      placeholder="e.g. 8000+"
-                    />
-                    <InputField
-                      label="Label"
-                      name="stat4Label"
-                      value={formData.stat4Label}
-                      onChange={handleChange}
-                      placeholder="e.g. MW UNDER STEWARDSHIP"
-                    />
-                  </div>
-                  {/* Stat 5 */}
-                  <div className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                      Stat 5
-                    </span>
-                    <InputField
-                      label="Value"
-                      name="stat5Value"
-                      value={formData.stat5Value}
-                      onChange={handleChange}
-                      placeholder="e.g. 2009"
-                    />
-                    <InputField
-                      label="Label"
-                      name="stat5Label"
-                      value={formData.stat5Label}
-                      onChange={handleChange}
-                      placeholder="e.g. FOUNDING YEAR"
-                    />
-                  </div>
+                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <h3 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <BarChart3 className="w-4 h-4 text-emerald-500" />
+                    Hero Stat Cards <span className="text-emerald-600 font-semibold">({statsList.length})</span>
+                  </h3>
+                  <button
+                    type="button"
+                    onClick={addStatCard}
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add Stat Card</span>
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {statsList.map((stat, idx) => (
+                    <div key={idx} className="border border-gray-200 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3 relative shadow-sm group">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">
+                          Stat Card {idx + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => deleteStatCard(idx)}
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                          title="Delete Stat Card"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                      <InputField
+                        label="Value"
+                        name={`statValue-${idx}`}
+                        value={stat.value}
+                        onChange={(e) => handleStatChange(idx, "value", e.target.value)}
+                        placeholder="e.g. 2011"
+                        required
+                      />
+                      <InputField
+                        label="Label"
+                        name={`statLabel-${idx}`}
+                        value={stat.label}
+                        onChange={(e) => handleStatChange(idx, "label", e.target.value)}
+                        placeholder="e.g. FOUNDED YEAR"
+                        required
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
 

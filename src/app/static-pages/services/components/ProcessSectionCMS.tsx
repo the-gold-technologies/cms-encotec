@@ -2,27 +2,28 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
+import { Plus, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 
+interface ProcessStep {
+  title: string;
+  description: string;
+  number: string;
+}
+
+const emptyStep = (idx: number): ProcessStep => ({
+  title: "",
+  description: "",
+  number: `0${idx + 1}`,
+});
+
 const defaultFormData = {
   heading: "",
   description: "",
-  stepTitle0: "",
-  stepDesc0: "",
-  stepNumber0: "",
-  stepTitle1: "",
-  stepDesc1: "",
-  stepNumber1: "",
-  stepTitle2: "",
-  stepDesc2: "",
-  stepNumber2: "",
-  stepTitle3: "",
-  stepDesc3: "",
-  stepNumber3: ""
 };
 
 interface ProcessSectionCMSProps {
@@ -56,20 +57,37 @@ export function ProcessSectionCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [stepsList, setStepsList] = useState<ProcessStep[]>([emptyStep(0)]);
 
   useEffect(() => {
     const unpackData = (data: any) => {
-      const list = (data.steps as any[]) || [];
-      const updated: any = {
+      setFormData({
         heading: data.heading || "",
         description: data.description || "",
-      };
-      for (let i = 0; i < 4; i++) {
-        updated[`stepTitle${i}`] = list[i]?.title || "";
-        updated[`stepDesc${i}`] = list[i]?.description || "";
-        updated[`stepNumber${i}`] = list[i]?.number || "";
+      });
+
+      const list = (data.steps as any[]) || [];
+      if (Array.isArray(list) && list.length > 0) {
+        setStepsList(
+          list.map((item: any, i: number) => ({
+            title: item?.title || "",
+            description: item?.description || item?.desc || "",
+            number: item?.number || `0${i + 1}`,
+          }))
+        );
+      } else {
+        const legacy: ProcessStep[] = [];
+        for (let i = 0; i < 4; i++) {
+          if (data[`stepTitle${i}`] || data[`stepDesc${i}`]) {
+            legacy.push({
+              title: data[`stepTitle${i}`] || "",
+              description: data[`stepDesc${i}`] || "",
+              number: data[`stepNumber${i}`] || `0${i + 1}`,
+            });
+          }
+        }
+        setStepsList(legacy.length > 0 ? legacy : [emptyStep(0)]);
       }
-      setFormData(updated);
     };
 
     if (initialData) {
@@ -93,16 +111,36 @@ export function ProcessSectionCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleStepChange = (index: number, field: keyof ProcessStep, value: string) => {
+    setStepsList((prev) =>
+      prev.map((step, i) => (i === index ? { ...step, [field]: value } : step))
+    );
+  };
+
+  const addStep = () => {
+    setStepsList((prev) => [...prev, emptyStep(prev.length)]);
+    toast.success("Added new process step card");
+  };
+
+  const deleteStep = (index: number) => {
+    if (stepsList.length <= 1) {
+      toast.error("At least 1 process step card is required");
+      return;
+    }
+    setStepsList((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed process step card");
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.heading?.trim()) errs.push("Heading is required");
     if (!formData.description?.trim()) errs.push("Description is required");
 
-    for (let i = 0; i < 4; i++) {
-      if (!(formData as any)[`stepTitle${i}`]?.trim()) errs.push(`Step Card ${i + 1} Title is required`);
-      if (!(formData as any)[`stepDesc${i}`]?.trim()) errs.push(`Step Card ${i + 1} Description is required`);
-      if (!(formData as any)[`stepNumber${i}`]?.trim()) errs.push(`Step Card ${i + 1} Badge Number is required`);
-    }
+    stepsList.forEach((step, i) => {
+      if (!step.title?.trim()) errs.push(`Step Card ${i + 1} Title is required`);
+      if (!step.description?.trim()) errs.push(`Step Card ${i + 1} Description is required`);
+      if (!step.number?.trim()) errs.push(`Step Card ${i + 1} Badge Number is required`);
+    });
 
     if (errs.length > 0) {
       errs.forEach((msg) => toast.error(msg));
@@ -112,17 +150,19 @@ export function ProcessSectionCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Process section...");
     try {
-      const steps = Array.from({ length: 4 }).map((_, i) => ({
-        title: (formData as any)[`stepTitle${i}`],
-        description: (formData as any)[`stepDesc${i}`],
-        number: (formData as any)[`stepNumber${i}`],
-      }));
-
-      const payload = {
+      const payload: any = {
         heading: formData.heading,
         description: formData.description,
-        steps,
+        steps: stepsList,
       };
+
+      stepsList.forEach((step, i) => {
+        if (i < 4) {
+          payload[`stepTitle${i}`] = step.title;
+          payload[`stepDesc${i}`] = step.description;
+          payload[`stepNumber${i}`] = step.number;
+        }
+      });
 
       const body = sectionId
         ? { id: sectionId, content: payload }
@@ -154,7 +194,7 @@ export function ProcessSectionCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="How We Deliver Section"
-          description="Manage delivery workflow steps, headings, descriptions, and sequencing."
+          description="Manage delivery workflow steps, headings, descriptions, and sequencing. Add or delete step cards dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -188,22 +228,50 @@ export function ProcessSectionCMS({
                   />
                 </div>
 
-                {/* Steps Cards */}
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4">
-                  Edit 4 Workflow Steps
-                </span>
+                <div className="flex items-center justify-between border-b border-gray-100 pb-3 mt-4">
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Workflow Step Cards <span className="text-blue-500 font-semibold">({stepsList.length})</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={addStep}
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3.5 py-2 rounded-lg shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add Step Card</span>
+                  </button>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm">
-                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                        Step Card {i + 1}
-                      </span>
+                  {stepsList.map((step, i) => (
+                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                          Step Card {i + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => deleteStep(i)}
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                          title="Delete Step Card"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                      <InputField
+                        label="Step Number Badge"
+                        name={`stepNumber${i}`}
+                        value={step.number}
+                        onChange={(e) => handleStepChange(i, "number", e.target.value)}
+                        placeholder="e.g. 01"
+                        required
+                      />
                       <InputField
                         label="Step Title"
                         name={`stepTitle${i}`}
-                        value={(formData as any)[`stepTitle${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. Assess"
+                        value={step.title}
+                        onChange={(e) => handleStepChange(i, "title", e.target.value)}
+                        placeholder="e.g. Audit & Assessment"
                         required
                       />
                       <TextAreaField

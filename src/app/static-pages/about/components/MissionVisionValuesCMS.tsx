@@ -363,20 +363,6 @@ export function MissionVisionValuesCMS({
                       />
                     </div>
                   ))}
-
-                  {/* Add-card placeholder slot */}
-                  {valueCards.length < MAX_CARDS && (
-                    <button
-                      type="button"
-                      onClick={handleAddCard}
-                      className="p-5 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center gap-2 text-gray-400 hover:border-blue-300 hover:text-blue-400 hover:bg-blue-50/30 transition-all min-h-[180px] cursor-pointer"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 5v14M5 12h14" />
-                      </svg>
-                      <span className="text-xs font-semibold uppercase tracking-wide">Add Card</span>
-                    </button>
-                  )}
                 </div>
               </div>
 

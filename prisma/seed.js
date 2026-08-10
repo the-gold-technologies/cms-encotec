@@ -207,7 +207,7 @@ async function main() {
             headlineHighlight: "Stewardship.",
             headlineLine2: "End-to-End Solutions for a Global Future",
             description:
-              'We are more than consultants; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
+              'We are more than service provider; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
             primaryBtnLabel: "Our Services",
             primaryBtnUrl: "/services",
             secondaryBtnLabel: "View Case Studies",
@@ -220,16 +220,14 @@ async function main() {
             ],
             projectsBadgeNumber: "",
             projectsBadgeLabel: "",
-            stat1Value: "2009",
-            stat1Label: "FOUNDING YEAR",
-            stat2Value: "2011",
-            stat2Label: "STARTED OPERATIONS",
-            stat3Value: "13+",
-            stat3Label: "KEY LOCATIONS",
-            stat4Value: "1800+",
-            stat4Label: "MANPOWER",
-            stat5Value: "20+",
-            stat5Label: "GW Under Stewardship",
+            stats: [
+              { value: "2009", label: "FOUNDING YEAR" },
+              { value: "2011", label: "STARTED OPERATIONS" },
+              { value: "13+", label: "KEY LOCATIONS" },
+              { value: "300+", label: "Engineers" },
+              { value: "1800+", label: "MANPOWER" },
+              { value: "10+", label: "GW Under Stewardship" },
+            ],
             backgroundImage:
               "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=1200",
           },
@@ -261,6 +259,7 @@ async function main() {
             stats: [
               { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
               { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
+              { value: "100+", label: "INDUSTRY SPECIALISTS", icon: "Award" },
               { value: "1800+", label: "MANPOWER", icon: "Users" },
               {
                 value: "20+ GW",
@@ -557,7 +556,7 @@ async function main() {
               },
               {
                 headline: "Planning an Asset Relocation?",
-                text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with zero downtime and optimum timeline.",
+                text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with zero optimum timeline.",
               },
             ],
           },
@@ -767,11 +766,23 @@ async function main() {
                 icon: "Users",
               },
               {
+                value: "300+",
+                label: "Engineers",
+                description: "Multidisciplinary engineering team",
+                icon: "Users",
+              },
+              {
                 value: "100+",
                 label: "Industry specialist",
                 description:
                   "Providing high-level expert advisory and diagnostics",
                 icon: "Briefcase",
+              },
+              {
+                value: "10+ GW",
+                label: "capacity under stewardship",
+                description: "Total power capacity under our stewardship",
+                icon: "Zap",
               },
               {
                 value: "20+ GW",
@@ -819,7 +830,7 @@ async function main() {
               {
                 title: "2013 & Beyond: O&M Leadership",
                 description:
-                  "Solidified our reputation as top-tier stewards with the long-term O&M contracts, Annual Maintenance contracts, Overhauling jobs. etc.",
+                  "Solidified our reputation as top-tier stewards with the long-term O&M management contracts, Annual Maintenance contracts, Overhauling jobs. etc.",
               },
               {
                 title: "2016: Supercritical Excellence",
@@ -827,9 +838,9 @@ async function main() {
                   "Embarked on our flagship O&M partnership for the 2x700 MW supercritical power plant at Nabha Power / Rajpura and 2x660 MW supercritical power plant at Jhajjar.",
               },
               {
-                title: "2018 & Beyond: Environmental Stewardship",
+                title: "2018 & Beyond: Environmental",
                 description:
-                  "Helping industries meet stringent environmental standards through specialized FGD O&M excellence.",
+                  "Delivering a Sustainable, Cleaner Industrial Future Helping industries meet stringent environmental standards through specialized FGD O&M excellence.",
               },
               {
                 title: "2021: Going Global",
@@ -837,7 +848,7 @@ async function main() {
                   "Took our expertise global, managing critical commissioning projects internationally.",
               },
               {
-                title: "2025 & Beyond: New Chapters",
+                title: "2021 & Beyond: New Chapters",
                 description:
                   "We are currently providing specialized utility management for international airports like Indira Gandhi International Airport, Delhi (DIAL) and Noida International Airport (NIA), newly inaugurated.",
               },
@@ -856,7 +867,7 @@ async function main() {
             heading: "Committed to a Greener Tomorrow",
             paragraphs: [
               "Sustainability is not a policy at Encotec; it is our promise. We are committed to sustainable development by integrating high standards of environmental management into everything we do.",
-              "Our in-house Encotec team conducts specialized energy audits to identify savings and reduce the carbon footprints of operational plants. Through our expert advisory and Residual Life Assessments (RLA), we help owners revitalize old plants, making them more efficient and environmentally compliant.",
+              "Our in-house Encotec team conducts  energy audits to identify savings and reduce the carbon footprints of operational plants. Through our expert advisory and Residual Life Assessments (RLA), we help owners revitalize old plants, making them more efficient and environmentally compliant.",
             ],
             focuses: [
               "Specialized energy audits by our in-house Encotec team to identify savings and reduce carbon footprints",
@@ -880,21 +891,13 @@ async function main() {
             headingPart1: "A Global Presence",
             headingHighlight: "with a Local Touch",
             description:
-              "While our headquarters is in Noida, our footprint spans the world. In India, we are present in 13+ key locations pan India. Internationally, we have established strong roots in Turkey, UAE, Indonesia, Vietnam, Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
+              "While our headquarters is in Noida, our footprint spans the world. In India, we are present in 13+ locations pan India. Internationally, we have established strong roots in Turkey, UAE, Indonesia, Vietnam, Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
             areas: [
               {
                 title: "International Operations",
                 desc: "Turkey, UAE, Indonesia, Vietnam, Germany",
               },
               { title: "Headquarters", desc: "Noida, India" },
-              {
-                title: "Eastern & Central India",
-                desc: "Jamshedpur, Raipur, Kharagpur",
-              },
-              {
-                title: "Coastal & Southern India",
-                desc: "Vizag and upcoming projects",
-              },
             ],
             calloutTitle: "Wherever Energy is Needed",
             calloutDesc:
@@ -916,7 +919,7 @@ async function main() {
               {
                 role: "Managing Director",
                 name: "Arun Kumar Sarna",
-                bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations, establishing a strong presence in both domestic and international markets. Focuses on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
+                bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations excellence in energy generation both domestic and international markets. Focus on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
               },
               {
                 role: "Director – Operations",
@@ -1767,27 +1770,51 @@ async function main() {
                 icon: "HardHat",
               },
               {
-                title: "International Commissioning",
+                title: "Technical Due Diligence",
                 description:
-                  "Our teams have managed grid synchronization and performance tests in diverse markets, including Greece and Turkey. We ensure your plant meets all local and international standards.",
-                icon: "Globe",
+                  "We provide independent technical audits for plant acquisitions, helping you understand the true value, operational risks, and hidden costs of an investment.",
+                icon: "FileCheck",
               },
               {
-                title: "Asset Relocation Services",
+                title: "Restoration Strategy",
                 description:
-                  "Unique to Encotec, we support owners in the complex process of dismantling, shifting, and reinstalling plants from one site—or country—to another, ensuring minimal downtime.",
-                icon: "Truck",
+                  "For older plants, we provide comprehensive revamping and restoration plans to improve performance, extend lifecycle, and meet environmental standards.",
+                icon: "RefreshCw",
               },
             ],
           },
         },
       });
-      // 3. ProcessFlow
+      // 3. ValueProtection
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "ValueProtection",
+          order: 2,
+          content: {
+            headingPart1: "Protecting Your ",
+            headingHighlight: "Investment",
+            bulletHeading: "What We Evaluate",
+            paragraphs: [
+              "Acquiring or relocating an industrial asset involves significant capital risk. Without a clear understanding of the asset's true condition, you may be inheriting expensive liabilities.",
+              "Our independent technical audits provide the objective data you need to negotiate effectively, plan capital expenditures accurately, and ensure that your investment will deliver the expected returns over its intended lifecycle.",
+            ],
+            bullets: [
+              "Structural integrity and material degradation",
+              "Historical O&M records and failure analysis",
+              "Environmental compliance and emissions",
+              "Control system obsolescence",
+              "Thermodynamic performance baseline",
+            ],
+          },
+        },
+      });
+      // 4. ProcessFlow
       await prisma.section.create({
         data: {
           pageId: createdPage.id,
           type: "ProcessFlow",
-          order: 2,
+          order: 3,
           content: {
             headingPart1: "The Relocation ",
             headingHighlight: "Advantage",
@@ -1812,17 +1839,17 @@ async function main() {
           },
         },
       });
-      // 4. CTASection
+      // 5. CTASection
       await prisma.section.create({
         data: {
           pageId: createdPage.id,
           type: "CTASection",
-          order: 3,
+          order: 4,
           content: {
-            heading: "Ready to Bring Your Asset Online?",
+            heading: "Planning an Acquisition or Relocation?",
             description:
-              "From new builds to complex cross-border relocations, our teams are ready to execute.",
-            ctaLabel: "Discuss Your Project",
+              "Get the technical truth about your assets before you make a decision.",
+            ctaLabel: "Request an Assessment",
             ctaUrl: "/contact",
           },
         },
@@ -2044,7 +2071,7 @@ async function main() {
               {
                 title: "Global OEM Network",
                 description:
-                  "We have established tie-ups with over 85 major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
+                  "We have established tie-ups with over  major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
                 icon: "Globe",
               },
               {
@@ -2056,7 +2083,7 @@ async function main() {
               {
                 title: "Technical Support",
                 description:
-                  "We don't just supply parts; we provide the engineering support to ensure they are integrated correctly and perform to specification within your existing systems.",
+                  "We don't just supply parts; we provide the engineering support to ensure they are integrated correctly and perform to specification.",
                 icon: "Wrench",
               },
             ],
@@ -2158,7 +2185,7 @@ async function main() {
             exec1Name: "Arun Kumar Sarna",
             exec1Role: "Managing Director",
             exec1Bio:
-              "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations, establishing a strong presence in both domestic and international markets. Focuses on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
+              "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations excellence in energy generation both domestic and international markets. Focus on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
             exec1Tags:
               "Strategic Leadership, Business Development, Energy Infrastructure",
             exec2Name: "Rajan Saxena",

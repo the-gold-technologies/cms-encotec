@@ -80,17 +80,6 @@ const mergeDefaults = (data: any) => {
   }
   if (!merged.stats || !Array.isArray(merged.stats)) {
     merged.stats = defaultFormData.stats.map((s) => ({ ...s }));
-  } else {
-    const statsArray = [...merged.stats];
-    while (statsArray.length < 4) {
-      const def = defaultFormData.stats[statsArray.length] || {
-        value: "",
-        label: "",
-        icon: "Zap",
-      };
-      statsArray.push({ ...def });
-    }
-    merged.stats = statsArray;
   }
   return merged;
 };
@@ -196,6 +185,26 @@ export function AboutUs({
       );
       return { ...prev, stats: newStats };
     });
+  };
+
+  const addStatCard = () => {
+    setFormData((prev) => ({
+      ...prev,
+      stats: [...prev.stats, { value: "", label: "", icon: "Zap" }],
+    }));
+    toast.success("Added new stat card");
+  };
+
+  const deleteStatCard = (index: number) => {
+    if (formData.stats.length <= 1) {
+      toast.error("At least 1 stat card is required");
+      return;
+    }
+    setFormData((prev) => ({
+      ...prev,
+      stats: prev.stats.filter((_, idx) => idx !== index),
+    }));
+    toast.success("Removed stat card");
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -557,20 +566,40 @@ export function AboutUs({
                   </div>
                 </div>
 
-                {/* 5. Stats Grid (4 Items) */}
+                {/* 5. Stats Grid (Dynamic Items) */}
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">
-                    Stats Grid (4 Items)
-                  </h4>
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                      Stats Grid ({formData.stats.length} Items)
+                    </h4>
+                    <button
+                      type="button"
+                      onClick={addStatCard}
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-[#a0004f] hover:bg-[#80003f] text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
+                    >
+                      <Plus size={14} />
+                      <span>Add Stat Card</span>
+                    </button>
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
                     {formData.stats.map((stat, i) => (
                       <div
                         key={i}
-                        className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3 relative group"
+                        className="border border-gray-100 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3 relative group shadow-sm"
                       >
-                        <span className="text-[10px] font-bold text-[#a0004f]/60 uppercase tracking-widest">
-                          Stat Card {i + 1}
-                        </span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-bold text-[#a0004f]/60 uppercase tracking-widest">
+                            Stat Card {i + 1}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => deleteStatCard(i)}
+                            className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                            title="Delete Stat Card"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        </div>
                         <InputField
                           label="Stat Value"
                           value={stat.value}
@@ -606,6 +635,13 @@ export function AboutUs({
                               <option value="Globe">Globe</option>
                               <option value="Users">Users</option>
                               <option value="Zap">Zap</option>
+                              <option value="Shield">Shield</option>
+                              <option value="Award">Award</option>
+                              <option value="TrendingUp">Trending Up</option>
+                              <option value="Briefcase">Briefcase</option>
+                              <option value="Clock">Clock</option>
+                              <option value="Activity">Activity</option>
+                              <option value="CheckCircle">Check Circle</option>
                             </select>
                           </div>
                         </div>

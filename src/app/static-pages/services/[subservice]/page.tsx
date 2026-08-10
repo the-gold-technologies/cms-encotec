@@ -135,11 +135,12 @@ export default async function SubServicePage({ params }: PageProps) {
     return (
       <section className="flex flex-col gap-6">
         <PageHeader
-          title="Transmission & Distribution Content"
-          description="Manage construction/relocation headlines, physical capabilities, and relocation workflow processes."
+          title="Construction, Commissioning & Relocation Content"
+          description="Manage construction/relocation headlines, physical capabilities, investment protection, and relocation workflow processes."
         />
         <ConstructionHeroCMS saveUrl={saveUrl} />
         <ConstructionCapabilitiesCMS saveUrl={saveUrl} />
+        <ValueProtectionCMS saveUrl={saveUrl} />
         <ProcessFlowCMS saveUrl={saveUrl} />
         <CTASectionCMS saveUrl={saveUrl} />
       </section>

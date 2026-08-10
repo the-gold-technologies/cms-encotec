@@ -35,7 +35,7 @@ const mockPages: any[] = [
           headlineHighlight: "Stewardship.",
           headlineLine2: "End-to-End Solutions for a Global Future",
           description:
-            'We are more than consultants; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
+            'We are more than service provider; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
           primaryBtnLabel: "Our Services",
           primaryBtnUrl: "/services",
           secondaryBtnLabel: "View Case Studies",
@@ -48,16 +48,14 @@ const mockPages: any[] = [
           ],
           projectsBadgeNumber: "",
           projectsBadgeLabel: "",
-          stat1Value: "2009",
-          stat1Label: "FOUNDING YEAR",
-          stat2Value: "2011",
-          stat2Label: "STARTED OPERATIONS",
-          stat3Value: "13+",
-          stat3Label: "KEY LOCATIONS",
-          stat4Value: "1800+",
-          stat4Label: "MANPOWER",
-          stat5Value: "20+ GW",
-          stat5Label: "POWER CAPACITY O&M EXECUTED",
+          stats: [
+            { value: "2009", label: "FOUNDING YEAR" },
+            { value: "2011", label: "STARTED OPERATIONS" },
+            { value: "13+", label: "KEY LOCATIONS" },
+            { value: "300+", label: "Engineers" },
+            { value: "1800+", label: "MANPOWER" },
+            { value: "10+ GW", label: "POWER CAPACITY O&M EXECUTED" },
+          ],
           backgroundImage:
             "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=1200",
         },
@@ -88,6 +86,7 @@ const mockPages: any[] = [
           stats: [
             { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
             { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
+            { value: "100+", label: "INDUSTRY SPECIALISTS", icon: "Award" },
             { value: "1800+", label: "MANPOWER", icon: "Users" },
             {
               value: "20+ GW",
@@ -444,7 +443,7 @@ const mockPages: any[] = [
           tagline: "Partner With Us",
           heading: "Experience Global Engineering Excellence.",
           description:
-            "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ key locations that rely on Encotec for their critical power needs.",
+            "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ locations that rely on Encotec for their critical power needs.",
           primaryBtnLabel: "Start Your Project",
           primaryBtnUrl: "/contact",
           secondaryBtnLabel: "Talk to an Expert",
@@ -493,6 +492,66 @@ const mockPages: any[] = [
             "Delivering excellence with high safety standards and integrity.",
         },
         order: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: "sec-a3",
+        pageId: "page-about",
+        type: "ScaleImpact",
+        content: {
+          heading: "Encotec by the Numbers",
+          description:
+            "Our growth is a testament to the trust our partners place in us. As of 2025–26, our impact is felt across the industry.",
+          stats: [
+            {
+              value: "1,800+",
+              label: "Manpower",
+              description: "Working across global sites",
+              icon: "Users",
+            },
+            {
+              value: "300+",
+              label: "Engineers",
+              description: "Multidisciplinary engineering team",
+              icon: "Users",
+            },
+            {
+              value: "100+",
+              label: "Industry specialist",
+              description:
+                "Providing high-level expert advisory and diagnostics",
+              icon: "Briefcase",
+            },
+            {
+              value: "10+ GW",
+              label: "capacity under stewardship",
+              description: "Total power capacity under our stewardship",
+              icon: "Zap",
+            },
+            {
+              value: "20+ GW",
+              label: "Managed capacity under stewardship",
+              description: "Total power capacity under our stewardship",
+              icon: "Zap",
+            },
+            {
+              value: "Triple ISO",
+              label: "Certified",
+              description:
+                "Quality (9001), Environment (14001), Safety (45001)",
+              icon: "ShieldCheck",
+            },
+            {
+              value: "10+",
+              label: "presence in Asia, Europe & Africa",
+              description:
+                "Across India, Vietnam, Tanzania, Indonesia, UAE, Germany, Kenya, Oman, and Turkey.",
+              icon: "Globe",
+            },
+          ],
+        },
+        order: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

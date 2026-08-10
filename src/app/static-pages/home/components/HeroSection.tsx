@@ -197,17 +197,8 @@ export function HeroSection({
       const payload: any = {
         ...formData,
         stats: statsList,
-        statsList,
         backgroundImage: imgUrl,
       };
-
-      // Keep legacy properties synced
-      statsList.forEach((s, idx) => {
-        if (idx < 5) {
-          payload[`stat${idx + 1}Value`] = s.value;
-          payload[`stat${idx + 1}Label`] = s.label;
-        }
-      });
 
       const body = sectionId
         ? { id: sectionId, content: payload }

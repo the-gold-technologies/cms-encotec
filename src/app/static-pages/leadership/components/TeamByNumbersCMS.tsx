@@ -17,10 +17,11 @@ export function TeamByNumbersCMS() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [statsList, setStatsList] = useState<StatItem[]>([
-    { value: "", label: "" },
-    { value: "", label: "" },
-    { value: "", label: "" },
-    { value: "", label: "" }
+    { value: "1800+", label: "Total Professionals" },
+    { value: "300+", label: "Senior Engineers" },
+    { value: "100+", label: "Industry Experts" },
+    { value: "23+", label: "Countries of Operation" },
+    { value: "12+", label: "Years Avg Experience" },
   ]);
 
   useEffect(() => {
@@ -30,13 +31,20 @@ export function TeamByNumbersCMS() {
           const data = json.data.TeamByNumbers;
           const raw = (data.stats || data.statsList) as any[];
           if (Array.isArray(raw) && raw.length > 0) {
-            setStatsList(raw.map((s: any) => ({ value: s.value || "", label: s.label || "" })));
+            setStatsList(
+              raw.map((s: any) => ({
+                value: s.value || "",
+                label: s.label || "",
+              })),
+            );
           } else {
             const legacy: StatItem[] = [];
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 6; i++) {
               if (data[`stats${i}Value`] || data[`stats${i}Label`]) {
+                const val = String(data[`stats${i}Value`] || "");
+                const suf = String(data[`stats${i}Suffix`] || "");
                 legacy.push({
-                  value: data[`stats${i}Value`] || "",
+                  value: val.includes("+") || !suf ? val : `${val}${suf}`,
                   label: data[`stats${i}Label`] || "",
                 });
               }
@@ -48,9 +56,13 @@ export function TeamByNumbersCMS() {
       .catch(console.error);
   }, []);
 
-  const handleStatChange = (index: number, field: keyof StatItem, value: string) => {
+  const handleStatChange = (
+    index: number,
+    field: keyof StatItem,
+    value: string,
+  ) => {
     setStatsList((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
+      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item)),
     );
   };
 
@@ -72,17 +84,9 @@ export function TeamByNumbersCMS() {
     setIsSaving(true);
     const toastId = toast.loading("Saving Team By Numbers Section...");
     try {
-      const payload: any = {
+      const payload = {
         stats: statsList,
-        statsList,
       };
-
-      statsList.forEach((s, idx) => {
-        if (idx < 4) {
-          payload[`stats${idx + 1}Value`] = s.value;
-          payload[`stats${idx + 1}Label`] = s.label;
-        }
-      });
 
       const res = await fetch("/api/leadership", {
         method: "PUT",
@@ -94,7 +98,9 @@ export function TeamByNumbersCMS() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Team By Numbers Section saved successfully!", { id: toastId });
+        toast.success("Team By Numbers Section saved successfully!", {
+          id: toastId,
+        });
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -110,7 +116,7 @@ export function TeamByNumbersCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Team by Numbers"
-        description="Manage numeric thresholds and stat labels shown on counters. Add or remove stat cards dynamically."
+        description="Manage stat values (e.g. 1800+) and stat labels shown on counters. Add or remove stat cards dynamically."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -118,7 +124,10 @@ export function TeamByNumbersCMS() {
         <div className="flex flex-col gap-6 pt-4 border-t border-gray-50">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
-              Stat Counter Cards <span className="text-neutral-500 font-semibold">({statsList.length})</span>
+              Stat Counter Cards{" "}
+              <span className="text-neutral-500 font-semibold">
+                ({statsList.length})
+              </span>
             </span>
             <button
               type="button"
@@ -130,9 +139,12 @@ export function TeamByNumbersCMS() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {statsList.map((stat, i) => (
-              <div key={i} className="p-4 bg-gray-50/20 border border-gray-200 rounded-xl flex flex-col gap-4 relative group shadow-sm">
+              <div
+                key={i}
+                className="p-4 bg-gray-50/20 border border-gray-200 rounded-xl flex flex-col gap-4 relative group shadow-sm"
+              >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">
                     Stat counter {i + 1}
@@ -147,10 +159,12 @@ export function TeamByNumbersCMS() {
                   </button>
                 </div>
                 <InputField
-                  label="Target Value (number)"
+                  label="Target Value (e.g. 1800+)"
                   name={`statsVal-${i}`}
                   value={stat.value}
-                  onChange={(e) => handleStatChange(i, "value", e.target.value)}
+                  onChange={(e) =>
+                    handleStatChange(i, "value", e.target.value)
+                  }
                   required
                 />
                 <InputField

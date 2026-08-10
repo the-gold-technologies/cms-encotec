@@ -2143,9 +2143,13 @@ async function main() {
             heroTitle: "LEADERSHIP & TEAM",
             heroSubtitle:
               "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
-            heroBadge1: "1,800+ Manpower",
-            heroBadge2: "12+ Years Average Experience",
-            heroBadge3: "10+ Countries",
+            badges: [
+              "1,800+ Manpower",
+              "300+ Engineers",
+              "100+ Professionals & Industry Experts",
+              "12+ Years Average Experience",
+              "10+ Countries",
+            ],
             backgroundImage:
               "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
           },
@@ -2248,18 +2252,13 @@ async function main() {
           type: "TeamByNumbers",
           order: 4,
           content: {
-            stats1Value: "1800",
-            stats1Suffix: "+",
-            stats1Label: "Total Professionals",
-            stats2Value: "300",
-            stats2Suffix: "+",
-            stats2Label: "Senior Engineers",
-            stats3Value: "23",
-            stats3Suffix: "+",
-            stats3Label: "Countries of Operation",
-            stats4Value: "12",
-            stats4Suffix: "+",
-            stats4Label: "Years Avg Experience",
+            stats: [
+              { value: "1800+", label: "Total Professionals" },
+              { value: "300+", label: "Senior Engineers" },
+              { value: "100+", label: "Industry Experts" },
+              { value: "23+", label: "Countries of Operation" },
+              { value: "12+", label: "Years Avg Experience" },
+            ],
           },
         },
       });

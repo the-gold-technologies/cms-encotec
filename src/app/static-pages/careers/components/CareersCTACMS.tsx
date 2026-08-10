@@ -11,7 +11,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 const defaultFormData = {
   ctaHeading: "",
   ctaSubtitle: "",
-  hrEmail: ""
+  hrEmail: "",
 };
 
 export function CareersCTACMS() {
@@ -29,7 +29,9 @@ export function CareersCTACMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -90,7 +92,7 @@ export function CareersCTACMS() {
             name="hrEmail"
             value={formData.hrEmail}
             onChange={handleChange}
-            placeholder="e.g. careers@encotech.com"
+            placeholder="e.g. careers@encotec.com"
             required
           />
           <div className="flex justify-end pt-4 border-t border-gray-50">

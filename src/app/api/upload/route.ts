@@ -18,7 +18,7 @@ export async function POST(req: Request) {
         const dataUri = `data:${file.type};base64,${base64Image}`;
 
         const uploadResponse = await cloudinary.uploader.upload(dataUri, {
-          folder: "Encotech-Assets",
+          folder: "encotec-Assets",
         });
 
         uploadedFiles.push(uploadResponse.secure_url);

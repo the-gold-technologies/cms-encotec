@@ -19,7 +19,7 @@ function getRelativeTime(timeStr: string) {
     const date = new Date(timeStr);
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
-    
+
     // Fallback to "Just now" if server time is slightly off
     if (diffMs < 0) return "Just now";
 
@@ -51,7 +51,7 @@ export function AdminRightSidebar({ stats, loading }: AdminRightSidebarProps) {
           <div className="w-6 h-6 rounded-full bg-white text-[#0B0F29] flex items-center justify-center font-serif italic text-sm">
             E
           </div>
-          Encotech Setup
+          encotec Setup
         </div>
         <h2 className="text-[26px] font-black leading-[1.1] mb-3">
           Optimize <br />
@@ -101,9 +101,11 @@ export function AdminRightSidebar({ stats, loading }: AdminRightSidebarProps) {
 
               return (
                 <div key={idx} className="flex items-start gap-3 text-[13px]">
-                  <div className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${
-                    isEnquiry ? "bg-green-500 animate-pulse" : "bg-[#a0004f]"
-                  }`}></div>
+                  <div
+                    className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${
+                      isEnquiry ? "bg-green-500 animate-pulse" : "bg-[#a0004f]"
+                    }`}
+                  ></div>
                   <div className="flex flex-col flex-1 leading-snug">
                     <span className="font-bold text-[#0B0F29]">
                       {activity.text}

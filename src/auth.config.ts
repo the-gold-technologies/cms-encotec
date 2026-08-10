@@ -1,6 +1,5 @@
 import type { NextAuthConfig } from "next-auth";
 
-
 export default {
   providers: [],
   session: { strategy: "jwt" },
@@ -10,7 +9,7 @@ export default {
   secret: process.env.AUTH_SECRET,
   cookies: {
     sessionToken: {
-      name: "encotech-cms.session-token",
+      name: "encotec-cms.session-token",
       options: {
         httpOnly: true,
         sameSite: "lax",

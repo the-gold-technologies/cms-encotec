@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Loader2, Layout, BadgeCheck, ShieldAlert, Eye } from "lucide-react";
+import {
+  ArrowRight,
+  Loader2,
+  Layout,
+  BadgeCheck,
+  ShieldAlert,
+  Eye,
+} from "lucide-react";
 
 interface PageListItem {
   id: string;
@@ -29,9 +36,12 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-50">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="font-bold text-lg text-[#0B0F29]">Encotech Website Pages</h3>
+          <h3 className="font-bold text-lg text-[#0B0F29]">
+            encotec Website Pages
+          </h3>
           <p className="text-xs font-medium text-gray-400 mt-0.5">
-            Overview of static pages, layout layouts, and section configurations.
+            Overview of static pages, layout layouts, and section
+            configurations.
           </p>
         </div>
         <Link
@@ -55,11 +65,21 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
           <table className="w-full text-left border-collapse text-[13px]">
             <thead>
               <tr className="border-b border-gray-100 pb-2">
-                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">Page Name</th>
-                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">Route Path</th>
-                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">Status</th>
-                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">Sections Count</th>
-                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px] text-right">Actions</th>
+                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">
+                  Page Name
+                </th>
+                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">
+                  Route Path
+                </th>
+                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">
+                  Status
+                </th>
+                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px]">
+                  Sections Count
+                </th>
+                <th className="pb-3 font-bold text-gray-400 uppercase tracking-widest text-[10px] text-right">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -68,9 +88,15 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
                 const editorUrl = `/static-pages/${page.slug}`;
 
                 return (
-                  <tr key={page.id} className="hover:bg-gray-50/20 transition-colors">
+                  <tr
+                    key={page.id}
+                    className="hover:bg-gray-50/20 transition-colors"
+                  >
                     <td className="py-3.5">
-                      <Link href={editorUrl} className="flex items-center gap-2 group">
+                      <Link
+                        href={editorUrl}
+                        className="flex items-center gap-2 group"
+                      >
                         <div className="h-8 w-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-[#a0004f]/10 group-hover:text-[#a0004f] transition-colors">
                           <Layout className="w-4 h-4" />
                         </div>
@@ -88,11 +114,13 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
                       /{page.slug === "home" ? "" : page.slug}
                     </td>
                     <td className="py-3.5">
-                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                        isPublic 
-                          ? "bg-green-50 text-green-600" 
-                          : "bg-amber-50 text-amber-600"
-                      }`}>
+                      <span
+                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                          isPublic
+                            ? "bg-green-50 text-green-600"
+                            : "bg-amber-50 text-amber-600"
+                        }`}
+                      >
                         {isPublic ? (
                           <>
                             <BadgeCheck className="w-3 h-3" />
@@ -107,7 +135,8 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
                       </span>
                     </td>
                     <td className="py-3.5 font-bold text-gray-800">
-                      {page.sectionsCount} content block{page.sectionsCount === 1 ? "" : "s"}
+                      {page.sectionsCount} content block
+                      {page.sectionsCount === 1 ? "" : "s"}
                     </td>
                     <td className="py-3.5 text-right">
                       <Link

@@ -1,9 +1,9 @@
-# **Encotech CMS (Content Management System)**
+# **encotec CMS (Content Management System)**
 
 A high-performance, custom-built, premium Content Management Dashboard built with Next.js 14, Prisma, PostgreSQL, Tailwind CSS, and NextAuth.
 
 **Live CMS Dashboard:** [https://cms-encotec.tgtpartner.com](https://cms-encotec.tgtpartner.com)  
-**Live Website:** [https://encotech-six.vercel.app](https://encotech-six.vercel.app)
+**Live Website:** [https://encotec-six.vercel.app](https://encotec-six.vercel.app)
 
 ---
 
@@ -15,7 +15,7 @@ A high-performance, custom-built, premium Content Management Dashboard built wit
 
 <br />
 
-Welcome to **Encotech CMS** — a dedicated portal designed to securely and dynamically manage the Encotec digital footprint. This centralized portal offers a seamless, fast, and responsive UI for managing dynamic page sections, services details, SEO parameters, and direct client enquiries without touching code.
+Welcome to **encotec CMS** — a dedicated portal designed to securely and dynamically manage the Encotec digital footprint. This centralized portal offers a seamless, fast, and responsive UI for managing dynamic page sections, services details, SEO parameters, and direct client enquiries without touching code.
 
 ---
 
@@ -32,12 +32,12 @@ Welcome to **Encotech CMS** — a dedicated portal designed to securely and dyna
 
 ## ✨ Core Principles & Features
 
-Encotech CMS bridges the gap between static site generation and dynamic database-driven views by exposing real-time API integrations that feed the main website's serverless pre-renderer.
+encotec CMS bridges the gap between static site generation and dynamic database-driven views by exposing real-time API integrations that feed the main website's serverless pre-renderer.
 
 | Feature Area             | Capabilities                                                                            |
 | :----------------------- | :-------------------------------------------------------------------------------------- |
 | **Modular Page Control** | Section-based layout mapping for rapid edits to Home, About, Services, and Careers.     |
-| **SEO & Meta Engine**    | Page-by-page title, description, canonical link, social tags, and custom schema markup.  |
+| **SEO & Meta Engine**    | Page-by-page title, description, canonical link, social tags, and custom schema markup. |
 | **Sitemap & Robots**     | Dynamic robots.txt rules editing and custom/auto sitemap generator link mappings.       |
 | **Enquiry & Lead CRM**   | Unified dashboard tracing direct form submissions, CRM integrations, and notifications. |
 | **Asset Lifecycle O&M**  | Core CMS widgets to update capacity stats, locations, services data, and team profiles. |
@@ -57,8 +57,9 @@ Built for Speed, Security, and Scale.
 ## 📂 Folder Structure
 
 The repository is modularly segmented:
+
 ```text
-encotech-cms/
+encotec-cms/
 ├── prisma/                    # Schema models, seed scripts, and migrations
 ├── public/                    # Root static assets and images
 ├── src/
@@ -81,21 +82,27 @@ encotech-cms/
 Follow the steps below to initialize and serve the CMS locally.
 
 ### 1. Requirements
+
 Ensure the target machine has the following dependencies initialized:
+
 - **Node.js** (v18.0.0 or later)
 - **npm** (v9.0.0 or later)
 - **PostgreSQL**
 
 ### 2. Install Dependencies
+
 Clone this repository and hydrate the application:
+
 ```bash
 git clone <repository-url>
-cd encotech-cms
+cd encotec-cms
 npm install
 ```
 
 ### 3. Environment Allocation
-Generate a secure `.env` file at the root of `encotech-cms/`:
+
+Generate a secure `.env` file at the root of `encotec-cms/`:
+
 ```env
 # Database Connection
 DATABASE_URL="" # PostgreSQL connection string
@@ -115,7 +122,9 @@ NEXT_PUBLIC_WEBSITE_URL="" # Live frontend website domain
 ```
 
 ### 4. Database Syncing
+
 Sync the schema structure with the database and seed the default admin credentials and section parameters:
+
 ```bash
 # Push schema structure into the database
 npx prisma db push
@@ -125,10 +134,13 @@ node prisma/seed.js
 ```
 
 ### 5. Run the Application
+
 Start the development server:
+
 ```bash
 npm run dev
 ```
+
 The dashboard is now running at `http://localhost:3000`.
 
 ---
@@ -137,15 +149,16 @@ The dashboard is now running at `http://localhost:3000`.
 
 When deploying to production, configure these environment variables in your hosting provider's settings:
 
-* **`NEXTAUTH_URL`**: Your production CMS URL (e.g. `https://cms.yourdomain.com`).
-* **`AUTH_TRUST_HOST`**: Set this to `true` (Mandatory for NextAuth v5 to trust custom domains).
-* **`NEXT_PUBLIC_WEBSITE_URL`**: Your production frontend website URL (e.g. `https://yourdomain.com`).
+- **`NEXTAUTH_URL`**: Your production CMS URL (e.g. `https://cms.yourdomain.com`).
+- **`AUTH_TRUST_HOST`**: Set this to `true` (Mandatory for NextAuth v5 to trust custom domains).
+- **`NEXT_PUBLIC_WEBSITE_URL`**: Your production frontend website URL (e.g. `https://yourdomain.com`).
 
 ---
 
 ## 🎨 Design Language
 
 The application relies on maintaining the high-fidelity corporate engineering identity of Encotec:
+
 - **Corporate Slate Backgrounds**: Clean, modern dark grids simulating a high-tech engineering workstation.
 - **Accents**: Brand-pink accents (`#a0004f`) used sparingly for primary status states, CTAs, highlight badges, and hover animations.
 - **Transitions**: Low-friction Framer Motion transitions for smooth sidebar interactions.

@@ -12,7 +12,7 @@ const mockPages: any[] = [
     visibility: "public",
     isStatic: true,
     description: "Welcome to Encotec",
-    metaTitle: "Encotech - Member of Dornier Group",
+    metaTitle: "encotec - Member of Dornier Group",
     metaDescription: "Providing engineering services since 2011",
     targetKeywords: "engineering, power generation, transmission",
     canonicalUrl: "",
@@ -507,7 +507,7 @@ const mockPages: any[] = [
     type: "static",
     visibility: "public",
     isStatic: true,
-    description: "Encotech Services",
+    description: "encotec Services",
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [],
@@ -521,7 +521,7 @@ const mockPages: any[] = [
     type: "static",
     visibility: "public",
     isStatic: true,
-    description: "Encotech Insights",
+    description: "encotec Insights",
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [],
@@ -699,7 +699,7 @@ const mockEnquiries: any[] = [
 
 let mockGlobalConfig: any = {
   id: "global",
-  siteTitle: "Encotech",
+  siteTitle: "encotec",
   siteDescription:
     "Engineering & Project Management Services - Member of Dornier Group",
   favicon: "",
@@ -709,8 +709,8 @@ let mockGlobalConfig: any = {
   customHeaderScripts: "",
   customFooterScripts: "",
   socialLinks: {
-    twitter: "https://twitter.com/encotech",
-    linkedin: "https://linkedin.com/company/encotech",
+    twitter: "https://twitter.com/encotec",
+    linkedin: "https://linkedin.com/company/encotec",
   },
   canonicalOrdering: "default",
   createdAt: new Date(),

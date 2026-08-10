@@ -276,7 +276,7 @@ Paste only XXXXXXXX`}
                   schema: e.target.value,
                 })
               }
-              placeholder='e.g. { "@context": "https://schema.org", "@type": "Organization", "name": "Encotech" }'
+              placeholder='e.g. { "@context": "https://schema.org", "@type": "Organization", "name": "encotec" }'
               rows={8}
               className="font-mono text-xs md:col-span-2"
               containerClassName="md:col-span-2"

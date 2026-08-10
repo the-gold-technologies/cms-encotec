@@ -18,7 +18,7 @@ async function main() {
   const adminUser = await prisma.user.create({
     data: {
       name: "Admin",
-      email: "admin@encotech.com",
+      email: "admin@encotec.com",
       password: hashedPassword,
     },
   });
@@ -28,7 +28,7 @@ async function main() {
   await prisma.globalConfig.create({
     data: {
       id: "global",
-      siteTitle: "Encotech",
+      siteTitle: "encotec",
       siteDescription:
         "Engineering & Project Management Services - Member of Dornier Group",
       favicon: null,
@@ -49,7 +49,7 @@ async function main() {
       title: "Home",
       slug: "home",
       description: "Welcome to Encotec",
-      metaTitle: "Encotech - Member of Dornier Group",
+      metaTitle: "encotec - Member of Dornier Group",
       metaDescription: "Providing engineering services since 2011",
       isStatic: true,
       visibility: "public",
@@ -66,7 +66,7 @@ async function main() {
     {
       title: "Services",
       slug: "services",
-      description: "Encotech Services",
+      description: "encotec Services",
       metaTitle: "Our Services - Encotec",
       metaDescription: "Explore our range of engineering and advisory services",
       isStatic: true,
@@ -75,7 +75,7 @@ async function main() {
     {
       title: "Insights",
       slug: "insights",
-      description: "Encotech Insights",
+      description: "encotec Insights",
       metaTitle: "Insights & Case Studies - Encotec",
       metaDescription: "Read about our projects and industry insights",
       isStatic: true,
@@ -3150,7 +3150,7 @@ async function main() {
             tagline: "QUALITY POLICY & ACCREDITATION",
             heading: "Triple ISO Integrated Management System",
             description:
-              "Certified by Universal Certification Services (UCSPL) and internationally accredited under IAF & KAB standards for Encotech Energy (India) Private Limited.",
+              "Certified by Universal Certification Services (UCSPL) and internationally accredited under IAF & KAB standards for encotec Energy (India) Private Limited.",
             certificationsList: [
               {
                 id: "iso-9001",

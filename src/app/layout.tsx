@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Encotech CMS",
+  title: "encotec CMS",
   description: "Manage your Encotec website content",
 };
 

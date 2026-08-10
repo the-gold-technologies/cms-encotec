@@ -8,7 +8,7 @@ export async function GET() {
 
     return NextResponse.json({
       status: "online",
-      message: "Encotech CMS Backend is running and connected to database!",
+      message: "encotec CMS Backend is running and connected to database!",
     });
   } catch (error) {
     console.error("Database connection error:", error);

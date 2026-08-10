@@ -377,7 +377,7 @@ const mockPages: any[] = [
             },
             {
               headline: "Planning an Asset Relocation?",
-              text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with zero downtime and optimum timeline.",
+              text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with downtime and optimum timeline.",
             },
           ],
         },
@@ -443,7 +443,7 @@ const mockPages: any[] = [
           tagline: "Partner With Us",
           heading: "Experience Global Engineering Excellence.",
           description:
-            "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ locations that rely on Encotec for their critical power needs.",
+            "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ locations that rely on Encotec for their critical needs.",
           primaryBtnLabel: "Start Your Project",
           primaryBtnUrl: "/contact",
           secondaryBtnLabel: "Talk to an Expert",

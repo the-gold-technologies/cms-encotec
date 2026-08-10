@@ -566,7 +566,7 @@ async function main() {
               },
               {
                 headline: "Planning an Asset Relocation?",
-                text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with zero optimum timeline.",
+                text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with  optimum timeline.",
               },
             ],
           },
@@ -652,7 +652,7 @@ async function main() {
             headingPart1: "Experience Global",
             headingHighlight: "Engineering Excellence.",
             description:
-              "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ Projects that rely on Encotec for their critical power needs.",
+              "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ Projects that rely on Encotec for their critical needs.",
             primaryBtnLabel: "Start Your Project",
             primaryBtnUrl: "/contact",
             secondaryBtnLabel: "Talk to an Expert",
@@ -2473,7 +2473,7 @@ async function main() {
                 title: "Ensuring Reliability for Punjab's Power Heart",
                 category: "Case Study",
                 description:
-                  "Comprehensive O&M for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
+                  " O&M for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
                 date: "January 2024",
                 location: "Rajpura, Punjab",
                 readTime: "",

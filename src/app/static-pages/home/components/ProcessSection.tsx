@@ -10,6 +10,8 @@ import {
   Activity,
   ChevronDown,
   ChevronUp,
+  Plus,
+  Trash2,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
@@ -32,31 +34,31 @@ const defaultFormData = {
       id: 1,
       title: "",
       description: "",
-      icon: ""
+      icon: "Search"
     },
     {
       id: 2,
       title: "",
       description: "",
-      icon: ""
+      icon: "PenTool"
     },
     {
       id: 3,
       title: "",
       description: "",
-      icon: ""
+      icon: "HardHat"
     },
     {
       id: 4,
       title: "",
       description: "",
-      icon: ""
+      icon: "CheckCircle2"
     },
     {
       id: 5,
       title: "",
       description: "",
-      icon: ""
+      icon: "Activity"
     }
   ]
 };
@@ -66,12 +68,12 @@ const mergeDefaults = (data: any) => {
   if (!merged.steps || !Array.isArray(merged.steps)) {
     merged.steps = defaultFormData.steps.map((s) => ({ ...s }));
   } else {
-    const arr = [...merged.steps];
-    while (arr.length < 5) {
-      const def = defaultFormData.steps[arr.length] || { id: arr.length + 1, title: "", description: "", icon: "Search" };
-      arr.push({ ...def });
-    }
-    merged.steps = arr.slice(0, 5);
+    merged.steps = merged.steps.map((s: any, idx: number) => ({
+      id: s.id || idx + 1,
+      title: s.title || "",
+      description: s.description || "",
+      icon: s.icon || "Search",
+    }));
   }
   return merged;
 };
@@ -145,6 +147,35 @@ export function ProcessSection({
     });
   };
 
+  const addStep = () => {
+    setFormData((prev) => {
+      const nextId = prev.steps.length + 1;
+      const newStep: StepItem = {
+        id: nextId,
+        title: "",
+        description: "",
+        icon: "Search",
+      };
+      return { ...prev, steps: [...prev.steps, newStep] };
+    });
+    setOpenSteps((prev) => ({ ...prev, [formData.steps.length]: true }));
+    toast.success("Added new workflow step card");
+  };
+
+  const deleteStep = (index: number) => {
+    if (formData.steps.length <= 1) {
+      toast.error("At least 1 workflow step card is required");
+      return;
+    }
+    setFormData((prev) => {
+      const filtered = prev.steps
+        .filter((_, idx) => idx !== index)
+        .map((step, idx) => ({ ...step, id: idx + 1 }));
+      return { ...prev, steps: filtered };
+    });
+    toast.success("Removed workflow step card");
+  };
+
   const handleSave = async () => {
     const errs: string[] = [];
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
@@ -202,7 +233,7 @@ export function ProcessSection({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Process Workflow Section"
-          description="Manage Encotec's workflow steps layout (exactly 5 items)."
+          description="Manage Encotec's workflow steps layout. Add, edit, or delete step cards dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -237,9 +268,18 @@ export function ProcessSection({
 
               {/* Step Items */}
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">
-                  Workflow Step Cards (5 Items)
-                </h4>
+                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                    Workflow Step Cards ({formData.steps.length} Items)
+                  </h4>
+                  <button
+                    type="button"
+                    onClick={addStep}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#a0004f]/10 text-[#a0004f] border border-[#a0004f]/20 text-xs font-bold rounded-xl hover:bg-[#a0004f]/20 transition-colors"
+                  >
+                    <Plus size={14} /> Add Step Card
+                  </button>
+                </div>
                 <div className="grid grid-cols-1 gap-6">
                   {formData.steps.map((step, i) => (
                     <div
@@ -247,24 +287,37 @@ export function ProcessSection({
                       className="border border-gray-100 p-6 rounded-2xl bg-gray-50/20 flex flex-col gap-4 relative group"
                     >
                       {/* Step Header */}
-                      <div
-                        onClick={() => toggleStep(i)}
-                        className="flex items-center justify-between border-b border-gray-100 pb-2 cursor-pointer select-none group"
-                      >
-                        <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                        <div
+                          onClick={() => toggleStep(i)}
+                          className="flex items-center gap-3 cursor-pointer select-none group flex-1"
+                        >
                           <span className="text-[11px] font-bold text-[#a0004f] bg-[#a0004f]/5 px-2.5 py-1 rounded-full uppercase tracking-wider">
-                            Step 0{step.id}
+                            Step {step.id < 10 ? `0${step.id}` : step.id}
                           </span>
                           <span className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors">
                             {step.title || `Untitled Step 0${step.id}`}
                           </span>
                         </div>
-                        <div className="text-gray-400 group-hover:text-gray-600 transition-colors">
-                          {openSteps[i] ? (
-                            <ChevronUp className="w-4 h-4" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4" />
-                          )}
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => deleteStep(i)}
+                            title="Delete Step"
+                            className="p-1 text-gray-400 hover:text-red-500 rounded transition-colors"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                          <div
+                            onClick={() => toggleStep(i)}
+                            className="text-gray-400 group-hover:text-gray-600 transition-colors cursor-pointer"
+                          >
+                            {openSteps[i] ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </div>
                         </div>
                       </div>
  

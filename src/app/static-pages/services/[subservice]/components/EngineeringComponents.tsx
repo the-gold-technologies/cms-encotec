@@ -9,6 +9,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
 import { uploadFiles } from "@/lib/uploadHelpers";
 import { ImagePickerField } from "@/components/ImagePickerField";
+import { Plus, Trash2 } from "lucide-react";
 
 // 1. EngineeringHeroCMS
 export function EngineeringHeroCMS({ saveUrl }: { saveUrl: string }) {
@@ -556,6 +557,34 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
     });
   };
 
+  const addStep = () => {
+    setFormData((prev) => ({
+      ...prev,
+      steps: [
+        ...prev.steps,
+        {
+          title: "",
+          icon: "Search",
+          description: "",
+          image: "",
+        },
+      ],
+    }));
+    toast.success("Added new step card");
+  };
+
+  const deleteStep = (index: number) => {
+    if (formData.steps.length <= 1) {
+      toast.error("At least 1 step card is required");
+      return;
+    }
+    setFormData((prev) => ({
+      ...prev,
+      steps: prev.steps.filter((_, idx) => idx !== index),
+    }));
+    toast.success("Removed step card");
+  };
+
   const handleStepImageUpload = async (index: number, file: File) => {
     const toastId = toast.loading("Uploading step image...");
     try {
@@ -600,7 +629,7 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Engineering Methodology Steps"
-        description="Manage workflows steps, captions, and details."
+        description="Manage workflow steps, captions, and details. Add or delete step cards dynamically."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -630,14 +659,33 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
           />
 
           <div className="flex flex-col gap-6 border border-gray-100 p-6 rounded-2xl bg-gray-50/20">
-            <h4 className="text-sm font-bold text-gray-700">Steps List</h4>
+            <div className="flex items-center justify-between">
+              <h4 className="text-sm font-bold text-gray-700">Steps List ({formData.steps.length})</h4>
+              <button
+                type="button"
+                onClick={addStep}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 border border-blue-200 text-xs font-bold rounded-lg hover:bg-blue-100 transition-colors cursor-pointer"
+              >
+                <Plus size={14} /> Add Step Card
+              </button>
+            </div>
             {formData.steps.map((step, i) => (
               <div
                 key={i}
                 className="border-b border-gray-100 pb-6 last:border-0 last:pb-0 flex flex-col gap-4"
               >
-                <div className="text-xs font-bold text-gray-400 uppercase">
-                  Step #{i + 1}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-gray-400 uppercase">
+                    Step #{i + 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => deleteStep(i)}
+                    title="Delete Step"
+                    className="p-1 text-gray-400 hover:text-red-500 rounded transition-colors cursor-pointer"
+                  >
+                    <Trash2 size={16} />
+                  </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <InputField

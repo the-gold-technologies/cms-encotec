@@ -289,12 +289,14 @@ async function main() {
               "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running.",
             services: [
               {
-                title: "Project Conceptualisation & Development",
+                title: "Project Conceptualization & Development",
                 description:
-                  "From pre-feasibility and financial assessments to finalizing EPC contractors and developing technical specifications.",
+                  "From pre-feasibility and financial assessments to front-end EPC coordination and developing technical specifications.",
                 icon: "ClipboardCheck",
                 image:
                   "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
+                ctaLabel: "Learn More",
+                ctaUrl: "/services/engineering-services",
               },
               {
                 title: "Construction, Commissioning & Relocation",
@@ -303,30 +305,38 @@ async function main() {
                 icon: "Network",
                 image:
                   "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800",
+                ctaLabel: "Learn More",
+                ctaUrl: "/services/project-management",
               },
               {
                 title: "Asset Stewardship (O&M)",
                 description:
-                  "Specialized management of thermal power plants, international airports, and critical utilities like STPs.",
+                  "Owner's mindset applied to utility management for international airports, and critical facilities like STPs.",
                 icon: "Flame",
                 image:
                   "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
+                ctaLabel: "Learn More",
+                ctaUrl: "/services/airport-services",
               },
               {
                 title: "Expert Advisory & Performance Audits",
                 description:
-                  "High-level problem solving, energy efficiency audits, and specialized testing (NDT) for operational plants.",
+                  "High-level problem solving, energy efficiency audits, and operational advisory for operational plants.",
                 icon: "Search",
                 image:
                   "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
+                ctaLabel: "Learn More",
+                ctaUrl: "/services/power-generation",
               },
               {
                 title: "Global Trading & Spare Parts",
                 description:
-                  "Strategic sourcing of critical equipment and spares from major OEMs in China, Vietnam, Korea, and India.",
+                  "Strategic sourcing of critical and spare parts from global OEMs and distributors, ensuring continuity and cost savings.",
                 icon: "Wrench",
                 image:
                   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+                ctaLabel: "Learn More",
+                ctaUrl: "/services/value-added-services",
               },
             ],
           },

@@ -38,7 +38,7 @@ const defaultFormData = {
       icon: "",
       image: "",
       ctaLabel: "",
-      ctaUrl: ""
+      ctaUrl: "",
     },
     {
       title: "",
@@ -46,7 +46,7 @@ const defaultFormData = {
       icon: "",
       image: "",
       ctaLabel: "",
-      ctaUrl: ""
+      ctaUrl: "",
     },
     {
       title: "",
@@ -54,7 +54,7 @@ const defaultFormData = {
       icon: "",
       image: "",
       ctaLabel: "",
-      ctaUrl: ""
+      ctaUrl: "",
     },
     {
       title: "",
@@ -62,7 +62,7 @@ const defaultFormData = {
       icon: "",
       image: "",
       ctaLabel: "",
-      ctaUrl: ""
+      ctaUrl: "",
     },
     {
       title: "",
@@ -70,9 +70,9 @@ const defaultFormData = {
       icon: "",
       image: "",
       ctaLabel: "",
-      ctaUrl: ""
-    }
-  ]
+      ctaUrl: "",
+    },
+  ],
 };
 
 const mergeDefaults = (data: any) => {

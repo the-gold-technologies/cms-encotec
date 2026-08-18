@@ -2342,16 +2342,18 @@ async function main() {
           type: "FeaturedInsight",
           order: 1,
           content: {
-            badgeLabel: "Featured Case Study",
-            btnLabel: "Read Full Case Study",
-            latestArticleTitle: "The Obra 'C' Thermal Success",
+            badgeLabel: "Featured News",
+            btnLabel: "Read Full Story",
+            latestArticleTitle:
+              "Record 14.3 GW Solar Capacity Added in First Four Months of FY27",
             latestArticleSummary:
-              "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh, delivering on time and exceeding quality standards.",
-            latestArticleDate: "March 2024",
-            latestArticleLocation: "Uttar Pradesh, India",
-            latestArticleSlug: "obra-c-thermal-success",
+              "India added 14.33 GW of solar capacity between April and July 2026 alone, accounting for 84% of all renewable additions in that period.",
+            latestArticleDate: "August 17, 2026",
+            latestArticleLocation: "India",
+            latestArticleSlug:
+              "record-14-3gw-solar-capacity-added-first-four-months-fy27",
             latestArticleImage:
-              "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+              "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=2400",
           },
         },
       });
@@ -2570,7 +2572,7 @@ async function main() {
                 location: "New Delhi, India",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1436491865332-7a61a109db05?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -2608,6 +2610,184 @@ async function main() {
               // News
               {
                 id: 5,
+                slug: "record-14-3gw-solar-capacity-added-first-four-months-fy27",
+                title:
+                  "Record 14.3 GW Solar Capacity Added in First Four Months of FY27",
+                category: "News",
+                description:
+                  "India added 14.33 GW of solar capacity between April and July 2026 alone, accounting for 84% of all renewable additions in that period.",
+                date: "August 17, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "India added 14.33 GW of solar capacity between April and July 2026 alone, accounting for 84% of all renewable additions in that period. While the pace moderated slightly in July due to monsoon disruptions, the sector is still on track to potentially add over 50 GW in this fiscal year.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: "This surge in new builds—particularly in ground-mounted and rooftop segments—directly increases the requirement for Encotec's construction and commissioning vertical to bring these complex assets online safely and efficiently.",
+                  },
+                ],
+              },
+              {
+                id: 6,
+                slug: "ai-data-centres-projected-add-26-3gw-national-grid",
+                title:
+                  "AI Data Centres Projected to Add 26.3 GW to the National Grid",
+                category: "News",
+                description:
+                  "The Ministry of Power has informed Parliament that AI data centres are expected to add a concentrated load of 26.3 GW to the grid by 2031–32.",
+                date: "August 17, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "The Ministry of Power has informed Parliament that AI data centres are expected to add a concentrated load of 26.3 GW to the grid by 2031–32. Unlike traditional demand, these hyperscale facilities create massive, localized power needs that require advanced grid forecasting and integration with dedicated renewable energy sources.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: "Encotec already manages critical infrastructure for global hubs like international airports. The specialized technical advisory needed to maintain zero-error electricity supply for data centres fits Encotec's focus on Expert Advisory and high-level problem solving.",
+                  },
+                ],
+              },
+              {
+                id: 7,
+                slug: "cabinet-stage-50000-crore-green-energy-corridor-phase-3",
+                title:
+                  "Cabinet Stage for Rs 50,000 Crore Green Energy Corridor (Phase III)",
+                category: "News",
+                description:
+                  "The government has sent the third phase of the intra-state Green Energy Corridor (GEC) to the Union Cabinet for final approval carrying an outlay of over Rs 50,000 crore.",
+                date: "August 11, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "The government has sent the third phase of the intra-state Green Energy Corridor (GEC) to the Union Cabinet for final approval. This phase carries an outlay of over Rs 50,000 crore and targets the evacuation of approximately 135 GW of renewable energy by strengthening transmission lines in resource-rich states.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: 'Encotec’s expertise in Transmission & Distribution (up to 765 kV) and substation O&M is perfectly aligned with this infrastructure push. New corridors mean more critical high-voltage switchyards that require an "Owner’s Mindset" to ensure grid stability and reliability.',
+                  },
+                ],
+              },
+              {
+                id: 8,
+                slug: "national-green-hydrogen-mission-awards-production-major-refineries",
+                title:
+                  "National Green Hydrogen Mission Awards Production to Major Refineries",
+                category: "News",
+                description:
+                  "Under the SIGHT scheme, the government has awarded 30 KTPA of Green Hydrogen production capacity to major refineries in Panipat, Bina, Vizag, and Numaligarh.",
+                date: "August 11, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "Under the SIGHT scheme, the government has awarded 30 KTPA of Green Hydrogen production capacity to major refineries in Panipat, Bina, Vizag, and Numaligarh. These projects will be implemented via private developers using a Build Own Operate (BOO) model to enhance energy security.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: "With Encotec’s focus on Project Conceptualisation and Development, these new hydrogen clusters represent a fresh frontier for technical due diligence and specialized mechanical engineering services, particularly in complex process piping.",
+                  },
+                ],
+              },
+              {
+                id: 9,
+                slug: "india-crosses-milestone-300gw-non-fossil-fuel-capacity",
+                title:
+                  "India Crosses Milestone of 300 GW Non-Fossil Fuel Capacity",
+                category: "News",
+                description:
+                  "In a major leap for the nation’s clean energy transition, India has officially crossed 300 GW of non-fossil fuel-based installed capacity as of 31 July 2026.",
+                date: "August 9, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "In a major leap for the nation’s clean energy transition, India has officially crossed 300 GW of non-fossil fuel-based installed capacity as of 31 July 2026. Solar power remains the primary driver at 164.59 GW, followed by wind at 58.14 GW. Non-fossil sources now account for over 54% of India’s total electricity generation capacity.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: "As a global service provider bridging the gap between traditional power and renewables, this rapid expansion creates a massive demand for Encotec’s specialized commissioning and long-term stewardship (O&M) services for large-scale solar and wind assets.",
+                  },
+                ],
+              },
+              {
+                id: 10,
+                slug: "reliability-concerns-peak-after-68-major-renewable-grid-disturbances",
+                title:
+                  "Reliability Concerns Peak After 68 Major Renewable Grid Disturbances",
+                category: "News",
+                description:
+                  "Data reveals India recorded 68 major grid disturbances in renewable complexes between 2022 and 2025, calling for stricter technical compliance and enhanced balancing.",
+                date: "August 7, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "Data reveals that India recorded 68 major grid disturbances in renewable complexes between 2022 and 2025, with some individual events causing generation losses of up to 7 GW. Regulators are now calling for stricter technical compliance, more flexible thermal plant operations, and enhanced balancing reserves.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: 'These challenges highlight the vital importance of "Asset Stewardship." Encotec’s ability to provide Performance Audits and Non-Destructive Testing (NDT) helps owners identify and solve hard engineering problems, ensuring their plants meet the high standards required to keep the national grid secure.',
+                  },
+                ],
+              },
+              {
+                id: 11,
+                slug: "ghaziabad-mandates-rooftop-solar",
+                title: "Ghaziabad Mandates Rooftop Solar for New Buildings",
+                category: "News",
+                description:
+                  "Ghaziabad makes rooftop solar installations mandatory for all building plan approvals, aligning with national solar adoption efforts.",
+                date: "April 9, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "In a push for local energy independence, Ghaziabad has made rooftop solar installations mandatory for all building plan approvals. This aligns with national efforts like the PM Surya Ghar: Muft Bijli Yojana, which has already seen millions of households adopt solar power.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: "This local mandate reflects the broader surge in the renewable energy sector, where Encotec provides full-lifecycle support from feasibility reports to testing and commissioning.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Sources: https://www.eqmagpro.com/india-prepared-to-handle-record-270-gw-peak-power-demand-this-summer-eq/ and https://jmkresearch.com/wp-content/uploads/2026/03/Q4-2025-RE-Report-Oct-Dec_JMK-Research.pdf",
+                  },
+                ],
+              },
+              {
+                id: 12,
                 slug: "insurance-surety-bonds-replace-bank-guarantees",
                 title:
                   "Insurance Surety Bonds Replace Bank Guarantees in Power Sector",
@@ -2636,35 +2816,7 @@ async function main() {
                 ],
               },
               {
-                id: 6,
-                slug: "india-270gw-peak-power-demand",
-                title: "India Braces for Record 270 GW Peak Power Demand",
-                category: "News",
-                description:
-                  "India is fully prepared to handle a record 270 GW peak power demand this summer through strengthened generation capacity and grid management.",
-                date: "March 20, 2026",
-                location: "",
-                readTime: "",
-                image:
-                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
-                content: [
-                  {
-                    type: "paragraph",
-                    text: "Union Minister Manohar Lal Khattar announced that India is fully prepared to handle a record 270 GW peak power demand this summer. To meet this surge, the government has focused on strengthening generation capacity, ensuring coal availability for thermal plants, and enhancing grid management.",
-                  },
-                  { type: "heading", text: "Why It Matters to Encotec" },
-                  {
-                    type: "paragraph",
-                    text: "As a specialist in thermal O&M and grid synchronization, Encotec's expertise in maintaining plant reliability is critical during these high-pressure peak periods. Our teams ensure that the plants we manage operate at maximum availability when the nation needs it most.",
-                  },
-                  {
-                    type: "paragraph",
-                    text: "Source: https://www.eqmagpro.com/india-prepared-to-handle-record-270-gw-peak-power-demand-this-summer-eq/",
-                  },
-                ],
-              },
-              {
-                id: 7,
+                id: 13,
                 slug: "green-signal-3200mw-thermal-projects",
                 title: "Green Signal for 3,200 MW of New Thermal Projects",
                 category: "News",
@@ -2692,35 +2844,7 @@ async function main() {
                 ],
               },
               {
-                id: 8,
-                slug: "ghaziabad-mandates-rooftop-solar",
-                title: "Ghaziabad Mandates Rooftop Solar for New Buildings",
-                category: "News",
-                description:
-                  "Ghaziabad makes rooftop solar installations mandatory for all building plan approvals, aligning with national solar adoption efforts.",
-                date: "April 9, 2026",
-                location: "",
-                readTime: "",
-                image:
-                  "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=2400",
-                content: [
-                  {
-                    type: "paragraph",
-                    text: "In a push for local energy independence, Ghaziabad has made rooftop solar installations mandatory for all building plan approvals. This aligns with national efforts like the PM Surya Ghar: Muft Bijli Yojana, which has already seen millions of households adopt solar power.",
-                  },
-                  { type: "heading", text: "Why It Matters to Encotec" },
-                  {
-                    type: "paragraph",
-                    text: "This local mandate reflects the broader surge in the renewable energy sector, where Encotec provides full-lifecycle support from feasibility reports to testing and commissioning.",
-                  },
-                  {
-                    type: "paragraph",
-                    text: "Sources: https://www.eqmagpro.com/india-prepared-to-handle-record-270-gw-peak-power-demand-this-summer-eq/ and https://jmkresearch.com/wp-content/uploads/2026/03/Q4-2025-RE-Report-Oct-Dec_JMK-Research.pdf",
-                  },
-                ],
-              },
-              {
-                id: 9,
+                id: 14,
                 slug: "765kv-transmission-corridor-commissioned",
                 title: "Massive 765 kV Transmission Corridor Commissioned",
                 category: "News",
@@ -2743,12 +2867,12 @@ async function main() {
                   },
                   {
                     type: "paragraph",
-                    text: "Source: https://powerpeakdigest.com/power-sector-news-roundup-for-april-6-2026/",
+                    text: "Source: https://powerpeakdigest.com/power-peak-digest-for-april-6-2026/",
                   },
                 ],
               },
               {
-                id: 10,
+                id: 15,
                 slug: "new-directions-imported-coal-power-plants",
                 title: "New Directions for Imported Coal-Based Power Plants",
                 category: "News",
@@ -2775,9 +2899,37 @@ async function main() {
                   },
                 ],
               },
+              {
+                id: 16,
+                slug: "india-270gw-peak-power-demand",
+                title: "India Braces for Record 270 GW Peak Power Demand",
+                category: "News",
+                description:
+                  "India is fully prepared to handle a record 270 GW peak power demand this summer through strengthened generation capacity and grid management.",
+                date: "March 20, 2026",
+                location: "",
+                readTime: "",
+                image:
+                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "Union Minister Manohar Lal Khattar announced that India is fully prepared to handle a record 270 GW peak power demand this summer. To meet this surge, the government has focused on strengthening generation capacity, ensuring coal availability for thermal plants, and enhancing grid management.",
+                  },
+                  { type: "heading", text: "Why It Matters to Encotec" },
+                  {
+                    type: "paragraph",
+                    text: "As a specialist in thermal O&M and grid synchronization, Encotec's expertise in maintaining plant reliability is critical during these high-pressure peak periods. Our teams ensure that the plants we manage operate at maximum availability when the nation needs it most.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Source: https://www.eqmagpro.com/india-prepared-to-handle-record-270-gw-peak-power-demand-this-summer-eq/",
+                  },
+                ],
+              },
               // Blogs
               {
-                id: 11,
+                id: 17,
                 slug: "owners-mindset-power-plant-care",
                 title:
                   "Treating Your Power Plant Like Our Own: The Owner's Mindset",
@@ -2811,7 +2963,7 @@ async function main() {
                 ],
               },
               {
-                id: 12,
+                id: 18,
                 slug: "sunbeams-to-megawatts-renewable-future",
                 title:
                   "From Sunbeams to Megawatts: Engineering the Journey to a Renewable Future",
@@ -2845,7 +2997,7 @@ async function main() {
                 ],
               },
               {
-                id: 13,
+                id: 19,
                 slug: "silent-force-behind-your-flight",
                 title:
                   "Powering the Gateway: The Specialized World of Airport Utility Management",
@@ -2856,7 +3008,7 @@ async function main() {
                 location: "",
                 readTime: "5 min read",
                 image:
-                  "https://images.unsplash.com/photo-1436491865332-7a61a109db05?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",

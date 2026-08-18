@@ -346,7 +346,7 @@ export default function FooterCMS() {
                   <button
                     type="button"
                     onClick={addHourRow}
-                    className="text-xs text-blue-500 hover:text-blue-600 font-semibold flex items-center gap-1 cursor-pointer"
+                    className="text-xs text-brand-pink hover:text-[#a0004f] font-semibold flex items-center gap-1 cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Row

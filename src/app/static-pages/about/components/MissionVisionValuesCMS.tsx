@@ -305,7 +305,7 @@ export function MissionVisionValuesCMS({
                     <button
                       type="button"
                       onClick={handleAddCard}
-                      className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm"
+                      className="flex items-center gap-1.5 text-xs font-semibold text-white bg-brand-pink hover:bg-[#a0004f] active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm cursor-pointer"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                         <path d="M12 5v14M5 12h14" />

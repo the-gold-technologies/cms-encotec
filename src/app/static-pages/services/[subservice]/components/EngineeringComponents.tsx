@@ -664,7 +664,7 @@ export function ProcessSectionCMS({ saveUrl }: { saveUrl: string }) {
               <button
                 type="button"
                 onClick={addStep}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 border border-blue-200 text-xs font-bold rounded-lg hover:bg-blue-100 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-brand-pink text-white text-xs font-semibold rounded-lg hover:bg-[#a0004f] active:scale-95 transition-all shadow-sm cursor-pointer"
               >
                 <Plus size={14} /> Add Step Card
               </button>

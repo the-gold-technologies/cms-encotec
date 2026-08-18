@@ -843,7 +843,7 @@ async function main() {
                   "Solidified our reputation as top-tier stewards with the long-term O&M management contracts, Annual Maintenance contracts, Overhauling jobs. etc.",
               },
               {
-                title: "2016: Supercritical Excellence",
+                title: "2018-2026: Supercritical Excellence",
                 description:
                   "Embarked on our flagship O&M partnership for the 2x700 MW supercritical power plant at Nabha Power / Rajpura and 2x660 MW supercritical power plant at Jhajjar.",
               },

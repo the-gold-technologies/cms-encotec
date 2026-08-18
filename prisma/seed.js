@@ -2522,7 +2522,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "End-to-end installation and commissioning of a 10 MWp ground-mounted solar project, turning intense sun into sustainable power.",
-                date: "November 2023",
+                date: "March 2012",
                 location: "Jainabad, Gujarat",
                 readTime: "",
                 image:

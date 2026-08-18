@@ -8,6 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-pink: #a0004f;
   --color-blue-50: #fff0f5;
   --color-blue-100: #ffe4e1;
   --color-blue-200: #ffb6c1;

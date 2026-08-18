@@ -456,7 +456,7 @@ export function GlobalFootprintSection({
                   <button
                     type="button"
                     onClick={addStat}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 transition-all px-3.5 py-2 rounded-lg shadow-sm cursor-pointer"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-brand-pink hover:bg-[#a0004f] active:scale-95 transition-all px-3.5 py-2 rounded-lg shadow-sm cursor-pointer"
                   >
                     <Plus size={14} />
                     <span>Add Footprint Stat</span>
@@ -713,7 +713,7 @@ export function GlobalFootprintSection({
                   <button
                     type="button"
                     onClick={addLocation}
-                    className="bg-gray-900 hover:bg-gray-800 text-white font-bold text-xs px-6 py-3.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-brand-pink hover:bg-[#a0004f] text-white font-bold text-xs px-6 py-3.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-sm active:scale-95"
                   >
                     <Plus className="w-4 h-4" />
                     Add Location

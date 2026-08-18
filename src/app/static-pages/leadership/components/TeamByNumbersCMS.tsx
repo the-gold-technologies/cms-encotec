@@ -132,7 +132,7 @@ export function TeamByNumbersCMS() {
             <button
               type="button"
               onClick={addStat}
-              className="flex items-center gap-1.5 text-xs font-semibold text-white bg-neutral-800 hover:bg-neutral-900 active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm cursor-pointer"
+              className="flex items-center gap-1.5 text-xs font-semibold text-white bg-brand-pink hover:bg-[#a0004f] active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm cursor-pointer"
             >
               <Plus size={14} />
               <span>Add Counter Stat</span>

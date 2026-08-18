@@ -253,7 +253,7 @@ export function ScaleImpactCMS({
                   <button
                     type="button"
                     onClick={addStat}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm cursor-pointer"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-brand-pink hover:bg-[#a0004f] active:scale-95 transition-all px-3 py-1.5 rounded-lg shadow-sm cursor-pointer"
                   >
                     <Plus size={14} />
                     <span>Add KPI Stat Card</span>

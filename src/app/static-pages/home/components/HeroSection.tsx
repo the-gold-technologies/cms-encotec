@@ -394,7 +394,7 @@ export function HeroSection({
                   <button
                     type="button"
                     onClick={addTag}
-                    className="bg-gray-900 hover:bg-gray-800 text-white font-bold text-xs px-6 rounded-2xl transition-colors flex items-center gap-2 shadow-md active:scale-95 cursor-pointer"
+                    className="bg-brand-pink hover:bg-[#a0004f] text-white font-bold text-xs px-6 rounded-2xl transition-colors flex items-center gap-2 shadow-md active:scale-95 cursor-pointer"
                   >
                     Add Tag
                   </button>
@@ -442,7 +442,7 @@ export function HeroSection({
                   <button
                     type="button"
                     onClick={addStatCard}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-pink hover:bg-[#a0004f] text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
                   >
                     <Plus size={14} />
                     <span>Add Stat Card</span>

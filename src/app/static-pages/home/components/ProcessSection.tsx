@@ -275,7 +275,7 @@ export function ProcessSection({
                   <button
                     type="button"
                     onClick={addStep}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#a0004f]/10 text-[#a0004f] border border-[#a0004f]/20 text-xs font-bold rounded-xl hover:bg-[#a0004f]/20 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-brand-pink text-white text-xs font-semibold rounded-lg hover:bg-[#a0004f] active:scale-95 transition-all shadow-sm cursor-pointer"
                   >
                     <Plus size={14} /> Add Step Card
                   </button>

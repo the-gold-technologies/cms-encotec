@@ -28,7 +28,7 @@ export default function HomeCMSPage() {
       <ProjectShowcaseSection />
       <GlobalFootprintSection />
       <WhyEncotecSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <LogoStripSection />
       <CTASection />
     </section>

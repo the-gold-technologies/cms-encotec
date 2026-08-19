@@ -629,13 +629,191 @@ async function main() {
           content: {
             tagline: "Trusted by Industry Leaders",
             logos: [
-              "Siemens Energy",
-              "General Electric",
-              "Vestas",
-              "NextEra",
-              "Orsted",
-              "Enel",
-              "Iberdrola",
+              {
+                name: "Moser Baer",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125550/encotec-Assets/logos/moserbaer.png",
+              },
+              {
+                name: "Reliance Power",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128795/encotec-Assets/logos/reliance_power.png",
+              },
+              {
+                name: "Cairn India",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126021/encotec-Assets/logos/cairn.png",
+              },
+              {
+                name: "Electrical Inspectorate",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128682/encotec-Assets/logos/electrical_inspectorate.png",
+              },
+              {
+                name: "Coastal Gujarat Power Limited (CGPL)",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127628/encotec-Assets/logos/cgpl.png",
+              },
+              {
+                name: "Thermax",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125771/encotec-Assets/logos/thermax.png",
+              },
+              {
+                name: "Tata Power",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127626/encotec-Assets/logos/tata_power.png",
+              },
+              {
+                name: "Adani Group",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125541/encotec-Assets/logos/adani.png",
+              },
+              {
+                name: "Invensys Controls",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128796/encotec-Assets/logos/invensys.png",
+              },
+              {
+                name: "Sterlite Energy",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128683/encotec-Assets/logos/sterlite_energy.png",
+              },
+              {
+                name: "Action Ispat & Power",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128564/encotec-Assets/logos/action_ispat.png",
+              },
+              {
+                name: "GMR Group",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125548/encotec-Assets/logos/gmr.png",
+              },
+              {
+                name: "Adhunik Group",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128797/encotec-Assets/logos/adhunik.png",
+              },
+              {
+                name: "Jaypee Group",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126335/encotec-Assets/logos/jaypee.png",
+              },
+              {
+                name: "Odisha Power Generation Corporation",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127782/encotec-Assets/logos/opgc.png",
+              },
+              {
+                name: "Jindal Steel & Power",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125913/encotec-Assets/logos/jindal.png",
+              },
+              {
+                name: "Alstom",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125544/encotec-Assets/logos/alstom.png",
+              },
+              {
+                name: "Bharat Oman Refineries Limited",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125769/encotec-Assets/logos/borl.png",
+              },
+              {
+                name: "Indiabulls Power",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125917/encotec-Assets/logos/indiabulls.png",
+              },
+              {
+                name: "AREVA",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125916/encotec-Assets/logos/areva.png",
+              },
+              {
+                name: "ABB",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125539/encotec-Assets/logos/abb.png",
+              },
+              {
+                name: "JSW Energy",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125911/encotec-Assets/logos/jsw.png",
+              },
+              {
+                name: "KSK Energy",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127977/encotec-Assets/logos/ksk.png",
+              },
+              {
+                name: "Noida International Airport",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127898/encotec-Assets/logos/noida_airport.png",
+              },
+              {
+                name: "Sterling and Wilson",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128011/encotec-Assets/logos/sterling_wilson.png",
+              },
+              {
+                name: "CLP India",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126336/encotec-Assets/logos/clp_india.png",
+              },
+              {
+                name: "IL&FS",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125932/encotec-Assets/logos/il_fs.png",
+              },
+              {
+                name: "Ideal Energy Projects (IEPL)",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128798/encotec-Assets/logos/iepl.png",
+              },
+              {
+                name: "GE Power",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125546/encotec-Assets/logos/ge.png",
+              },
+              {
+                name: "Hiranmaye Energy",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128327/encotec-Assets/logos/hiranmaye.png",
+              },
+              {
+                name: "MP Power",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128709/encotec-Assets/logos/mp_wz.png",
+              },
+              {
+                name: "Coastal Energen",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128799/encotec-Assets/logos/coastal_energen.png",
+              },
+              {
+                name: "Sterlite",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127718/encotec-Assets/logos/sterlite.png",
+              },
+              {
+                name: "Nabha Power Limited (NPL)",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128800/encotec-Assets/logos/nabha_power.png",
+              },
+              {
+                name: "Sea Eagles",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128802/encotec-Assets/logos/sea_eagles.png",
+              },
+              {
+                name: "WBPDCL",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126338/encotec-Assets/logos/wbpdcl.png",
+              },
+              {
+                name: "UPRVUNL",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125921/encotec-Assets/logos/uprvunl.png",
+              },
             ],
           },
         },
@@ -929,21 +1107,21 @@ async function main() {
               {
                 role: "Managing Director",
                 name: "Arun Kumar Sarna",
-                bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations excellence in energy generation both domestic and international markets. Focus on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
+                bio: 'Arun Kumar Sarna is the Founder and CEO of Encotec Energy India, driving the company\'s vision to deliver comprehensive "shovel-to-socket" energy solutions globally. Under his leadership, Encotec has expanded across Thermal Power, Solar PV, and EHV Transmission & Distribution, embedding a signature "Owner’s Mindset" into the company\'s DNA.\n\nA pioneer in third-party O&M contracts in India, Mr. Sarna brings 40+ years of experience managing World Bank, KfW, and Japanese agency mega-projects. Globally, he has advised ESKOM (South Africa) and directed operations across Vietnam, Indonesia, and the Middle East.\n\nHe holds a Mechanical Engineering degree, a Master’s in Metallurgy from IIT Roorkee, and a PGDM from MDI Gurgaon, with executive certifications from Harvard Business School and IIT Mumbai.',
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787114346/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
               },
               {
                 role: "Director – Operations",
                 name: "Rajan Saxena",
-                bio: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
+                bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787114347/encotech/leadership/rajan_saxena_white_bg.jpg",
               },
               {
                 role: "Director – Corporate",
                 name: "Rajeev Ahuja",
-                bio: "Leads corporate strategy, business development, and global partnerships. With a focus on long-term growth and corporate governance, plays a key role in expanding Encotec's market footprint and driving operational efficiency.",
+                bio: "Rajeev Ahuja brings 38+ years of engineering and business management experience in the power and industrial sectors. As Director at Encotec, he leads corporate strategy, high-value contract bidding, proposals, commercial management, HR, Finance & Accounts, and P&L accountability.\n\nHe previously served in senior leadership roles at STEAG Energy Services India and Nicco Engineering, managing complete business cycles from opportunity identification to contract closeout.\n\nMr. Ahuja holds a Mechanical Engineering degree with international technical and business training in the UK and Thailand, having built and led BD teams of 25+ professionals.",
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787114348/encotech/leadership/rajeev_ahuja_white_bg.jpg",
               },
@@ -2206,7 +2384,7 @@ async function main() {
               {
                 name: "Arun Kumar Sarna",
                 role: "Managing Director",
-                bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations excellence in energy generation both domestic and international markets. Focus on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
+                bio: 'Arun Kumar Sarna is the Founder and CEO of Encotec Energy India, driving the company\'s vision to deliver comprehensive "shovel-to-socket" energy solutions globally. Under his leadership, Encotec has expanded across Thermal Power, Solar PV, and EHV Transmission & Distribution, embedding a signature "Owner’s Mindset" into the company\'s DNA.\n\nA pioneer in third-party O&M contracts in India, Mr. Sarna brings 40+ years of experience managing World Bank, KfW, and Japanese agency mega-projects. Globally, he has advised ESKOM (South Africa) and directed operations across Vietnam, Indonesia, and the Middle East.\n\nHe holds a Mechanical Engineering degree, a Master’s in Metallurgy from IIT Roorkee, and a PGDM from MDI Gurgaon, with executive certifications from Harvard Business School and IIT Mumbai.',
                 tags: "Strategic Leadership, Business Development, Energy Infrastructure",
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787114346/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
@@ -2214,7 +2392,7 @@ async function main() {
               {
                 name: "Rajan Saxena",
                 role: "Director – Operations",
-                bio: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization across thermal, renewable, and transmission projects. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
+                bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 tags: "Operations Management, Plant Commissioning, Asset Optimization",
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787114347/encotech/leadership/rajan_saxena_white_bg.jpg",
@@ -2222,7 +2400,7 @@ async function main() {
               {
                 name: "Rajeev Ahuja",
                 role: "Director – Corporate",
-                bio: "Leads corporate strategy, business development, and global partnerships. With a focus on long-term growth and corporate governance, plays a key role in expanding Encotec's market footprint and driving operational efficiency.",
+                bio: "Rajeev Ahuja brings 38+ years of engineering and business management experience in the power and industrial sectors. As Director at Encotec, he leads corporate strategy, high-value contract bidding, proposals, commercial management, HR, Finance & Accounts, and P&L accountability.\n\nHe previously served in senior leadership roles at STEAG Energy Services India and Nicco Engineering, managing complete business cycles from opportunity identification to contract closeout.\n\nMr. Ahuja holds a Mechanical Engineering degree with international technical and business training in the UK and Thailand, having built and led BD teams of 25+ professionals.",
                 tags: "Corporate Strategy, Business Development, Global Partnerships",
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787114348/encotech/leadership/rajeev_ahuja_white_bg.jpg",

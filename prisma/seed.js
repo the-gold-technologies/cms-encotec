@@ -930,16 +930,22 @@ async function main() {
                 role: "Managing Director",
                 name: "Arun Kumar Sarna",
                 bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations excellence in energy generation both domestic and international markets. Focus on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114346/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
               },
               {
                 role: "Director – Operations",
                 name: "Rajan Saxena",
                 bio: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114347/encotech/leadership/rajan_saxena_white_bg.jpg",
               },
               {
                 role: "Director – Corporate",
                 name: "Rajeev Ahuja",
                 bio: "Leads corporate strategy, business development, and global partnerships. With a focus on long-term growth and corporate governance, plays a key role in expanding Encotec's market footprint and driving operational efficiency.",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114348/encotech/leadership/rajeev_ahuja_white_bg.jpg",
               },
             ],
           },
@@ -2196,24 +2202,32 @@ async function main() {
           content: {
             tagline: "Executive Leadership",
             heading: "Visionaries Driving Our Mission",
-            exec1Name: "Arun Kumar Sarna",
-            exec1Role: "Managing Director",
-            exec1Bio:
-              "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations excellence in energy generation both domestic and international markets. Focus on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
-            exec1Tags:
-              "Strategic Leadership, Business Development, Energy Infrastructure",
-            exec2Name: "Rajan Saxena",
-            exec2Role: "Director – Operations",
-            exec2Bio:
-              "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization across thermal, renewable, and transmission projects. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
-            exec2Tags:
-              "Operations Management, Plant Commissioning, Asset Optimization",
-            exec3Name: "Rajeev Ahuja",
-            exec3Role: "Director – Corporate",
-            exec3Bio:
-              "Leads corporate strategy, business development, and global partnerships. With a focus on long-term growth and corporate governance, plays a key role in expanding Encotec's market footprint and driving operational efficiency.",
-            exec3Tags:
-              "Corporate Strategy, Business Development, Global Partnerships",
+            executives: [
+              {
+                name: "Arun Kumar Sarna",
+                role: "Managing Director",
+                bio: "Brings extensive leadership experience in engineering, project execution, and energy infrastructure development. With a deep understanding of large-scale power and industrial projects, has been instrumental in shaping the strategic direction of Encotec. Under this leadership, the organization has expanded its capabilities across engineering, project management, and operations excellence in energy generation both domestic and international markets. Focus on driving long-term value creation through operational excellence, technical innovation, and strong client partnerships.",
+                tags: "Strategic Leadership, Business Development, Energy Infrastructure",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114346/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
+              },
+              {
+                name: "Rajan Saxena",
+                role: "Director – Operations",
+                bio: "Leads operational delivery across multiple projects, ensuring efficient execution, adherence to quality standards, and optimal resource utilization across thermal, renewable, and transmission projects. With significant experience in operation and maintenance of power plants, substations, and infrastructure systems, plays a key role in maintaining performance, reliability, and safety across all sites. This expertise ensures that projects are executed with precision while meeting both technical and commercial objectives.",
+                tags: "Operations Management, Plant Commissioning, Asset Optimization",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114347/encotech/leadership/rajan_saxena_white_bg.jpg",
+              },
+              {
+                name: "Rajeev Ahuja",
+                role: "Director – Corporate",
+                bio: "Leads corporate strategy, business development, and global partnerships. With a focus on long-term growth and corporate governance, plays a key role in expanding Encotec's market footprint and driving operational efficiency.",
+                tags: "Corporate Strategy, Business Development, Global Partnerships",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114348/encotech/leadership/rajeev_ahuja_white_bg.jpg",
+              },
+            ],
           },
         },
       });
@@ -2227,30 +2241,50 @@ async function main() {
           content: {
             tagline: "Senior Leadership",
             heading: "Department Heads",
-            leader1Name: "Dr. Anita Desai",
-            leader1Role: "VP Engineering",
-            leader1Bio:
-              "PhD in Thermal Engineering. 18+ years leading complex engineering design for power generation and transmission projects.",
-            leader2Name: "Sanjay Mehta",
-            leader2Role: "VP Business Development",
-            leader2Bio:
-              "15+ years driving strategic growth across India, Middle East, and Southeast Asia.",
-            leader3Name: "Priya Krishnan",
-            leader3Role: "Head of Renewable Energy",
-            leader3Bio:
-              "12+ years in solar and wind energy project development and execution.",
-            leader4Name: "Arjun Reddy",
-            leader4Role: "Head of Project Management",
-            leader4Bio:
-              "16+ years managing large-scale EPC projects across diverse geographies.",
-            leader5Name: "Dr. Klaus Werner",
-            leader5Role: "Head of Quality & Safety",
-            leader5Bio:
-              "20+ years in quality management systems and international safety standards.",
-            leader6Name: "Meera Iyer",
-            leader6Role: "Chief Financial Officer",
-            leader6Bio:
-              "14+ years in financial strategy and corporate governance for engineering firms.",
+            heads: [
+              {
+                name: "Dr. Anita Desai",
+                role: "VP Engineering",
+                bio: "PhD in Thermal Engineering. 18+ years leading complex engineering design for power generation and transmission projects.",
+                image:
+                  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+              },
+              {
+                name: "Sanjay Mehta",
+                role: "VP Business Development",
+                bio: "15+ years driving strategic growth across India, Middle East, and Southeast Asia.",
+                image:
+                  "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
+              },
+              {
+                name: "Priya Krishnan",
+                role: "Head of Renewable Energy",
+                bio: "12+ years in solar and wind energy project development and execution.",
+                image:
+                  "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
+              },
+              {
+                name: "Arjun Reddy",
+                role: "Head of Project Management",
+                bio: "16+ years managing large-scale EPC projects across diverse geographies.",
+                image:
+                  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
+              },
+              {
+                name: "Dr. Klaus Werner",
+                role: "Head of Quality & Safety",
+                bio: "20+ years in quality management systems and international safety standards.",
+                image:
+                  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
+              },
+              {
+                name: "Meera Iyer",
+                role: "Chief Financial Officer",
+                bio: "14+ years in financial strategy and corporate governance for engineering firms.",
+                image:
+                  "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&q=80&w=800",
+              },
+            ],
           },
         },
       });
@@ -2430,7 +2464,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   "Executed complex IBR piping erection and commissioning for a massive 2x660 MW project in Uttar Pradesh.",
-                date: "March 2024",
+                date: "September 2023",
                 location: "Uttar Pradesh, India",
                 readTime: "",
                 image:
@@ -2476,7 +2510,7 @@ async function main() {
                 category: "Case Study",
                 description:
                   " O&M for the 2x700 MW Rajpura Supercritical Power Plant, managing operations with an owner's mindset.",
-                date: "January 2024",
+                date: "February 2018",
                 location: "Rajpura, Punjab",
                 readTime: "",
                 image:
@@ -3165,29 +3199,7 @@ async function main() {
           order: 3,
           content: {
             heading: "Current Openings",
-            jobsList: [
-              {
-                title: "Senior Power Plant Engineer",
-                dept: "Engineering",
-                location: "Mumbai, India",
-                type: "Full-time",
-                desc: "Lead engineering design and technical reviews for supercritical thermal power projects.",
-              },
-              {
-                title: "Renewable Energy Analyst",
-                dept: "Engineering",
-                location: "Dubai, UAE",
-                type: "Full-time",
-                desc: "Conduct energy yield analysis for solar and wind projects.",
-              },
-              {
-                title: "Project Manager — EPC",
-                dept: "Project Management",
-                location: "Riyadh, KSA",
-                type: "Full-time",
-                desc: "Manage end-to-end execution of large-scale EPC projects in the Middle East.",
-              },
-            ],
+            jobsList: [],
           },
         },
       });
@@ -3316,9 +3328,9 @@ async function main() {
           type: "TrustStats",
           order: 1,
           content: {
-            stats1Value: "15",
+            stats1Value: "15+",
             stats1Label: "Years of Excellence",
-            stats2Value: "100",
+            stats2Value: "100%",
             stats2Label: "Compliance Rate",
             stats3Value: "",
             stats3Label: "",

@@ -8,14 +8,17 @@ import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
+import { uploadFiles } from "@/lib/uploadHelpers";
 
 interface LeaderProfile {
   role: string;
   name: string;
   bio: string;
+  image?: File | string | null;
 }
 
-const emptyLeader = (): LeaderProfile => ({ role: "", name: "", bio: "" });
+const emptyLeader = (): LeaderProfile => ({ role: "", name: "", bio: "", image: "" });
 
 const defaultFormData = {
   heading: "",
@@ -69,6 +72,7 @@ export function LeadershipCMS({
             role: item?.role || "",
             name: item?.name || "",
             bio: item?.bio || "",
+            image: item?.image || "",
           }))
         );
       } else {
@@ -80,6 +84,7 @@ export function LeadershipCMS({
               role: data[`leaderRole${i}`] || "",
               name: data[`leaderName${i}`] || "",
               bio: data[`leaderBio${i}`] || "",
+              image: data[`leaderImage${i}`] || "",
             });
           }
         }
@@ -108,7 +113,7 @@ export function LeadershipCMS({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLeaderChange = (index: number, field: keyof LeaderProfile, value: string) => {
+  const handleLeaderChange = (index: number, field: keyof LeaderProfile, value: any) => {
     setLeadersList((prev) =>
       prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
     );
@@ -147,18 +152,34 @@ export function LeadershipCMS({
     setIsSaving(true);
     const toastId = toast.loading("Saving Leadership section...");
     try {
+      // Process any uploaded File objects for leader images
+      const processedLeaders = await Promise.all(
+        leadersList.map(async (leader) => {
+          let imageUrl = typeof leader.image === "string" ? leader.image : "";
+          if (leader.image instanceof File) {
+            const uploaded = await uploadFiles([leader.image]);
+            if (uploaded[0]) imageUrl = uploaded[0];
+          }
+          return {
+            ...leader,
+            image: imageUrl,
+          };
+        })
+      );
+
       const payload: any = {
         heading: formData.heading,
         description: formData.description,
-        leaders: leadersList,
+        leaders: processedLeaders,
       };
 
       // Keep legacy properties synced
-      leadersList.forEach((leader, i) => {
+      processedLeaders.forEach((leader, i) => {
         if (i < 2) {
           payload[`leaderRole${i}`] = leader.role;
           payload[`leaderName${i}`] = leader.name;
           payload[`leaderBio${i}`] = leader.bio;
+          payload[`leaderImage${i}`] = leader.image;
         }
       });
 
@@ -175,6 +196,7 @@ export function LeadershipCMS({
       const json = await res.json();
       if (json.success) {
         toast.success("Leadership saved successfully!", { id: toastId });
+        setLeadersList(processedLeaders);
         if (onSave) onSave(payload as unknown as Record<string, unknown>);
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
@@ -192,7 +214,7 @@ export function LeadershipCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Leadership Team Section"
-          description="Manage leadership cards, photos, bios, and subheadings. Add or delete executive profiles dynamically."
+          description="Manage leadership cards, photo uploads (Cloudinary), bios, and subheadings. Add or delete executive profiles dynamically."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -272,6 +294,12 @@ export function LeadershipCMS({
                         onChange={(e) => handleLeaderChange(i, "name", e.target.value)}
                         placeholder="e.g. [Name]"
                         required
+                      />
+                      <ImagePickerField
+                        label="Profile Image (Upload File or Cloudinary URL)"
+                        sublabel={`Leader #${i + 1} Photo`}
+                        value={leader.image || null}
+                        onChange={(val) => handleLeaderChange(i, "image", val)}
                       />
                       <TextAreaField
                         label="Biography"

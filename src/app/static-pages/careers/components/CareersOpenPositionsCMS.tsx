@@ -11,15 +11,13 @@ import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
   heading: "",
-  jobsList: [
-    {
-      title: "",
-      dept: "Engineering",
-      location: "",
-      type: "Full-time",
-      desc: ""
-    }
-  ]
+  jobsList: [] as Array<{
+    title: string;
+    dept: string;
+    location: string;
+    type: string;
+    desc: string;
+  }>
 };
 
 export function CareersOpenPositionsCMS() {
@@ -34,7 +32,7 @@ export function CareersOpenPositionsCMS() {
           const list = json.data.CareersOpenPositions.jobsList;
           setFormData({
             heading: json.data.CareersOpenPositions.heading || "",
-            jobsList: Array.isArray(list) && list.length > 0 ? list : defaultFormData.jobsList,
+            jobsList: Array.isArray(list) ? list : [],
           });
         }
       })
@@ -67,10 +65,6 @@ export function CareersOpenPositionsCMS() {
   };
 
   const removeJob = (index: number) => {
-    if (formData.jobsList.length <= 1) {
-      toast.error("At least one job opening card is required");
-      return;
-    }
     setFormData((prev) => ({
       ...prev,
       jobsList: prev.jobsList.filter((_, i) => i !== index),
@@ -138,90 +132,98 @@ export function CareersOpenPositionsCMS() {
           </div>
 
           <div className="flex flex-col gap-6">
-            {formData.jobsList.map((job, idx) => (
-              <div
-                key={idx}
-                className="p-6 border border-gray-200 rounded-xl flex flex-col gap-4 relative bg-gray-50/30 group shadow-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-wider">
-                    Position Vacancy #{idx + 1}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => removeJob(idx)}
-                    className="flex items-center gap-1 text-xs font-semibold text-gray-400 hover:text-red-600 bg-white border border-gray-200 hover:border-red-200 hover:bg-red-50/50 px-2.5 py-1 rounded-md transition-all cursor-pointer"
-                    title="Delete Position"
-                  >
-                    <Trash2 size={14} />
-                    <span>Delete</span>
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField
-                    label="Job Title"
-                    name={`title-${idx}`}
-                    value={job.title}
-                    onChange={(e) =>
-                      handleJobChange(idx, "title", e.target.value)
-                    }
-                    required
-                  />
-
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                      Department
-                    </label>
-                    <select
-                      value={job.dept}
-                      onChange={(e) =>
-                        handleJobChange(idx, "dept", e.target.value)
-                      }
-                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a0004f] transition-colors text-sm rounded-lg"
-                    >
-                      <option value="Engineering">Engineering</option>
-                      <option value="Project Management">
-                        Project Management
-                      </option>
-                      <option value="Operations">Operations</option>
-                      <option value="Corporate">Corporate</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField
-                    label="Location (City, Country)"
-                    name={`location-${idx}`}
-                    value={job.location}
-                    onChange={(e) =>
-                      handleJobChange(idx, "location", e.target.value)
-                    }
-                    required
-                  />
-
-                  <InputField
-                    label="Employment Type (e.g. Full-time, Contract)"
-                    name={`type-${idx}`}
-                    value={job.type}
-                    onChange={(e) =>
-                      handleJobChange(idx, "type", e.target.value)
-                    }
-                    required
-                  />
-                </div>
-
-                <TextAreaField
-                  label="Job Description Summary"
-                  name={`desc-${idx}`}
-                  value={job.desc}
-                  onChange={(e) => handleJobChange(idx, "desc", e.target.value)}
-                  rows={2}
-                  required
-                />
+            {formData.jobsList.length === 0 ? (
+              <div className="text-center py-8 px-4 bg-gray-50/50 rounded-xl border border-dashed border-gray-200">
+                <p className="text-sm text-gray-500 font-medium">
+                  No open job positions listed. Click &quot;Add Position Card&quot; to create a job vacancy.
+                </p>
               </div>
-            ))}
+            ) : (
+              formData.jobsList.map((job, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 border border-gray-200 rounded-xl flex flex-col gap-4 relative bg-gray-50/30 group shadow-sm"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-wider">
+                      Position Vacancy #{idx + 1}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => removeJob(idx)}
+                      className="flex items-center gap-1 text-xs font-semibold text-gray-400 hover:text-red-600 bg-white border border-gray-200 hover:border-red-200 hover:bg-red-50/50 px-2.5 py-1 rounded-md transition-all cursor-pointer"
+                      title="Delete Position"
+                    >
+                      <Trash2 size={14} />
+                      <span>Delete</span>
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <InputField
+                      label="Job Title"
+                      name={`title-${idx}`}
+                      value={job.title}
+                      onChange={(e) =>
+                        handleJobChange(idx, "title", e.target.value)
+                      }
+                      required
+                    />
+
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">
+                        Department
+                      </label>
+                      <select
+                        value={job.dept}
+                        onChange={(e) =>
+                          handleJobChange(idx, "dept", e.target.value)
+                        }
+                        className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a0004f] transition-colors text-sm rounded-lg"
+                      >
+                        <option value="Engineering">Engineering</option>
+                        <option value="Project Management">
+                          Project Management
+                        </option>
+                        <option value="Operations">Operations</option>
+                        <option value="Corporate">Corporate</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <InputField
+                      label="Location (City, Country)"
+                      name={`location-${idx}`}
+                      value={job.location}
+                      onChange={(e) =>
+                        handleJobChange(idx, "location", e.target.value)
+                      }
+                      required
+                    />
+
+                    <InputField
+                      label="Employment Type (e.g. Full-time, Contract)"
+                      name={`type-${idx}`}
+                      value={job.type}
+                      onChange={(e) =>
+                        handleJobChange(idx, "type", e.target.value)
+                      }
+                      required
+                    />
+                  </div>
+
+                  <TextAreaField
+                    label="Job Description Summary"
+                    name={`desc-${idx}`}
+                    value={job.desc}
+                    onChange={(e) => handleJobChange(idx, "desc", e.target.value)}
+                    rows={2}
+                    required
+                  />
+                </div>
+              ))
+            )}
           </div>
 
           <div className="flex justify-end pt-4 border-t border-gray-50">

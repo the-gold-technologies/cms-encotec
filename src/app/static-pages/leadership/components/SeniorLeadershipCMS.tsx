@@ -8,14 +8,17 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ImagePickerField } from "@/components/ImagePickerField";
+import { uploadFiles } from "@/lib/uploadHelpers";
 
 interface HeadProfile {
   name: string;
   role: string;
   bio: string;
+  image?: File | string | null;
 }
 
-const emptyHead = (): HeadProfile => ({ name: "", role: "", bio: "" });
+const emptyHead = (): HeadProfile => ({ name: "", role: "", bio: "", image: "" });
 
 const defaultFormData = {
   tagline: "",
@@ -44,6 +47,7 @@ export function SeniorLeadershipCMS() {
                 name: item?.name || "",
                 role: item?.role || "",
                 bio: item?.bio || "",
+                image: item?.image || "",
               }))
             );
           } else {
@@ -54,6 +58,7 @@ export function SeniorLeadershipCMS() {
                   name: data[`leader${i}Name`] || "",
                   role: data[`leader${i}Role`] || "",
                   bio: data[`leader${i}Bio`] || "",
+                  image: data[`leader${i}Image`] || "",
                 });
               }
             }
@@ -71,7 +76,7 @@ export function SeniorLeadershipCMS() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleHeadChange = (index: number, field: keyof HeadProfile, value: string) => {
+  const handleHeadChange = (index: number, field: keyof HeadProfile, value: any) => {
     setHeadsList((prev) =>
       prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
     );
@@ -95,20 +100,25 @@ export function SeniorLeadershipCMS() {
     setIsSaving(true);
     const toastId = toast.loading("Saving Senior Leadership Section...");
     try {
+      const processedHeads = await Promise.all(
+        headsList.map(async (head) => {
+          let imageUrl = typeof head.image === "string" ? head.image : "";
+          if (head.image instanceof File) {
+            const uploaded = await uploadFiles([head.image]);
+            if (uploaded[0]) imageUrl = uploaded[0];
+          }
+          return {
+            ...head,
+            image: imageUrl,
+          };
+        })
+      );
+
       const payload: any = {
         tagline: formData.tagline,
         heading: formData.heading,
-        heads: headsList,
+        heads: processedHeads,
       };
-
-      headsList.forEach((head, i) => {
-        const num = i + 1;
-        if (num <= 6) {
-          payload[`leader${num}Name`] = head.name;
-          payload[`leader${num}Role`] = head.role;
-          payload[`leader${num}Bio`] = head.bio;
-        }
-      });
 
       const res = await fetch("/api/leadership", {
         method: "PUT",
@@ -123,6 +133,7 @@ export function SeniorLeadershipCMS() {
         toast.success("Senior Leadership Section saved successfully!", {
           id: toastId,
         });
+        setHeadsList(processedHeads);
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });
       }
@@ -138,7 +149,7 @@ export function SeniorLeadershipCMS() {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4">
       <SectionHeader
         title="Department Heads"
-        description="Manage tagline, heading, profiles, and roles of VP leaders and department engineers. Add or remove profiles dynamically."
+        description="Manage tagline, heading, profiles, roles, and photo uploads (Cloudinary) of VP leaders and department engineers. Add or remove profiles dynamically."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -207,6 +218,12 @@ export function SeniorLeadershipCMS() {
                   value={head.role}
                   onChange={(e) => handleHeadChange(i, "role", e.target.value)}
                   required
+                />
+                <ImagePickerField
+                  label="Profile Image (Upload File or Cloudinary URL)"
+                  sublabel={`Department Head #${i + 1} Photo`}
+                  value={head.image || null}
+                  onChange={(val) => handleHeadChange(i, "image", val)}
                 />
                 <TextAreaField
                   label="Short Bio"

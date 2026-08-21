@@ -114,8 +114,14 @@ function getPublicIdFromUrl(url: string): string | null {
   }
 }
 
-export const prisma = isMockMode
-  ? createMockPrisma()
-  : globalForPrisma.prisma || createRealPrisma();
+export const getPrisma = () => {
+  if (isMockMode) return createMockPrisma();
+  if (!globalForPrisma.prisma || !globalForPrisma.prisma.jobApplication) {
+    globalForPrisma.prisma = createRealPrisma();
+  }
+  return globalForPrisma.prisma;
+};
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+export const prisma = getPrisma();
+
+

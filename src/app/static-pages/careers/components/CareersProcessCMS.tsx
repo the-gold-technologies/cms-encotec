@@ -14,21 +14,21 @@ const defaultFormData = {
   processSteps: [
     {
       title: "",
-      description: ""
+      description: "",
     },
     {
       title: "",
-      description: ""
+      description: "",
     },
     {
       title: "",
-      description: ""
+      description: "",
     },
     {
       title: "",
-      description: ""
-    }
-  ]
+      description: "",
+    },
+  ],
 };
 
 export function CareersProcessCMS() {

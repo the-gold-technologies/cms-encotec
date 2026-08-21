@@ -70,6 +70,24 @@ model Enquiry {
   updatedAt    DateTime @updatedAt
 }
 
+model JobApplication {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  jobTitle    String?
+  department  String?
+  jobLocation String?
+  experience  String?
+  coverLetter String?
+  resumeName  String?
+  resumeUrl   String?
+  resumeBase64 String?
+  status      String   @default("Pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 model GlobalConfig {
   id                  String   @id @default("global")
   siteTitle           String

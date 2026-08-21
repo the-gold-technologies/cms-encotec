@@ -26,8 +26,8 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   { title: "Menu Links Navigation", category: "Navigation", url: "/navigation/menu-links", icon: Compass },
   { title: "Social Media Navigation", category: "Navigation", url: "/navigation/social-media", icon: Compass },
   { title: "Global SEO Settings", category: "SEO", url: "/seo/global", icon: Shield },
-  { title: "Page SEO Settings", category: "SEO", url: "/seo/pages", icon: Shield },
   { title: "Enquiries Submissions", category: "Submissions", url: "/submissions/enquiries", icon: Inbox },
+  { title: "Job Applications Submissions", category: "Submissions", url: "/submissions/job-applications", icon: Inbox },
   { title: "Profile Settings", category: "Settings", url: "/settings/profile", icon: Settings },
 ];
 

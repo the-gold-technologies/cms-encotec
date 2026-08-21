@@ -723,6 +723,8 @@ const mockNavLinks: any[] = [
   },
 ];
 
+const mockJobApplications: any[] = [];
+
 const mockEnquiries: any[] = [
   {
     id: "enq-1",
@@ -987,6 +989,64 @@ export const createMockPrisma = () => {
             };
             mockEnquiries.push(newEnquiry);
             return newEnquiry;
+          },
+        };
+      }
+
+      if (prop === "jobApplication") {
+        return {
+          findMany: async (args?: any) => {
+            let res = [...mockJobApplications];
+            if (args?.where?.OR) {
+              const q = (args.where.OR[0]?.name?.contains || "").toLowerCase();
+              if (q) {
+                res = res.filter(
+                  (a) =>
+                    a.name?.toLowerCase().includes(q) ||
+                    a.email?.toLowerCase().includes(q) ||
+                    a.jobTitle?.toLowerCase().includes(q),
+                );
+              }
+            }
+            if (args?.where?.status) {
+              res = res.filter((a) => a.status === args.where.status);
+            }
+            return res.sort(
+              (a, b) =>
+                new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+            );
+          },
+          count: async (args?: any) => mockJobApplications.length,
+          create: async (args: any) => {
+            const newApp = {
+              id: `app-${Math.random().toString(36).substring(7)}`,
+              ...args.data,
+              createdAt: new Date(),
+              updatedAt: new Date(),
+            };
+            mockJobApplications.push(newApp);
+            return newApp;
+          },
+          update: async (args: any) => {
+            const idx = mockJobApplications.findIndex(
+              (a) => a.id === args.where?.id,
+            );
+            if (idx !== -1) {
+              mockJobApplications[idx] = {
+                ...mockJobApplications[idx],
+                ...args.data,
+                updatedAt: new Date(),
+              };
+              return mockJobApplications[idx];
+            }
+            return args.data;
+          },
+          delete: async (args: any) => {
+            const idx = mockJobApplications.findIndex(
+              (a) => a.id === args.where?.id,
+            );
+            if (idx !== -1) mockJobApplications.splice(idx, 1);
+            return {};
           },
         };
       }

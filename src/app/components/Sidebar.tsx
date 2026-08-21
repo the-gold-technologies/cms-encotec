@@ -101,7 +101,10 @@ const sidebarLinks: SidebarLink[] = [
   {
     title: "Submissions",
     icon: Layers,
-    sublinks: [{ title: "Enquiries", href: "/submissions/enquiries" }],
+    sublinks: [
+      { title: "Enquiries", href: "/submissions/enquiries" },
+      { title: "Job Applications", href: "/submissions/job-applications" },
+    ],
   },
   {
     title: "Settings",

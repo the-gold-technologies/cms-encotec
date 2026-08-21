@@ -21,7 +21,6 @@ import {
   X,
   FileSearch,
   ExternalLink,
-  Maximize2,
 } from "lucide-react";
 import { InputField } from "@/app/components/InputField";
 import toast from "react-hot-toast";
@@ -183,46 +182,62 @@ export default function JobApplicationsPage() {
 
   // Helper to trigger resume download
   const handleDownloadResume = (app: JobApplication) => {
-    if (app.resumeUrl) {
-      const link = document.createElement("a");
-      link.href = app.resumeUrl;
-      link.target = "_blank";
-      link.download = app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      toast.success(`Opening / Downloading ${app.resumeName || "Resume"}`);
-    } else if (app.resumeBase64) {
-      const link = document.createElement("a");
-      link.href = app.resumeBase64;
-      link.download = app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      toast.success(`Downloaded ${app.resumeName || "Resume"}`);
+    if (app.resumeBase64) {
+      try {
+        const base64Clean = app.resumeBase64.replace(/^data:[^;]+;base64,/, "");
+        const byteCharacters = atob(base64Clean);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: "application/pdf" });
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        toast.success(`Downloaded ${app.resumeName || "Resume"}`);
+        return;
+      } catch (e) {
+        const link = document.createElement("a");
+        link.href = app.resumeBase64;
+        link.download = app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        toast.success(`Downloaded ${app.resumeName || "Resume"}`);
+        return;
+      }
+    } else if (app.resumeUrl) {
+      window.open(app.resumeUrl, "_blank");
     } else {
       toast.error("Resume file content is not available for this entry.");
     }
   };
 
-  // Helper to construct blob or Cloudinary URL for in-app preview
+  // Helper to construct blob URL for in-app preview
   const previewBlobUrl = useMemo(() => {
     if (!previewResumeApp) return null;
-    if (previewResumeApp.resumeUrl) return previewResumeApp.resumeUrl;
-    if (!previewResumeApp.resumeBase64) return null;
-    try {
-      const base64Clean = previewResumeApp.resumeBase64.replace(/^data:[^;]+;base64,/, "");
-      const byteCharacters = atob(base64Clean);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    if (previewResumeApp.resumeBase64) {
+      try {
+        const base64Clean = previewResumeApp.resumeBase64.replace(/^data:[^;]+;base64,/, "");
+        const byteCharacters = atob(base64Clean);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: "application/pdf" });
+        return URL.createObjectURL(blob);
+      } catch (e) {
+        return previewResumeApp.resumeBase64;
       }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "application/pdf" });
-      return URL.createObjectURL(blob);
-    } catch (e) {
-      return previewResumeApp.resumeBase64;
     }
+    if (previewResumeApp.resumeUrl) return previewResumeApp.resumeUrl;
+    return null;
   }, [previewResumeApp]);
 
   return (
@@ -533,7 +548,7 @@ export default function JobApplicationsPage() {
                     href={previewBlobUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-xl transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-xl transition-colors cursor-pointer"
                     title="Open Fullscreen in New Window"
                   >
                     <ExternalLink className="w-3.5 h-3.5" /> Fullscreen
@@ -558,12 +573,6 @@ export default function JobApplicationsPage() {
                   title="Resume In-App PDF Viewer"
                   className="w-full h-full rounded-2xl bg-white border border-gray-200 shadow-inner"
                 />
-              ) : previewResumeApp.resumeUrl ? (
-                <iframe
-                  src={previewResumeApp.resumeUrl}
-                  title="Resume In-App PDF Viewer"
-                  className="w-full h-full rounded-2xl bg-white border border-gray-200 shadow-inner"
-                />
               ) : (
                 <div className="text-center p-8 bg-white rounded-3xl border border-gray-200 shadow-xs max-w-md">
                   <FileSearch className="w-12 h-12 text-brand-pink mx-auto mb-3" />
@@ -571,7 +580,7 @@ export default function JobApplicationsPage() {
                     {previewResumeApp.resumeName || "Resume Document"}
                   </h4>
                   <p className="text-xs text-gray-500 mb-4">
-                    This older application record does not contain embedded Base64 preview data.
+                    Resume content is not available for preview.
                   </p>
                   <button
                     onClick={() => handleDownloadResume(previewResumeApp)}

@@ -21,6 +21,8 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   { title: "Certifications Page Editor", category: "Pages", url: "/static-pages/certifications", icon: FileText },
   { title: "Leadership Page Editor", category: "Pages", url: "/static-pages/leadership", icon: FileText },
   { title: "Contact Page Editor", category: "Pages", url: "/static-pages/contact", icon: FileText },
+  { title: "Privacy Policy Editor", category: "Pages", url: "/static-pages/privacy-policy", icon: FileText },
+  { title: "Cookie Policy Editor", category: "Pages", url: "/static-pages/cookie-policy", icon: FileText },
   { title: "Menu Links Navigation", category: "Navigation", url: "/navigation/menu-links", icon: Compass },
   { title: "Social Media Navigation", category: "Navigation", url: "/navigation/social-media", icon: Compass },
   { title: "Global SEO Settings", category: "SEO", url: "/seo/global", icon: Shield },

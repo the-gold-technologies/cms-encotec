@@ -19,7 +19,11 @@ export function SectionHeader({
   action,
 }: SectionHeaderProps) {
   return (
-    <header className="flex items-center justify-between border-b border-gray-100 pb-4">
+    <header
+      className={`flex items-center justify-between gap-4 transition-all ${
+        isOpen ? "border-b border-gray-100 pb-4" : ""
+      }`}
+    >
       <div
         className="flex flex-col gap-1.5 cursor-pointer flex-1 group"
         onClick={onToggle}
@@ -27,13 +31,21 @@ export function SectionHeader({
         <h1 className="text-gray-900 text-lg font-bold group-hover:text-[#0A0F29] transition-colors flex items-center gap-2">
           {title}
         </h1>
-        <p className="text-gray-500 text-sm">{description}</p>
+        <p className="text-gray-500 text-sm leading-relaxed">{description}</p>
       </div>
       {!action && (
-        <ChevronDown
+        <button
+          type="button"
           onClick={onToggle}
-          className={`text-gray-400 h-5 w-5 cursor-pointer transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-        />
+          aria-label="Toggle Section"
+          className="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-all shrink-0 cursor-pointer"
+        >
+          <ChevronDown
+            className={`h-5 w-5 transition-transform duration-300 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
       )}
 
       {action && (

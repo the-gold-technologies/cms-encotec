@@ -185,6 +185,38 @@ async function main() {
       isStatic: true,
       visibility: "public",
     },
+    {
+      title: "Privacy Policy",
+      slug: "privacy-policy",
+      description: "Official Privacy Policy of Encotec Energy (India) Pvt. Ltd.",
+      metaTitle: "Privacy Policy - Encotec Energy (India)",
+      metaDescription:
+        "Official Privacy Policy of Encotec Energy (India) Pvt. Ltd. Learn about our personal data processing, data subject rights, cookies, and regulatory compliance.",
+      canonicalUrl: "https://www.encotecenergy.com/en/privacy-policy/",
+      targetKeywords:
+        "privacy policy, data protection, encotec energy, GDPR, personal data, whistleblower directive",
+      ogTitle: "Privacy Policy - Encotec Energy (India)",
+      ogDescription:
+        "Official Privacy Policy of Encotec Energy (India) Pvt. Ltd. Learn how we protect and manage personal data.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Cookie Policy",
+      slug: "cookie-policy",
+      description: "Cookie Policy and Privacy Preferences for Encotec Energy website.",
+      metaTitle: "Cookie Policy - Encotec Energy (India)",
+      metaDescription:
+        "Overview of cookies, statistical tracking, and privacy preference settings on Encotec Energy website.",
+      canonicalUrl: "https://www.encotecenergy.com/en/cookie-policy/",
+      targetKeywords:
+        "cookie policy, cookies, privacy preference, essential cookies, statistics cookies, borlabs cookie",
+      ogTitle: "Cookie Policy - Encotec Energy (India)",
+      ogDescription:
+        "Information about cookies and managing privacy preferences on Encotec Energy.",
+      isStatic: true,
+      visibility: "public",
+    },
   ];
 
   for (const pageData of pages) {
@@ -1109,14 +1141,14 @@ async function main() {
                 name: "Arun Kumar Sarna",
                 bio: 'Arun Kumar Sarna is the Founder and CEO of Encotec Energy India, driving the company\'s vision to deliver comprehensive "shovel-to-socket" energy solutions globally. Under his leadership, Encotec has expanded across Thermal Power, Solar PV, and EHV Transmission & Distribution, embedding a signature "Owner’s Mindset" into the company\'s DNA.\n\nA pioneer in third-party O&M contracts in India, Mr. Sarna brings 40+ years of experience managing World Bank, KfW, and Japanese agency mega-projects. Globally, he has advised ESKOM (South Africa) and directed operations across Vietnam, Indonesia, and the Middle East.\n\nHe holds a Mechanical Engineering degree, a Master’s in Metallurgy from IIT Roorkee, and a PGDM from MDI Gurgaon, with executive certifications from Harvard Business School and IIT Mumbai.',
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114346/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296801/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
               },
               {
                 role: "Director – Operations",
                 name: "Rajan Saxena",
                 bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114347/encotech/leadership/rajan_saxena_white_bg.jpg",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296802/encotech/leadership/rajan_saxena_white_bg.jpg",
               },
               {
                 role: "Director – Corporate",
@@ -2387,7 +2419,7 @@ async function main() {
                 bio: 'Arun Kumar Sarna is the Founder and CEO of Encotec Energy India, driving the company\'s vision to deliver comprehensive "shovel-to-socket" energy solutions globally. Under his leadership, Encotec has expanded across Thermal Power, Solar PV, and EHV Transmission & Distribution, embedding a signature "Owner’s Mindset" into the company\'s DNA.\n\nA pioneer in third-party O&M contracts in India, Mr. Sarna brings 40+ years of experience managing World Bank, KfW, and Japanese agency mega-projects. Globally, he has advised ESKOM (South Africa) and directed operations across Vietnam, Indonesia, and the Middle East.\n\nHe holds a Mechanical Engineering degree, a Master’s in Metallurgy from IIT Roorkee, and a PGDM from MDI Gurgaon, with executive certifications from Harvard Business School and IIT Mumbai.',
                 tags: "Strategic Leadership, Business Development, Energy Infrastructure",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114346/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296801/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
               },
               {
                 name: "Rajan Saxena",
@@ -2395,7 +2427,7 @@ async function main() {
                 bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 tags: "Operations Management, Plant Commissioning, Asset Optimization",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114347/encotech/leadership/rajan_saxena_white_bg.jpg",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296802/encotech/leadership/rajan_saxena_white_bg.jpg",
               },
               {
                 name: "Rajeev Ahuja",
@@ -3838,6 +3870,199 @@ async function main() {
       });
       console.log("Created Contact sections");
     }
+
+    // Seed sections for Privacy Policy
+    if (createdPage.slug === "privacy-policy") {
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "PrivacyContent",
+          order: 0,
+          content: {
+            headline: "Privacy Policy",
+            breadcrumb: "Start / Privacy Policy",
+            contentBlocks: [
+              {
+                type: "heading",
+                text: "General Information",
+              },
+              {
+                type: "paragraph",
+                text: "Below we inform you about the collection of personal data when using our website www.encotecenergy.com.",
+              },
+              {
+                type: "list",
+                items: [
+                  "1. The term 'personal data', with reference to the definition in Art. 4 No. 1 of Regulation (EU) 2016/679 (DSGVO / GDPR) and applicable national data protection legislation, means all data that can be related to you personally (such as name, address, e-mail addresses and user behaviour).",
+                  "2. We process personal data as a matter of principle only to the extent necessary to provide a functioning website and the content and services offered by us.",
+                  "3. Your personal data will be deleted or blocked as soon as the purpose of storage no longer applies or statutory retention periods expire.",
+                  "4. If we wish to use contracted service providers for individual functions on our website or use your data for advertising purposes, we inform you in detail about the respective processes.",
+                ],
+              },
+              {
+                type: "heading",
+                text: "Responsible Office",
+              },
+              {
+                type: "quote",
+                text: "Encotec Energy (India) Pvt. Ltd.\nlegally represented by the managing directors Arun Kumar Sarna, Rajeev Ahuja, Dr. Ralf Gilgen\n\nC-85, Sector-63\nNoida-201 301\nUttar Pradesh\nIndia\n\nPhone: +91 120 4155612 | Fax: +91 120 4540611\nEmail: rajeev.ahuja@encotecenergy.com",
+              },
+              {
+                type: "heading",
+                text: "Data Protection Officer",
+              },
+              {
+                type: "paragraph",
+                text: "You can contact our data protection officer at: Rajeev Ahuja, Encotec Energy (India) Pvt. Ltd., C-85, Sector-63, Noida-201 301, Uttar Pradesh, India. Phone: +91 120 4155612, Email: rajeev.ahuja@encotecenergy.com",
+              },
+              {
+                type: "heading",
+                text: "Your Rights",
+              },
+              {
+                type: "list",
+                items: [
+                  "The right to information / access to personal data stored with us",
+                  "The right to rectification of inaccurate data and erasure ('right to be forgotten')",
+                  "The right to restriction of data processing during verification",
+                  "The right to object to data processing for legitimate reasons or advertising/analytics",
+                  "The right to data portability in structured machine-readable format",
+                  "The right to lodge complaints with a competent data protection supervisory authority",
+                ],
+              },
+              {
+                type: "heading",
+                text: "Processing of Personal Data for Informational Website Use",
+              },
+              {
+                type: "paragraph",
+                text: "If you access our website without registering, we only collect technically necessary data transmitted by your web browser to ensure security, optimization and uptime stability:",
+              },
+              {
+                type: "list",
+                items: [
+                  "Browser type and browser version",
+                  "Operating system used",
+                  "Referrer URL",
+                  "Hostname of the accessing computer",
+                  "Time of the server request",
+                  "IP address (stored in server log files for maximum 7 days)",
+                ],
+              },
+              {
+                type: "heading",
+                text: "Processing of Personal Data by Cookies",
+              },
+              {
+                type: "paragraph",
+                text: "We use transient (session) cookies, persistent cookies, and local storage objects to remember visitor preferences and provide secure features. For complete cookie settings and opt-out instructions, visit our Cookie Policy.",
+              },
+              {
+                type: "heading",
+                text: "Further Functions & Services of Our Website",
+              },
+              {
+                type: "paragraph",
+                text: "In addition to informational use, we process inquiry data and partner service requests under strict confidentiality agreements with vetted service providers.",
+              },
+              {
+                type: "heading",
+                text: "Objection or Revocation Against Data Processing",
+              },
+              {
+                type: "paragraph",
+                text: "You can revoke your consent or object to the processing of your data at any time by contacting our office or emailing rajeev.ahuja@encotecenergy.com.",
+              },
+              {
+                type: "heading",
+                text: "Processing of Personal Data in Connection with Applications",
+              },
+              {
+                type: "paragraph",
+                text: "Candidate applications and resume details are processed exclusively for recruitment evaluations and deleted within 6 months of procedure completion unless talent pool consent is given.",
+              },
+              {
+                type: "heading",
+                text: "EU Whistleblower Directive & Compliance",
+              },
+              {
+                type: "quote",
+                text: "personal / confidential / locked\nLegal Counsel / Compliance Officer\nEncotec Energy (India) Pvt. Ltd.\nC-85, Sector-63\nNoida-201 301\nUttar Pradesh, India",
+              },
+            ],
+          },
+        },
+      });
+      console.log("Created Privacy Policy sections");
+    }
+
+    // Seed sections for Cookie Policy
+    if (createdPage.slug === "cookie-policy") {
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "CookieContent",
+          order: 0,
+          content: {
+            headline: "Cookie Policy",
+            breadcrumb: "Start / Cookie Policy",
+            contentBlocks: [
+              {
+                type: "heading",
+                text: "Privacy Preference & Cookies Overview",
+              },
+              {
+                type: "paragraph",
+                text: "We use cookies on our website www.encotecenergy.com. Some of them are essential, while others help us to improve this website and your experience.",
+              },
+              {
+                type: "heading",
+                text: "Essential Cookies (Always Active)",
+              },
+              {
+                type: "list",
+                items: [
+                  "borlabs-cookie — Provider: Encotec Energy (India) Pvt. Ltd. — Purpose: Saves visitor cookie preferences — Duration: 1 Year",
+                  "pll_language — Provider: Encotec Energy (India) Pvt. Ltd. — Purpose: Saves visitor language settings — Duration: 1 Year",
+                ],
+              },
+              {
+                type: "heading",
+                text: "Statistics & Performance Cookies (Optional)",
+              },
+              {
+                type: "list",
+                items: [
+                  "Google Tag Manager / Google Analytics (_ga, _gat, _gid, gtag) — Provider: Google Ireland Limited — Purpose: Anonymous visitor traffic statistics — Duration: 2 Years / 24 Hours",
+                ],
+              },
+              {
+                type: "heading",
+                text: "Browser Configuration & Disabling Cookies",
+              },
+              {
+                type: "list",
+                items: [
+                  "Chrome: Settings > Privacy and security > Third-party cookies",
+                  "Firefox: Settings > Privacy & Security > Cookies and Site Data",
+                  "Safari: Preferences > Privacy > Block all cookies",
+                  "Edge: Settings > Cookies and site permissions",
+                ],
+              },
+              {
+                type: "heading",
+                text: "Contact & Inquiries",
+              },
+              {
+                type: "quote",
+                text: "Encotec Energy (India) Pvt. Ltd.\nC-85, Sector-63, Noida-201 301, Uttar Pradesh, India\nPhone: +91 120 4155612 | Email: rajeev.ahuja@encotecenergy.com",
+              },
+            ],
+          },
+        },
+      });
+      console.log("Created Cookie Policy sections");
+    }
   }
 
   // 5. Navigation Links
@@ -3889,6 +4114,20 @@ async function main() {
       url: "/contact",
       type: "Main Link",
       order: 7,
+      isStatic: true,
+    },
+    {
+      label: "Privacy Policy",
+      url: "/privacy-policy",
+      type: "Footer Link",
+      order: 8,
+      isStatic: true,
+    },
+    {
+      label: "Cookie Policy",
+      url: "/cookie-policy",
+      type: "Footer Link",
+      order: 9,
       isStatic: true,
     },
   ];

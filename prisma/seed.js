@@ -890,7 +890,7 @@ async function main() {
             description:
               "A full-spectrum engineering and services company operating across power generation, transmission & distribution, and renewable energy sectors.",
             backgroundImage:
-              "https://images.unsplash.com/photo-1497435334941-8c899a9bd6a2?auto=format&fit=crop&q=80&w=2400",
+              "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2400",
           },
         },
       });
@@ -2571,7 +2571,7 @@ async function main() {
             heroSubtitle:
               "Explore our thought leadership, project successes, and the latest updates from the forefront of global energy engineering.",
             backgroundImage:
-              "https://images.unsplash.com/photo-1497435334941-8c899a9bd6a2?auto=format&fit=crop&q=80&w=2400",
+              "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2400",
             tab1Label: "Case Studies",
             tab2Label: "News & Updates",
             tab3Label: "Blog & Articles",
@@ -2678,7 +2678,7 @@ async function main() {
                 location: "Uttar Pradesh, India",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -2724,7 +2724,7 @@ async function main() {
                 location: "Rajpura, Punjab",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -2939,7 +2939,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -2964,7 +2964,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -2989,7 +2989,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -3013,7 +3013,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -3070,7 +3070,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -3098,7 +3098,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -3154,7 +3154,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -3218,7 +3218,7 @@ async function main() {
                 location: "",
                 readTime: "7 min read",
                 image:
-                  "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1545208942-e1c9c916524b?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",
@@ -3252,7 +3252,7 @@ async function main() {
                 location: "",
                 readTime: "5 min read",
                 image:
-                  "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=2400",
+                  "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=2400",
                 content: [
                   {
                     type: "paragraph",

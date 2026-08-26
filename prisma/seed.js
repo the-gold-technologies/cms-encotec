@@ -188,7 +188,8 @@ async function main() {
     {
       title: "Privacy Policy",
       slug: "privacy-policy",
-      description: "Official Privacy Policy of Encotec Energy (India) Pvt. Ltd.",
+      description:
+        "Official Privacy Policy of Encotec Energy (India) Pvt. Ltd.",
       metaTitle: "Privacy Policy - Encotec Energy (India)",
       metaDescription:
         "Official Privacy Policy of Encotec Energy (India) Pvt. Ltd. Learn about our personal data processing, data subject rights, cookies, and regulatory compliance.",
@@ -204,7 +205,8 @@ async function main() {
     {
       title: "Cookie Policy",
       slug: "cookie-policy",
-      description: "Cookie Policy and Privacy Preferences for Encotec Energy website.",
+      description:
+        "Cookie Policy and Privacy Preferences for Encotec Energy website.",
       metaTitle: "Cookie Policy - Encotec Energy (India)",
       metaDescription:
         "Overview of cookies, statistical tracking, and privacy preference settings on Encotec Energy website.",
@@ -1640,7 +1642,7 @@ async function main() {
             projectDescription:
               "Complete engineering services for a 2x660 MW supercritical thermal power plant in Uttar Pradesh, delivering comprehensive design, system integration, and technical validation.",
             projectImage:
-              "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1787744210/encotec-Assets/himsufy4ajry8mvqoqt9.jpg",
             metrics: [
               { value: "1,320 MW", label: "Total Capacity", icon: "Zap" },
               { value: "Supercritical", label: "Technology", icon: "Target" },
@@ -2989,7 +2991,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&q=80&w=2400",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787744211/encotec-Assets/svypxqn8inxodhe9gpj1.jpg",
                 content: [
                   {
                     type: "paragraph",

@@ -866,9 +866,9 @@ async function main() {
             description:
               "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ Projects that rely on Encotec for their critical needs.",
             primaryBtnLabel: "Start Your Project",
-            primaryBtnUrl: "/contact",
+            primaryBtnUrl: "#",
             secondaryBtnLabel: "Talk to an Expert",
-            secondaryBtnUrl: "/contact",
+            secondaryBtnUrl: "+91 120 555 0100",
             footerNote:
               "Looking for precision and reliability? Get in touch to learn more about our certified quality and safety-first approach.",
             copyright: "© 2026 Encotec Engineering.",

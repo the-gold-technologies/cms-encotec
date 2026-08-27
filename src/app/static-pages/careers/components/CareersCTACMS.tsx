@@ -92,7 +92,7 @@ export function CareersCTACMS() {
             name="hrEmail"
             value={formData.hrEmail}
             onChange={handleChange}
-            placeholder="e.g. careers@encotec.com"
+            placeholder="e.g. hr@encotecenergy.com"
             required
           />
           <div className="flex justify-end pt-4 border-t border-gray-50">

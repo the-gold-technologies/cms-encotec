@@ -197,7 +197,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // 3. Fetch HR Email recipient
+    // 3. Fetch HR Email recipient (from .env or dynamic CMS page configuration)
     let hrRecipient = process.env.HR_EMAIL;
     if (!hrRecipient) {
       try {
@@ -210,14 +210,11 @@ export async function POST(request: Request) {
         );
         if (ctaSection && typeof ctaSection.content === "object") {
           const content = ctaSection.content as any;
-          if (content.hrEmail && content.hrEmail !== "careers@encotec.com") {
+          if (content?.hrEmail) {
             hrRecipient = content.hrEmail;
           }
         }
       } catch (e) {}
-    }
-    if (!hrRecipient) {
-      hrRecipient = "sude8920esh@gmail.com";
     }
 
     // 4. Dispatch Email notification to HR via SMTP / Nodemailer
@@ -225,7 +222,7 @@ export async function POST(request: Request) {
     let emailError = null;
 
     const smtpData = getTransporter();
-    if (smtpData) {
+    if (smtpData && hrRecipient) {
       try {
         const attachments: any[] = [];
         if (resumeBase64 && resumeName) {

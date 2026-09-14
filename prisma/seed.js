@@ -875,7 +875,37 @@ async function main() {
           },
         },
       });
-      console.log("Created Home sections (all 10 Encotec sections)");
+
+      // 11. FooterCMS certificates
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "FooterCMS",
+          order: 10,
+          content: {
+            certificates: [
+              {
+                alt: "ISO 9001:2015",
+                src: "https://res.cloudinary.com/dpa93copz/image/upload/v1789386694/encotec-Assets/u2hnzxahnlqpe1rsgh2h.png",
+                description: "QUALITY MANAGEMENT SYSTEM",
+              },
+              {
+                alt: "ISO 14001:2015",
+                src: "https://res.cloudinary.com/dpa93copz/image/upload/v1789386695/encotec-Assets/gke8cxzlk56pimretbul.png",
+                description: "ENVIRONMENTAL MANAGEMENT SYSTEM",
+              },
+              {
+                alt: "ISO 45001:2018",
+                src: "https://res.cloudinary.com/dpa93copz/image/upload/v1789386697/encotec-Assets/g2miviz99upogv9ys9ws.png",
+                description: "OCCUPATIONAL HEALTH & SAFETY MANAGEMENT SYSTEM",
+              },
+            ],
+          },
+        },
+      });
+      console.log(
+        "Created Home sections (CTA and footer certificates included)",
+      );
     }
 
     if (createdPage.slug === "about") {

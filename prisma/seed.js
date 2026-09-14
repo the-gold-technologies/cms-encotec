@@ -90,15 +90,15 @@ async function main() {
       isStatic: true,
       visibility: "public",
     },
-    {
-      title: "Certifications",
-      slug: "certifications",
-      description: "Our Certifications",
-      metaTitle: "Certifications - Encotec",
-      metaDescription: "Our quality standards and ISO certifications",
-      isStatic: true,
-      visibility: "public",
-    },
+    // {
+    //   title: "Certifications",
+    //   slug: "certifications",
+    //   description: "Our Certifications",
+    //   metaTitle: "Certifications - Encotec",
+    //   metaDescription: "Our quality standards and ISO certifications",
+    //   isStatic: true,
+    //   visibility: "public",
+    // },
     {
       title: "Leadership",
       slug: "leadership",
@@ -487,7 +487,7 @@ async function main() {
                 region: "India",
                 address: "Corporate Headquarters",
                 suite: "Noida, Uttar Pradesh",
-                phone: "+91 120 555 0100",
+                phone: "+91 120 4155612",
               },
               {
                 name: "Turkey",
@@ -868,7 +868,7 @@ async function main() {
             primaryBtnLabel: "Start Your Project",
             primaryBtnUrl: "#",
             secondaryBtnLabel: "Talk to an Expert",
-            secondaryBtnUrl: "+91 120 555 0100",
+            secondaryBtnUrl: "+91 120 4155612",
             footerNote:
               "Looking for precision and reliability? Get in touch to learn more about our certified quality and safety-first approach.",
             copyright: "© 2026 Encotec Engineering.",
@@ -2374,9 +2374,9 @@ async function main() {
             badges: [
               "1,800+ Manpower",
               "300+ Engineers",
-              "100+ Professionals & Industry Experts",
+              "25+ Industry Experts",
               "12+ Years Average Experience",
-              "10+ Countries",
+              "5+ Countries",
             ],
             backgroundImage:
               "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2400",
@@ -3841,7 +3841,7 @@ async function main() {
             locationTitle: "Corporate Headquarters",
             addressLine1: "Noida, Uttar Pradesh",
             addressLine2: "India",
-            phoneNumber: "+91 120 555 0100",
+            phoneNumber: "+91 120 4155612",
             emailAddress: "sales@encotecenergy.com",
             businessHoursTitle: "Business Hours",
             quickContactTitle: "Quick Contact",

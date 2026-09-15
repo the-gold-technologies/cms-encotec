@@ -2541,8 +2541,8 @@ async function main() {
             stats: [
               { value: "1800+", label: "Total Professionals" },
               { value: "300+", label: "Senior Engineers" },
-              { value: "100+", label: "Industry Experts" },
-              { value: "23+", label: "Countries of Operation" },
+              { value: "25+", label: "Industry Experts" },
+              { value: "5+", label: "Countries of Operation" },
               { value: "12+", label: "Years Avg Experience" },
             ],
           },

@@ -1176,14 +1176,14 @@ async function main() {
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787296801/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
               },
               {
-                role: "Director – Operations",
+                role: "Director",
                 name: "Rajan Saxena",
                 bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787296802/encotech/leadership/rajan_saxena_white_bg.jpg",
               },
               {
-                role: "Director – Corporate",
+                role: "Director",
                 name: "Rajeev Ahuja",
                 bio: "Rajeev Ahuja brings 38+ years of engineering and business management experience in the power and industrial sectors. As Director at Encotec, he leads corporate strategy, high-value contract bidding, proposals, commercial management, HR, Finance & Accounts, and P&L accountability.\n\nHe previously served in senior leadership roles at STEAG Energy Services India and Nicco Engineering, managing complete business cycles from opportunity identification to contract closeout.\n\nMr. Ahuja holds a Mechanical Engineering degree with international technical and business training in the UK and Thailand, having built and led BD teams of 25+ professionals.",
                 image:
@@ -2455,7 +2455,7 @@ async function main() {
               },
               {
                 name: "Rajan Saxena",
-                role: "Director – Operations",
+                role: "Director ",
                 bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 tags: "Operations Management, Plant Commissioning, Asset Optimization",
                 image:
@@ -2463,7 +2463,7 @@ async function main() {
               },
               {
                 name: "Rajeev Ahuja",
-                role: "Director – Corporate",
+                role: "Director ",
                 bio: "Rajeev Ahuja brings 38+ years of engineering and business management experience in the power and industrial sectors. As Director at Encotec, he leads corporate strategy, high-value contract bidding, proposals, commercial management, HR, Finance & Accounts, and P&L accountability.\n\nHe previously served in senior leadership roles at STEAG Energy Services India and Nicco Engineering, managing complete business cycles from opportunity identification to contract closeout.\n\nMr. Ahuja holds a Mechanical Engineering degree with international technical and business training in the UK and Thailand, having built and led BD teams of 25+ professionals.",
                 tags: "Corporate Strategy, Business Development, Global Partnerships",
                 image:

@@ -3858,7 +3858,7 @@ async function main() {
             ctaHeading: "Don't See the Right Role?",
             ctaSubtitle:
               "We're always looking for talented engineers and energy professionals. Send us your resume and we'll keep you in mind for future opportunities.",
-            hrEmail: "hr@encotecenergy.com",
+            hrEmail: "careers@encotecenergy.com ",
           },
         },
       });
@@ -4200,7 +4200,7 @@ async function main() {
             quickContactTitle: "Quick Contact",
             generalInquiriesLabel: "General Inquiries",
             careersLabel: "Careers",
-            careersEmailAddress: "hr@encotecenergy.com",
+            careersEmailAddress: "careers@encotecenergy.com ",
             formHeading: "Send us a message",
             fullNameLabel: "Full Name *",
             emailAddressLabel: "Email Address *",

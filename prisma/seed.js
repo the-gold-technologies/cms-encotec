@@ -3441,7 +3441,330 @@ async function main() {
           order: 3,
           content: {
             heading: "Current Openings",
-            jobsList: [],
+            jobsList: [
+              {
+                title: "Sr. HR Executive / HR Executive – Corporate Office",
+                dept: "HR",
+                location: "Corporate Office, Noida",
+                type: "Full-time",
+                desc: [
+                  {
+                    type: "paragraph",
+                    text: "Focuses on supporting day-to-day corporate HR operations, driving candidate sourcing pipelines, managing employee onboarding workflows, and maintaining accurate centralized HR data ecosystems.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Key Responsibilities",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "End-to-End Recruitment Support: Source active resumes from job portals, perform preliminary HR screening, coordinate interview schedules with technical line managers, and manage logistics for corporate selection drives.",
+                      "Onboarding & Offboarding: Manage the corporate joining documentation process, execute structural employee orientation, create master employee profiles, and process employee exit/full-and-final settlement formalities.",
+                      "HRIS & Data Management: Update and maintain the organization-wide Human Resources Information System (HRIS) with high accuracy regarding employee master records, leaves, attendance, and confirmation dates.",
+                      "Employee Engagement Logistics: Assist in organizing corporate town halls, training deployment schedules, employee wellness activities, and company-wide festive celebrations.",
+                      "Vendor & Billing Coordination: Track and process invoices from recruitment consultants, background verification agencies, training partners, and corporate insurance vendors for timely approval.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Qualifications & Requirements",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Education: MBA / PGDM in Human Resources / Industrial Relations from a recognized institute or university.",
+                      "Experience: 2 to 5 years of corporate HR operations experience, preferably in infrastructure, energy, or engineering companies.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Core Competencies",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "High proficiency in Microsoft Excel and HRIS software, good verbal and written communication, active multitasking capabilities, and meticulous attention to detail.",
+                    ],
+                  },
+                ],
+              },
+
+              {
+                title:
+                  "Sr. HR Executive / HR Executive – Site HR & Administration",
+                dept: "HR",
+                location: "Thermal Power Plant Sites PAN India",
+                type: "Full-time",
+                desc: [
+                  {
+                    type: "paragraph",
+                    text: "Focuses on daily time-office operations, assisting with contractor labor tracking, processing local compliance documentation registers, and managing site administrative facilities.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Key Responsibilities",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Time-Office & Attendance Management: Monitor daily biometric access logs, track plant shift rosters, maintain manual attendance registers for audit verification, and report daily manpower availability summaries to the Site HR Manager.",
+                      "Contract Labor Verification: Assist in verifying contractor gate passes, checking physical worker counts against deployed rosters, and ensuring contractor statutory compliance documents (PF/ESIC chalans, insurance copies) are in order before processing invoices.",
+                      "Statutory Documentation: Maintain all structural statutory registers, files, and cards mandatory under the Factories Act and Contract Labor (Regulation & Abolition) Act to ensure 100% readiness for surprise government inspections.",
+                      "Site Welfare Coordination: Conduct daily inspections of site facility centers including checking canteen hygiene/food quality, workplace drinking water availability, and general first-aid/medical room inventories.",
+                      "Local Administration Support: Coordinate site vehicle logistics, organize personal protective equipment (PPE) distribution camps, manage office stationary inventories, and issue basic site communication circulars under management guidance.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Qualifications & Requirements",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Education: Graduate with a Post Graduate Diploma in HR / IR, or a Bachelor of Business Administration (BBA) in HR.",
+                      "Experience: 2 to 4 years of plant-level or industrial project site experience, ideally in thermal power plants, construction projects, or manufacturing heavy industries.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Core Competencies",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Knowledge of the local language (highly essential for worker communication), familiarity with basic factory labor rules, resilience to working in heavy plant environments, and basic computer proficiency.",
+                    ],
+                  },
+                ],
+              },
+
+              {
+                title: "Assistant Manager / Manager – Finance & Accounts",
+                dept: "Finance & Accounts",
+                location: "Corporate Office, Noida",
+                type: "Full-time",
+                desc: [
+                  {
+                    type: "paragraph",
+                    text: "Focuses on corporate financial management, statutory compliance, and contractual financial governance. This role acts as a bridge between the corporate office and multiple thermal power plant O&M sites, ensuring financial discipline, optimizing cash flows for plant shutdowns, and driving profitability tracking against site-specific SLAs.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Key Responsibilities",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "SLA Monitoring: Interpret O&M Service Level Agreements (SLAs) to track escalation clauses, bonus incentives, and penalty provisions.",
+                      "Billing & Realization: Oversee the end-to-end commercial billing cycle for multiple power utility clients; ensure timely payment realization and manage outstanding ageings.",
+                      "Site Financial Control: Supervise site-level accountants to ensure inventory tracking (spares/consumables) and mobilization expenses match corporate policies.",
+                      "O&M Budgeting: Drive the formulation of annual corporate and individual plant O&M operating budgets.",
+                      "Variance Analysis: Provide monthly variance analysis detailing plant overhauling costs, variable maintenance costs, and employee overheads.",
+                      "Profitability Reviews: Present site-wise gross margin and EBITDA analysis to the executive leadership team.",
+                      "Tax Governance: Manage direct and indirect tax compliances, with specific focus on GST for long-term service contracts, TDS, and corporate tax provisions.",
+                      "Audit Leadership: Lead statutory, internal, and cost audit processes; resolve complex accounting issues under applicable frameworks (Ind AS / IFRS).",
+                      "Working Capital: Optimize corporate cash flow cycles, keeping a buffer for emergency plant maintenance or forced shutdowns.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Qualifications & Requirements",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Education: CA, ICWA, MBA in Finance.",
+                      "Experience Range: 5 to 10 years of robust post-qualification experience.",
+                      "Industry Focus: Proven track record in corporate offices or large units within the Power Sector, Infrastructure, EPC, or heavy engineering O&M companies.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Core Competencies",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "System Expertise: Advanced hands-on experience in SAP (FICO module) or Oracle ERP.",
+                      "Leadership: Demonstrated ability to manage, mentor, and review the work of a team of junior accountants and site finance teams.",
+                      "Analytical Polish: Expert level proficiency in financial reporting frameworks and advanced Excel modeling.",
+                    ],
+                  },
+                ],
+              },
+
+              {
+                title: "Head – Corporate Safety (EHS)",
+                dept: "EHS",
+                location: "Corporate Office, Noida",
+                type: "Full-time",
+                desc: [
+                  {
+                    type: "paragraph",
+                    text: "Focuses on directing, designing, and governing the Environment, Health, and Safety (EHS) strategy across all operational thermal power plant O&M sites. Operating from the Corporate Office, this senior leadership role is responsible for establishing a zero-harm safety culture, standardizing high-risk safety protocols (e.g., confined spaces, hazardous energy control/LOTO, heavy lifting), ensuring stringent statutory compliance, and leading corporate EHS audits to protect workforce integrity and mitigate operational risk.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Key Responsibilities",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Strategic EHS Governance & Leadership: Formulate, execute, and monitor the corporate Environment, Health, and Safety (EHS) vision, policy, and long-term roadmap across multiple thermal power plant O&M asset locations.",
+                      "Establish standardized corporate safety management systems (SMS) aligned with global frameworks such as ISO 45001 (Occupational Health & Safety) and ISO 14001 (Environmental Management).",
+                      "Advise executive management and site leaders on emerging EHS trends, regulatory exposures, and critical risk mitigation strategies.",
+                      "High-Risk Operational Safety Management: Standardize strict safety protocols tailored to high-risk thermal plant operations, including Lockout/Tagout (LOTO), Confined Space Entry, Working at Heights, High-Voltage Electrical Isolation, and Turbine/Boiler maintenance overhauling.",
+                      "Govern Job Safety Analyses (JSA) and Hazard Identification & Risk Assessment (HIRA) standards for routine, non-routine, and major shutdown maintenance activities.",
+                      "Oversee the verification and structural integrity monitoring of heavy material handling systems, EOT cranes, and rigging infrastructure across operating sites.",
+                      "Regulatory Compliance & Environmental Stewardship: Ensure organizational compliance with central and state environmental regulations, factory acts, labor codes, and pollution control board frameworks specific to thermal power facilities.",
+                      "Oversee environmental compliance frameworks concerning ash management, industrial effluent discharges, and stack emissions tracking systems.",
+                      "Serve as the lead organizational liaison with state factory inspectorates, pollution control agencies, and statutory bodies during serious events or regular regulatory audits.",
+                      "Incident Investigation, Analytics & Root Cause Analysis (RCA): Direct the formal investigation process for corporate/site-level near-misses, dangerous occurrences, and lost-time injuries.",
+                      "Deploy advanced Root Cause Analysis techniques such as TapRooT, 5-Why, and Fishbone to isolate systemic failures and mandate corrective and preventive actions (CAPA).",
+                      "Manage corporate safety dashboards, analyzing lagging indicators (LTIFR, TRIR) and leading metrics to deliver performance updates to the Board.",
+                      "Capability Building & Cultural Transformation: Incentivize a corporate-wide Zero-Harm safety culture through behavioral safety programs (BBS) and visible felt leadership initiatives.",
+                      "Standardize safety training modules for corporate onboarding, technical plant maintenance competencies, specialized shutdown contractors, and emergency response teams.",
+                      "Oversee contractor safety management programs, ensuring third-party workforce compliance matches internal company benchmarks.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Qualifications & Requirements",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Education: Bachelor’s degree in engineering (Mechanical or Electrical), Post Graduate Diploma or Degree in Industrial Safety from a government-recognized institute, or globally recognized safety qualifications such as NEBOSH International Diploma, CSP, or certified ISO 45001 / 14001 Lead Auditor status.",
+                      "Experience Range: 15 to 18 years of robust post-qualification experience.",
+                      "Industry Focus: Proven track record in corporate offices or large units within the Power Sector, Infrastructure, EPC, or heavy engineering O&M companies.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Core Competencies",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Demonstrated mastery over high-risk engineering controls, thermal plant process hazards, and contractor safety governance systems.",
+                      "Outstanding leadership, executive presence, and persuasive capability to enforce uncompromising safety compliance at all tiers of organization.",
+                      "Strong digital competency in managing integrated EHS software platforms and modern field inspection applications.",
+                    ],
+                  },
+                ],
+              },
+
+              {
+                title:
+                  "Assistant Manager / Manager – Contracts & Materials Management",
+                dept: "Contracts & Materials",
+                location: "Corporate Office, Noida",
+                type: "Full-time",
+                desc: [
+                  {
+                    type: "paragraph",
+                    text: "Focuses on corporate end-to-end supply chain architecture, strategic sourcing, and contract governance lifecycle for multiple thermal power plant O&M sites. This corporate role ensures optimal materials availability (critical spares, boiler/turbine consumables, chemical reagents) while strictly controlling lifecycle costs, optimizing inventory parameters, and drafting ironclad service level contracts to eliminate plant down-time risks.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Key Responsibilities",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Corporate Category Management: Lead procurement strategy for specialized thermal power plant components, including Boiler Pressure Parts, Turbine auxiliaries, Coal Handling Plant (CHP) spares, and Ash Handling System components.",
+                      "Vendor Lifecycle Ecosystem: Establish, evaluate, and scale an elite panel of approved vendors to optimize procurement lead times and lower TCO.",
+                      "High-Value Technical Commercial Floating: Draft complex Request for Proposals (RFPs) and Tenders; organize comprehensive techno-commercial bid evaluations to finalize annual rate contracts.",
+                      "O&M Sub-contracting Lifecycle: Formulate, negotiate, and execute specialized back-to-back sub-contracts for annual plant overhauling, major shutdowns, structural fabrications, non-destructive testing (NDT), and annual maintenance contracts (AMCs).",
+                      "Risk & Indemnity Administration: Structurally build crucial risk mitigation clauses into contracts, including Liquidation Damages (LD), force majeure parameters, safety penalization matrices, and strict defect liability periods.",
+                      "Claim Management & Resolution: Act as the corporate focal point to evaluate and process change order variants, contract amendments, contractual escalations, and commercial dispute reviews.",
+                      "Corporate Materials Control: Implement corporate standardization matrices (Min-Max parameters, Reorder Points, and Safety Stock levels) across all operating sites to maximize material availability while preventing capital deadlocks.",
+                      "Scrap & CAPEX Logistics: Formulate corporate directives for T&Ps retirement and inventory write-offs.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Qualifications & Requirements",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Education: Bachelor’s degree in engineering (Mechanical or Electrical or Instrumentation), Post Graduate Diploma or Degree in Supply Chain Management, Materials Management or equivalent MBA.",
+                      "Experience Range: 5 to 10 years of robust post-qualification experience.",
+                      "Industry Focus: Proven track record in corporate offices or large units within the Power Sector, Infrastructure, EPC, or heavy engineering O&M companies.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Core Competencies",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "ERP Expertise: Advanced, fluent transactional mastery within the SAP MM/Ariba or Oracle SCM or equivalent enterprise systems.",
+                      "Legal Exposure: Comprehensive grip over Indian Contract Act provisions, commercial taxation codes (GST structures for goods vs composite services), and international incoterms.",
+                      "Negotiation Savvy: Refined executive presence, cross-functional collaboration capabilities, and sharp, data-driven cost-benefit analysis skills.",
+                    ],
+                  },
+                ],
+              },
+
+              {
+                title: "Project Manager",
+                dept: "Project Management",
+                location: "Corporate Office, Noida",
+                type: "Full-time",
+                desc: [
+                  {
+                    type: "paragraph",
+                    text: "Focuses on managing operational readiness, resource scheduling, contractual health, and governance for a portfolio of operating thermal power plants. This role coordinates closely with site O&M heads, technical service teams, and client representatives to ensure high plant availability, strict SLA compliance, and smooth site mobilization.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Key Responsibilities",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Operational Readiness: Design and execute standard corporate frameworks for mobilizing new O&M site contracts.",
+                      "Resource Deployment: Coordinate with HR, Procurement, and technical wings to ensure deployment of tools, plants, consumables and qualified manpower during the transition phase.",
+                      "SOP Implementation: Deploy corporate operational guidelines, safety protocols, and maintenance management workflows at new sites.",
+                      "Performance Tracking: Monitor site-level Key Performance Indicators (KPIs) including Plant Availability Factor (PAF), Heat Rate, Auxiliary Power Consumption (APC), and specific oil/coal consumption.",
+                      "Commercial Interface: Identify variations in contract scopes, prepare claims for extra works, and manage mitigation pathways for Liquidated Damages (LD) risks.",
+                      "Client Relationship: Conduct monthly and quarterly project review meetings with clients.",
+                      "Turnaround Scheduling: Lead the corporate planning team to review and optimize master schedules using Primavera P6 or MS Project for major boiler and turbine overhauls.",
+                      "Cross-Site Allocation: Orchestrate the movement of critical specialized tooling, testing equipment, and expert task forces across different operating sites to minimize shutdown days.",
+                      "Risk Management: Maintain a corporate risk register for all running projects, identifying bottlenecks in spares availability or technical challenges ahead of time.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Qualifications & Requirements",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Education: Bachelor’s degree in engineering (Mechanical or Electrical or Instrumentation), PMP (Project Management Professional) certification shall be an added advantage.",
+                      "Experience Range: 8 to 15 years of robust post-qualification experience.",
+                      "Industry Focus: Proven track record in corporate offices or large units within the Power Sector, Infrastructure, EPC, or heavy engineering O&M companies.",
+                    ],
+                  },
+                  {
+                    type: "paragraph",
+                    text: "Core Competencies",
+                  },
+                  {
+                    type: "list",
+                    items: [
+                      "Software Tools: High proficiency in Primavera P6, MS Project, and enterprise resource platforms like SAP (Project System - PS / Plant Maintenance - PM modules).",
+                      "Analytical Skills: Strong capability in reviewing commercial contracts, evaluating techno-commercial variations, and reading engineering layouts.",
+                      "Leadership & Mobility: Exceptional cross-functional leadership skills; ability to influence site teams and willingness to travel frequently to power plant locations for operational reviews.",
+                    ],
+                  },
+                ],
+              },
+            ],
           },
         },
       });

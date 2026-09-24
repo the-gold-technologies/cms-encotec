@@ -8,16 +8,21 @@ import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TextAreaField } from "@/components/TextAreaField";
+import {
+  ContentBlock,
+  ContentBlocksEditor,
+} from "@/components/ContentBlocksEditor";
+type Job = {
+  title: string;
+  dept: string;
+  location: string;
+  type: string;
+  desc: ContentBlock[];
+};
 
 const defaultFormData = {
   heading: "",
-  jobsList: [] as Array<{
-    title: string;
-    dept: string;
-    location: string;
-    type: string;
-    desc: string;
-  }>
+  jobsList: [] as Job[],
 };
 
 export function CareersOpenPositionsCMS() {
@@ -39,11 +44,23 @@ export function CareersOpenPositionsCMS() {
       .catch(console.error);
   }, []);
 
-  const handleJobChange = (index: number, field: string, value: string) => {
+  const handleJobChange = <K extends keyof Job>(
+    index: number,
+    field: K,
+    value: Job[K],
+  ) => {
     setFormData((prev) => {
       const updatedList = [...prev.jobsList];
-      updatedList[index] = { ...updatedList[index], [field]: value };
-      return { ...prev, jobsList: updatedList };
+
+      updatedList[index] = {
+        ...updatedList[index],
+        [field]: value,
+      };
+
+      return {
+        ...prev,
+        jobsList: updatedList,
+      };
     });
   };
 
@@ -57,7 +74,7 @@ export function CareersOpenPositionsCMS() {
           dept: "Engineering",
           location: "",
           type: "Full-time",
-          desc: "",
+          desc: [],
         },
       ],
     }));
@@ -120,7 +137,10 @@ export function CareersOpenPositionsCMS() {
 
           <div className="flex justify-between items-center border-b border-gray-100 pb-3">
             <span className="text-sm font-bold text-gray-700">
-              Open Vacancies Cards <span className="text-[#a0004f] font-semibold">({formData.jobsList.length})</span>
+              Open Vacancies Cards{" "}
+              <span className="text-[#a0004f] font-semibold">
+                ({formData.jobsList.length})
+              </span>
             </span>
             <button
               type="button"
@@ -135,7 +155,8 @@ export function CareersOpenPositionsCMS() {
             {formData.jobsList.length === 0 ? (
               <div className="text-center py-8 px-4 bg-gray-50/50 rounded-xl border border-dashed border-gray-200">
                 <p className="text-sm text-gray-500 font-medium">
-                  No open job positions listed. Click &quot;Add Position Card&quot; to create a job vacancy.
+                  No open job positions listed. Click &quot;Add Position
+                  Card&quot; to create a job vacancy.
                 </p>
               </div>
             ) : (
@@ -169,26 +190,15 @@ export function CareersOpenPositionsCMS() {
                       }
                       required
                     />
-
-                    <div className="flex flex-col gap-2">
-                      <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                        Department
-                      </label>
-                      <select
-                        value={job.dept}
-                        onChange={(e) =>
-                          handleJobChange(idx, "dept", e.target.value)
-                        }
-                        className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a0004f] transition-colors text-sm rounded-lg"
-                      >
-                        <option value="Engineering">Engineering</option>
-                        <option value="Project Management">
-                          Project Management
-                        </option>
-                        <option value="Operations">Operations</option>
-                        <option value="Corporate">Corporate</option>
-                      </select>
-                    </div>
+                    <InputField
+                      label="Department"
+                      name={`department-${idx}`}
+                      value={job.dept}
+                      onChange={(e) =>
+                        handleJobChange(idx, "dept", e.target.value)
+                      }
+                      required
+                    />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -213,13 +223,12 @@ export function CareersOpenPositionsCMS() {
                     />
                   </div>
 
-                  <TextAreaField
-                    label="Job Description Summary"
-                    name={`desc-${idx}`}
-                    value={job.desc}
-                    onChange={(e) => handleJobChange(idx, "desc", e.target.value)}
-                    rows={2}
-                    required
+                  <ContentBlocksEditor
+                    label="Job Description"
+                    blocks={job.desc}
+                    onChange={(newBlocks) =>
+                      handleJobChange(idx, "desc", newBlocks)
+                    }
                   />
                 </div>
               ))

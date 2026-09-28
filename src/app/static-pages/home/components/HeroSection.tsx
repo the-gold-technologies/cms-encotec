@@ -2,7 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { X, Tag, BarChart3, Award, Plus, Trash2 } from "lucide-react";
+import {
+  X,
+  Tag,
+  BarChart3,
+  Award,
+  Plus,
+  Trash2,
+  Image as ImageIcon,
+} from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -26,15 +34,10 @@ const defaultFormData = {
   primaryBtnUrl: "",
   secondaryBtnLabel: "",
   secondaryBtnUrl: "",
-  serviceTags: [
-    "STEWARDSHIP",
-    "COMMISSIONING",
-    "ADVISORY",
-    "GLOBAL SOURCING"
-  ],
+  serviceTags: ["STEWARDSHIP", "COMMISSIONING", "ADVISORY", "GLOBAL SOURCING"],
   projectsBadgeNumber: "",
   projectsBadgeLabel: "",
-  backgroundImage: ""
+  backgroundImage: "",
 };
 
 interface HeroSectionProps {
@@ -66,15 +69,37 @@ export function HeroSection({
   };
 
   const [formData, setFormData] = useState(defaultFormData);
-  const [selectedImage, setSelectedImage] = useState<File | string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | string | null>(
+    null,
+  );
+  const [heroImagesList, setHeroImagesList] = useState<
+    (File | string | null)[]
+  >([]);
+
+  const unpackImages = (data: any) => {
+    if (Array.isArray(data.images) && data.images.length > 0) {
+      setHeroImagesList(data.images);
+    } else if (Array.isArray(data.photos) && data.photos.length > 0) {
+      setHeroImagesList(data.photos);
+    } else if (data.backgroundImage) {
+      setHeroImagesList([data.backgroundImage]);
+    } else {
+      setHeroImagesList([]);
+    }
+  };
   const [statsList, setStatsList] = useState<StatItem[]>([
-    { value: "", label: "" }
+    { value: "", label: "" },
   ]);
 
   const unpackStats = (data: any) => {
     const rawList = (data.stats || data.statsList) as any[];
     if (Array.isArray(rawList) && rawList.length > 0) {
-      setStatsList(rawList.map((s: any) => ({ value: s.value || "", label: s.label || "" })));
+      setStatsList(
+        rawList.map((s: any) => ({
+          value: s.value || "",
+          label: s.label || "",
+        })),
+      );
     } else {
       // Fallback from stat1Value..stat5Value
       const legacy: StatItem[] = [];
@@ -86,12 +111,16 @@ export function HeroSection({
           });
         }
       }
-      setStatsList(legacy.length > 0 ? legacy : [
-        { value: "", label: "" },
-        { value: "", label: "" },
-        { value: "", label: "" },
-        { value: "", label: "" },
-      ]);
+      setStatsList(
+        legacy.length > 0
+          ? legacy
+          : [
+              { value: "", label: "" },
+              { value: "", label: "" },
+              { value: "", label: "" },
+              { value: "", label: "" },
+            ],
+      );
     }
   };
 
@@ -99,8 +128,10 @@ export function HeroSection({
     if (initialData) {
       const merged = { ...defaultFormData, ...initialData };
       setFormData(merged);
-      if (merged.backgroundImage) setSelectedImage(merged.backgroundImage as string);
+      if (merged.backgroundImage)
+        setSelectedImage(merged.backgroundImage as string);
       unpackStats(initialData);
+      unpackImages(initialData);
     } else if (saveUrl === "/api/home") {
       fetchWithCache("/api/home")
         .then((json) => {
@@ -109,6 +140,7 @@ export function HeroSection({
             setFormData(data);
             if (data.backgroundImage) setSelectedImage(data.backgroundImage);
             unpackStats(json.data.HeroSection);
+            unpackImages(json.data.HeroSection);
           } else {
             setSelectedImage(defaultFormData.backgroundImage);
           }
@@ -117,15 +149,41 @@ export function HeroSection({
     }
   }, [initialData, saveUrl]);
 
-  const handleStatChange = (index: number, field: keyof StatItem, value: string) => {
+  const handleStatChange = (
+    index: number,
+    field: keyof StatItem,
+    value: string,
+  ) => {
     setStatsList((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item))
+      prev.map((item, i) => (i === index ? { ...item, [field]: value } : item)),
     );
   };
 
   const addStatCard = () => {
     setStatsList((prev) => [...prev, { value: "", label: "" }]);
     toast.success("Added new hero stat card");
+  };
+
+  const handleImageChange = (index: number, val: File | string | null) => {
+    setHeroImagesList((prev) => {
+      const updated = [...prev];
+      updated[index] = val;
+      return updated;
+    });
+  };
+
+  const addHeroImage = () => {
+    setHeroImagesList((prev) => [...prev, null]);
+    toast.success("Added new hero carousel image slot");
+  };
+
+  const deleteHeroImage = (index: number) => {
+    if (heroImagesList.length <= 1) {
+      toast.error("At least 1 hero image is required");
+      return;
+    }
+    setHeroImagesList((prev) => prev.filter((_, i) => i !== index));
+    toast.success("Removed hero carousel image slot");
   };
 
   const deleteStatCard = (index: number) => {
@@ -174,11 +232,14 @@ export function HeroSection({
     if (!formData.tagline?.trim()) errs.push("Tagline is required");
     if (!formData.headlineLine1?.trim()) errs.push("Headline is required");
     if (!formData.description?.trim()) errs.push("Description is required");
-    if (!selectedImage) errs.push("Hero background image is required");
+    if (heroImagesList.filter(Boolean).length === 0 && !selectedImage)
+      errs.push("At least one hero carousel image is required");
 
     statsList.forEach((stat, i) => {
-      if (!stat.value?.trim()) errs.push(`Stat Card ${i + 1} Value is required`);
-      if (!stat.label?.trim()) errs.push(`Stat Card ${i + 1} Label is required`);
+      if (!stat.value?.trim())
+        errs.push(`Stat Card ${i + 1} Value is required`);
+      if (!stat.label?.trim())
+        errs.push(`Stat Card ${i + 1} Label is required`);
     });
 
     if (errs.length > 0) {
@@ -189,15 +250,17 @@ export function HeroSection({
     setIsSaving(true);
     const toastId = toast.loading("Saving Home Hero section...");
     try {
-      const imgUrl =
-        selectedImage instanceof File
-          ? (await uploadFiles([selectedImage]))[0] || ""
-          : selectedImage || "";
+      const uploadedImages = await uploadFiles(heroImagesList.filter(Boolean));
+      const validImages = uploadedImages.filter(Boolean) as string[];
+      const primaryBg =
+        validImages[0] ||
+        (typeof selectedImage === "string" ? selectedImage : "");
 
       const payload: any = {
         ...formData,
         stats: statsList,
-        backgroundImage: imgUrl,
+        images: validImages,
+        backgroundImage: primaryBg,
       };
 
       const body = sectionId
@@ -225,7 +288,6 @@ export function HeroSection({
       setIsSaving(false);
     }
   };
-
 
   return (
     <section>
@@ -425,19 +487,65 @@ export function HeroSection({
                 </div>
               </div>
 
-              <ImagePickerField
-                label="Hero Background Image"
-                sublabel="Selected Image Asset"
-                value={selectedImage}
-                onChange={setSelectedImage}
-              />
+              {/* Hero Carousel Images — Dynamic Array */}
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <h3 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <ImageIcon className="w-4 h-4 text-brand-pink" />
+                    Hero Carousel Images{" "}
+                    <span className="text-brand-pink font-semibold">
+                      ({heroImagesList.length})
+                    </span>
+                  </h3>
+                  <button
+                    type="button"
+                    onClick={addHeroImage}
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-pink hover:bg-[#a0004f] text-white rounded-lg text-xs font-semibold active:scale-95 transition-all shadow-sm cursor-pointer"
+                  >
+                    <Plus size={14} />
+                    <span>Add Image</span>
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {heroImagesList.map((img, idx) => (
+                    <div
+                      key={idx}
+                      className="border border-gray-200 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3 relative shadow-sm group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-brand-pink uppercase tracking-widest">
+                          Photo {idx + 1} {idx === 0 && "(Primary Background)"}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => deleteHeroImage(idx)}
+                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                          title="Delete Image"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                      <ImagePickerField
+                        label={`Hero Slide ${idx + 1}`}
+                        sublabel="Selected Image Asset"
+                        value={img}
+                        onChange={(val) => handleImageChange(idx, val)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* Stats Row — Dynamic Array */}
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between border-b border-gray-100 pb-2">
                   <h3 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-emerald-500" />
-                    Hero Stat Cards <span className="text-emerald-600 font-semibold">({statsList.length})</span>
+                    Hero Stat Cards{" "}
+                    <span className="text-emerald-600 font-semibold">
+                      ({statsList.length})
+                    </span>
                   </h3>
                   <button
                     type="button"
@@ -451,7 +559,10 @@ export function HeroSection({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {statsList.map((stat, idx) => (
-                    <div key={idx} className="border border-gray-200 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3 relative shadow-sm group">
+                    <div
+                      key={idx}
+                      className="border border-gray-200 p-4 rounded-2xl bg-gray-50/20 flex flex-col gap-3 relative shadow-sm group"
+                    >
                       <div className="flex items-center justify-between">
                         <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">
                           Stat Card {idx + 1}
@@ -469,7 +580,9 @@ export function HeroSection({
                         label="Value"
                         name={`statValue-${idx}`}
                         value={stat.value}
-                        onChange={(e) => handleStatChange(idx, "value", e.target.value)}
+                        onChange={(e) =>
+                          handleStatChange(idx, "value", e.target.value)
+                        }
                         placeholder="e.g. 2011"
                         required
                       />
@@ -477,7 +590,9 @@ export function HeroSection({
                         label="Label"
                         name={`statLabel-${idx}`}
                         value={stat.label}
-                        onChange={(e) => handleStatChange(idx, "label", e.target.value)}
+                        onChange={(e) =>
+                          handleStatChange(idx, "label", e.target.value)
+                        }
                         placeholder="e.g. FOUNDED YEAR"
                         required
                       />

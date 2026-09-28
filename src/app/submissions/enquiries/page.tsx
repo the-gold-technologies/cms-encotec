@@ -25,13 +25,24 @@ interface Pagination {
 }
 
 const parseProjectGoals = (goals: string | null) => {
-  if (!goals) return { phone: "N/A", company: "N/A", message: "No message content" };
+  if (!goals)
+    return {
+      phone: "N/A",
+      company: "N/A",
+      location: "N/A",
+      serviceRequired: "N/A",
+      message: "No message content",
+    };
   const phoneMatch = goals.match(/Phone:\s*(.*)/i);
   const companyMatch = goals.match(/Company:\s*(.*)/i);
+  const locationMatch = goals.match(/Location:\s*(.*)/i);
+  const serviceMatch = goals.match(/Service Required:\s*(.*)/i);
   const messageMatch = goals.match(/Message:\s*\n?([\s\S]*)/i);
   return {
     phone: phoneMatch ? phoneMatch[1].trim() : "N/A",
     company: companyMatch ? companyMatch[1].trim() : "N/A",
+    location: locationMatch ? locationMatch[1].trim() : "N/A",
+    serviceRequired: serviceMatch ? serviceMatch[1].trim() : "N/A",
     message: messageMatch ? messageMatch[1].trim() : goals,
   };
 };
@@ -229,11 +240,15 @@ export default function EnquiriesPage() {
                   <span className="font-semibold text-gray-800">{parsed.phone}</span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Subject</span>
-                  <span className="font-semibold text-gray-800 capitalize">{selectedEnquiry.interestedIn || "General Question"}</span>
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Service Required</span>
+                  <span className="font-semibold text-gray-800">{selectedEnquiry.interestedIn || parsed.serviceRequired || "General Question"}</span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Date</span>
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Project Location</span>
+                  <span className="font-semibold text-gray-800">{parsed.location !== "N/A" ? parsed.location : "Not specified"}</span>
+                </div>
+                <div className="flex flex-col gap-1 col-span-2">
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Date & Time</span>
                   <span className="font-semibold text-gray-800">
                     {new Date(selectedEnquiry.createdAt).toLocaleString()}
                   </span>

@@ -15,6 +15,7 @@ interface ProjectItem {
   location: string;
   category: string;
   description: string;
+  ctaUrl?: string;
   image: File | string | null;
 }
 
@@ -22,12 +23,15 @@ const defaultFormData = {
   tagline: "",
   heading: "",
   description: "",
+  viewAllLabel: "View All Case Studies",
+  viewAllUrl: "/insights",
   projects: [
     {
       title: "",
       location: "",
       category: "",
       description: "",
+      ctaUrl: "",
       image: null as File | string | null
     },
     {
@@ -35,6 +39,7 @@ const defaultFormData = {
       location: "",
       category: "",
       description: "",
+      ctaUrl: "",
       image: null as File | string | null
     }
   ]
@@ -42,12 +47,14 @@ const defaultFormData = {
 
 const mergeDefaults = (data: any) => {
   const merged = { ...defaultFormData, ...data };
+  if (!merged.viewAllLabel) merged.viewAllLabel = defaultFormData.viewAllLabel;
+  if (!merged.viewAllUrl) merged.viewAllUrl = defaultFormData.viewAllUrl;
   if (!merged.projects || !Array.isArray(merged.projects)) {
     merged.projects = defaultFormData.projects.map((p) => ({ ...p }));
   } else {
     const arr = [...merged.projects];
     while (arr.length < 2) {
-      const def = defaultFormData.projects[arr.length] || { title: "", location: "", category: "", description: "", image: null };
+      const def = defaultFormData.projects[arr.length] || { title: "", location: "", category: "", description: "", ctaUrl: "", image: null };
       arr.push({ ...def });
     }
     merged.projects = arr.slice(0, 2);
@@ -217,6 +224,20 @@ export function ProjectShowcaseSection({
                   containerClassName="col-span-2"
                   rows={2}
                 />
+                <InputField
+                  label="View All Link Button Text"
+                  name="viewAllLabel"
+                  value={formData.viewAllLabel}
+                  onChange={handleChange}
+                  placeholder="e.g. View All Case Studies"
+                />
+                <InputField
+                  label="View All Link Destination URL"
+                  name="viewAllUrl"
+                  value={formData.viewAllUrl}
+                  onChange={handleChange}
+                  placeholder="e.g. /insights"
+                />
               </div>
 
               {/* Projects Grid */}
@@ -250,6 +271,12 @@ export function ProjectShowcaseSection({
                         value={project.category}
                         onChange={(e) => handleProjectChange(i, "category", e.target.value)}
                         placeholder="e.g. Asset Stewardship"
+                      />
+                      <InputField
+                        label="Case Study Link / URL"
+                        value={project.ctaUrl || ""}
+                        onChange={(e) => handleProjectChange(i, "ctaUrl", e.target.value)}
+                        placeholder="e.g. /insights/ensuring-reliability-rajpura"
                       />
                       <TextAreaField
                         label="Case Study Description"

@@ -28,9 +28,8 @@ async function main() {
   await prisma.globalConfig.create({
     data: {
       id: "global",
-      siteTitle: "encotec",
-      siteDescription:
-        "Engineering & Project Management Services - Member of Dornier Group",
+      siteTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
+      siteDescription: "Engineering & Project Management Services",
       favicon:
         "https://res.cloudinary.com/dpa93copz/image/upload/v1790322872/encotec-Assets/l1f3ivu0zmuwydqdf2yg.png",
       googleAnalyticsId: "",
@@ -51,7 +50,7 @@ async function main() {
       title: "Home",
       slug: "home",
       description: "Welcome to Encotec",
-      metaTitle: "encotec - Member of Dornier Group",
+      metaTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
       metaDescription: "Providing engineering services since 2011",
       isStatic: true,
       visibility: "public",
@@ -243,7 +242,7 @@ async function main() {
             headlineHighlight: "Stewardship.",
             headlineLine2: "End-to-End Solutions for a Global Future",
             description:
-              'We are more than service provider; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
+              'We are more than a service provider; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
             primaryBtnLabel: "Our Services",
             primaryBtnUrl: "/services",
             secondaryBtnLabel: "View Case Studies",
@@ -333,7 +332,7 @@ async function main() {
                 image:
                   "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
                 ctaLabel: "Learn More",
-                ctaUrl: "/services/engineering-services",
+                ctaUrl: "/services/project-management",
               },
               {
                 title: "Construction, Commissioning & Relocation",
@@ -343,7 +342,7 @@ async function main() {
                 image:
                   "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800",
                 ctaLabel: "Learn More",
-                ctaUrl: "/services/project-management",
+                ctaUrl: "/services/transmission-distribution",
               },
               {
                 title: "Asset Stewardship (O&M)",
@@ -353,7 +352,7 @@ async function main() {
                 image:
                   "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
                 ctaLabel: "Learn More",
-                ctaUrl: "/services/airport-services",
+                ctaUrl: "/services/power-generation",
               },
               {
                 title: "Expert Advisory & Performance Audits",
@@ -363,7 +362,7 @@ async function main() {
                 image:
                   "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
                 ctaLabel: "Learn More",
-                ctaUrl: "/services/power-generation",
+                ctaUrl: "/services/renewable-energy",
               },
               {
                 title: "Global Trading & Spare Parts",
@@ -373,7 +372,7 @@ async function main() {
                 image:
                   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
                 ctaLabel: "Learn More",
-                ctaUrl: "/services/value-added-services",
+                ctaUrl: "/services/value-added",
               },
             ],
           },
@@ -441,6 +440,8 @@ async function main() {
             heading: "Stewardship in Action",
             description:
               "Delivering critical energy infrastructure with precision engineering and an owner's mindset.",
+            viewAllLabel: "View All Case Studies",
+            viewAllUrl: "/insights",
             projects: [
               {
                 title: "Supercritical Mastery at Rajpura",
@@ -450,15 +451,17 @@ async function main() {
                   "Providing O&M services for a 2x700 MW Supercritical plant, ensuring long-term reliability for Punjab's energy heart.",
                 image:
                   "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2000",
+                ctaUrl: "/insights/ensuring-reliability-rajpura",
               },
               {
                 title: "Powering India's Gateway (DIAL)",
                 location: "New Delhi",
                 category: "Airport Utility Management",
                 description:
-                  "Five years of flawless utility management at Delhi International Airport, recently renewed for another five years due to exceptional performance.",
+                  "Five years of continuous, high-reliability utility management at Delhi International Airport, recently renewed for another five years due to exceptional performance.",
                 image:
                   "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=2000",
+                ctaUrl: "/insights/powering-gateway-india-airport",
               },
             ],
           },
@@ -590,12 +593,12 @@ async function main() {
               },
               {
                 headline: "Is Your Asset Reaching Its Full Potential?",
-                text: "Improve your 24x7 alignment about asset advisory and performance audits.",
+                text: "Improve your 24/7 operational efficiency with expert asset advisory and performance audits.",
               },
               {
                 headline:
                   "Sourcing Critical Spares? We've Got the Global Reach.",
-                text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare parts need.",
+                text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare parts needs.",
               },
               {
                 headline: "Join the 13+ Projects That Trust Encotec.",
@@ -1310,7 +1313,7 @@ async function main() {
                 icon: "Settings",
                 link: "/services/power-generation",
                 overview:
-                  "As one of India's top five O&M specialists, we provide continuous care for thermal plants, international airports, and critical utilities.",
+                  "As a leading independent power plant O&M specialist in India, we provide continuous care for thermal plants, international airports, and critical utilities.",
                 capabilities: [
                   "Thermal & Supercritical Mastery",
                   "Airport Utility Management",
@@ -1971,7 +1974,7 @@ async function main() {
             headingPart1: "The Difference Between ",
             headingHighlight: "Maintenance & Stewardship",
             paragraphs: [
-              "Maintenance is reactive; stewardship is proactive. As one of India's top five O&M specialists, we take total responsibility for the health of your assets.",
+              "Maintenance is reactive; stewardship is proactive. As a leading independent power plant O&M specialist in India, we take total responsibility for the health of your assets.",
               "Our approach integrates predictive diagnostics, rigorous safety protocols, and continuous performance optimization. We don't just fix what's broken; we prevent failures before they occur, maximizing the lifespan and profitability of your infrastructure.",
             ],
             items: [
@@ -2336,7 +2339,7 @@ async function main() {
               {
                 title: "Global OEM Network",
                 description:
-                  "We have established tie-ups with over  major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
+                  "We have established tie-ups with over 65+ major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
                 icon: "Globe",
               },
               {
@@ -4199,8 +4202,8 @@ async function main() {
             infoDesc:
               "Reach out to our team of experts for project inquiries, strategic partnerships, or to learn more about our engineering capabilities.",
             locationTitle: "Corporate Headquarters",
-            addressLine1: "Noida, Uttar Pradesh",
-            addressLine2: "India",
+            addressLine1: "C-85, Sector-63",
+            addressLine2: "Noida - 201 301, Uttar Pradesh, India",
             phoneNumber: "+91 120 4155612",
             emailAddress: "sales@encotecenergy.com",
             businessHoursTitle: "Business Hours",
@@ -4267,7 +4270,7 @@ async function main() {
               },
               {
                 type: "quote",
-                text: "Encotec Energy (India) Pvt. Ltd.\nlegally represented by the managing directors Arun Kumar Sarna, Rajeev Ahuja, Dr. Ralf Gilgen\n\nC-85, Sector-63\nNoida-201 301\nUttar Pradesh\nIndia\n\nPhone: +91 120 4155612 | Fax: +91 120 4540611\nEmail: rajeev.ahuja@encotecenergy.com",
+                text: "Encotec Energy (India) Pvt. Ltd.\nlegally represented by the managing directors Arun Kumar Sarna, Rajeev Ahuja\n\nC-85, Sector-63\nNoida-201 301\nUttar Pradesh\nIndia\n\nPhone: +91 120 4155612 | Fax: +91 120 4540611\nEmail: rajeev.ahuja@encotecenergy.com",
               },
               {
                 type: "heading",
@@ -4384,8 +4387,8 @@ async function main() {
               {
                 type: "list",
                 items: [
-                  "borlabs-cookie — Provider: Encotec Energy (India) Pvt. Ltd. — Purpose: Saves visitor cookie preferences — Duration: 1 Year",
-                  "pll_language — Provider: Encotec Energy (India) Pvt. Ltd. — Purpose: Saves visitor language settings — Duration: 1 Year",
+                  "encotec-consent — Provider: Encotec Energy (India) Pvt. Ltd. — Purpose: Remembers visitor privacy and cookie consent preferences — Duration: 1 Year",
+                  "session_id — Provider: Encotec Energy (India) Pvt. Ltd. — Purpose: Maintains secure session state during form submissions — Duration: Session",
                 ],
               },
               {

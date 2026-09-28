@@ -12,7 +12,7 @@ const mockPages: any[] = [
     visibility: "public",
     isStatic: true,
     description: "Welcome to Encotec",
-    metaTitle: "encotec - Member of Dornier Group",
+    metaTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
     metaDescription: "Providing engineering services since 2011",
     targetKeywords: "engineering, power generation, transmission",
     canonicalUrl: "",
@@ -218,6 +218,8 @@ const mockPages: any[] = [
           heading: "Stewardship in Action",
           description:
             "Delivering critical energy infrastructure with precision engineering and an owner's mindset.",
+          viewAllLabel: "View All Case Studies",
+          viewAllUrl: "/insights",
           projects: [
             {
               title: "Supercritical Mastery at Rajpura",
@@ -227,15 +229,17 @@ const mockPages: any[] = [
                 "Providing O&M services for a 2x700 MW Supercritical plant, ensuring long-term reliability for Punjab's energy heart.",
               image:
                 "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2000",
+              ctaUrl: "/insights/ensuring-reliability-rajpura",
             },
             {
               title: "Powering India's Gateway (DIAL)",
               location: "New Delhi",
               category: "Airport Utility Management",
               description:
-                "Five years of flawless utility management at Delhi International Airport, recently renewed for another five years due to exceptional performance.",
+                "Five years of continuous, high-reliability utility management at Delhi International Airport, recently renewed for another five years due to exceptional performance.",
               image:
                 "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=2000",
+              ctaUrl: "/insights/powering-gateway-india-airport",
             },
           ],
         },
@@ -760,9 +764,9 @@ const mockEnquiries: any[] = [
 
 let mockGlobalConfig: any = {
   id: "global",
-  siteTitle: "encotec",
+  siteTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
   siteDescription:
-    "Engineering & Project Management Services - Member of Dornier Group",
+    "Engineering & Project Management Services",
   favicon: "",
   googleAnalyticsId: "G-XXXXXXXXXX",
   gtmId: "GTM-XXXXXXX",

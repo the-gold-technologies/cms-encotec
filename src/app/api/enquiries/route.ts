@@ -127,11 +127,16 @@ export async function POST(request: Request) {
                 </tr>
                 ${phone ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Phone Number:</td><td style="padding: 10px 0; color: #111827;">${phone}</td></tr>` : ""}
                 ${companyName ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Company Name:</td><td style="padding: 10px 0; color: #111827;">${companyName}</td></tr>` : ""}
+                ${
+                  body.location || projectGoals?.match(/Location:\s*(.*)/i)?.[1]?.trim()
+                    ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Project Location:</td><td style="padding: 10px 0; color: #111827;">${body.location || projectGoals?.match(/Location:\s*(.*)/i)?.[1]?.trim()}</td></tr>`
+                    : ""
+                }
                 <tr>
-                  <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Interested In / Subject:</td>
+                  <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Service Required:</td>
                   <td style="padding: 10px 0; color: #111827; font-weight: bold;">${interestedIn || subject || "General Inquiry"}</td>
                 </tr>
-                ${budget ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Budget:</td><td style="padding: 10px 0; color: #111827;">${budget}</td></tr>` : ""}
+                ${budget ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Budget / Company:</td><td style="padding: 10px 0; color: #111827;">${budget}</td></tr>` : ""}
               </table>
 
               ${

@@ -24,6 +24,30 @@ interface StatItem {
   label: string;
 }
 
+export interface ServiceTagItem {
+  label: string;
+  url: string;
+}
+
+const normalizeServiceTags = (raw: any): ServiceTagItem[] => {
+  if (!Array.isArray(raw)) return [];
+  return raw.map((item: any) => {
+    if (typeof item === "object" && item !== null) {
+      return {
+        label: String(item.label || item.name || item.text || "").trim(),
+        url:
+          String(item.url || item.link || item.href || "").trim() ||
+          "/services",
+      };
+    }
+    const str = String(item).trim();
+    return {
+      label: str,
+      url: "/services",
+    };
+  });
+};
+
 const defaultFormData = {
   tagline: "",
   headlineLine1: "",
@@ -34,7 +58,7 @@ const defaultFormData = {
   primaryBtnUrl: "",
   secondaryBtnLabel: "",
   secondaryBtnUrl: "",
-  serviceTags: ["STEWARDSHIP", "COMMISSIONING", "ADVISORY", "GLOBAL SOURCING"],
+  serviceTags: [] as ServiceTagItem[],
   projectsBadgeNumber: "",
   projectsBadgeLabel: "",
   backgroundImage: "",
@@ -127,6 +151,7 @@ export function HeroSection({
   useEffect(() => {
     if (initialData) {
       const merged = { ...defaultFormData, ...initialData };
+      merged.serviceTags = normalizeServiceTags(initialData.serviceTags);
       setFormData(merged);
       if (merged.backgroundImage)
         setSelectedImage(merged.backgroundImage as string);
@@ -137,6 +162,9 @@ export function HeroSection({
         .then((json) => {
           if (json.success && json.data?.HeroSection) {
             const data = { ...defaultFormData, ...json.data.HeroSection };
+            data.serviceTags = normalizeServiceTags(
+              json.data.HeroSection.serviceTags,
+            );
             setFormData(data);
             if (data.backgroundImage) setSelectedImage(data.backgroundImage);
             unpackStats(json.data.HeroSection);
@@ -202,28 +230,39 @@ export function HeroSection({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const [newTagText, setNewTagText] = useState("");
+  const [newTagLabel, setNewTagLabel] = useState("");
+  const [newTagUrl, setNewTagUrl] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
-  // Service Tags
+  // Service Tags / Hyperlink Boxes
   const addTag = () => {
-    if (newTagText.trim()) {
-      if (formData.serviceTags.includes(newTagText.trim().toUpperCase())) {
-        toast.error("Tag already exists");
-        return;
-      }
-      setFormData((prev) => ({
-        ...prev,
-        serviceTags: [...prev.serviceTags, newTagText.trim().toUpperCase()],
-      }));
-      setNewTagText("");
+    if (!newTagLabel.trim()) {
+      toast.error("Please enter a box label");
+      return;
     }
-  };
-
-  const removeTag = (tagToRemove: string) => {
+    const label = newTagLabel.trim().toUpperCase();
+    const url = newTagUrl.trim() || "/services";
     setFormData((prev) => ({
       ...prev,
-      serviceTags: prev.serviceTags.filter((t) => t !== tagToRemove),
+      serviceTags: [...prev.serviceTags, { label, url }],
+    }));
+    setNewTagLabel("");
+    setNewTagUrl("");
+    toast.success(`Added ${label}`);
+  };
+
+  const updateTag = (index: number, field: "label" | "url", value: string) => {
+    setFormData((prev) => {
+      const updated = [...prev.serviceTags];
+      updated[index] = { ...updated[index], [field]: value };
+      return { ...prev, serviceTags: updated };
+    });
+  };
+
+  const removeTag = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      serviceTags: prev.serviceTags.filter((_, i) => i !== index),
     }));
   };
 
@@ -412,53 +451,92 @@ export function HeroSection({
                 </div>
               </div>
 
-              {/* Service Tags */}
+              {/* Service Hyperlink Boxes */}
               <div className="flex flex-col gap-3">
-                <h3 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-2 flex items-center gap-2">
-                  <Tag className="w-4 h-4 text-[#a0004f]" />
-                  Service Tags
-                </h3>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-100 pb-2 gap-1">
+                  <h3 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <Tag className="w-4 h-4 text-[#a0004f]" />
+                    Service Hyperlink Boxes (Above Services)
+                  </h3>
+                  <span className="text-xs text-gray-400">
+                    Clickable boxes linking to respective services
+                  </span>
+                </div>
 
-                <div className="flex flex-wrap gap-2.5 bg-gray-50/50 p-4 border border-gray-100 rounded-2xl min-h-[50px] items-center">
-                  {formData.serviceTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-white border border-gray-200 text-gray-700 px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-sm"
+                <div className="space-y-3">
+                  {formData.serviceTags.map((tag, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-col sm:flex-row items-center gap-3 bg-gray-50/70 p-3.5 border border-gray-200 rounded-xl"
                     >
-                      {tag}
+                      <div className="flex-1 w-full">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1">
+                          Box Label
+                        </label>
+                        <input
+                          type="text"
+                          value={tag.label}
+                          onChange={(e) =>
+                            updateTag(idx, "label", e.target.value)
+                          }
+                          placeholder="e.g. STEWARDSHIP"
+                          className="w-full px-3 py-2 bg-white border border-gray-200 text-xs font-bold rounded-lg focus:border-[#a0004f] outline-none text-gray-800"
+                        />
+                      </div>
+                      <div className="flex-1 w-full">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1">
+                          Service Destination URL
+                        </label>
+                        <input
+                          type="text"
+                          value={tag.url}
+                          onChange={(e) =>
+                            updateTag(idx, "url", e.target.value)
+                          }
+                          placeholder="e.g. /services/power-generation"
+                          className="w-full px-3 py-2 bg-white border border-gray-200 text-xs rounded-lg focus:border-[#a0004f] outline-none font-mono text-gray-700"
+                        />
+                      </div>
                       <button
                         type="button"
-                        onClick={() => removeTag(tag)}
-                        className="text-gray-400 hover:text-red-500 p-0.5 rounded-full hover:bg-gray-50 transition-colors"
+                        onClick={() => removeTag(idx)}
+                        className="self-end sm:self-center mt-4 sm:mt-4 p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                        title="Remove service box"
                       >
-                        <X className="w-3.5 h-3.5" />
+                        <Trash2 className="w-4 h-4" />
                       </button>
-                    </span>
+                    </div>
                   ))}
+
                   {formData.serviceTags.length === 0 && (
-                    <p className="text-xs text-gray-400 font-medium italic">
-                      No service tags added yet.
+                    <p className="text-xs text-gray-400 font-medium italic p-4 bg-gray-50 rounded-xl">
+                      No service hyperlink boxes added yet.
                     </p>
                   )}
                 </div>
 
-                <div className="flex gap-3 w-full mt-1">
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <input
                     type="text"
-                    value={newTagText}
-                    onChange={(e) => setNewTagText(e.target.value)}
-                    onKeyDown={(e) =>
-                      e.key === "Enter" && (e.preventDefault(), addTag())
-                    }
-                    placeholder="Add tag (e.g. COMMISSIONING)"
-                    className="flex-1 px-6 py-4 bg-white border border-gray-200 text-sm rounded-2xl focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 transition-all"
+                    value={newTagLabel}
+                    onChange={(e) => setNewTagLabel(e.target.value)}
+                    placeholder="New Box Label (e.g. STEWARDSHIP)"
+                    className="flex-1 px-4 py-2.5 bg-white border border-gray-200 text-xs rounded-xl focus:border-[#a0004f] outline-none font-bold uppercase"
+                  />
+                  <input
+                    type="text"
+                    value={newTagUrl}
+                    onChange={(e) => setNewTagUrl(e.target.value)}
+                    placeholder="Service URL (e.g. /services/power-generation)"
+                    className="flex-1 px-4 py-2.5 bg-white border border-gray-200 text-xs rounded-xl focus:border-[#a0004f] outline-none font-mono"
                   />
                   <button
                     type="button"
                     onClick={addTag}
-                    className="bg-brand-pink hover:bg-[#a0004f] text-white font-bold text-xs px-6 rounded-2xl transition-colors flex items-center gap-2 shadow-md active:scale-95 cursor-pointer"
+                    className="bg-brand-pink hover:bg-[#a0004f] text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer whitespace-nowrap"
                   >
-                    Add Tag
+                    <Plus className="w-3.5 h-3.5" />
+                    Add Box
                   </button>
                 </div>
               </div>

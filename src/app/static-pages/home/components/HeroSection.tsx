@@ -276,7 +276,7 @@ export function HeroSection({
       const json = await res.json();
       if (json.success) {
         toast.success("Home Hero section saved successfully!", { id: toastId });
-        setSelectedImage(imgUrl);
+        setSelectedImage(validImages[0] || "");
         if (onSave) onSave(payload as unknown as Record<string, unknown>);
       } else {
         toast.error(json.error || "Save failed.", { id: toastId });

@@ -263,8 +263,10 @@ async function main() {
               { value: "1800+", label: "MANPOWER" },
               { value: "10+", label: "GW Under Stewardship" },
             ],
-            backgroundImage:
+            images: [
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
               "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=1200",
+            ],
           },
         },
       });

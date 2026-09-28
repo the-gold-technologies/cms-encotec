@@ -76,10 +76,10 @@ const mockPages: any[] = [
             "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide.",
           ],
           ctaLabel: "Learn More",
-          ctaUrl: "#",
+          ctaUrl: "/about",
           image:
-            "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
-          imageAlt: "Engineer working on advanced equipment",
+            "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
+          imageAlt: "Encotec Indian power plant engineer in thermal generation facility",
           badgeValue: "Est. 2011",
           badgeLabel: "Pioneering Energy",
           badgeIcon: "Zap",

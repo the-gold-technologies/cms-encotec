@@ -287,8 +287,9 @@ async function main() {
             ctaLabel: "Learn More",
             ctaUrl: "/about",
             image:
-              "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
-            imageAlt: "Engineer working on advanced equipment",
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
+            imageAlt:
+              "Encotec Indian power plant engineer in thermal generation facility",
             badgeValue: "Est. 2011",
             badgeLabel: "Pioneering Energy",
             badgeIcon: "Zap",
@@ -3791,33 +3792,33 @@ async function main() {
             galleryList: [
               {
                 image:
-                  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
-                caption: "Team Collaboration",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586090/encotec-Assets/culture/encotec_team_collab.jpg",
+                caption: "Technical Schematics & Site Collaboration",
               },
               {
                 image:
-                  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
-                caption: "On-Site Engineering",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586091/encotec-Assets/culture/encotec_control_room.jpg",
+                caption: "SCADA & DCS Control Room Operations",
               },
               {
                 image:
-                  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
-                caption: "Strategic Planning",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+                caption: "Substation & Transmission Inspection",
               },
               {
                 image:
-                  "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-                caption: "Field Operations",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586093/encotec-Assets/culture/encotec_field_operations.jpg",
+                caption: "Precision Turbine & Generator Overhaul",
               },
               {
                 image:
-                  "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=800",
-                caption: "Team Celebrations",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586094/encotec-Assets/culture/encotec_solar_inspection.jpg",
+                caption: "Utility-Scale Solar Farm Diagnostics",
               },
               {
                 image:
-                  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
-                caption: "Project Reviews",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586096/encotec-Assets/culture/encotec_project_review.jpg",
+                caption: "Engineering & Project Reviews",
               },
             ],
           },

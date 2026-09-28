@@ -31,14 +31,16 @@ async function main() {
       siteTitle: "encotec",
       siteDescription:
         "Engineering & Project Management Services - Member of Dornier Group",
-      favicon: null,
-      googleAnalyticsId: "G-CT894VPLS1",
-      gtmId: "GTM-59DCSVDV",
-      searchConsoleId: "4kD9H2fqRgqKEk",
+      favicon:
+        "https://res.cloudinary.com/dpa93copz/image/upload/v1790322872/encotec-Assets/l1f3ivu0zmuwydqdf2yg.png",
+      googleAnalyticsId: "",
+      gtmId: "",
+      searchConsoleId: "",
       customHeaderScripts: null,
       customFooterScripts: null,
       socialLinks: [],
       canonicalOrdering: "default",
+      headingOptions: { heroHeadingTag: "h1" },
     },
   });
   console.log("Created global config");
@@ -275,6 +277,7 @@ async function main() {
           type: "AboutUs",
           order: 1,
           content: {
+            sectionNumber: "",
             upperTag: "About Us",
             headingLabel: "Human-Centric Engineering",
             headingItalicHighlight: "Since 2011",
@@ -283,7 +286,7 @@ async function main() {
               "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide.",
             ],
             ctaLabel: "Learn More",
-            ctaUrl: "#",
+            ctaUrl: "/about",
             image:
               "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
             imageAlt: "Engineer working on advanced equipment",
@@ -789,11 +792,6 @@ async function main() {
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787128011/encotec-Assets/logos/sterling_wilson.png",
               },
               {
-                name: "CLP India",
-                image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126336/encotec-Assets/logos/clp_india.png",
-              },
-              {
                 name: "IL&FS",
                 image:
                   "https://res.cloudinary.com/dpa93copz/image/upload/v1787125932/encotec-Assets/logos/il_fs.png",
@@ -1143,7 +1141,7 @@ async function main() {
             headingPart1: "A Global Presence",
             headingHighlight: "with a Local Touch",
             description:
-              "While our headquarters is in Noida, our footprint spans the world. In India, we are present in 13+ locations pan India. Internationally, we have established strong roots in Turkey, UAE, Indonesia, Vietnam, Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
+              "While our headquarters is in Noida, our footprint spans the world. In India, we are present in more than 13+ locations. Internationally, we have established strong roots in Turkey, the UAE, Indonesia, Vietnam, and Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
             areas: [
               {
                 title: "International Operations",
@@ -1151,6 +1149,10 @@ async function main() {
               },
               { title: "Headquarters", desc: "Noida, India" },
             ],
+            areaTitle0: "International Operations",
+            areaDesc0: "Turkey, UAE, Indonesia, Vietnam, Germany",
+            areaTitle1: "Headquarters",
+            areaDesc1: "Noida, India",
             calloutTitle: "Wherever Energy is Needed",
             calloutDesc:
               'We combine local execution strength with global engineering expertise, ensuring that we bring the same "Owner\'s Mindset" to every project, no matter the geography.',
@@ -1271,7 +1273,12 @@ async function main() {
                   "Detailed Project Reports (DPR)",
                   "Strategic Sourcing & Technical Specifications",
                   "EPC Contractor Selection",
-                  "Financial Assessments",
+                  "Contract Mobilisation",
+                  "Engineering Review",
+                  "Procurement  Manufacturing and Inspection oversight",
+                  "Construction Supervision",
+                  "Pre- Commissioning, Commissioning and Testing",
+                  "Handover and Closeout",
                 ],
                 value: [
                   "Technically sound planning",
@@ -3858,7 +3865,7 @@ async function main() {
             ctaHeading: "Don't See the Right Role?",
             ctaSubtitle:
               "We're always looking for talented engineers and energy professionals. Send us your resume and we'll keep you in mind for future opportunities.",
-            hrEmail: "careers@encotecenergy.com ",
+            hrEmail: "careers@encotecenergy.com",
           },
         },
       });
@@ -4200,7 +4207,7 @@ async function main() {
             quickContactTitle: "Quick Contact",
             generalInquiriesLabel: "General Inquiries",
             careersLabel: "Careers",
-            careersEmailAddress: "careers@encotecenergy.com ",
+            careersEmailAddress: "careers@encotecenergy.com",
             formHeading: "Send us a message",
             fullNameLabel: "Full Name *",
             emailAddressLabel: "Email Address *",

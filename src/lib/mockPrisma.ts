@@ -30,16 +30,16 @@ const mockPages: any[] = [
         pageId: "page-home",
         type: "HeroSection",
         content: {
-          tagline: "Global Energy Stewardship",
-          headlineLine1: "Your Assets. Our",
-          headlineHighlight: "Stewardship.",
-          headlineLine2: "End-to-End Solutions for a Global Future",
+          tagline: "End-to-End Solutions for Critical Assets",
+          headlineLine1: "Engineering",
+          headlineHighlight: "Expertise.",
+          headlineLine2: "Operational Reliability.",
           description:
-            'We are more than service provider; we are your partners in progress. By adopting an "Owner\'s Mindset," we take total responsibility for your infrastructure — from the first feasibility study to long-term operational excellence.',
-          primaryBtnLabel: "Our Services",
+            "Encotec delivers specialised engineering, operations and maintenance services across power generation and critical infrastructure. From keeping complex power plants running reliably to supporting construction, commissioning, airport utilities and critical equipment sourcing, we combine technical expertise with hands-on execution.",
+          primaryBtnLabel: "Explore Our Services",
           primaryBtnUrl: "/services",
-          secondaryBtnLabel: "View Case Studies",
-          secondaryBtnUrl: "/insights",
+          secondaryBtnLabel: "Talk to Our Experts",
+          secondaryBtnUrl: "/contact",
           serviceTags: [
             { label: "STEWARDSHIP", url: "/services/power-generation" },
             { label: "COMMISSIONING", url: "/services/engineering" },
@@ -70,18 +70,21 @@ const mockPages: any[] = [
         pageId: "page-home",
         type: "AboutUs",
         content: {
-          upperTag: "About Us",
-          headingLabel: "Human-Centric Engineering",
-          headingItalicHighlight: "Since 2011",
+          upperTag: "Positioning & Leadership",
+          headingLabel: "Keeping Critical Infrastructure",
+          headingItalicHighlight: "Performing",
           paragraphs: [
-            "Encotec Energy brings an owner's mindset to every project. Founded in 2011, we have grown into a 600+ industry specialist operating across 13+ key locations.",
-            "From thermal power plants to cutting-edge solar installations, our engineering DNA drives precision, reliability, and sustainable outcomes for clients worldwide.",
+            "Critical infrastructure demands more than technical capability. It requires experience, disciplined execution and a clear understanding of what keeps an asset safe, reliable and productive.",
+            "Encotec partners with asset owners, operators, EPC companies and infrastructure organisations to manage complex technical challenges across the asset lifecycle.",
+            "Our teams bring together engineering expertise, field experience and operational discipline to deliver solutions that work in the real world - from construction and commissioning through long-term operations and maintenance.",
+            "The result: dependable performance, informed decision-making and greater confidence in critical assets.",
           ],
-          ctaLabel: "Learn More",
+          ctaLabel: "Explore Our Story",
           ctaUrl: "/about",
           image:
             "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
-          imageAlt: "Encotec Indian power plant engineer in thermal generation facility",
+          imageAlt:
+            "Encotec Indian power plant engineer in thermal generation facility",
           badgeValue: "Est. 2011",
           badgeLabel: "Pioneering Energy",
           badgeIcon: "Zap",
@@ -96,10 +99,10 @@ const mockPages: any[] = [
               icon: "Zap",
             },
           ],
-          bannerHeading: "Experience Global Engineering Excellence.",
+          bannerHeading: "Beyond Maintenance. Responsible Asset Stewardship.",
           bannerDescription:
-            "From India to Global, see how we are setting new standards in power infrastructure.",
-          bannerButtonLabel: "View Our Global Reach",
+            "We believe critical infrastructure deserves more than a service provider. It deserves a partner who understands the responsibility that comes with operating, maintaining and improving assets that people and businesses depend on. That is how we turn technical expertise into lasting value.",
+          bannerButtonLabel: "Talk to Our Experts",
           bannerButtonUrl: "/contact",
         },
         order: 1,
@@ -111,50 +114,67 @@ const mockPages: any[] = [
         pageId: "page-home",
         type: "ServicesSection",
         content: {
-          tagline: "Our Services",
-          heading: "Integrated Solutions Across the Asset Lifecycle",
+          tagline: "What We Do",
+          heading: "Specialised Services for Critical Assets",
           description:
-            "We bridge the gap between technical complexity and commercial success. Whether you are conceptualizing a new plant or optimizing an existing one, we provide the end-to-end expertise required to keep your world running.",
+            "From power generation to aviation infrastructure, Encotec provides specialised services designed around the technical and operational needs of critical assets.",
           services: [
             {
-              title: "Project Conceptualisation & Development",
+              title: "Power Plant O&M",
+              subtitle:
+                "Reliable operations. Disciplined maintenance. Better asset performance.",
               description:
-                "From pre-feasibility and financial assessments to finalizing EPC contractors and developing technical specifications.",
-              icon: "ClipboardCheck",
-              image:
-                "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
-            },
-            {
-              title: "Construction, Commissioning & Relocation",
-              description:
-                "Expert installation of complex power and process industries, including specialized asset shifting and relocation services across borders.",
-              icon: "Network",
-              image:
-                "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800",
-            },
-            {
-              title: "Asset Stewardship (O&M)",
-              description:
-                "Specialized management of thermal power plants, international airports, and critical utilities like STPs.",
+                "We operate and maintain power-generation assets with a focus on availability, safety, preventive maintenance and operational efficiency across large thermal plants and substations.",
               icon: "Flame",
               image:
-                "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
+                "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+              ctaLabel: "Explore Power Plant O&M",
+              ctaUrl: "/services/power-generation",
             },
             {
-              title: "Expert Advisory & Performance Audits",
+              title: "Construction & Commissioning",
+              subtitle: "From installation to successful commissioning.",
               description:
-                "High-level problem solving, energy efficiency audits, and specialized testing (NDT) for operational plants.",
+                "Encotec supports complex energy projects through erection, installation, testing and commissioning - helping clients move from construction to reliable operation with greater control over quality, safety and timelines.",
+              icon: "ClipboardCheck",
+              image:
+                "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800",
+              ctaLabel: "Explore Construction & Commissioning",
+              ctaUrl: "/services/engineering",
+            },
+            {
+              title: "Airport Utility Management",
+              subtitle: "Keeping essential airport infrastructure running.",
+              description:
+                "Airports depend on reliable utility systems and uninterrupted operations. Encotec brings deep O&M experience to critical airport infrastructure with a focus on reliability, safety and continuity.",
+              icon: "Network",
+              image:
+                "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800",
+              ctaLabel: "Explore Airport Utility Management",
+              ctaUrl: "/services/airport-services",
+            },
+            {
+              title: "Technical Advisory",
+              subtitle: "Technical insight for better asset decisions.",
+              description:
+                "When critical assets face performance, reliability or maintenance challenges, Encotec provides diagnostics, condition assessments, audits, and modernisation support to improve efficiency.",
               icon: "Search",
               image:
-                "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800",
+                "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+              ctaLabel: "Explore Technical Advisory",
+              ctaUrl: "/services/project-management",
             },
             {
-              title: "Global Trading & Spare Parts",
+              title: "Critical Spare Parts Sourcing",
+              subtitle:
+                "The right part. The right specification. When it matters.",
               description:
-                "Strategic sourcing of critical equipment and spares from major OEMs in China, Vietnam, and India.",
+                "Equipment downtime can quickly become expensive. Encotec helps clients source critical power-plant spare parts, particularly for Chinese-origin equipment, to exact client specifications.",
               icon: "Wrench",
               image:
                 "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+              ctaLabel: "Explore Spare Parts Solutions",
+              ctaUrl: "/services/value-added",
             },
           ],
         },
@@ -357,33 +377,29 @@ const mockPages: any[] = [
         pageId: "page-home",
         type: "WhyEncotecSection",
         content: {
-          revealWord1: "Engineering Precision.",
-          revealWord2: "Global Execution.",
-          revealWord3: "Reliable Energy Solutions.",
+          revealWord1: "Engineering Expertise.",
+          revealWord2: "Operational Reliability.",
+          revealWord3: "Why Clients Choose Encotec.",
           ctaBlocks: [
             {
-              headline: "Ready to Move from Consultancy to Partnership?",
-              text: "Discover how our \"Owner's Mindset\" can transform your project's performance.",
+              headline: "Technical Depth",
+              text: "Experienced engineers, technicians and operational teams with hands-on knowledge of complex energy assets.",
             },
             {
-              headline: "Let's Build Your Project's Future Together.",
-              text: "Contact us for end-to-end solutions, from conceptualization to commissioning.",
+              headline: "Execution Experience",
+              text: "Experience spanning operations, maintenance, construction, erection, testing, commissioning and specialised technical services.",
             },
             {
-              headline: "Is Your Asset Reaching Its Full Potential?",
-              text: "Improve your 24x7 alignment about asset advisory and performance audits.",
+              headline: "Operational Focus",
+              text: "We look beyond completing a scope of work to understand how our work affects availability, performance, safety and continuity.",
             },
             {
-              headline: "Sourcing Critical Spares? We've Got the Global Reach.",
-              text: "Access our network of major OEMs in China, Vietnam, and beyond for your spare parts need.",
+              headline: "Integrated Expertise",
+              text: "Engineering, field execution, maintenance and sourcing capabilities brought together under one partner.",
             },
             {
-              headline: "Join the 13+ Projects That Trust Encotec.",
-              text: "Experience the power of the full owner mindset — from concept to operation.",
-            },
-            {
-              headline: "Planning an Asset Relocation?",
-              text: "Let our expert management team do the due-diligence study, prepare feasibility report, help you in asset valuation and finally transition your critical assets to a new site with downtime and optimum timeline.",
+              headline: "Global Know-How. Local Execution.",
+              text: "Encotec combines international infrastructure expertise with strong, dependable on-ground execution capabilities across India and global energy markets.",
             },
           ],
         },
@@ -401,7 +417,7 @@ const mockPages: any[] = [
           testimonials: [
             {
               quote:
-                "Encotec's O&M team transformed our plant's performance. Their owner's mindset approach meant they treated our 700 MW facility as if it were their own — uptime improved by 12% in the first year alone.",
+                "Encotec's O&M team transformed our plant's performance. Their owner's mindset approach meant they treated our 700 MW facility as if it were their own - uptime improved by 12% in the first year alone.",
               name: "Rajesh Mehta",
               title: "Senior Vice President, Operations",
               company: "National Thermal Power Corp.",
@@ -767,8 +783,7 @@ const mockEnquiries: any[] = [
 let mockGlobalConfig: any = {
   id: "global",
   siteTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
-  siteDescription:
-    "Engineering & Project Management Services",
+  siteDescription: "Engineering & Project Management Services",
   favicon: "",
   googleAnalyticsId: "G-XXXXXXXXXX",
   gtmId: "GTM-XXXXXXX",
@@ -1019,7 +1034,8 @@ export const createMockPrisma = () => {
             }
             return res.sort(
               (a, b) =>
-                new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime(),
             );
           },
           count: async (args?: any) => mockJobApplications.length,

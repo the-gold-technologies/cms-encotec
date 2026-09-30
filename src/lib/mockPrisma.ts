@@ -13,7 +13,7 @@ const mockPages: any[] = [
     isStatic: true,
     description: "Welcome to Encotec",
     metaTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
-    metaDescription: "Providing engineering services since 2011",
+    metaDescription: "Providing engineering services since 2009",
     targetKeywords: "engineering, power generation, transmission",
     canonicalUrl: "",
     noIndex: false,
@@ -49,12 +49,12 @@ const mockPages: any[] = [
           projectsBadgeNumber: "",
           projectsBadgeLabel: "",
           stats: [
-            { value: "2009", label: "FOUNDING YEAR" },
-            { value: "2011", label: "STARTED OPERATIONS" },
-            { value: "13+", label: "KEY LOCATIONS" },
-            { value: "300+", label: "Engineers" },
+            { value: "2009", label: "INCORPORATION" },
+            { value: "2011", label: "COMMENCED OPERATIONS" },
+            { value: "5+", label: "COUNTRIES" },
+            { value: "200+", label: "ENGINEERS" },
             { value: "1800+", label: "MANPOWER" },
-            { value: "10+ GW", label: "POWER CAPACITY O&M EXECUTED" },
+            { value: "10+ GW", label: "ACTIVE O&M" },
           ],
           images: [
             "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
@@ -85,17 +85,20 @@ const mockPages: any[] = [
             "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
           imageAlt:
             "Encotec Indian power plant engineer in thermal generation facility",
-          badgeValue: "Est. 2011",
+          badgeValue: "Est. 2009",
           badgeLabel: "Pioneering Energy",
           badgeIcon: "Zap",
           stats: [
-            { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
-            { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
-            { value: "100+", label: "INDUSTRY SPECIALISTS", icon: "Award" },
+            { value: "2009", label: "INCORPORATION", icon: "Calendar" },
+            { value: "2011", label: "COMMENCED OPERATIONS", icon: "Calendar" },
+            { value: "5+", label: "COUNTRIES OF OPERATION", icon: "Globe" },
+            { value: "25+", label: "INDUSTRY EXPERTS", icon: "Award" },
+            { value: "200+", label: "ENGINEERS", icon: "Users" },
             { value: "1800+", label: "MANPOWER", icon: "Users" },
+            { value: "10+ GW", label: "ACTIVE O&M", icon: "Zap" },
             {
               value: "20+ GW",
-              label: "POWER CAPACITY O&M EXECUTED",
+              label: "CUMULATIVE TRACK RECORD",
               icon: "Zap",
             },
           ],
@@ -279,11 +282,12 @@ const mockPages: any[] = [
           description:
             "A live network of energy systems operating in synchronization across continents.",
           stats: [
-            { value: "10+", label: "GLOBAL LOCATIONS" },
-            { value: "10+ GW", label: "CAPACITY" },
-            { value: "1,800+", label: "MANPOWER" },
-            { value: "300+", label: "ENGINEERS" },
-            { value: "100+", label: "INDUSTRY SPECIALISTS" },
+            { value: "5+", label: "COUNTRIES" },
+            { value: "10+ GW", label: "ACTIVE O&M" },
+            { value: "20+ GW", label: "CUMULATIVE TRACK RECORD" },
+            { value: "1800+", label: "MANPOWER" },
+            { value: "200+", label: "ENGINEERS" },
+            { value: "25+", label: "INDUSTRY EXPERTS" },
           ],
           locations: [
             {
@@ -491,7 +495,7 @@ const mockPages: any[] = [
     isStatic: true,
     description: "About Encotec",
     metaTitle: "About Us - Encotec",
-    metaDescription: "Providing engineering services since 2011",
+    metaDescription: "Providing engineering services since 2009",
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [
@@ -499,7 +503,7 @@ const mockPages: any[] = [
         id: "sec-a1",
         pageId: "page-about",
         type: "AboutHeroCMS",
-        content: { title: "Our Heritage & Expertise", tag: "SINCE 2011" },
+        content: { title: "Our Heritage & Expertise", tag: "SINCE 2009" },
         order: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -527,34 +531,37 @@ const mockPages: any[] = [
             "Our growth is a testament to the trust our partners place in us. As of 2025–26, our impact is felt across the industry.",
           stats: [
             {
-              value: "1,800+",
+              value: "1800+",
               label: "Manpower",
-              description: "Working across global sites",
-              icon: "Users",
-            },
-            {
-              value: "300+",
-              label: "Engineers",
-              description: "Multidisciplinary engineering team",
-              icon: "Users",
-            },
-            {
-              value: "100+",
-              label: "Industry specialist",
               description:
-                "Providing high-level expert advisory and diagnostics",
+                "Dedicated workforce keeping assets safe and productive",
+              icon: "Users",
+            },
+            {
+              value: "200+",
+              label: "Engineers",
+              description: "Multidisciplinary engineering and technical team",
+              icon: "Users",
+            },
+            {
+              value: "25+",
+              label: "Industry Experts",
+              description:
+                "Providing high-level expert advisory and operational diagnostics",
               icon: "Briefcase",
             },
             {
               value: "10+ GW",
-              label: "capacity under stewardship",
-              description: "Total power capacity under our stewardship",
+              label: "Active O&M",
+              description:
+                "Active power capacity under operation and maintenance stewardship",
               icon: "Zap",
             },
             {
               value: "20+ GW",
-              label: "Managed capacity under stewardship",
-              description: "Total power capacity under our stewardship",
+              label: "Cumulative Track Record",
+              description:
+                "Cumulative power capacity track record executed across global projects",
               icon: "Zap",
             },
             {
@@ -565,10 +572,10 @@ const mockPages: any[] = [
               icon: "ShieldCheck",
             },
             {
-              value: "10+",
-              label: "presence in Asia, Europe & Africa",
+              value: "5+",
+              label: "Countries of Operation",
               description:
-                "Across India, Vietnam, Tanzania, Indonesia, UAE, Germany, Kenya, Oman, and Turkey.",
+                "Offices and operations across 5+ countries internationally.",
               icon: "Globe",
             },
           ],

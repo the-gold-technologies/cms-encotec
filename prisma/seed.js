@@ -51,7 +51,7 @@ async function main() {
       slug: "home",
       description: "Welcome to Encotec",
       metaTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
-      metaDescription: "Providing engineering services since 2011",
+      metaDescription: "Providing engineering services since 2009",
       isStatic: true,
       visibility: "public",
     },
@@ -60,7 +60,7 @@ async function main() {
       slug: "about",
       description: "About Encotec",
       metaTitle: "About Us - Encotec",
-      metaDescription: "Providing engineering services since 2011",
+      metaDescription: "Providing engineering services since 2009",
       isStatic: true,
       visibility: "public",
     },
@@ -256,12 +256,12 @@ async function main() {
             projectsBadgeNumber: "",
             projectsBadgeLabel: "",
             stats: [
-              { value: "2009", label: "FOUNDING YEAR" },
-              { value: "2011", label: "STARTED OPERATIONS" },
-              { value: "13+", label: "KEY LOCATIONS" },
-              { value: "300+", label: "Engineers" },
+              { value: "2009", label: "INCORPORATION" },
+              { value: "2011", label: "COMMENCED OPERATIONS" },
+              { value: "5+", label: "COUNTRIES" },
+              { value: "200+", label: "ENGINEERS" },
               { value: "1800+", label: "MANPOWER" },
-              { value: "10+", label: "GW Under Stewardship" },
+              { value: "10+ GW", label: "ACTIVE O&M" },
             ],
             images: [
               "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
@@ -294,17 +294,24 @@ async function main() {
               "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
             imageAlt:
               "Encotec Indian power plant engineer in thermal generation facility",
-            badgeValue: "Est. 2011",
+            badgeValue: "Est. 2009",
             badgeLabel: "Pioneering Energy",
             badgeIcon: "Zap",
             stats: [
-              { value: "2011", label: "FOUNDED YEAR", icon: "Calendar" },
-              { value: "13+", label: "KEY LOCATIONS", icon: "Globe" },
-              { value: "100+", label: "INDUSTRY SPECIALISTS", icon: "Award" },
+              { value: "2009", label: "INCORPORATION", icon: "Calendar" },
+              {
+                value: "2011",
+                label: "COMMENCED OPERATIONS",
+                icon: "Calendar",
+              },
+              { value: "5+", label: "COUNTRIES OF OPERATION", icon: "Globe" },
+              { value: "25+", label: "INDUSTRY EXPERTS", icon: "Award" },
+              { value: "200+", label: "ENGINEERS", icon: "Users" },
               { value: "1800+", label: "MANPOWER", icon: "Users" },
+              { value: "10+ GW", label: "ACTIVE O&M", icon: "Zap" },
               {
                 value: "20+ GW",
-                label: "POWER CAPACITY O&M EXECUTED",
+                label: "CUMULATIVE TRACK RECORD",
                 icon: "Zap",
               },
             ],
@@ -492,11 +499,12 @@ async function main() {
             description:
               "A live network of energy systems operating in synchronization across continents.",
             stats: [
-              { value: "10+", label: "GLOBAL LOCATIONS" },
-              { value: "10+ GW", label: "CAPACITY" },
-              { value: "1,800+", label: "MANPOWER" },
-              { value: "300+", label: "ENGINEERS" },
-              { value: "100+", label: "INDUSTRY SPECIALISTS" },
+              { value: "5+", label: "COUNTRIES" },
+              { value: "10+ GW", label: "ACTIVE O&M" },
+              { value: "20+ GW", label: "CUMULATIVE TRACK RECORD" },
+              { value: "1800+", label: "MANPOWER" },
+              { value: "200+", label: "ENGINEERS" },
+              { value: "25+", label: "INDUSTRY EXPERTS" },
             ],
             locations: [
               {
@@ -950,7 +958,7 @@ async function main() {
             ],
             heritageTagline: "Our Heritage. Our Future.",
             heritageDescription:
-              "Founded in 2009, Encotec spent its formative years as a proud member of the German Dornier/VPC Group, inheriting a legacy of rigorous European engineering, precision, and quality. In January 2026, Encotec achieved a historic milestone, transitioning into a 100% independent, Indian-owned enterprise. Today, we offer the global market a rare and powerful combination: the meticulous technical discipline of our European roots, supercharged by the agility, scale, and ingenuity of Indian enterprise. Whether optimizing mega-power plants or managing the critical utilities of international airports, we are proudly Indian, globally benchmarked, and ready to engineer the future of energy and infrastructure.",
+              "Incorporated in 2009 with operations commencing in 2011, Encotec spent its formative years as a proud member of the German Dornier/VPC Group, inheriting a legacy of rigorous European engineering, precision, and quality. In January 2026, Encotec achieved a historic milestone, transitioning into a 100% independent, Indian-owned enterprise. Today, we offer the global market a rare and powerful combination: the meticulous technical discipline of our European roots, supercharged by the agility, scale, and ingenuity of Indian enterprise. Whether optimizing mega-power plants or managing the critical utilities of international airports, we are proudly Indian, globally benchmarked, and ready to engineer the future of energy and infrastructure.",
           },
         },
       });
@@ -1020,34 +1028,37 @@ async function main() {
               "Our growth is a testament to the trust our partners place in us. As of 2025–26, our impact is felt across the industry.",
             stats: [
               {
-                value: "1,800+",
+                value: "1800+",
                 label: "Manpower",
-                description: "Working across global sites",
-                icon: "Users",
-              },
-              {
-                value: "300+",
-                label: "Engineers",
-                description: "Multidisciplinary engineering team",
-                icon: "Users",
-              },
-              {
-                value: "100+",
-                label: "Industry specialist",
                 description:
-                  "Providing high-level expert advisory and diagnostics",
+                  "Dedicated workforce keeping assets safe and productive",
+                icon: "Users",
+              },
+              {
+                value: "200+",
+                label: "Engineers",
+                description: "Multidisciplinary engineering and technical team",
+                icon: "Users",
+              },
+              {
+                value: "25+",
+                label: "Industry Experts",
+                description:
+                  "Providing high-level expert advisory and operational diagnostics",
                 icon: "Briefcase",
               },
               {
                 value: "10+ GW",
-                label: "capacity under stewardship",
-                description: "Total power capacity under our stewardship",
+                label: "Active O&M",
+                description:
+                  "Active power capacity under operation and maintenance stewardship",
                 icon: "Zap",
               },
               {
                 value: "20+ GW",
-                label: "Managed capacity under stewardship",
-                description: "Total power capacity under our stewardship",
+                label: "Cumulative Track Record",
+                description:
+                  "Cumulative power capacity track record executed across global projects",
                 icon: "Zap",
               },
               {
@@ -1058,10 +1069,10 @@ async function main() {
                 icon: "ShieldCheck",
               },
               {
-                value: "10+",
-                label: "presence in Asia, Europe & Africa",
+                value: "5+",
+                label: "Countries of Operation",
                 description:
-                  "Across India, Vietnam, Tanzania, Indonesia, UAE, Germany, Kenya, Oman, and Turkey.",
+                  "Offices and operations across 5+ countries internationally.",
                 icon: "Globe",
               },
             ],
@@ -1253,7 +1264,7 @@ async function main() {
             paragraph1:
               "At Encotec, we don't just provide engineering services; we provide peace of mind. We approach every facility we manage with an \"Owner's Mindset\", meaning we treat your infrastructure with the same care, precision, and long-term vision as if it were our own.",
             paragraph2:
-              "With a family of over 1,800 staff members and 300+ specialized engineers, we bridge the gap between technical complexity and commercial success. Below is an overview of how we provide end-to-end expertise across the asset lifecycle.",
+              "With a family of over 1800+ manpower and 200+ specialized engineers, we bridge the gap between technical complexity and commercial success. Below is an overview of how we provide end-to-end expertise across the asset lifecycle.",
           },
         },
       });
@@ -1670,7 +1681,7 @@ async function main() {
             stats: [
               { value: 500, suffix: "+", label: "Projects Engineered" },
               { value: 8000, suffix: "+ MW", label: "Capacity Designed" },
-              { value: 23, suffix: "+", label: "Countries Served" },
+              { value: 5, suffix: "+", label: "Countries of Operation" },
               { value: 99.2, suffix: "%", label: "Design Accuracy" },
             ],
           },
@@ -2419,8 +2430,8 @@ async function main() {
             heroSubtitle:
               "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
             badges: [
-              "1,800+ Manpower",
-              "300+ Engineers",
+              "1800+ Manpower",
+              "200+ Engineers",
               "25+ Industry Experts",
               "12+ Years Average Experience",
               "5+ Countries",
@@ -2557,7 +2568,7 @@ async function main() {
           content: {
             stats: [
               { value: "1800+", label: "Total Professionals" },
-              { value: "300+", label: "Senior Engineers" },
+              { value: "200+", label: "Engineers" },
               { value: "25+", label: "Industry Experts" },
               { value: "5+", label: "Countries of Operation" },
               { value: "12+", label: "Years Avg Experience" },
@@ -2580,7 +2591,7 @@ async function main() {
             value2Title: "Collaborative Spirit",
             value2Desc: "Cross-functional teamwork solving complex challenges.",
             value3Title: "Global Perspective",
-            value3Desc: "Diverse experiences from 23+ countries.",
+            value3Desc: "Diverse experiences across 5+ countries.",
             value4Title: "Continuous Growth",
             value4Desc: "Investment in learning and professional development.",
           },
@@ -2664,8 +2675,8 @@ async function main() {
             stat2Value: "50",
             stat2Suffix: "+",
             stat2Label: "Articles & Insights",
-            stat3Value: "8",
-            stat3Suffix: "",
+            stat3Value: "5",
+            stat3Suffix: "+",
             stat3Label: "Countries Covered",
             stat4Value: "10",
             stat4Suffix: "K+",
@@ -2787,7 +2798,7 @@ async function main() {
                   { type: "heading", text: "Our Hands-On Approach" },
                   {
                     type: "paragraph",
-                    text: "Our 300+ engineers provide a full spectrum of services to keep the heart of this plant beating at peak efficiency. This includes:",
+                    text: "Our 200+ engineers provide a full spectrum of services to keep the heart of this plant beating at peak efficiency. This includes:",
                   },
                   {
                     type: "list",
@@ -3375,11 +3386,11 @@ async function main() {
             heroTagline: "CAREERS AT ENCOTEC",
             heroTitle: "SHAPE THE FUTURE OF GLOBAL ENERGY",
             heroSubtitle:
-              "Join a team of world-class engineers and energy professionals delivering critical infrastructure across 23+ countries.",
+              "Join a team of world-class engineers and energy professionals delivering critical infrastructure with offices and operations across 5+ countries.",
             backgroundImage:
               "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2400",
-            badge1Text: "200+ Team Members",
-            badge2Text: "Offices in 8 Countries",
+            badge1Text: "200+ Engineers & 1800+ Manpower",
+            badge2Text: "Offices & Operations in 5+ Countries",
           },
         },
       });
@@ -3418,7 +3429,7 @@ async function main() {
               {
                 title: "Global Exposure",
                 description:
-                  "Work on critical energy infrastructure projects across 23+ countries with diverse international teams.",
+                  "Work on critical energy infrastructure projects across 5+ countries with diverse international teams.",
               },
               {
                 title: "Technical Growth",

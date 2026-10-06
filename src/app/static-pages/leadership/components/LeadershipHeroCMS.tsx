@@ -20,7 +20,7 @@ const defaultFormData = {
   heroBadge4: "",
   heroBadge5: "",
   badges: [
-    "1,800+ Manpower",
+    "2,200+ Manpower",
     "300+ Engineers",
     "100+ Professionals & Industry Experts",
     "12+ Years Average Experience",
@@ -43,7 +43,7 @@ export function LeadershipHeroCMS() {
             sectionData.badges && sectionData.badges.length > 0
               ? sectionData.badges
               : [
-                  sectionData.heroBadge1 || "1,800+ Manpower",
+                  sectionData.heroBadge1 || "2,200+ Manpower",
                   sectionData.heroBadge2 || "300+ Engineers",
                   sectionData.heroBadge3 || "100+ Professionals & Industry Experts",
                   sectionData.heroBadge4 || "12+ Years Average Experience",

@@ -52,8 +52,8 @@ const mockPages: any[] = [
             { value: "2009", label: "INCORPORATION" },
             { value: "2011", label: "COMMENCED OPERATIONS" },
             { value: "5+", label: "COUNTRIES" },
-            { value: "200+", label: "ENGINEERS" },
-            { value: "1800+", label: "MANPOWER" },
+            { value: "350+", label: "ENGINEERS" },
+            { value: "2200+", label: "MANPOWER" },
             { value: "10+ GW", label: "ACTIVE O&M" },
           ],
           images: [
@@ -93,8 +93,8 @@ const mockPages: any[] = [
             { value: "2011", label: "COMMENCED OPERATIONS", icon: "Calendar" },
             { value: "5+", label: "COUNTRIES OF OPERATION", icon: "Globe" },
             { value: "25+", label: "INDUSTRY EXPERTS", icon: "Award" },
-            { value: "200+", label: "ENGINEERS", icon: "Users" },
-            { value: "1800+", label: "MANPOWER", icon: "Users" },
+            { value: "350+", label: "ENGINEERS", icon: "Users" },
+            { value: "2200+", label: "MANPOWER", icon: "Users" },
             { value: "10+ GW", label: "ACTIVE O&M", icon: "Zap" },
             {
               value: "20+ GW",
@@ -285,8 +285,8 @@ const mockPages: any[] = [
             { value: "5+", label: "COUNTRIES" },
             { value: "10+ GW", label: "ACTIVE O&M" },
             { value: "20+ GW", label: "CUMULATIVE TRACK RECORD" },
-            { value: "1800+", label: "MANPOWER" },
-            { value: "200+", label: "ENGINEERS" },
+            { value: "2200+", label: "MANPOWER" },
+            { value: "350+", label: "ENGINEERS" },
             { value: "25+", label: "INDUSTRY EXPERTS" },
           ],
           locations: [
@@ -469,7 +469,7 @@ const mockPages: any[] = [
           tagline: "Partner With Us",
           heading: "Experience Global Engineering Excellence.",
           description:
-            "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ locations that rely on Encotec for their critical needs.",
+            "From India to the world, see how we are setting new standards in power infrastructure. Join the 13+ projects that rely on Encotec for their critical needs.",
           primaryBtnLabel: "Start Your Project",
           primaryBtnUrl: "/contact",
           secondaryBtnLabel: "Talk to an Expert",
@@ -531,7 +531,7 @@ const mockPages: any[] = [
             "Our growth is a testament to the trust our partners place in us. As of 2025–26, our impact is felt across the industry.",
           stats: [
             {
-              value: "1800+",
+              value: "2200+",
               label: "Manpower",
               description:
                 "Dedicated workforce keeping assets safe and productive",

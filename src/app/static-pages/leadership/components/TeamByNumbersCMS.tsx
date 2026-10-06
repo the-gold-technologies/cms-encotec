@@ -17,8 +17,8 @@ export function TeamByNumbersCMS() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [statsList, setStatsList] = useState<StatItem[]>([
-    { value: "1800+", label: "Total Professionals" },
-    { value: "300+", label: "Senior Engineers" },
+    { value: "2200+", label: "Total Professionals" },
+    { value: "350+", label: "Senior Engineers" },
     { value: "100+", label: "Industry Experts" },
     { value: "23+", label: "Countries of Operation" },
     { value: "12+", label: "Years Avg Experience" },

@@ -259,8 +259,8 @@ async function main() {
               { value: "2009", label: "INCORPORATION" },
               { value: "2011", label: "COMMENCED OPERATIONS" },
               { value: "5+", label: "COUNTRIES" },
-              { value: "200+", label: "ENGINEERS" },
-              { value: "1800+", label: "MANPOWER" },
+              { value: "350+", label: "ENGINEERS" },
+              { value: "2200+", label: "MANPOWER" },
               { value: "10+ GW", label: "ACTIVE O&M" },
             ],
             images: [
@@ -306,8 +306,8 @@ async function main() {
               },
               { value: "5+", label: "COUNTRIES OF OPERATION", icon: "Globe" },
               { value: "25+", label: "INDUSTRY EXPERTS", icon: "Award" },
-              { value: "200+", label: "ENGINEERS", icon: "Users" },
-              { value: "1800+", label: "MANPOWER", icon: "Users" },
+              { value: "350+", label: "ENGINEERS", icon: "Users" },
+              { value: "2200+", label: "MANPOWER", icon: "Users" },
               { value: "10+ GW", label: "ACTIVE O&M", icon: "Zap" },
               {
                 value: "20+ GW",
@@ -502,8 +502,8 @@ async function main() {
               { value: "5+", label: "COUNTRIES" },
               { value: "10+ GW", label: "ACTIVE O&M" },
               { value: "20+ GW", label: "CUMULATIVE TRACK RECORD" },
-              { value: "1800+", label: "MANPOWER" },
-              { value: "200+", label: "ENGINEERS" },
+              { value: "2200+", label: "MANPOWER" },
+              { value: "350+", label: "ENGINEERS" },
               { value: "25+", label: "INDUSTRY EXPERTS" },
             ],
             locations: [
@@ -1106,7 +1106,7 @@ async function main() {
               {
                 title: "2018-2026: Supercritical Excellence",
                 description:
-                  "Embarked on our flagship O&M partnership for the 2x700 MW supercritical power plant at Nabha Power / Rajpura and 2x660 MW supercritical power plant at Jhajjar.",
+                  "Embarked on our flagship O&M partnerships for the 2x700 MW supercritical power plant at Nabha Power / Rajpura, 2x660 MW supercritical power plant at Jhajjar, and recently took over complete O&M of BTG+BOP+C&I systems for 3x660 MW supercritical units at PPGCL, Prayagraj (Tata Power).",
               },
               {
                 title: "2018 & Beyond: Environmental",
@@ -1264,7 +1264,7 @@ async function main() {
             paragraph1:
               "At Encotec, we don't just provide engineering services; we provide peace of mind. We approach every facility we manage with an \"Owner's Mindset\", meaning we treat your infrastructure with the same care, precision, and long-term vision as if it were our own.",
             paragraph2:
-              "With a family of 1800+ personnel and 200+ specialized engineers, we bridge the gap between technical complexity and commercial success. Below is an overview of how we provide end-to-end expertise across the asset lifecycle.",
+              "With a family of 2200+ personnel and 350+ specialized engineers, we bridge the gap between technical complexity and commercial success. Below is an overview of how we provide end-to-end expertise across the asset lifecycle.",
           },
         },
       });
@@ -1963,7 +1963,7 @@ async function main() {
               {
                 title: "Thermal & Supercritical Mastery",
                 description:
-                  "We manage some of India’s largest facilities, such as the 2x700 MW supercritical plant at Rajpura, with a focus on zero-error operations and maximum availability.",
+                  "We manage some of India’s largest facilities, such as the 2x700 MW supercritical plant at Rajpura and the 3x660 MW supercritical power plant at PPGCL Prayagraj (Tata Power), with a focus on zero-error operations and maximum availability.",
                 icon: "Zap",
               },
               {
@@ -2430,8 +2430,8 @@ async function main() {
             heroSubtitle:
               "Meet the experienced leaders and engineers driving operational excellence and strategic growth across global energy markets.",
             badges: [
-              "1800+ Manpower",
-              "200+ Engineers",
+              "2200+ Manpower",
+              "350+ Engineers",
               "25+ Industry Experts",
               "12+ Years Average Experience",
               "5+ Countries",
@@ -2567,8 +2567,8 @@ async function main() {
           order: 4,
           content: {
             stats: [
-              { value: "1800+", label: "Total Professionals" },
-              { value: "200+", label: "Engineers" },
+              { value: "2200+", label: "Total Professionals" },
+              { value: "350+", label: "Engineers" },
               { value: "25+", label: "Industry Experts" },
               { value: "5+", label: "Countries of Operation" },
               { value: "12+", label: "Years Avg Experience" },
@@ -2646,18 +2646,18 @@ async function main() {
           type: "FeaturedInsight",
           order: 1,
           content: {
-            badgeLabel: "Featured News",
+            badgeLabel: "Featured Achievement",
             btnLabel: "Read Full Story",
             latestArticleTitle:
-              "Record 14.3 GW Solar Capacity Added in First Four Months of FY27",
+              "ENCOTEC Takes Over O&M of 3 X 660 MW Supercritical Thermal Power Plant at PPGCL, Prayagraj (Tata Power)",
             latestArticleSummary:
-              "India added 14.33 GW of solar capacity between April and July 2026 alone, accounting for 84% of all renewable additions in that period.",
-            latestArticleDate: "August 17, 2026",
-            latestArticleLocation: "India",
+              "ENCOTEC has officially taken over the Operation & Maintenance of BTG + BOP + C&I systems for the 3 X 660 MW Supercritical Coal-based Thermal Power Plant of M/s Prayagraj Power Generation Company Ltd. (PPGCL - Tata Power) at Bara Tehsil, District Prayagraj.",
+            latestArticleDate: "October 1, 2026",
+            latestArticleLocation: "Prayagraj, Uttar Pradesh, India",
             latestArticleSlug:
-              "record-14-3gw-solar-capacity-added-first-four-months-fy27",
+              "encotec-takes-over-om-3x660mw-supercritical-thermal-power-plant-ppgcl",
             latestArticleImage:
-              "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=2400",
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1791265773/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
           },
         },
       });
@@ -2798,7 +2798,7 @@ async function main() {
                   { type: "heading", text: "Our Hands-On Approach" },
                   {
                     type: "paragraph",
-                    text: "Our 200+ engineers provide a full spectrum of services to keep the heart of this plant beating at peak efficiency. This includes:",
+                    text: "Our 350+ engineers provide a full spectrum of services to keep the heart of this plant beating at peak efficiency. This includes:",
                   },
                   {
                     type: "list",
@@ -2916,10 +2916,10 @@ async function main() {
                 id: 21,
                 slug: "encotec-takes-over-om-3x660mw-supercritical-thermal-power-plant-ppgcl",
                 title:
-                  "ENCOTEC Takes Over O&M of 3 X 660 MW Supercritical Thermal Power Plant at PPGCL, Prayagraj",
+                  "ENCOTEC Takes Over O&M of 3 X 660 MW Supercritical Thermal Power Plant at PPGCL, Prayagraj (Tata Power)",
                 category: "News",
                 description:
-                  "ENCOTEC has officially taken over operations & maintenance of 3 X 660 MW Supercritical Coal based Thermal Power Plant of M/s Prayagraj Power Generation Company Ltd. at Bara Tehsil, District Prayagraj, Uttar Pradesh, India (PPGCL) w.e.f. 1st October 2026.",
+                  "ENCOTEC has officially taken over the Operation & Maintenance of BTG + BOP + C&I systems for the 3 X 660 MW Supercritical Coal-based Thermal Power Plant of M/s Prayagraj Power Generation Company Ltd. (PPGCL - Tata Power) at Bara Tehsil, District Prayagraj, Uttar Pradesh, India w.e.f. 1st October 2026.",
                 date: "October 1, 2026",
                 location: "Prayagraj, Uttar Pradesh, India",
                 readTime: "2 min read",
@@ -3276,7 +3276,7 @@ async function main() {
                   "Treating Your Power Plant Like Our Own: The Owner's Mindset",
                 category: "Blog",
                 description:
-                  "What does having an Owner's Mindset mean for the people on the ground? It means our 250+ engineers see a vital asset that supports thousands of lives.",
+                  "What does having an Owner's Mindset mean for the people on the ground? It means our 350+ engineers see a vital asset that supports thousands of lives.",
                 date: "April 2026",
                 location: "",
                 readTime: "6 min read",
@@ -3285,7 +3285,7 @@ async function main() {
                 content: [
                   {
                     type: "paragraph",
-                    text: "At Encotec, we often talk about having an \"Owner's mindset\". But what does that actually mean for the people on the ground? It means that when our 250+ engineers step onto a site, they aren't just looking at a contract; they are looking at a vital asset that supports thousands of lives.",
+                    text: "At Encotec, we often talk about having an \"Owner's mindset\". But what does that actually mean for the people on the ground? It means that when our 350+ engineers step onto a site, they aren't just looking at a contract; they are looking at a vital asset that supports thousands of lives.",
                   },
                   { type: "heading", text: "Continuous Care and Foresight" },
                   {
@@ -3426,7 +3426,7 @@ async function main() {
               "Join a team of world-class engineers and energy professionals delivering critical infrastructure with offices and operations across 5+ countries.",
             backgroundImage:
               "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2400",
-            badge1Text: "200+ Engineers & 1800+ Manpower",
+            badge1Text: "350+ Engineers & 2200+ Manpower",
             badge2Text: "Offices & Operations in 5+ Countries",
           },
         },

@@ -880,7 +880,7 @@ async function main() {
             headingPart1: "Experience Global",
             headingHighlight: "Engineering Excellence.",
             description:
-              "From India to Global, see how we are setting new standards in power infrastructure. Join the 13+ Projects that rely on Encotec for their critical needs.",
+              "From India to the world, see how we are setting new standards in power infrastructure. Join the 13+ projects that rely on Encotec for their critical needs.",
             primaryBtnLabel: "Start Your Project",
             primaryBtnUrl: "#",
             secondaryBtnLabel: "Talk to an Expert",
@@ -1096,12 +1096,12 @@ async function main() {
               {
                 title: "2011–2012: Construction Beginnings",
                 description:
-                  "We began our major journey into the green frontier, successfully contributed 35+ MW Solar PV projects in Gujarat and 125 MW Solar Thermal projects in Rajasthan.",
+                  "We began our major journey into the green frontier, successfully contributing to 35+ MW Solar PV projects in Gujarat and 125 MW Solar Thermal projects in Rajasthan.",
               },
               {
                 title: "2013 & Beyond: O&M Leadership",
                 description:
-                  "Solidified our reputation as top-tier stewards with the long-term O&M management contracts, Annual Maintenance contracts, Overhauling jobs. etc.",
+                  "Solidified our reputation as top-tier stewards with long-term O&M management contracts, annual maintenance contracts, and overhauling jobs.",
               },
               {
                 title: "2018-2026: Supercritical Excellence",
@@ -1111,7 +1111,7 @@ async function main() {
               {
                 title: "2018 & Beyond: Environmental",
                 description:
-                  "Delivering a Sustainable, Cleaner Industrial Future Helping industries meet stringent environmental standards through specialized FGD O&M excellence.",
+                  "Delivering a sustainable, cleaner industrial future by helping industries meet stringent environmental standards through specialized FGD O&M excellence.",
               },
               {
                 title: "2021: Going Global",
@@ -1121,7 +1121,7 @@ async function main() {
               {
                 title: "2021 & Beyond: New Chapters",
                 description:
-                  "We are currently providing specialized utility management for international airports like Indira Gandhi International Airport, Delhi (DIAL) and Noida International Airport (NIA), newly inaugurated.",
+                  "We provide specialized utility management for major international airports, including Indira Gandhi International Airport, Delhi (DIAL) and the newly inaugurated Noida International Airport (NIA).",
               },
             ],
           },
@@ -1162,7 +1162,7 @@ async function main() {
             headingPart1: "A Global Presence",
             headingHighlight: "with a Local Touch",
             description:
-              "While our headquarters is in Noida, our footprint spans the world. In India, we are present in more than 13+ locations. Internationally, we have established strong roots in Turkey, the UAE, Indonesia, Vietnam, and Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
+              "While our headquarters is in Noida, our footprint spans the world. In India, we are present in 13+ locations. Internationally, we have established strong roots in Turkey, the UAE, Indonesia, Vietnam, and Germany, ensuring that wherever infrastructure needs stewardship, Encotec is there.",
             areas: [
               {
                 title: "International Operations",
@@ -1264,7 +1264,7 @@ async function main() {
             paragraph1:
               "At Encotec, we don't just provide engineering services; we provide peace of mind. We approach every facility we manage with an \"Owner's Mindset\", meaning we treat your infrastructure with the same care, precision, and long-term vision as if it were our own.",
             paragraph2:
-              "With a family of over 1800+ manpower and 200+ specialized engineers, we bridge the gap between technical complexity and commercial success. Below is an overview of how we provide end-to-end expertise across the asset lifecycle.",
+              "With a family of 1800+ personnel and 200+ specialized engineers, we bridge the gap between technical complexity and commercial success. Below is an overview of how we provide end-to-end expertise across the asset lifecycle.",
           },
         },
       });
@@ -2357,7 +2357,7 @@ async function main() {
               {
                 title: "Global OEM Network",
                 description:
-                  "We have established tie-ups with over 65+ major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
+                  "We have established tie-ups with 65+ major OEMs in China, Vietnam, and India, giving you direct access to high-quality components without the logistical headache.",
                 icon: "Globe",
               },
               {
@@ -2912,6 +2912,43 @@ async function main() {
                 ],
               },
               // News
+              {
+                id: 21,
+                slug: "encotec-takes-over-om-3x660mw-supercritical-thermal-power-plant-ppgcl",
+                title:
+                  "ENCOTEC Takes Over O&M of 3 X 660 MW Supercritical Thermal Power Plant at PPGCL, Prayagraj",
+                category: "News",
+                description:
+                  "ENCOTEC has officially taken over operations & maintenance of 3 X 660 MW Supercritical Coal based Thermal Power Plant of M/s Prayagraj Power Generation Company Ltd. at Bara Tehsil, District Prayagraj, Uttar Pradesh, India (PPGCL) w.e.f. 1st October 2026.",
+                date: "October 1, 2026",
+                location: "Prayagraj, Uttar Pradesh, India",
+                readTime: "2 min read",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1791265773/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
+                content: [
+                  {
+                    type: "paragraph",
+                    text: "ENCOTEC has officially taken over operations & maintenance of 3 X 660 MW Supercritical Coal based Thermal Power Plant of M/s Prayagraj Power Generation Company Ltd. at Bara Tehsil, District Prayagraj, Uttar Pradesh, India (PPGCL) w.e.f. 1st October 2026.",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "An asset of this calibre represents a crown jewel of technical excellence and strategic opportunity for us.",
+                  },
+                  {
+                    type: "image",
+                    image:
+                      "https://res.cloudinary.com/dpa93copz/image/upload/v1791265775/encotec-Assets/news/owax5vxcilst16qrnqxt.jpg",
+                  },
+                  {
+                    type: "paragraph",
+                    text: "This seamless operational handover would not have been possible without the immense support, guidance, and trusted collaboration from the Corporate and Site Management Teams of PPGCL.",
+                  },
+                  {
+                    type: "quote",
+                    text: "As we embark on this new chapter, ENCOTEC is fully committed to delivering operational excellence and driving shared success at PPGCL thereby, making this journey an unforgettable success! 🌟",
+                  },
+                ],
+              },
               {
                 id: 5,
                 slug: "record-14-3gw-solar-capacity-added-first-four-months-fy27",

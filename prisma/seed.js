@@ -1992,7 +1992,7 @@ async function main() {
             headingPart1: "The Difference Between ",
             headingHighlight: "Maintenance & Stewardship",
             paragraphs: [
-              "Maintenance is reactive; stewardship is proactive. As a leading independent power plant O&M specialist in India, we take total responsibility for the health of your assets.",
+              "Maintenance is reactive; stewardship is proactive. As independent O&M specialists, we take total responsibility for the health of your assets.",
               "Our approach integrates predictive diagnostics, rigorous safety protocols, and continuous performance optimization. We don't just fix what's broken; we prevent failures before they occur, maximizing the lifespan and profitability of your infrastructure.",
             ],
             items: [

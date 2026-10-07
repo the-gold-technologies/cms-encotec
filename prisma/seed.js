@@ -151,28 +151,28 @@ async function main() {
       visibility: "public",
     },
     {
-      title: "Transmission & Distribution",
-      slug: "transmission-distribution",
-      description: "Construction, commissioning, and relocation services.",
-      metaTitle: "Transmission & Distribution - Encotec",
+      title: "Construction, Commissioning & Relocation",
+      slug: "construction-commissioning",
+      description: "Turnkey construction, erection, commissioning, synchronization, and plant relocation services.",
+      metaTitle: "Construction, Commissioning & Relocation | Encotec",
       metaDescription: "Construction, commissioning, and relocation services.",
       isStatic: true,
       visibility: "public",
     },
     {
-      title: "Renewable Energy",
-      slug: "renewable-energy",
-      description: "Expert advisory and performance diagnostic audits.",
-      metaTitle: "Renewable Energy - Encotec",
+      title: "Technical Advisory & Performance Audits",
+      slug: "technical-advisory",
+      description: "Expert technical advisory, performance audits, diagnostics, and plant modernization services.",
+      metaTitle: "Technical Advisory & Performance Audits | Encotec",
       metaDescription: "Expert advisory and performance diagnostic audits.",
       isStatic: true,
       visibility: "public",
     },
     {
-      title: "Airport Services",
-      slug: "airport-services",
-      description: "Due diligence and asset health evaluation services.",
-      metaTitle: "Airport Services - Encotec",
+      title: "Due Diligence & Asset Health",
+      slug: "due-diligence",
+      description: "Independent technical evaluations, residual life assessments (RLA), and due diligence for power and infrastructure assets.",
+      metaTitle: "Due Diligence & Asset Health | Encotec",
       metaDescription: "Due diligence and asset health evaluation services.",
       isStatic: true,
       visibility: "public",
@@ -249,8 +249,8 @@ async function main() {
             secondaryBtnUrl: "/contact",
             serviceTags: [
               { label: "STEWARDSHIP", url: "/services/power-generation" },
-              { label: "COMMISSIONING", url: "/services/engineering" },
-              { label: "ADVISORY", url: "/services/project-management" },
+              { label: "COMMISSIONING", url: "/services/construction-commissioning" },
+              { label: "ADVISORY", url: "/services/technical-advisory" },
               { label: "GLOBAL SOURCING", url: "/services/value-added" },
             ],
             projectsBadgeNumber: "",
@@ -357,18 +357,18 @@ async function main() {
                 image:
                   "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800",
                 ctaLabel: "Explore Construction & Commissioning",
-                ctaUrl: "/services/engineering",
+                ctaUrl: "/services/construction-commissioning",
               },
               {
-                title: "Airport Utility Management",
-                subtitle: "Keeping essential airport infrastructure running.",
+                title: "Due Diligence & Asset Health",
+                subtitle: "Making informed decisions for the long term.",
                 description:
-                  "Airports depend on reliable utility systems and uninterrupted operations. Encotec brings deep O&M experience to critical airport infrastructure with a focus on reliability, safety and continuity.",
-                icon: "Network",
+                  "Before acquiring, relocating or upgrading plant assets, our independent due diligence and Residual Life Assessments (RLA) provide the objective data needed to understand true condition and mitigate investment risks.",
+                icon: "ShieldCheck",
                 image:
-                  "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800",
-                ctaLabel: "Explore Airport Utility Management",
-                ctaUrl: "/services/airport-services",
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+                ctaLabel: "Explore Due Diligence & Asset Health",
+                ctaUrl: "/services/due-diligence",
               },
               {
                 title: "Technical Advisory",
@@ -379,7 +379,7 @@ async function main() {
                 image:
                   "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
                 ctaLabel: "Explore Technical Advisory",
-                ctaUrl: "/services/project-management",
+                ctaUrl: "/services/technical-advisory",
               },
               {
                 title: "Critical Spare Parts Sourcing",
@@ -1310,7 +1310,7 @@ async function main() {
               {
                 title: "Construction, Commissioning & Relocation",
                 icon: "HardHat",
-                link: "/services/transmission-distribution",
+                link: "/services/construction-commissioning",
                 overview:
                   "Whether it's a new build or moving an entire plant across borders, we handle the complex installation and synchronization of your assets.",
                 capabilities: [
@@ -1348,7 +1348,7 @@ async function main() {
               {
                 title: "Expert Advisory & Performance Audits",
                 icon: "ClipboardCheck",
-                link: "/services/renewable-energy",
+                link: "/services/technical-advisory",
                 overview:
                   "When problems arise or efficiency drops, our specialists provide on-site diagnostics and high-level technical solutions.",
                 capabilities: [
@@ -1367,7 +1367,7 @@ async function main() {
               {
                 title: "Due Diligence & Asset Health",
                 icon: "ShieldCheck",
-                link: "/services/airport-services",
+                link: "/services/due-diligence",
                 overview:
                   'We evaluate the "residual life" of older plants to help owners make informed decisions about acquisitions or relocations.',
                 capabilities: [
@@ -2022,7 +2022,7 @@ async function main() {
       console.log("Created Power Generation sections");
     }
 
-    if (createdPage.slug === "transmission-distribution") {
+    if (createdPage.slug === "construction-commissioning") {
       // 1. ConstructionHero
       await prisma.section.create({
         data: {
@@ -2143,7 +2143,7 @@ async function main() {
       console.log("Created Transmission & Distribution sections");
     }
 
-    if (createdPage.slug === "renewable-energy") {
+    if (createdPage.slug === "technical-advisory") {
       // 1. AdvisoryHero
       await prisma.section.create({
         data: {
@@ -2242,7 +2242,7 @@ async function main() {
       console.log("Created Renewable Energy sections");
     }
 
-    if (createdPage.slug === "airport-services") {
+    if (createdPage.slug === "due-diligence") {
       // 1. DueDiligenceHero
       await prisma.section.create({
         data: {
@@ -2871,7 +2871,7 @@ async function main() {
                 title: "Powering the Gateway to India",
                 category: "Case Study",
                 description:
-                  "Specialized utility and electrical O&M for Indira Gandhi International Airport, ensuring the critical nervous system remains flawless.",
+                  "Specialized utility and electrical O&M for Indira Gandhi International Airport, supporting the reliable operation of critical electrical infrastructure.",
                 date: "September 2023",
                 location: "New Delhi, India",
                 readTime: "",
@@ -2880,7 +2880,7 @@ async function main() {
                 content: [
                   {
                     type: "paragraph",
-                    text: 'An international airport never sleeps, and neither does the infrastructure that supports it. At Indira Gandhi International Airport (IGI) in New Delhi, Encotec serves as a trusted auxiliary partner, ensuring that the critical electrical "nervous system" of one of the world\'s busiest hubs remains flawless.',
+                    text: 'An international airport never sleeps, and neither does the infrastructure that supports it. At Indira Gandhi International Airport (IGI) in New Delhi, Encotec serves as a trusted auxiliary partner, supporting the reliable operation of critical electrical infrastructure for one of the world\'s busiest hubs.',
                   },
                   { type: "heading", text: "The Project & Partner" },
                   {

@@ -42,8 +42,8 @@ const mockPages: any[] = [
           secondaryBtnUrl: "/contact",
           serviceTags: [
             { label: "STEWARDSHIP", url: "/services/power-generation" },
-            { label: "COMMISSIONING", url: "/services/engineering" },
-            { label: "ADVISORY", url: "/services/project-management" },
+            { label: "COMMISSIONING", url: "/services/construction-commissioning" },
+            { label: "ADVISORY", url: "/services/technical-advisory" },
             { label: "GLOBAL SOURCING", url: "/services/value-added" },
           ],
           projectsBadgeNumber: "",
@@ -146,15 +146,15 @@ const mockPages: any[] = [
               ctaUrl: "/services/engineering",
             },
             {
-              title: "Airport Utility Management",
-              subtitle: "Keeping essential airport infrastructure running.",
+              title: "Due Diligence & Asset Health",
+              subtitle: "Making informed decisions for the long term.",
               description:
-                "Airports depend on reliable utility systems and uninterrupted operations. Encotec brings deep O&M experience to critical airport infrastructure with a focus on reliability, safety and continuity.",
-              icon: "Network",
+                "Before acquiring, relocating or upgrading plant assets, our independent due diligence and Residual Life Assessments (RLA) provide the objective data needed to understand true condition and mitigate investment risks.",
+              icon: "ShieldCheck",
               image:
-                "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800",
-              ctaLabel: "Explore Airport Utility Management",
-              ctaUrl: "/services/airport-services",
+                "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+              ctaLabel: "Explore Due Diligence & Asset Health",
+              ctaUrl: "/services/due-diligence",
             },
             {
               title: "Technical Advisory",

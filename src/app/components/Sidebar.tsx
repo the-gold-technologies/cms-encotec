@@ -72,16 +72,16 @@ const sidebarLinks: SidebarLink[] = [
         href: "/static-pages/services/power-generation",
       },
       {
-        title: "Transmission & Distribution",
-        href: "/static-pages/services/transmission-distribution",
+        title: "Construction, Commissioning & Relocation",
+        href: "/static-pages/services/construction-commissioning",
       },
       {
-        title: "Renewable Energy",
-        href: "/static-pages/services/renewable-energy",
+        title: "Technical Advisory & Performance Audits",
+        href: "/static-pages/services/technical-advisory",
       },
       {
-        title: "Airport Services",
-        href: "/static-pages/services/airport-services",
+        title: "Due Diligence & Asset Health",
+        href: "/static-pages/services/due-diligence",
       },
       {
         title: "Value-Added Services",

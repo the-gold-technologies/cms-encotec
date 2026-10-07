@@ -65,8 +65,11 @@ const validSubservices = [
   "engineering",
   "project-management",
   "power-generation",
+  "construction-commissioning",
   "transmission-distribution",
+  "technical-advisory",
   "renewable-energy",
+  "due-diligence",
   "airport-services",
   "value-added",
 ];
@@ -131,7 +134,7 @@ export default async function SubServicePage({ params }: PageProps) {
     );
   }
 
-  if (subservice === "transmission-distribution") {
+  if (subservice === "construction-commissioning" || subservice === "transmission-distribution") {
     return (
       <section className="flex flex-col gap-6">
         <PageHeader
@@ -147,7 +150,7 @@ export default async function SubServicePage({ params }: PageProps) {
     );
   }
 
-  if (subservice === "renewable-energy") {
+  if (subservice === "technical-advisory" || subservice === "renewable-energy") {
     return (
       <section className="flex flex-col gap-6">
         <PageHeader
@@ -162,7 +165,7 @@ export default async function SubServicePage({ params }: PageProps) {
     );
   }
 
-  if (subservice === "airport-services") {
+  if (subservice === "due-diligence" || subservice === "airport-services") {
     return (
       <section className="flex flex-col gap-6">
         <PageHeader

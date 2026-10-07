@@ -538,7 +538,7 @@ const mockPages: any[] = [
               icon: "Users",
             },
             {
-              value: "200+",
+              value: "350+",
               label: "Engineers",
               description: "Multidisciplinary engineering and technical team",
               icon: "Users",

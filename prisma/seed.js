@@ -153,7 +153,8 @@ async function main() {
     {
       title: "Construction, Commissioning & Relocation",
       slug: "construction-commissioning",
-      description: "Turnkey construction, erection, commissioning, synchronization, and plant relocation services.",
+      description:
+        "Turnkey construction, erection, commissioning, synchronization, and plant relocation services.",
       metaTitle: "Construction, Commissioning & Relocation | Encotec",
       metaDescription: "Construction, commissioning, and relocation services.",
       isStatic: true,
@@ -162,7 +163,8 @@ async function main() {
     {
       title: "Technical Advisory & Performance Audits",
       slug: "technical-advisory",
-      description: "Expert technical advisory, performance audits, diagnostics, and plant modernization services.",
+      description:
+        "Expert technical advisory, performance audits, diagnostics, and plant modernization services.",
       metaTitle: "Technical Advisory & Performance Audits | Encotec",
       metaDescription: "Expert advisory and performance diagnostic audits.",
       isStatic: true,
@@ -171,7 +173,8 @@ async function main() {
     {
       title: "Due Diligence & Asset Health",
       slug: "due-diligence",
-      description: "Independent technical evaluations, residual life assessments (RLA), and due diligence for power and infrastructure assets.",
+      description:
+        "Independent technical evaluations, residual life assessments (RLA), and due diligence for power and infrastructure assets.",
       metaTitle: "Due Diligence & Asset Health | Encotec",
       metaDescription: "Due diligence and asset health evaluation services.",
       isStatic: true,
@@ -249,7 +252,10 @@ async function main() {
             secondaryBtnUrl: "/contact",
             serviceTags: [
               { label: "STEWARDSHIP", url: "/services/power-generation" },
-              { label: "COMMISSIONING", url: "/services/construction-commissioning" },
+              {
+                label: "COMMISSIONING",
+                url: "/services/construction-commissioning",
+              },
               { label: "ADVISORY", url: "/services/technical-advisory" },
               { label: "GLOBAL SOURCING", url: "/services/value-added" },
             ],
@@ -260,7 +266,6 @@ async function main() {
               { value: "2011", label: "COMMENCED OPERATIONS" },
               { value: "5+", label: "COUNTRIES" },
               { value: "350+", label: "ENGINEERS" },
-              { value: "2200+", label: "MANPOWER" },
               { value: "10+ GW", label: "ACTIVE O&M" },
             ],
             images: [
@@ -298,17 +303,9 @@ async function main() {
             badgeLabel: "Pioneering Energy",
             badgeIcon: "Zap",
             stats: [
-              { value: "2009", label: "INCORPORATION", icon: "Calendar" },
-              {
-                value: "2011",
-                label: "COMMENCED OPERATIONS",
-                icon: "Calendar",
-              },
               { value: "5+", label: "COUNTRIES OF OPERATION", icon: "Globe" },
               { value: "25+", label: "INDUSTRY EXPERTS", icon: "Award" },
-              { value: "350+", label: "ENGINEERS", icon: "Users" },
               { value: "2200+", label: "MANPOWER", icon: "Users" },
-              { value: "10+ GW", label: "ACTIVE O&M", icon: "Zap" },
               {
                 value: "20+ GW",
                 label: "CUMULATIVE TRACK RECORD",
@@ -1028,14 +1025,14 @@ async function main() {
               "Our growth is a testament to the trust our partners place in us. As of 2025–26, our impact is felt across the industry.",
             stats: [
               {
-                value: "1800+",
+                value: "2200+",
                 label: "Manpower",
                 description:
                   "Dedicated workforce keeping assets safe and productive",
                 icon: "Users",
               },
               {
-                value: "200+",
+                value: "350+",
                 label: "Engineers",
                 description: "Multidisciplinary engineering and technical team",
                 icon: "Users",
@@ -1913,7 +1910,7 @@ async function main() {
                 label: "Managed capacity under stewardship",
               },
               { value: 100, suffix: "%", label: "Owner's Mindset" },
-              { value: 300, suffix: "+", label: "Specialized Engineers" },
+              { value: 350, suffix: "+", label: "Specialized Engineers" },
             ],
           },
         },
@@ -2880,7 +2877,7 @@ async function main() {
                 content: [
                   {
                     type: "paragraph",
-                    text: 'An international airport never sleeps, and neither does the infrastructure that supports it. At Indira Gandhi International Airport (IGI) in New Delhi, Encotec serves as a trusted auxiliary partner, supporting the reliable operation of critical electrical infrastructure for one of the world\'s busiest hubs.',
+                    text: "An international airport never sleeps, and neither does the infrastructure that supports it. At Indira Gandhi International Airport (IGI) in New Delhi, Encotec serves as a trusted auxiliary partner, supporting the reliable operation of critical electrical infrastructure for one of the world's busiest hubs.",
                   },
                   { type: "heading", text: "The Project & Partner" },
                   {

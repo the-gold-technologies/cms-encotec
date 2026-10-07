@@ -99,9 +99,9 @@ export async function GET() {
       "engineering": "engineering-services",
       "project-management": "project-management",
       "power-generation": "power-generation",
-      "transmission-distribution": "transmission-distribution",
-      "renewable-energy": "renewable-energy",
-      "airport-services": "airport-services",
+      "construction-commissioning": "construction-commissioning",
+      "technical-advisory": "technical-advisory",
+      "due-diligence": "due-diligence",
       "value-added": "value-added",
     };
 
@@ -112,9 +112,9 @@ export async function GET() {
         "engineering",
         "project-management",
         "power-generation",
-        "transmission-distribution",
-        "renewable-energy",
-        "airport-services",
+        "construction-commissioning",
+        "technical-advisory",
+        "due-diligence",
         "value-added"
       ];
       

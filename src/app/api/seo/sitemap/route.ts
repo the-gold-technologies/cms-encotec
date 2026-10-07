@@ -55,19 +55,19 @@ export async function GET() {
 
       // Rewrite sub-services slugs to match the frontend user-facing routing
       if (slug === "engineering-services") {
-        slug = "service/engineering";
+        slug = "services/engineering";
       } else if (slug === "project-management") {
-        slug = "service/project-management";
+        slug = "services/project-management";
       } else if (slug === "power-generation") {
-        slug = "service/power-generation";
-      } else if (slug === "transmission-distribution") {
-        slug = "service/transmission-distribution";
-      } else if (slug === "renewable-energy") {
-        slug = "service/renewable-energy";
-      } else if (slug === "airport-services") {
-        slug = "service/airport-services";
+        slug = "services/power-generation";
+      } else if (slug === "construction-commissioning") {
+        slug = "services/construction-commissioning";
+      } else if (slug === "technical-advisory") {
+        slug = "services/technical-advisory";
+      } else if (slug === "due-diligence") {
+        slug = "services/due-diligence";
       } else if (slug === "value-added") {
-        slug = "service/value-added";
+        slug = "services/value-added";
       }
 
       const loc = `${SITE_URL}/${slug}`.replace(/\/$/, "");

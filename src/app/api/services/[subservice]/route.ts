@@ -7,11 +7,8 @@ const slugMap: Record<string, string> = {
   "project-management": "project-management",
   "power-generation": "power-generation",
   "construction-commissioning": "construction-commissioning",
-  "transmission-distribution": "construction-commissioning",
   "technical-advisory": "technical-advisory",
-  "renewable-energy": "technical-advisory",
   "due-diligence": "due-diligence",
-  "airport-services": "due-diligence",
   "value-added": "value-added",
 };
 

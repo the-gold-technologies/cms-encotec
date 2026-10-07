@@ -66,11 +66,8 @@ const validSubservices = [
   "project-management",
   "power-generation",
   "construction-commissioning",
-  "transmission-distribution",
   "technical-advisory",
-  "renewable-energy",
   "due-diligence",
-  "airport-services",
   "value-added",
 ];
 
@@ -134,7 +131,7 @@ export default async function SubServicePage({ params }: PageProps) {
     );
   }
 
-  if (subservice === "construction-commissioning" || subservice === "transmission-distribution") {
+  if (subservice === "construction-commissioning") {
     return (
       <section className="flex flex-col gap-6">
         <PageHeader
@@ -150,11 +147,11 @@ export default async function SubServicePage({ params }: PageProps) {
     );
   }
 
-  if (subservice === "technical-advisory" || subservice === "renewable-energy") {
+  if (subservice === "technical-advisory") {
     return (
       <section className="flex flex-col gap-6">
         <PageHeader
-          title="Renewable Energy Content"
+          title="Technical Advisory & Performance Audits Content"
           description="Manage advisory headlines, NDT testing parameters, and advisory/diagnostic workflow details."
         />
         <AdvisoryHeroCMS saveUrl={saveUrl} />
@@ -165,11 +162,11 @@ export default async function SubServicePage({ params }: PageProps) {
     );
   }
 
-  if (subservice === "due-diligence" || subservice === "airport-services") {
+  if (subservice === "due-diligence") {
     return (
       <section className="flex flex-col gap-6">
         <PageHeader
-          title="Airport Services Content"
+          title="Due Diligence & Asset Health Content"
           description="Manage due diligence headlines, residual life assessments, and value protection checklists."
         />
         <DueDiligenceHeroCMS saveUrl={saveUrl} />

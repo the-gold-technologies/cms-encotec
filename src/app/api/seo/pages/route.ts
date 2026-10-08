@@ -96,7 +96,6 @@ export async function GET() {
     });
 
     const slugMap: Record<string, string> = {
-      "engineering": "engineering-services",
       "project-management": "project-management",
       "power-generation": "power-generation",
       "construction-commissioning": "construction-commissioning",
@@ -109,7 +108,6 @@ export async function GET() {
     const serviceSubpages = [];
     if (servicesPage) {
       const subserviceIds = [
-        "engineering",
         "project-management",
         "power-generation",
         "construction-commissioning",

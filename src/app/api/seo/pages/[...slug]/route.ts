@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 const slugMap: Record<string, string> = {
-  "engineering": "engineering-services",
   "project-management": "project-management",
   "power-generation": "power-generation",
   "construction-commissioning": "construction-commissioning",

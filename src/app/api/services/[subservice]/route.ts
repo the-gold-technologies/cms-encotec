@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 
 const slugMap: Record<string, string> = {
-  "engineering": "engineering-services",
   "project-management": "project-management",
   "power-generation": "power-generation",
   "construction-commissioning": "construction-commissioning",

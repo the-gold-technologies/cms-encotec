@@ -60,10 +60,6 @@ const sidebarLinks: SidebarLink[] = [
     icon: Layers,
     sublinks: [
       {
-        title: "Engineering Services",
-        href: "/static-pages/services/engineering",
-      },
-      {
         title: "Project Management",
         href: "/static-pages/services/project-management",
       },

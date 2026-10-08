@@ -54,9 +54,7 @@ export async function GET() {
       let slug = page.slug === "home" ? "" : page.slug;
 
       // Rewrite sub-services slugs to match the frontend user-facing routing
-      if (slug === "engineering-services") {
-        slug = "services/engineering";
-      } else if (slug === "project-management") {
+      if (slug === "project-management") {
         slug = "services/project-management";
       } else if (slug === "power-generation") {
         slug = "services/power-generation";

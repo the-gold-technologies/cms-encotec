@@ -62,7 +62,6 @@ interface PageProps {
 }
 
 const validSubservices = [
-  "engineering",
   "project-management",
   "power-generation",
   "construction-commissioning",
@@ -79,26 +78,6 @@ export default async function SubServicePage({ params }: PageProps) {
   }
 
   const saveUrl = `/api/services/${subservice}`;
-
-  if (subservice === "engineering") {
-    return (
-      <section className="flex flex-col gap-6">
-        <PageHeader
-          title="Engineering Services Content"
-          description="Manage headlines, stats badges, capabilities cards, methodology steps, impacts, and features of the Engineering Services page."
-        />
-        <EngineeringHeroCMS saveUrl={saveUrl} />
-        <OverviewSectionCMS saveUrl={saveUrl} />
-        <CapabilitiesSectionCMS saveUrl={saveUrl} />
-        <ProcessSectionCMS saveUrl={saveUrl} />
-        <StatsSectionCMS saveUrl={saveUrl} />
-        <FeaturedProjectSectionCMS saveUrl={saveUrl} />
-        <ValueSectionCMS saveUrl={saveUrl} />
-        <RelatedServicesSectionCMS saveUrl={saveUrl} />
-        <CTASectionCMS saveUrl={saveUrl} />
-      </section>
-    );
-  }
 
   if (subservice === "project-management") {
     return (

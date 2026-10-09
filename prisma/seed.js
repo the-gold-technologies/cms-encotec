@@ -4476,13 +4476,13 @@ async function main() {
       order: 5,
       isStatic: true,
     },
-    {
-      label: "Certifications",
-      url: "/certifications",
-      type: "Main Link",
-      order: 6,
-      isStatic: true,
-    },
+    // {
+    //   label: "Certifications",
+    //   url: "/certifications",
+    //   type: "Main Link",
+    //   order: 6,
+    //   isStatic: true,
+    // },
     {
       label: "Leadership",
       url: "/leadership",

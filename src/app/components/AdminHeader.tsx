@@ -18,7 +18,7 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   { title: "Services Page Editor", category: "Pages", url: "/static-pages/services", icon: FileText },
   { title: "Insights Page Editor", category: "Pages", url: "/static-pages/insights", icon: FileText },
   { title: "Careers Page Editor", category: "Pages", url: "/static-pages/careers", icon: FileText },
-  { title: "Certifications Page Editor", category: "Pages", url: "/static-pages/certifications", icon: FileText },
+  // { title: "Certifications Page Editor", category: "Pages", url: "/static-pages/certifications", icon: FileText },
   { title: "Leadership Page Editor", category: "Pages", url: "/static-pages/leadership", icon: FileText },
   { title: "Contact Page Editor", category: "Pages", url: "/static-pages/contact", icon: FileText },
   { title: "Privacy Policy Editor", category: "Pages", url: "/static-pages/privacy-policy", icon: FileText },

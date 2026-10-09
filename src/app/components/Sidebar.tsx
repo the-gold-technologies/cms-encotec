@@ -48,7 +48,7 @@ const sidebarLinks: SidebarLink[] = [
       { title: "Services", href: "/static-pages/services" },
       { title: "Insights", href: "/static-pages/insights" },
       { title: "Careers", href: "/static-pages/careers" },
-      { title: "Certifications", href: "/static-pages/certifications" },
+      // { title: "Certifications", href: "/static-pages/certifications" },
       { title: "Leadership", href: "/static-pages/leadership" },
       { title: "Gallery", href: "/static-pages/gallery" },
       { title: "Contact", href: "/static-pages/contact" },

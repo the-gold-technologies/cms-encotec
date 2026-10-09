@@ -212,6 +212,42 @@ async function main() {
       isStatic: true,
       visibility: "public",
     },
+    {
+      title: "Gallery",
+      slug: "gallery",
+      description: "Visual showcase of Encotec field operations and asset portfolio.",
+      metaTitle: "Project Gallery | Encotec Energy",
+      metaDescription: "Visual showcase of Encotec power plant O&M, renewable parks, transmission networks, and field engineering operations.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Case Studies",
+      slug: "case-studies",
+      description: "Encotec Case Studies",
+      metaTitle: "Case Studies - Encotec",
+      metaDescription: "Real-world engineering case studies and plant turnarounds.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "News & Updates",
+      slug: "news-updates",
+      description: "Encotec News & Updates",
+      metaTitle: "News & Updates - Encotec",
+      metaDescription: "Latest company news, press releases, and announcements.",
+      isStatic: true,
+      visibility: "public",
+    },
+    {
+      title: "Blogs & Articles",
+      slug: "blogs-articles",
+      description: "Encotec Blogs & Articles",
+      metaTitle: "Blogs & Technical Articles - Encotec",
+      metaDescription: "Thought leadership and technical articles on energy engineering.",
+      isStatic: true,
+      visibility: "public",
+    },
   ];
 
   for (const pageData of pages) {
@@ -923,8 +959,14 @@ async function main() {
             headingItalicHighlight: "Delivered with Ownership",
             description:
               "A full-spectrum engineering and services company operating across power generation, transmission & distribution, and renewable energy sectors.",
-            backgroundImage:
+                        backgroundImage:
               "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2400",
+            caseStudiesBackgroundImage:
+              "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=2400",
+            newsBackgroundImage:
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=2400",
+            blogsBackgroundImage:
+              "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2400",
           },
         },
       });
@@ -2406,7 +2448,39 @@ async function main() {
           type: "ArticlesList",
           order: 5,
           content: {
-            emptyMessage: "No insights found for this category.",
+                        emptyMessage: "No insights found for this category.",
+            caseStudiesTagline: "Proven Field Engineering",
+            caseStudiesHeading: "Case Studies",
+            caseStudiesSubtitle:
+              "Real-world plant turnarounds, commissioning feats, and efficiency audits across thermal and renewable infrastructure.",
+            caseStudiesViewAllText: "View All Case Studies",
+            caseStudiesCtaTagline: "Have a Complex Power Asset Challenge?",
+            caseStudiesCtaHeading: "Let our engineering specialists review your plant specs.",
+            caseStudiesCtaDescription: "From supercritical boiler turnarounds to EHV substation diagnostics, Encotec delivers owner-mindset stewardship for mission-critical infrastructure.",
+            caseStudiesCtaButtonText: "Contact Our Engineers",
+            caseStudiesCtaButtonLink: "/contact",
+
+            newsTagline: "Corporate & Industry Updates",
+            newsHeading: "News & Announcements",
+            newsSubtitle:
+              "Stay updated with corporate milestones, contract awards, and energy sector developments.",
+            newsViewAllText: "View All News",
+            newsCtaTagline: "Press & Media Relations",
+            newsCtaHeading: "Need official commentary or executive interviews?",
+            newsCtaDescription: "Reach out to Encotec’s communications office for official statements, media packs, and event participation.",
+            newsCtaButtonText: "Get In Touch",
+            newsCtaButtonLink: "/contact",
+
+            blogsTagline: "Engineering Thought Leadership",
+            blogsHeading: "Blogs & Technical Articles",
+            blogsSubtitle:
+              "Insightful engineering commentary on the owner’s mindset, the renewable transition, and critical utility care.",
+            blogsViewAllText: "View All Articles",
+            blogsCtaTagline: "Engineering Thought Leadership",
+            blogsCtaHeading: "Want deeper technical insights directly in your inbox?",
+            blogsCtaDescription: "Connect with our advisory teams to receive whitepapers, turbine performance analyses, and power grid modernization frameworks.",
+            blogsCtaButtonText: "Contact Advisory Team",
+            blogsCtaButtonLink: "/contact",
             articles: [
               // Case Studies
               {
@@ -4165,9 +4239,207 @@ async function main() {
       });
       console.log("Created Cookie Policy sections");
     }
+    // Seed sections for Gallery page
+    if (createdPage.slug === "gallery") {
+      // 1. GalleryHero
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "GalleryHero",
+          order: 0,
+          content: {
+            tagline: "VISUAL SHOWCASE",
+            heroTitle: "POWER, PRECISION & FIELD MASTERY",
+            heroSubtitle:
+              "Explore our operations across landmark power generation facilities, critical infrastructure overhauls, high-voltage transmission networks, and global engineering sites worldwide.",
+            backgroundImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+            tab1Label: "3500+ MW Managed",
+            tab2Label: "350+ Engineers",
+            tab3Label: "Global Footprint",
+          },
+        },
+      });
+
+      // 2. GalleryGrid
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "GalleryGrid",
+          order: 1,
+          content: {
+            heading: "Capturing Energy in Action",
+            tagline: "FIELD OPERATIONS & ASSET PORTFOLIO",
+            sectionTitle: "Capturing Energy in Action",
+            sectionSubtitle:
+              "A visual chronicle of our field engineering presence across supercritical power stations, renewable energy parks, high-voltage substations, and critical airport infrastructure.",
+            categories: [
+              "All",
+              "Thermal Power",
+              "Renewables",
+              "Transmission & Grid",
+              "O&M & Field Engineering",
+              "Aviation & Industrial",
+              "Global Sourcing",
+            ],
+            items: [
+              {
+                id: 1,
+                tag: "BTG + BOP",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+                title: "Supercritical Thermal Generation Unit",
+                category: "Thermal Power",
+                location: "Prayagraj Power Generation",
+                description:
+                  "Comprehensive operation & maintenance of 3x660 MW BTG & BOP systems.",
+              },
+              {
+                id: 2,
+                tag: "Field Service",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586093/encotec-Assets/culture/encotec_field_operations.jpg",
+                title: "Field Engineering Operations",
+                category: "O&M & Field Engineering",
+                location: "Power Generation Facility",
+                description:
+                  "High-precision engineering and safety protocols during on-site operations.",
+              },
+              {
+                id: 3,
+                tag: "Solar O&M",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586094/encotec-Assets/culture/encotec_solar_inspection.jpg",
+                title: "Solar PV Park Inspection",
+                category: "Renewables",
+                location: "Utility Solar Facility",
+                description:
+                  "Routine diagnostic inspection and string health monitoring for utility solar installations.",
+              },
+              {
+                id: 4,
+                tag: "Automation",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586091/encotec-Assets/culture/encotec_control_room.jpg",
+                title: "Centralized SCADA & DCS Control",
+                category: "O&M & Field Engineering",
+                location: "Central Control Room",
+                description:
+                  "24/7 centralized monitoring, heat rate optimization, and automated trip prevention.",
+              },
+              {
+                id: 5,
+                tag: "Asset Health",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+                title: "On-Site Infrastructure Assessment",
+                category: "O&M & Field Engineering",
+                location: "Industrial Site",
+                description:
+                  "Technical audit, residual life assessment, and condition monitoring.",
+              },
+              {
+                id: 6,
+                tag: "Transmission",
+                image:
+                  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2400",
+                title: "High Voltage Switchyard & Substation",
+                category: "Transmission & Grid",
+                location: "Substation Facility",
+                description:
+                  "EHV transformer maintenance, switchgear testing, and protection calibration.",
+              },
+              {
+                id: 7,
+                tag: "Wind Power",
+                image:
+                  "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=2000",
+                title: "Wind Farm Fleet Maintenance",
+                category: "Renewables",
+                location: "Wind Energy Park",
+                description:
+                  "Multi-megawatt wind turbine generator preventive maintenance and gearbox inspections.",
+              },
+              {
+                id: 8,
+                tag: "Advisory",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586090/encotec-Assets/culture/encotec_team_collab.jpg",
+                title: "Technical Advisory & Engineering Review",
+                category: "O&M & Field Engineering",
+                location: "Engineering Headquarters",
+                description:
+                  "Cross-functional engineering reviews and performance improvement plans.",
+              },
+              {
+                id: 9,
+                tag: "Commissioning",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586096/encotec-Assets/culture/encotec_project_review.jpg",
+                title: "Project Planning & Commissioning Management",
+                category: "O&M & Field Engineering",
+                location: "Project Management Office",
+                description:
+                  "Project milestone tracking, contractor coordination, and commissioning timelines.",
+              },
+              {
+                id: 10,
+                tag: "Safety",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
+                title: "Field Safety & Technical Standards",
+                category: "O&M & Field Engineering",
+                location: "Industrial Facility",
+                description:
+                  "Field safety adherence and certified technicians managing complex energy assets.",
+              },
+              {
+                id: 11,
+                tag: "Overhaul",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1791265773/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
+                title: "Plant Modernization & Overhaul",
+                category: "Thermal Power",
+                location: "Generating Station",
+                description:
+                  "Major overhaul operations and equipment modernization for prolonged plant life.",
+              },
+              {
+                id: 12,
+                tag: "Asset Care",
+                image:
+                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787744211/encotec-Assets/svypxqn8inxodhe9gpj1.jpg",
+                title: "Industrial Infrastructure Stewardship",
+                category: "Thermal Power",
+                location: "Energy Complex",
+                description:
+                  "Comprehensive lifecycle stewardship of critical energy generation assets.",
+              },
+            ],
+          },
+        },
+      });
+
+      // 3. GalleryCTA
+      await prisma.section.create({
+        data: {
+          pageId: createdPage.id,
+          type: "GalleryCTA",
+          order: 2,
+          content: {
+            heading: "Ready to Elevate Your Energy Asset Performance?",
+            description:
+              "Partner with 350+ specialized engineers and 2200+ trained personnel dedicated to zero downtime, safety, and operational mastery.",
+            buttonText: "Discuss Your Project",
+            buttonLink: "/contact",
+          },
+        },
+      });
+      console.log("Created Gallery sections");
+    }
   }
 
-  // 5. Navigation Links
+    // 5. Navigation Links
   const navLinks = [
     {
       label: "About",
@@ -4179,67 +4451,164 @@ async function main() {
     {
       label: "Services",
       url: "/services",
-      type: "Main Link",
+      type: "Dropdown",
       order: 2,
       isStatic: true,
     },
     {
       label: "Insights",
       url: "/insights",
-      type: "Main Link",
+      type: "Dropdown",
       order: 3,
+      isStatic: true,
+    },
+    {
+      label: "Gallery",
+      url: "/gallery",
+      type: "Main Link",
+      order: 4,
       isStatic: true,
     },
     {
       label: "Careers",
       url: "/careers",
       type: "Main Link",
-      order: 4,
+      order: 5,
       isStatic: true,
     },
     {
       label: "Certifications",
       url: "/certifications",
       type: "Main Link",
-      order: 5,
+      order: 6,
       isStatic: true,
     },
     {
       label: "Leadership",
       url: "/leadership",
       type: "Main Link",
-      order: 6,
+      order: 7,
       isStatic: true,
     },
     {
       label: "Contact Us",
       url: "/contact",
       type: "Main Link",
-      order: 7,
+      order: 8,
       isStatic: true,
     },
     {
       label: "Privacy Policy",
       url: "/privacy-policy",
       type: "Footer Link",
-      order: 8,
+      order: 9,
       isStatic: true,
     },
     {
       label: "Cookie Policy",
       url: "/cookie-policy",
       type: "Footer Link",
-      order: 9,
+      order: 10,
       isStatic: true,
     },
   ];
 
+  const createdNavLinks = {};
   for (const link of navLinks) {
-    await prisma.navLink.create({
+    const created = await prisma.navLink.create({
       data: link,
     });
+    createdNavLinks[link.label] = created;
   }
-  console.log("Created navigation links");
+
+    // Sub links under Services
+  const servicesParentId = createdNavLinks["Services"]?.id || "-";
+  const servicesSubLinks = [
+    {
+      label: "Project Management",
+      url: "/services/project-management",
+      type: "Sub-link",
+      parent: servicesParentId,
+      order: 1,
+      isStatic: true,
+    },
+    {
+      label: "Power Generation (O&M)",
+      url: "/services/power-generation",
+      type: "Sub-link",
+      parent: servicesParentId,
+      order: 2,
+      isStatic: true,
+    },
+    {
+      label: "Construction, Commissioning & Relocation",
+      url: "/services/construction-commissioning",
+      type: "Sub-link",
+      parent: servicesParentId,
+      order: 3,
+      isStatic: true,
+    },
+    {
+      label: "Technical Advisory & Performance Audits",
+      url: "/services/technical-advisory",
+      type: "Sub-link",
+      parent: servicesParentId,
+      order: 4,
+      isStatic: true,
+    },
+    {
+      label: "Due Diligence & Asset Health",
+      url: "/services/due-diligence",
+      type: "Sub-link",
+      parent: servicesParentId,
+      order: 5,
+      isStatic: true,
+    },
+    {
+      label: "Value-Added Services",
+      url: "/services/value-added",
+      type: "Sub-link",
+      parent: servicesParentId,
+      order: 6,
+      isStatic: true,
+    },
+  ];
+  for (const sub of servicesSubLinks) {
+    await prisma.navLink.create({ data: sub });
+  }
+
+  // Sub links under Insights
+  const insightsParentId = createdNavLinks["Insights"]?.id || "-";
+  const subLinks = [
+    {
+      label: "Case Studies",
+      url: "/insights/case-studies",
+      type: "Sub-link",
+      parent: insightsParentId,
+      order: 1,
+      isStatic: true,
+    },
+    {
+      label: "News & Updates",
+      url: "/insights/news-updates",
+      type: "Sub-link",
+      parent: insightsParentId,
+      order: 2,
+      isStatic: true,
+    },
+    {
+      label: "Blogs & Articles",
+      url: "/insights/blogs-articles",
+      type: "Sub-link",
+      parent: insightsParentId,
+      order: 3,
+      isStatic: true,
+    },
+  ];
+  for (const sub of subLinks) {
+    await prisma.navLink.create({ data: sub });
+  }
+  console.log("Created navigation links and sublinks");
 
   console.log("Seeding complete successfully!");
 }

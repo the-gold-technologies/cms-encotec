@@ -99,6 +99,7 @@ export function FeaturedInsightCMS() {
               name="badgeLabel"
               value={formData.badgeLabel}
               onChange={handleChange}
+              placeholder="e.g. Featured Achievement"
               required
             />
             <InputField
@@ -106,6 +107,7 @@ export function FeaturedInsightCMS() {
               name="btnLabel"
               value={formData.btnLabel}
               onChange={handleChange}
+              placeholder="e.g. Read Full Story"
               required
             />
           </div>
@@ -116,6 +118,7 @@ export function FeaturedInsightCMS() {
               name="latestArticleSlug"
               value={formData.latestArticleSlug}
               onChange={handleChange}
+              placeholder="e.g. encotec-takes-over-om-3x660mw-supercritical-thermal-power-plant-ppgcl"
               required
             />
             <ImagePickerField
@@ -131,6 +134,7 @@ export function FeaturedInsightCMS() {
             name="latestArticleTitle"
             value={formData.latestArticleTitle}
             onChange={handleChange}
+            placeholder="e.g. ENCOTEC Takes Over O&M of 3 X 660 MW Supercritical Thermal Power Plant at PPGCL, Prayagraj"
             required
           />
           <TextAreaField
@@ -138,6 +142,7 @@ export function FeaturedInsightCMS() {
             name="latestArticleSummary"
             value={formData.latestArticleSummary}
             onChange={handleChange}
+            placeholder="e.g. ENCOTEC has officially taken over the Operation & Maintenance of BTG + BOP + C&I systems for the 3 X 660 MW Supercritical Coal-based Thermal Power Plant..."
             rows={3}
             required
           />
@@ -147,12 +152,14 @@ export function FeaturedInsightCMS() {
               name="latestArticleDate"
               value={formData.latestArticleDate}
               onChange={handleChange}
+              placeholder="e.g. October 1, 2026"
             />
             <InputField
               label="Featured Location"
               name="latestArticleLocation"
               value={formData.latestArticleLocation}
               onChange={handleChange}
+              placeholder="e.g. Prayagraj, Uttar Pradesh, India"
             />
           </div>
           <div className="flex justify-end pt-4 border-t border-gray-50">

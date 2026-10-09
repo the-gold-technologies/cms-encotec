@@ -14,6 +14,37 @@ import { uploadFiles } from "@/lib/uploadHelpers";
 
 const defaultFormData = {
   emptyMessage: "",
+  caseStudiesTagline: "Proven Field Engineering",
+  caseStudiesHeading: "Case Studies",
+  caseStudiesSubtitle: "Real-world plant turnarounds, commissioning feats, and efficiency audits across thermal and renewable infrastructure.",
+  caseStudiesViewAllText: "View All Case Studies",
+
+  newsTagline: "Corporate & Industry Updates",
+  newsHeading: "News & Announcements",
+  newsSubtitle: "Stay updated with corporate milestones, contract awards, and energy sector developments.",
+  newsViewAllText: "View All News",
+
+  blogsTagline: "Engineering Thought Leadership",
+  blogsHeading: "Blogs & Technical Articles",
+  blogsSubtitle: "Insightful engineering commentary on the owner’s mindset, the renewable transition, and critical utility care.",
+  blogsViewAllText: "View All Articles",
+  caseStudiesCtaTagline: "Have a Complex Power Asset Challenge?",
+  caseStudiesCtaHeading: "Let our engineering specialists review your plant specs.",
+  caseStudiesCtaDescription: "From supercritical boiler turnarounds to EHV substation diagnostics, Encotec delivers owner-mindset stewardship for mission-critical infrastructure.",
+  caseStudiesCtaButtonText: "Contact Our Engineers",
+  caseStudiesCtaButtonLink: "/contact",
+
+  newsCtaTagline: "Press & Media Relations",
+  newsCtaHeading: "Need official commentary or executive interviews?",
+  newsCtaDescription: "Reach out to Encotec’s communications office for official statements, media packs, and event participation.",
+  newsCtaButtonText: "Get In Touch",
+  newsCtaButtonLink: "/contact",
+
+  blogsCtaTagline: "Engineering Thought Leadership",
+  blogsCtaHeading: "Want deeper technical insights directly in your inbox?",
+  blogsCtaDescription: "Connect with our advisory teams to receive whitepapers, turbine performance analyses, and power grid modernization frameworks.",
+  blogsCtaButtonText: "Contact Advisory Team",
+  blogsCtaButtonLink: "/contact",
   articles: [
     {
       id: 1,
@@ -532,6 +563,10 @@ export function ArticlesListCMS() {
       .catch(console.error);
   }, []);
 
+  const handleConfigFieldChange = (field: string, value: string) => {
+    setFormData((prev: any) => ({ ...prev, [field]: value }));
+  };
+
   const handleEmptyMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setFormData((prev) => ({ ...prev, emptyMessage: value }));
@@ -657,7 +692,10 @@ export function ArticlesListCMS() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           section: "ArticlesList",
-          content: { articles: cleanArticles },
+          content: {
+            ...formData,
+            articles: cleanArticles,
+          },
         }),
       });
       const json = await res.json();
@@ -712,8 +750,234 @@ export function ArticlesListCMS() {
             name="emptyMessage"
             value={formData.emptyMessage || ""}
             onChange={handleEmptyMessageChange}
+            placeholder="e.g. No insights found for this category."
             required
           />
+
+          <div className="p-6 bg-gray-50/60 rounded-xl border border-gray-200 flex flex-col gap-6">
+            <h4 className="text-sm font-bold text-gray-900 border-b border-gray-200 pb-2">
+              Category Sections Headings & Descriptions (Overview & Category Pages)
+            </h4>
+
+            {/* Case Studies */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <InputField
+                label="Case Studies Tagline"
+                name="caseStudiesTagline"
+                value={(formData as any).caseStudiesTagline || ""}
+                onChange={(e) => handleConfigFieldChange("caseStudiesTagline", e.target.value)}
+                placeholder="e.g. Proven Field Engineering"
+              />
+              <InputField
+                label="Case Studies Section Heading"
+                name="caseStudiesHeading"
+                value={(formData as any).caseStudiesHeading || ""}
+                onChange={(e) => handleConfigFieldChange("caseStudiesHeading", e.target.value)}
+                placeholder="e.g. Case Studies"
+              />
+              <InputField
+                label="Case Studies View All Button Label"
+                name="caseStudiesViewAllText"
+                value={(formData as any).caseStudiesViewAllText || ""}
+                onChange={(e) => handleConfigFieldChange("caseStudiesViewAllText", e.target.value)}
+                placeholder="e.g. View All Case Studies"
+              />
+              <div className="md:col-span-2">
+                <TextAreaField
+                  label="Case Studies Subtitle / Description"
+                  name="caseStudiesSubtitle"
+                  value={(formData as any).caseStudiesSubtitle || ""}
+                  onChange={(e) => handleConfigFieldChange("caseStudiesSubtitle", e.target.value)}
+                  placeholder="e.g. Real-world plant turnarounds, commissioning feats, and efficiency audits across thermal and renewable infrastructure."
+                />
+              </div>
+              {/* Case Studies Subpage Bottom CTA Banner */}
+              <div className="md:col-span-2 pt-2 border-t border-gray-100 flex flex-col gap-3">
+                <span className="text-xs font-bold text-brand-pink uppercase tracking-wider">Case Studies Page Bottom CTA Banner</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="CTA Tagline"
+                    value={(formData as any).caseStudiesCtaTagline || ""}
+                    onChange={(e) => handleConfigFieldChange("caseStudiesCtaTagline", e.target.value)}
+                    placeholder="e.g. Have a Complex Power Asset Challenge?"
+                  />
+                  <InputField
+                    label="CTA Heading"
+                    value={(formData as any).caseStudiesCtaHeading || ""}
+                    onChange={(e) => handleConfigFieldChange("caseStudiesCtaHeading", e.target.value)}
+                    placeholder="e.g. Let our engineering specialists review your plant specs."
+                  />
+                  <InputField
+                    label="CTA Button Label"
+                    value={(formData as any).caseStudiesCtaButtonText || ""}
+                    onChange={(e) => handleConfigFieldChange("caseStudiesCtaButtonText", e.target.value)}
+                    placeholder="e.g. Contact Our Engineers"
+                  />
+                  <InputField
+                    label="CTA Button Link URL"
+                    value={(formData as any).caseStudiesCtaButtonLink || ""}
+                    onChange={(e) => handleConfigFieldChange("caseStudiesCtaButtonLink", e.target.value)}
+                    placeholder="e.g. /contact"
+                  />
+                  <div className="md:col-span-2">
+                    <TextAreaField
+                      label="CTA Description Summary"
+                      value={(formData as any).caseStudiesCtaDescription || ""}
+                      onChange={(e) => handleConfigFieldChange("caseStudiesCtaDescription", e.target.value)}
+                      placeholder="e.g. From supercritical boiler turnarounds to EHV substation diagnostics, Encotec delivers owner-mindset stewardship for mission-critical infrastructure."
+                      rows={2}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* News */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+              <InputField
+                label="News Tagline"
+                name="newsTagline"
+                value={(formData as any).newsTagline || ""}
+                onChange={(e) => handleConfigFieldChange("newsTagline", e.target.value)}
+                placeholder="e.g. Corporate & Industry Updates"
+              />
+              <InputField
+                label="News Section Heading"
+                name="newsHeading"
+                value={(formData as any).newsHeading || ""}
+                onChange={(e) => handleConfigFieldChange("newsHeading", e.target.value)}
+                placeholder="e.g. News & Announcements"
+              />
+              <InputField
+                label="News View All Button Label"
+                name="newsViewAllText"
+                value={(formData as any).newsViewAllText || ""}
+                onChange={(e) => handleConfigFieldChange("newsViewAllText", e.target.value)}
+                placeholder="e.g. View All News"
+              />
+              <div className="md:col-span-2">
+                <TextAreaField
+                  label="News Subtitle / Description"
+                  name="newsSubtitle"
+                  value={(formData as any).newsSubtitle || ""}
+                  onChange={(e) => handleConfigFieldChange("newsSubtitle", e.target.value)}
+                  placeholder="e.g. Stay updated with corporate milestones, contract awards, and energy sector developments."
+                />
+              </div>
+              {/* News Subpage Bottom CTA Banner */}
+              <div className="md:col-span-2 pt-2 border-t border-gray-100 flex flex-col gap-3">
+                <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">News & Updates Page Bottom CTA Banner</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="CTA Tagline"
+                    value={(formData as any).newsCtaTagline || ""}
+                    onChange={(e) => handleConfigFieldChange("newsCtaTagline", e.target.value)}
+                    placeholder="e.g. Press & Media Relations"
+                  />
+                  <InputField
+                    label="CTA Heading"
+                    value={(formData as any).newsCtaHeading || ""}
+                    onChange={(e) => handleConfigFieldChange("newsCtaHeading", e.target.value)}
+                    placeholder="e.g. Need official commentary or executive interviews?"
+                  />
+                  <InputField
+                    label="CTA Button Label"
+                    value={(formData as any).newsCtaButtonText || ""}
+                    onChange={(e) => handleConfigFieldChange("newsCtaButtonText", e.target.value)}
+                    placeholder="e.g. Get In Touch"
+                  />
+                  <InputField
+                    label="CTA Button Link URL"
+                    value={(formData as any).newsCtaButtonLink || ""}
+                    onChange={(e) => handleConfigFieldChange("newsCtaButtonLink", e.target.value)}
+                    placeholder="e.g. /contact"
+                  />
+                  <div className="md:col-span-2">
+                    <TextAreaField
+                      label="CTA Description Summary"
+                      value={(formData as any).newsCtaDescription || ""}
+                      onChange={(e) => handleConfigFieldChange("newsCtaDescription", e.target.value)}
+                      placeholder="e.g. Reach out to Encotec’s communications office for official statements, media packs, and event participation."
+                      rows={2}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Blogs */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+              <InputField
+                label="Blogs Tagline"
+                name="blogsTagline"
+                value={(formData as any).blogsTagline || ""}
+                onChange={(e) => handleConfigFieldChange("blogsTagline", e.target.value)}
+                placeholder="e.g. Engineering Thought Leadership"
+              />
+              <InputField
+                label="Blogs Section Heading"
+                name="blogsHeading"
+                value={(formData as any).blogsHeading || ""}
+                onChange={(e) => handleConfigFieldChange("blogsHeading", e.target.value)}
+                placeholder="e.g. Blogs & Technical Articles"
+              />
+              <InputField
+                label="Blogs View All Button Label"
+                name="blogsViewAllText"
+                value={(formData as any).blogsViewAllText || ""}
+                onChange={(e) => handleConfigFieldChange("blogsViewAllText", e.target.value)}
+                placeholder="e.g. View All Articles"
+              />
+              <div className="md:col-span-2">
+                <TextAreaField
+                  label="Blogs Subtitle / Description"
+                  name="blogsSubtitle"
+                  value={(formData as any).blogsSubtitle || ""}
+                  onChange={(e) => handleConfigFieldChange("blogsSubtitle", e.target.value)}
+                  placeholder="e.g. Insightful engineering commentary on the owner’s mindset, the renewable transition, and critical utility care."
+                />
+              </div>
+              {/* Blogs Subpage Bottom CTA Banner */}
+              <div className="md:col-span-2 pt-2 border-t border-gray-100 flex flex-col gap-3">
+                <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Blogs & Articles Page Bottom CTA Banner</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="CTA Tagline"
+                    value={(formData as any).blogsCtaTagline || ""}
+                    onChange={(e) => handleConfigFieldChange("blogsCtaTagline", e.target.value)}
+                    placeholder="e.g. Engineering Thought Leadership"
+                  />
+                  <InputField
+                    label="CTA Heading"
+                    value={(formData as any).blogsCtaHeading || ""}
+                    onChange={(e) => handleConfigFieldChange("blogsCtaHeading", e.target.value)}
+                    placeholder="e.g. Want deeper technical insights directly in your inbox?"
+                  />
+                  <InputField
+                    label="CTA Button Label"
+                    value={(formData as any).blogsCtaButtonText || ""}
+                    onChange={(e) => handleConfigFieldChange("blogsCtaButtonText", e.target.value)}
+                    placeholder="e.g. Contact Advisory Team"
+                  />
+                  <InputField
+                    label="CTA Button Link URL"
+                    value={(formData as any).blogsCtaButtonLink || ""}
+                    onChange={(e) => handleConfigFieldChange("blogsCtaButtonLink", e.target.value)}
+                    placeholder="e.g. /contact"
+                  />
+                  <div className="md:col-span-2">
+                    <TextAreaField
+                      label="CTA Description Summary"
+                      value={(formData as any).blogsCtaDescription || ""}
+                      onChange={(e) => handleConfigFieldChange("blogsCtaDescription", e.target.value)}
+                      placeholder="e.g. Connect with our advisory teams to receive whitepapers, turbine performance analyses, and power grid modernization frameworks."
+                      rows={2}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Top Control Bar: Articles Count, Filters & Add Button */}
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200 pb-4">
@@ -828,6 +1092,7 @@ export function ArticlesListCMS() {
                             onChange={(e) =>
                               handleArticleFieldChange(art.id, "title", e.target.value)
                             }
+                            placeholder="e.g. Obra 'C' Thermal Plant Erection & Commissioning"
                             required
                           />
 
@@ -860,6 +1125,7 @@ export function ArticlesListCMS() {
                             onChange={(e) =>
                               handleArticleFieldChange(art.id, "slug", e.target.value)
                             }
+                            placeholder="e.g. obra-c-thermal-success"
                             required
                           />
 
@@ -880,6 +1146,7 @@ export function ArticlesListCMS() {
                             onChange={(e) =>
                               handleArticleFieldChange(art.id, "date", e.target.value)
                             }
+                            placeholder="e.g. August 17, 2026"
                             required
                           />
 
@@ -889,6 +1156,7 @@ export function ArticlesListCMS() {
                             onChange={(e) =>
                               handleArticleFieldChange(art.id, "location", e.target.value)
                             }
+                            placeholder="e.g. Uttar Pradesh, India"
                           />
 
                           <InputField
@@ -897,6 +1165,7 @@ export function ArticlesListCMS() {
                             onChange={(e) =>
                               handleArticleFieldChange(art.id, "readTime", e.target.value)
                             }
+                            placeholder="e.g. 6 min read"
                           />
                         </div>
 
@@ -906,6 +1175,7 @@ export function ArticlesListCMS() {
                           onChange={(e) =>
                             handleArticleFieldChange(art.id, "description", e.target.value)
                           }
+                          placeholder="e.g. Overview summary of the project execution, milestones, and engineering impact..."
                           rows={2}
                           required
                         />

@@ -80,6 +80,7 @@ export function NewsletterSectionCMS() {
             name="tagline"
             value={formData.tagline}
             onChange={handleChange}
+            placeholder="e.g. Stay Connected with Energy Insights"
             required
           />
           <InputField
@@ -87,6 +88,7 @@ export function NewsletterSectionCMS() {
             name="heading"
             value={formData.heading}
             onChange={handleChange}
+            placeholder="e.g. Subscribe to Encotec Quarterly Engineering Bulletin"
             required
           />
           <TextAreaField
@@ -94,6 +96,7 @@ export function NewsletterSectionCMS() {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            placeholder="e.g. Receive curated case studies, technical whitepapers, and asset optimization strategies directly in your inbox."
             rows={2}
             required
           />
@@ -102,6 +105,7 @@ export function NewsletterSectionCMS() {
             name="privacyNote"
             value={formData.privacyNote}
             onChange={handleChange}
+            placeholder="e.g. We respect your privacy. Unsubscribe at any time."
             required
           />
           <div className="flex justify-end pt-4 border-t border-gray-50">

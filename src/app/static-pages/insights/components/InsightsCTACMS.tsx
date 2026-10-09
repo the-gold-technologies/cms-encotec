@@ -82,6 +82,7 @@ export function InsightsCTACMS() {
             name="ctaHeading"
             value={formData.ctaHeading}
             onChange={handleChange}
+            placeholder="e.g. Empowering Global Energy Asset Performance"
             required
           />
           <TextAreaField
@@ -89,6 +90,7 @@ export function InsightsCTACMS() {
             name="ctaSubtitle"
             value={formData.ctaSubtitle}
             onChange={handleChange}
+            placeholder="e.g. Partner with our multidisciplinary engineering teams for turnkey plant operations, modernization, and advisory."
             rows={2}
             required
           />
@@ -98,6 +100,7 @@ export function InsightsCTACMS() {
               name="primaryBtnLabel"
               value={formData.primaryBtnLabel}
               onChange={handleChange}
+              placeholder="e.g. Discuss Your Project"
               required
             />
             <InputField
@@ -105,6 +108,7 @@ export function InsightsCTACMS() {
               name="primaryBtnUrl"
               value={formData.primaryBtnUrl}
               onChange={handleChange}
+              placeholder="e.g. /contact"
               required
             />
           </div>
@@ -114,6 +118,7 @@ export function InsightsCTACMS() {
               name="secondaryBtnLabel"
               value={formData.secondaryBtnLabel}
               onChange={handleChange}
+              placeholder="e.g. Explore Capabilities"
               required
             />
             <InputField
@@ -121,6 +126,7 @@ export function InsightsCTACMS() {
               name="secondaryBtnUrl"
               value={formData.secondaryBtnUrl}
               onChange={handleChange}
+              placeholder="e.g. /services"
               required
             />
           </div>

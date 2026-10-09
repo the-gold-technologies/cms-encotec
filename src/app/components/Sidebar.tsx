@@ -50,6 +50,7 @@ const sidebarLinks: SidebarLink[] = [
       { title: "Careers", href: "/static-pages/careers" },
       { title: "Certifications", href: "/static-pages/certifications" },
       { title: "Leadership", href: "/static-pages/leadership" },
+      { title: "Gallery", href: "/static-pages/gallery" },
       { title: "Contact", href: "/static-pages/contact" },
       { title: "Privacy Policy", href: "/static-pages/privacy-policy" },
       { title: "Cookie Policy", href: "/static-pages/cookie-policy" },

@@ -57,7 +57,7 @@ const mockPages: any[] = [
             { value: "10+ GW", label: "ACTIVE O&M" },
           ],
           images: [
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+            "https://res.cloudinary.com/nksowtej/image/upload/v1791883271/encotec-Assets/hero/supercritical_thermal_plant.jpg",
             "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=1200",
           ],
         },
@@ -82,7 +82,7 @@ const mockPages: any[] = [
           ctaLabel: "Explore Our Story",
           ctaUrl: "/about",
           image:
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
+            "https://res.cloudinary.com/nksowtej/image/upload/v1791883262/encotec-Assets/about/human_centric_engineer.jpg",
           imageAlt:
             "Encotec Indian power plant engineer in thermal generation facility",
           badgeValue: "Est. 2009",
@@ -130,7 +130,7 @@ const mockPages: any[] = [
                 "We operate and maintain power-generation assets with a focus on availability, safety, preventive maintenance and operational efficiency across large thermal plants and substations.",
               icon: "Flame",
               image:
-                "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+                "https://res.cloudinary.com/nksowtej/image/upload/v1791883271/encotec-Assets/hero/supercritical_thermal_plant.jpg",
               ctaLabel: "Explore Power Plant O&M",
               ctaUrl: "/services/power-generation",
             },
@@ -152,7 +152,7 @@ const mockPages: any[] = [
                 "Before acquiring, relocating or upgrading plant assets, our independent due diligence and Residual Life Assessments (RLA) provide the objective data needed to understand true condition and mitigate investment risks.",
               icon: "ShieldCheck",
               image:
-                "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+                "https://res.cloudinary.com/nksowtej/image/upload/v1791883266/encotec-Assets/culture/encotec_site_inspection.jpg",
               ctaLabel: "Explore Due Diligence & Asset Health",
               ctaUrl: "/services/due-diligence",
             },

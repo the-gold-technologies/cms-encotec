@@ -31,7 +31,7 @@ async function main() {
       siteTitle: "Encotec Energy - Power Plant O&M and Engineering Services",
       siteDescription: "Engineering & Project Management Services",
       favicon:
-        "https://res.cloudinary.com/dpa93copz/image/upload/v1790322872/encotec-Assets/l1f3ivu0zmuwydqdf2yg.png",
+        "https://res.cloudinary.com/nksowtej/image/upload/v1791883261/encotec-Assets/l1f3ivu0zmuwydqdf2yg.png",
       googleAnalyticsId: "",
       gtmId: "",
       searchConsoleId: "",
@@ -294,7 +294,7 @@ async function main() {
               { value: "10+ GW", label: "ACTIVE O&M" },
             ],
             images: [
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+              "https://res.cloudinary.com/nksowtej/image/upload/v1791883271/encotec-Assets/hero/supercritical_thermal_plant.jpg",
               "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=1200",
             ],
           },
@@ -321,7 +321,7 @@ async function main() {
             ctaLabel: "Explore Our Story",
             ctaUrl: "/about",
             image:
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
+              "https://res.cloudinary.com/nksowtej/image/upload/v1791883262/encotec-Assets/about/human_centric_engineer.jpg",
             imageAlt:
               "Encotec Indian power plant engineer in thermal generation facility",
             badgeValue: "Est. 2009",
@@ -366,7 +366,7 @@ async function main() {
                   "We operate and maintain power-generation assets with a focus on availability, safety, preventive maintenance and operational efficiency across large thermal plants and substations.",
                 icon: "Flame",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883271/encotec-Assets/hero/supercritical_thermal_plant.jpg",
                 ctaLabel: "Explore Power Plant O&M",
                 ctaUrl: "/services/power-generation",
               },
@@ -388,7 +388,7 @@ async function main() {
                   "Before acquiring, relocating or upgrading plant assets, our independent due diligence and Residual Life Assessments (RLA) provide the objective data needed to understand true condition and mitigate investment risks.",
                 icon: "ShieldCheck",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883266/encotec-Assets/culture/encotec_site_inspection.jpg",
                 ctaLabel: "Explore Due Diligence & Asset Health",
                 ctaUrl: "/services/due-diligence",
               },
@@ -709,182 +709,182 @@ async function main() {
               {
                 name: "Moser Baer",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125550/encotec-Assets/logos/moserbaer.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883222/encotec-Assets/logos/moserbaer.png",
               },
               {
                 name: "Reliance Power",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128795/encotec-Assets/logos/reliance_power.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883248/encotec-Assets/logos/reliance_power.png",
               },
               {
                 name: "Cairn India",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126021/encotec-Assets/logos/cairn.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883230/encotec-Assets/logos/cairn.png",
               },
               {
                 name: "Electrical Inspectorate",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128682/encotec-Assets/logos/electrical_inspectorate.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883245/encotec-Assets/logos/electrical_inspectorate.png",
               },
               {
                 name: "Coastal Gujarat Power Limited (CGPL)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127628/encotec-Assets/logos/cgpl.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883235/encotec-Assets/logos/cgpl.png",
               },
               {
                 name: "Thermax",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125771/encotec-Assets/logos/thermax.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883224/encotec-Assets/logos/thermax.png",
               },
               {
                 name: "Tata Power",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127626/encotec-Assets/logos/tata_power.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883234/encotec-Assets/logos/tata_power.png",
               },
               {
                 name: "Adani Group",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125541/encotec-Assets/logos/adani.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883217/encotec-Assets/logos/adani.png",
               },
               {
                 name: "Invensys Controls",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128796/encotec-Assets/logos/invensys.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883248/encotec-Assets/logos/invensys.png",
               },
               {
                 name: "Sterlite Energy",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128683/encotec-Assets/logos/sterlite_energy.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883245/encotec-Assets/logos/sterlite_energy.png",
               },
               {
                 name: "Action Ispat & Power",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128564/encotec-Assets/logos/action_ispat.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883244/encotec-Assets/logos/action_ispat.png",
               },
               {
                 name: "GMR Group",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125548/encotec-Assets/logos/gmr.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883221/encotec-Assets/logos/gmr.png",
               },
               {
                 name: "Adhunik Group",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128797/encotec-Assets/logos/adhunik.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883249/encotec-Assets/logos/adhunik.png",
               },
               {
                 name: "Jaypee Group",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126335/encotec-Assets/logos/jaypee.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883231/encotec-Assets/logos/jaypee.png",
               },
               {
                 name: "Odisha Power Generation Corporation",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127782/encotec-Assets/logos/opgc.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883237/encotec-Assets/logos/opgc.png",
               },
               {
                 name: "Jindal Steel & Power",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125913/encotec-Assets/logos/jindal.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883225/encotec-Assets/logos/jindal.png",
               },
               {
                 name: "Alstom",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125544/encotec-Assets/logos/alstom.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883219/encotec-Assets/logos/alstom.png",
               },
               {
                 name: "Bharat Oman Refineries Limited",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125769/encotec-Assets/logos/borl.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883223/encotec-Assets/logos/borl.png",
               },
               {
                 name: "Indiabulls Power",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125917/encotec-Assets/logos/indiabulls.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883227/encotec-Assets/logos/indiabulls.png",
               },
               {
                 name: "AREVA",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125916/encotec-Assets/logos/areva.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883226/encotec-Assets/logos/areva.png",
               },
               {
                 name: "ABB",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125539/encotec-Assets/logos/abb.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883216/encotec-Assets/logos/abb.png",
               },
               {
                 name: "JSW Energy",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125911/encotec-Assets/logos/jsw.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883224/encotec-Assets/logos/jsw.png",
               },
               {
                 name: "KSK Energy",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127977/encotec-Assets/logos/ksk.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883239/encotec-Assets/logos/ksk.png",
               },
               {
                 name: "Noida International Airport",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127898/encotec-Assets/logos/noida_airport.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883238/encotec-Assets/logos/noida_airport.png",
               },
               {
                 name: "Sterling and Wilson",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128011/encotec-Assets/logos/sterling_wilson.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883240/encotec-Assets/logos/sterling_wilson.png",
               },
               {
                 name: "IL&FS",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125932/encotec-Assets/logos/il_fs.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883229/encotec-Assets/logos/il_fs.png",
               },
               {
                 name: "Ideal Energy Projects (IEPL)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128798/encotec-Assets/logos/iepl.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883250/encotec-Assets/logos/iepl.png",
               },
               {
                 name: "GE Power",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125546/encotec-Assets/logos/ge.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883220/encotec-Assets/logos/ge.png",
               },
               {
                 name: "Hiranmaye Energy",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128327/encotec-Assets/logos/hiranmaye.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883242/encotec-Assets/logos/hiranmaye.png",
               },
               {
                 name: "MP Power",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128709/encotec-Assets/logos/mp_wz.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883247/encotec-Assets/logos/mp_wz.png",
               },
               {
                 name: "Coastal Energen",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128799/encotec-Assets/logos/coastal_energen.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883252/encotec-Assets/logos/coastal_energen.png",
               },
               {
                 name: "Sterlite",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787127718/encotec-Assets/logos/sterlite.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883236/encotec-Assets/logos/sterlite.png",
               },
               {
                 name: "Nabha Power Limited (NPL)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128800/encotec-Assets/logos/nabha_power.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883253/encotec-Assets/logos/nabha_power.png",
               },
               {
                 name: "Sea Eagles",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787128802/encotec-Assets/logos/sea_eagles.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883254/encotec-Assets/logos/sea_eagles.png",
               },
               {
                 name: "WBPDCL",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787126338/encotec-Assets/logos/wbpdcl.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883232/encotec-Assets/logos/wbpdcl.png",
               },
               {
                 name: "UPRVUNL",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787125921/encotec-Assets/logos/uprvunl.png",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883228/encotec-Assets/logos/uprvunl.png",
               },
             ],
           },
@@ -924,17 +924,17 @@ async function main() {
             certificates: [
               {
                 alt: "ISO 9001:2015",
-                src: "https://res.cloudinary.com/dpa93copz/image/upload/v1789386694/encotec-Assets/u2hnzxahnlqpe1rsgh2h.png",
+                src: "https://res.cloudinary.com/nksowtej/image/upload/v1791883258/encotec-Assets/u2hnzxahnlqpe1rsgh2h.png",
                 description: "QUALITY MANAGEMENT SYSTEM",
               },
               {
                 alt: "ISO 14001:2015",
-                src: "https://res.cloudinary.com/dpa93copz/image/upload/v1789386695/encotec-Assets/gke8cxzlk56pimretbul.png",
+                src: "https://res.cloudinary.com/nksowtej/image/upload/v1791883259/encotec-Assets/gke8cxzlk56pimretbul.png",
                 description: "ENVIRONMENTAL MANAGEMENT SYSTEM",
               },
               {
                 alt: "ISO 45001:2018",
-                src: "https://res.cloudinary.com/dpa93copz/image/upload/v1789386697/encotec-Assets/g2miviz99upogv9ys9ws.png",
+                src: "https://res.cloudinary.com/nksowtej/image/upload/v1791883260/encotec-Assets/g2miviz99upogv9ys9ws.png",
                 description: "OCCUPATIONAL HEALTH & SAFETY MANAGEMENT SYSTEM",
               },
             ],
@@ -1224,21 +1224,21 @@ async function main() {
                 name: "Arun Kumar Sarna",
                 bio: 'Arun Kumar Sarna is the Founder and CEO of Encotec Energy India, driving the company\'s vision to deliver comprehensive "shovel-to-socket" energy solutions globally. Under his leadership, Encotec has expanded across Thermal Power, Solar PV, and EHV Transmission & Distribution, embedding a signature "Owner’s Mindset" into the company\'s DNA.\n\nA pioneer in third-party O&M contracts in India, Mr. Sarna brings 40+ years of experience managing World Bank, KfW, and Japanese agency mega-projects. Globally, he has advised ESKOM (South Africa) and directed operations across Vietnam, Indonesia, and the Middle East.\n\nHe holds a Mechanical Engineering degree, a Master’s in Metallurgy from IIT Roorkee, and a PGDM from MDI Gurgaon, with executive certifications from Harvard Business School and IIT Mumbai.',
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296801/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883255/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
               },
               {
                 role: "Director",
                 name: "Rajan Saxena",
                 bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296802/encotech/leadership/rajan_saxena_white_bg.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883256/encotech/leadership/rajan_saxena_white_bg.jpg",
               },
               {
                 role: "Director",
                 name: "Rajeev Ahuja",
                 bio: "Rajeev Ahuja brings 38+ years of engineering and business management experience in the power and industrial sectors. As Director at Encotec, he leads corporate strategy, high-value contract bidding, proposals, commercial management, HR, Finance & Accounts, and P&L accountability.\n\nHe previously served in senior leadership roles at STEAG Energy Services India and Nicco Engineering, managing complete business cycles from opportunity identification to contract closeout.\n\nMr. Ahuja holds a Mechanical Engineering degree with international technical and business training in the UK and Thailand, having built and led BD teams of 25+ professionals.",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114348/encotech/leadership/rajeev_ahuja_white_bg.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883215/encotech/leadership/rajeev_ahuja_white_bg.jpg",
               },
             ],
           },
@@ -2203,7 +2203,7 @@ async function main() {
                 bio: 'Arun Kumar Sarna is the Founder and CEO of Encotec Energy India, driving the company\'s vision to deliver comprehensive "shovel-to-socket" energy solutions globally. Under his leadership, Encotec has expanded across Thermal Power, Solar PV, and EHV Transmission & Distribution, embedding a signature "Owner’s Mindset" into the company\'s DNA.\n\nA pioneer in third-party O&M contracts in India, Mr. Sarna brings 40+ years of experience managing World Bank, KfW, and Japanese agency mega-projects. Globally, he has advised ESKOM (South Africa) and directed operations across Vietnam, Indonesia, and the Middle East.\n\nHe holds a Mechanical Engineering degree, a Master’s in Metallurgy from IIT Roorkee, and a PGDM from MDI Gurgaon, with executive certifications from Harvard Business School and IIT Mumbai.',
                 tags: "Strategic Leadership, Business Development, Energy Infrastructure",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296801/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883255/encotech/leadership/arun_kumar_sarna_white_bg.jpg",
               },
               {
                 name: "Rajan Saxena",
@@ -2211,7 +2211,7 @@ async function main() {
                 bio: "Rajan Saxena is a senior energy-sector leader with 47 years of experience across thermal power, T&D, O&M services, plant overhauling, and Solar PV EPC. As Director at Encotec, he oversees operations, spare parts supply, modernization, and substation erection.\n\nPrior to Encotec, Mr. Saxena held senior leadership roles at global energy majors including GE T&D India, AREVA / Alstom, Skoda Power, DLF Power, and BHEL.\n\nHis expertise spans managing large service portfolios, full P&L accountability, EPC project execution, global procurement, logistics, and specialized repair facilities.",
                 tags: "Operations Management, Plant Commissioning, Asset Optimization",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787296802/encotech/leadership/rajan_saxena_white_bg.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883256/encotech/leadership/rajan_saxena_white_bg.jpg",
               },
               {
                 name: "Rajeev Ahuja",
@@ -2219,7 +2219,7 @@ async function main() {
                 bio: "Rajeev Ahuja brings 38+ years of engineering and business management experience in the power and industrial sectors. As Director at Encotec, he leads corporate strategy, high-value contract bidding, proposals, commercial management, HR, Finance & Accounts, and P&L accountability.\n\nHe previously served in senior leadership roles at STEAG Energy Services India and Nicco Engineering, managing complete business cycles from opportunity identification to contract closeout.\n\nMr. Ahuja holds a Mechanical Engineering degree with international technical and business training in the UK and Thailand, having built and led BD teams of 25+ professionals.",
                 tags: "Corporate Strategy, Business Development, Global Partnerships",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787114348/encotech/leadership/rajeev_ahuja_white_bg.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883215/encotech/leadership/rajeev_ahuja_white_bg.jpg",
               },
             ],
           },
@@ -2381,7 +2381,7 @@ async function main() {
             latestArticleSlug:
               "encotec-takes-over-om-3x660mw-supercritical-thermal-power-plant-ppgcl",
             latestArticleImage:
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1791265773/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
+              "https://res.cloudinary.com/nksowtej/image/upload/v1791883273/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
           },
         },
       });
@@ -2680,7 +2680,7 @@ async function main() {
                 location: "Prayagraj, Uttar Pradesh, India",
                 readTime: "2 min read",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1791265773/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883273/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
                 content: [
                   {
                     type: "paragraph",
@@ -2693,7 +2693,7 @@ async function main() {
                   {
                     type: "image",
                     image:
-                      "https://res.cloudinary.com/dpa93copz/image/upload/v1791265775/encotec-Assets/news/owax5vxcilst16qrnqxt.jpg",
+                      "https://res.cloudinary.com/nksowtej/image/upload/v1791883274/encotec-Assets/news/owax5vxcilst16qrnqxt.jpg",
                   },
                   {
                     type: "paragraph",
@@ -2842,7 +2842,7 @@ async function main() {
                 location: "",
                 readTime: "",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787744211/encotec-Assets/svypxqn8inxodhe9gpj1.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883257/encotec-Assets/svypxqn8inxodhe9gpj1.jpg",
                 content: [
                   {
                     type: "paragraph",
@@ -3602,32 +3602,32 @@ async function main() {
             galleryList: [
               {
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586090/encotec-Assets/culture/encotec_team_collab.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883264/encotec-Assets/culture/encotec_team_collab.jpg",
                 caption: "Technical Schematics & Site Collaboration",
               },
               {
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586091/encotec-Assets/culture/encotec_control_room.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883265/encotec-Assets/culture/encotec_control_room.jpg",
                 caption: "SCADA & DCS Control Room Operations",
               },
               {
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883266/encotec-Assets/culture/encotec_site_inspection.jpg",
                 caption: "Substation & Transmission Inspection",
               },
               {
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586093/encotec-Assets/culture/encotec_field_operations.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883267/encotec-Assets/culture/encotec_field_operations.jpg",
                 caption: "Precision Turbine & Generator Overhaul",
               },
               {
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586094/encotec-Assets/culture/encotec_solar_inspection.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883268/encotec-Assets/culture/encotec_solar_inspection.jpg",
                 caption: "Utility-Scale Solar Farm Diagnostics",
               },
               {
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586096/encotec-Assets/culture/encotec_project_review.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883270/encotec-Assets/culture/encotec_project_review.jpg",
                 caption: "Engineering & Project Reviews",
               },
             ],
@@ -3750,7 +3750,7 @@ async function main() {
                   "Universal Certification Services Private Limited (UCSPL)",
                 accreditation: "IAF & KAB (KAB-QC-80)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784530188/encotech/certificates/iso-9001-certificate.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883212/encotech/certificates/iso-9001-certificate.jpg",
                 scope:
                   "Designing, Consultancy, Engineering, Erection, Commissioning, Inspection, Testing, Operation and Maintenance of Plant and Machinery in Energy & Infrastructure Sector.",
               },
@@ -3766,7 +3766,7 @@ async function main() {
                   "Universal Certification Services Private Limited (UCSPL)",
                 accreditation: "IAF & KAB (KAB-EC-61)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784530189/encotech/certificates/iso-14001-certificate.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883213/encotech/certificates/iso-14001-certificate.jpg",
                 scope:
                   "Designing, Consultancy, Engineering, Erection, Commissioning, Inspection, Testing, Operation and Maintenance of Plant and Machinery in Energy & Infrastructure Sector.",
               },
@@ -3782,7 +3782,7 @@ async function main() {
                   "Universal Certification Services Private Limited (UCSPL)",
                 accreditation: "IAF & KAB (KAB-OC-61)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784530191/encotech/certificates/iso-45001-certificate.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883214/encotech/certificates/iso-45001-certificate.jpg",
                 scope:
                   "Designing, Consultancy, Engineering, Erection, Commissioning, Inspection, Testing, Operation and Maintenance of Plant and Machinery in Energy & Infrastructure Sector.",
               },
@@ -3798,7 +3798,7 @@ async function main() {
                   "Boiler Directorate, Government of Uttar Pradesh, Kanpur",
                 accreditation: "Indian Boiler Regulations (IBR 1950)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529235/encotech/certificates/ibr-boiler-approval-certificate.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883206/encotech/certificates/ibr-boiler-approval-certificate.jpg",
                 scope:
                   "Certificate of approval as Category 'Special Class (WP > 125 Kg/cm²)' Boiler Erector/Repairer and Steam/Feed Pipe Line Fabricator.",
               },
@@ -3814,7 +3814,7 @@ async function main() {
                   "Licensing Board, Industry, Energy & Labour Dept., Govt. of Maharashtra",
                 accreditation: "Govt. of Maharashtra Energy Dept.",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529236/encotech/certificates/maharashtra-electrical-license.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883207/encotech/certificates/maharashtra-electrical-license.jpg",
                 scope:
                   "Official License for execution of electrical contractor works and high-voltage power installations in Maharashtra.",
               },
@@ -3829,7 +3829,7 @@ async function main() {
                 issuer: "Labour Department, Govt. of NCT of Delhi",
                 accreditation: "Govt. of NCT of Delhi",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529237/encotech/certificates/delhi-electrical-license.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883208/encotech/certificates/delhi-electrical-license.jpg",
                 scope:
                   "Class-I Electrical Contractor Licence for electrical installation works across National Capital Territory of Delhi.",
               },
@@ -3844,7 +3844,7 @@ async function main() {
                 issuer: "ASTI - DIAL (GMRAA), New Delhi",
                 accreditation: "BCAS Accredited ASTI",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529238/encotech/certificates/avsec-induction-certificate.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883209/encotech/certificates/avsec-induction-certificate.jpg",
                 scope:
                   "Certification of AVSEC Induction Course completion for Aviation Security Compliance Officer at international airports.",
               },
@@ -3861,7 +3861,7 @@ async function main() {
                   "Bureau of Civil Aviation Security (BCAS), Govt. of India",
                 accreditation: "Ministry of Civil Aviation (MoCA)",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1784529239/encotech/certificates/bcas-airport-security-clearance.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883210/encotech/certificates/bcas-airport-security-clearance.jpg",
                 scope:
                   "Official Security Clearance for Encotec Energy India Pvt. Ltd. and its Directors as Auxiliary Service Provider at Airports.",
               },
@@ -4253,7 +4253,7 @@ async function main() {
             heroSubtitle:
               "Explore our operations across landmark power generation facilities, critical infrastructure overhauls, high-voltage transmission networks, and global engineering sites worldwide.",
             backgroundImage:
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+              "https://res.cloudinary.com/nksowtej/image/upload/v1791883271/encotec-Assets/hero/supercritical_thermal_plant.jpg",
             tab1Label: "3500+ MW Managed",
             tab2Label: "350+ Engineers",
             tab3Label: "Global Footprint",
@@ -4287,7 +4287,7 @@ async function main() {
                 id: 1,
                 tag: "BTG + BOP",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790592912/encotec-Assets/hero/supercritical_thermal_plant.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883271/encotec-Assets/hero/supercritical_thermal_plant.jpg",
                 title: "Supercritical Thermal Generation Unit",
                 category: "Thermal Power",
                 location: "Prayagraj Power Generation",
@@ -4298,7 +4298,7 @@ async function main() {
                 id: 2,
                 tag: "Field Service",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586093/encotec-Assets/culture/encotec_field_operations.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883267/encotec-Assets/culture/encotec_field_operations.jpg",
                 title: "Field Engineering Operations",
                 category: "O&M & Field Engineering",
                 location: "Power Generation Facility",
@@ -4309,7 +4309,7 @@ async function main() {
                 id: 3,
                 tag: "Solar O&M",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586094/encotec-Assets/culture/encotec_solar_inspection.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883268/encotec-Assets/culture/encotec_solar_inspection.jpg",
                 title: "Solar PV Park Inspection",
                 category: "Renewables",
                 location: "Utility Solar Facility",
@@ -4320,7 +4320,7 @@ async function main() {
                 id: 4,
                 tag: "Automation",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586091/encotec-Assets/culture/encotec_control_room.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883265/encotec-Assets/culture/encotec_control_room.jpg",
                 title: "Centralized SCADA & DCS Control",
                 category: "O&M & Field Engineering",
                 location: "Central Control Room",
@@ -4331,7 +4331,7 @@ async function main() {
                 id: 5,
                 tag: "Asset Health",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586092/encotec-Assets/culture/encotec_site_inspection.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883266/encotec-Assets/culture/encotec_site_inspection.jpg",
                 title: "On-Site Infrastructure Assessment",
                 category: "O&M & Field Engineering",
                 location: "Industrial Site",
@@ -4364,7 +4364,7 @@ async function main() {
                 id: 8,
                 tag: "Advisory",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586090/encotec-Assets/culture/encotec_team_collab.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883264/encotec-Assets/culture/encotec_team_collab.jpg",
                 title: "Technical Advisory & Engineering Review",
                 category: "O&M & Field Engineering",
                 location: "Engineering Headquarters",
@@ -4375,7 +4375,7 @@ async function main() {
                 id: 9,
                 tag: "Commissioning",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586096/encotec-Assets/culture/encotec_project_review.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883270/encotec-Assets/culture/encotec_project_review.jpg",
                 title: "Project Planning & Commissioning Management",
                 category: "O&M & Field Engineering",
                 location: "Project Management Office",
@@ -4386,7 +4386,7 @@ async function main() {
                 id: 10,
                 tag: "Safety",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1790586089/encotec-Assets/about/human_centric_engineer.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883262/encotec-Assets/about/human_centric_engineer.jpg",
                 title: "Field Safety & Technical Standards",
                 category: "O&M & Field Engineering",
                 location: "Industrial Facility",
@@ -4397,7 +4397,7 @@ async function main() {
                 id: 11,
                 tag: "Overhaul",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1791265773/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883273/encotec-Assets/news/mtn3bph7tcvncvxfil1o.jpg",
                 title: "Plant Modernization & Overhaul",
                 category: "Thermal Power",
                 location: "Generating Station",
@@ -4408,7 +4408,7 @@ async function main() {
                 id: 12,
                 tag: "Asset Care",
                 image:
-                  "https://res.cloudinary.com/dpa93copz/image/upload/v1787744211/encotec-Assets/svypxqn8inxodhe9gpj1.jpg",
+                  "https://res.cloudinary.com/nksowtej/image/upload/v1791883257/encotec-Assets/svypxqn8inxodhe9gpj1.jpg",
                 title: "Industrial Infrastructure Stewardship",
                 category: "Thermal Power",
                 location: "Energy Complex",

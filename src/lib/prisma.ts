@@ -78,6 +78,8 @@ function extractCloudinaryUrls(obj: any): string[] {
   function walk(value: any) {
     if (typeof value === "string") {
       if (
+        value.includes("res.cloudinary.com/nksowtej/") ||
+        value.includes("cloudinary.com/nksowtej/") ||
         value.includes("res.cloudinary.com/dpa93copz/") ||
         value.includes("cloudinary.com/dpa93copz/")
       ) {

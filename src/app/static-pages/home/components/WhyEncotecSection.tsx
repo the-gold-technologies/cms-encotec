@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -92,6 +92,14 @@ export function WhyEncotecSection({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [expandedBlocks, setExpandedBlocks] = useState<Record<number, boolean>>({});
+
+  const toggleBlock = (idx: number) => {
+    setExpandedBlocks((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     if (initialData) {
@@ -221,30 +229,70 @@ export function WhyEncotecSection({
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">
                   Call to Action Blocks (Exactly 6 Cards)
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {formData.ctaBlocks.map((block, i) => (
-                    <div
-                      key={i}
-                      className="border border-gray-100 p-5 rounded-2xl bg-gray-50/20 flex flex-col gap-4 relative group"
-                    >
-                      <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-widest">
-                        Card {i + 1}
-                      </span>
-                      <InputField
-                        label="Card Headline"
-                        value={block.headline}
-                        onChange={(e) => handleBlockChange(i, "headline", e.target.value)}
-                        placeholder="e.g. Ready to Move from Consultancy?"
-                      />
-                      <TextAreaField
-                        label="Description Subtext"
-                        value={block.text}
-                        onChange={(e) => handleBlockChange(i, "text", e.target.value)}
-                        placeholder="e.g. Discover how our Owner's Mindset..."
-                        rows={3}
-                      />
-                    </div>
-                  ))}
+                <div className="flex flex-col gap-3">
+                  {formData.ctaBlocks.map((block, i) => {
+                    const isExpanded = !!expandedBlocks[i];
+                    return (
+                      <div
+                        key={i}
+                        className="border border-gray-200/80 rounded-2xl bg-white overflow-hidden shadow-xs transition-all"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => toggleBlock(i)}
+                          className="w-full p-4 px-5 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer text-left select-none"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-wider shrink-0">
+                              Card {i + 1}
+                            </span>
+                            {block.headline && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-xs font-semibold text-gray-800 truncate">
+                                  {block.headline}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0 text-gray-500">
+                            <span className="text-xs font-medium text-gray-400 hidden sm:inline">
+                              {isExpanded ? "Collapse" : "Expand"}
+                            </span>
+                            <ChevronDown
+                              className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${
+                                isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                              }`}
+                            />
+                          </div>
+                        </button>
+
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-4 bg-white">
+                              <InputField
+                                label="Card Headline"
+                                value={block.headline}
+                                onChange={(e) => handleBlockChange(i, "headline", e.target.value)}
+                                placeholder="e.g. Ready to Move from Consultancy?"
+                              />
+                              <TextAreaField
+                                label="Description Subtext"
+                                value={block.text}
+                                onChange={(e) => handleBlockChange(i, "text", e.target.value)}
+                                placeholder="e.g. Discover how our Owner's Mindset..."
+                                rows={3}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 

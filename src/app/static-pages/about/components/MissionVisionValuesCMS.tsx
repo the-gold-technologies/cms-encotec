@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
+import { ChevronDown, ChevronUp, Trash2 } from "lucide-react";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -62,6 +63,14 @@ export function MissionVisionValuesCMS({
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [valueCards, setValueCards] = useState<ValueCard[]>([emptyCard()]);
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+
+  const toggleCard = (idx: number) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   const unpackData = (data: any) => {
     const list = (data.valuesList as any[]) || [];
@@ -312,54 +321,93 @@ export function MissionVisionValuesCMS({
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {valueCards.map((card, i) => (
-                    <div
-                      key={i}
-                      className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group"
-                    >
-                      {/* Card header */}
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                          Card {i + 1}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => handleDeleteCard(i)}
-                          title="Delete card"
-                          className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center w-6 h-6 rounded-full bg-red-50 hover:bg-red-100 text-red-400 hover:text-red-600"
+                <div className="flex flex-col gap-3">
+                  {valueCards.map((card, i) => {
+                    const isExpanded = !!expandedCards[i];
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-xs transition-all"
+                      >
+                        {/* Card header */}
+                        <div
+                          onClick={() => toggleCard(i)}
+                          className="w-full p-4 px-6 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer select-none"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M18 6 6 18M6 6l12 12" />
-                          </svg>
-                        </button>
-                      </div>
+                          <div className="flex items-center gap-3 min-w-0">
+                            <span className="text-[11px] font-bold text-blue-500 uppercase tracking-wider shrink-0">
+                              Card {i + 1}
+                            </span>
+                            {card.title && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-sm font-semibold text-gray-800 truncate">
+                                  {card.title}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteCard(i);
+                              }}
+                              className="flex items-center justify-center w-7 h-7 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                              title="Delete Card"
+                            >
+                              <Trash2 size={13} />
+                            </button>
+                            <div className="p-0.5">
+                              <ChevronDown
+                                size={16}
+                                className={`text-gray-400 transition-transform duration-300 ${
+                                  isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        </div>
 
-                      <InputField
-                        label="Title"
-                        name={`valueTitle${i}`}
-                        value={card.title}
-                        onChange={(e) => handleCardChange(i, "title", e.target.value)}
-                        placeholder="e.g. Accountability"
-                        required
-                      />
-                      <TextAreaField
-                        label="Description"
-                        name={`valueDesc${i}`}
-                        value={card.description}
-                        onChange={(e) => handleCardChange(i, "description", e.target.value)}
-                        placeholder="Description of value..."
-                        rows={3}
-                        required
-                      />
-                      <IconPickerField
-                        label="Icon"
-                        value={card.icon}
-                        onChange={(iconName) => handleCardChange(i, "icon", iconName)}
-                        required
-                      />
-                    </div>
-                  ))}
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-5 bg-white">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <InputField
+                                  label="Title"
+                                  name={`valueTitle${i}`}
+                                  value={card.title}
+                                  onChange={(e) => handleCardChange(i, "title", e.target.value)}
+                                  placeholder="e.g. Accountability"
+                                  required
+                                />
+                                <IconPickerField
+                                  label="Icon"
+                                  value={card.icon}
+                                  onChange={(iconName) => handleCardChange(i, "icon", iconName)}
+                                  required
+                                />
+                              </div>
+                              <TextAreaField
+                                label="Description"
+                                name={`valueDesc${i}`}
+                                value={card.description}
+                                onChange={(e) => handleCardChange(i, "description", e.target.value)}
+                                placeholder="Description of value..."
+                                rows={3}
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 

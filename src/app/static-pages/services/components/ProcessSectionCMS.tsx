@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, ChevronDown } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -58,6 +58,14 @@ export function ProcessSectionCMS({
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [stepsList, setStepsList] = useState<ProcessStep[]>([emptyStep(0)]);
+  const [expandedSteps, setExpandedSteps] = useState<Record<number, boolean>>({});
+
+  const toggleStep = (idx: number) => {
+    setExpandedSteps((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     const unpackData = (data: any) => {
@@ -239,57 +247,94 @@ export function ProcessSectionCMS({
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {stepsList.map((step, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                          Step Card {i + 1}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => deleteStep(i)}
-                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
-                          title="Delete Step Card"
+                <div className="flex flex-col gap-3">
+                  {stepsList.map((step, i) => {
+                    const isExpanded = !!expandedSteps[i];
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-xs transition-all"
+                      >
+                        <div
+                          onClick={() => toggleStep(i)}
+                          className="w-full p-4 px-6 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer select-none"
                         >
-                          <Trash2 size={14} />
-                        </button>
+                          <div className="flex items-center gap-3 min-w-0">
+                            <span className="text-[11px] font-bold text-blue-500 uppercase tracking-wider shrink-0">
+                              Step {step.number || `0${i + 1}`}
+                            </span>
+                            {step.title && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-sm font-semibold text-gray-800 truncate">
+                                  {step.title}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteStep(i);
+                              }}
+                              className="flex items-center justify-center w-7 h-7 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                              title="Delete Step Card"
+                            >
+                              <Trash2 size={13} />
+                            </button>
+                            <div className="p-0.5">
+                              <ChevronDown
+                                size={16}
+                                className={`text-gray-400 transition-transform duration-300 ${
+                                  isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-4 bg-white">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <InputField
+                                  label="Step Number Badge"
+                                  name={`stepNumber${i}`}
+                                  value={step.number}
+                                  onChange={(e) => handleStepChange(i, "number", e.target.value)}
+                                  placeholder="e.g. 01"
+                                  required
+                                />
+                                <InputField
+                                  label="Step Title"
+                                  name={`stepTitle${i}`}
+                                  value={step.title}
+                                  onChange={(e) => handleStepChange(i, "title", e.target.value)}
+                                  placeholder="e.g. Audit & Assessment"
+                                  required
+                                />
+                              </div>
+                              <TextAreaField
+                                label="Description"
+                                name={`stepDesc${i}`}
+                                value={step.description}
+                                onChange={(e) => handleStepChange(i, "description", e.target.value)}
+                                placeholder="e.g. Technical and commercial review..."
+                                rows={3}
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <InputField
-                        label="Step Number Badge"
-                        name={`stepNumber${i}`}
-                        value={step.number}
-                        onChange={(e) => handleStepChange(i, "number", e.target.value)}
-                        placeholder="e.g. 01"
-                        required
-                      />
-                      <InputField
-                        label="Step Title"
-                        name={`stepTitle${i}`}
-                        value={step.title}
-                        onChange={(e) => handleStepChange(i, "title", e.target.value)}
-                        placeholder="e.g. Audit & Assessment"
-                        required
-                      />
-                      <TextAreaField
-                        label="Description"
-                        name={`stepDesc${i}`}
-                        value={(formData as any)[`stepDesc${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. Technical and commercial..."
-                        rows={2}
-                        required
-                      />
-                      <InputField
-                        label="Sequence Number (e.g. 01)"
-                        name={`stepNumber${i}`}
-                        value={(formData as any)[`stepNumber${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. 01"
-                        required
-                      />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

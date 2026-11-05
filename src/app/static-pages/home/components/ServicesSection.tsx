@@ -10,6 +10,8 @@ import {
   Wrench,
   CloudUpload,
   Trash2,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
@@ -130,7 +132,15 @@ export function ServicesSection({
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [draggingIdx, setDraggingIdx] = useState<number | null>(null);
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
   const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const toggleCard = (idx: number) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     if (initialData) {
@@ -323,186 +333,224 @@ export function ServicesSection({
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">
                   Service Portfolio Cards (5 Items)
                 </h4>
-                <div className="grid grid-cols-1 gap-6">
-                  {formData.services.map((service, i) => (
-                    <div
-                      key={i}
-                      className="border border-gray-100 p-6 rounded-2xl bg-gray-50/20 flex flex-col gap-5"
-                    >
-                      {/* Top row: Card label + Title + Icon */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-3">
-                          <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-widest">
-                            Service Card {i + 1}
-                          </span>
-                          <InputField
-                            label="Service Title"
-                            value={service.title}
-                            onChange={(e) =>
-                              handleCardChange(i, "title", e.target.value)
-                            }
-                            placeholder="e.g. Asset Stewardship"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-1.5 px-0.5 justify-end">
-                          <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
-                            Lucide Icon
-                          </label>
-                          <div className="relative w-full">
-                            <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                              {renderIcon(service.icon)}
-                            </div>
-                            <select
-                              value={service.icon}
-                              onChange={(e) =>
-                                handleCardChange(i, "icon", e.target.value)
-                              }
-                              className="w-full pl-12 pr-6 py-4 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 appearance-none cursor-pointer"
-                            >
-                              <option value="ClipboardCheck">
-                                ClipboardCheck Icon
-                              </option>
-                              <option value="Network">Network Icon</option>
-                              <option value="Flame">Flame Icon</option>
-                              <option value="Search">Search Icon</option>
-                              <option value="Wrench">Wrench Icon</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Description — full width */}
-                      <TextAreaField
-                        label="Description Subtext"
-                        value={service.description}
-                        onChange={(e) =>
-                          handleCardChange(i, "description", e.target.value)
-                        }
-                        placeholder="Describe this service lifecycle stage..."
-                        rows={3}
-                      />
-
-                      {/* Image Uploader — full width, Hero Style */}
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
-                          Showcase Image
-                        </label>
-
-                        {service.image ? (
-                          <div className="flex items-center justify-between p-4 px-5 bg-white border border-gray-200 rounded-2xl transition-all hover:bg-gray-50/50 shadow-sm w-full">
-                            <div className="flex items-center gap-3.5 text-gray-700 min-w-0">
-                              <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 flex-shrink-0">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                  src={service.image}
-                                  alt={service.title}
-                                  className="w-full h-full object-cover"
-                                />
-                              </div>
-                              <div className="flex flex-col min-w-0">
-                                <span className="text-sm font-bold text-gray-900 truncate max-w-xs sm:max-w-md">
-                                  {service.image.split("/").pop() ||
-                                    "Service Image"}
+                <div className="flex flex-col gap-3">
+                  {formData.services.map((service, i) => {
+                    const isExpanded = !!expandedCards[i];
+                    return (
+                      <div
+                        key={i}
+                        className="border border-gray-200/80 rounded-2xl bg-white overflow-hidden shadow-xs transition-all"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => toggleCard(i)}
+                          className="w-full p-4 px-6 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer text-left select-none"
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <span className="text-[11px] font-bold text-[#a0004f] uppercase tracking-wider shrink-0">
+                              Service Card {i + 1}
+                            </span>
+                            {service.title && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-sm font-semibold text-gray-800 truncate">
+                                  {service.title}
                                 </span>
-                                <span className="text-[10px] text-gray-400 font-semibold mt-0.5">
-                                  Selected Image Asset
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  fileInputRefs.current[i]?.click()
-                                }
-                                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
-                              >
-                                Change
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleCardChange(i, "image", "")}
-                                className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
-                                title="Remove Image"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </button>
-                            </div>
+                              </>
+                            )}
                           </div>
-                        ) : (
-                          <div
-                            onClick={() => fileInputRefs.current[i]?.click()}
-                            onDragOver={(e) => {
-                              e.preventDefault();
-                              setDraggingIdx(i);
-                            }}
-                            onDragLeave={() => setDraggingIdx(null)}
-                            onDrop={(e) => handleDrop(i, e)}
-                            className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-10 text-center cursor-pointer transition-all group ${
-                              draggingIdx === i
-                                ? "border-blue-400 bg-blue-50"
-                                : "border-gray-200 hover:border-blue-400 bg-white hover:bg-blue-50/10"
-                            }`}
-                          >
-                            <CloudUpload
-                              className={`w-9 h-9 mb-3 transition-colors ${
-                                draggingIdx === i
-                                  ? "text-blue-500"
-                                  : "text-gray-400 group-hover:text-blue-500"
+                          <div className="flex items-center gap-2 shrink-0 text-gray-500">
+                            <span className="text-xs font-medium text-gray-400 hidden sm:inline">
+                              {isExpanded ? "Collapse" : "Expand"}
+                            </span>
+                            <ChevronDown
+                              className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${
+                                isExpanded ? "rotate-180" : "rotate-0"
                               }`}
                             />
-                            <p className="text-sm text-gray-500 font-semibold group-hover:text-blue-600 mb-1">
-                              {draggingIdx === i ? (
-                                <span className="text-blue-600">
-                                  Drop image here
-                                </span>
-                              ) : (
-                                <>
-                                  Drag and drop image here, or{" "}
-                                  <span className="text-blue-500 hover:underline">
-                                    browse
-                                  </span>
-                                </>
-                              )}
-                            </p>
-                            <p className="text-xs text-gray-400">
-                              Supports JPG, PNG, WEBP (Recommended 800×600px)
-                            </p>
                           </div>
-                        )}
+                        </button>
 
-                        <input
-                          type="file"
-                          ref={(el) => {
-                            fileInputRefs.current[i] = el;
-                          }}
-                          onChange={(e) => handleFileChange(i, e)}
-                          accept="image/*"
-                          className="hidden"
-                        />
-                      </div>
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-5 bg-white">
+                              {/* Top row: Title + Icon */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <InputField
+                                label="Service Title"
+                                value={service.title}
+                                onChange={(e) =>
+                                  handleCardChange(i, "title", e.target.value)
+                                }
+                                placeholder="e.g. Asset Stewardship"
+                              />
+                              <div className="flex flex-col gap-1.5 px-0.5 justify-end">
+                                <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
+                                  Lucide Icon
+                                </label>
+                                <div className="relative w-full">
+                                  <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                                    {renderIcon(service.icon)}
+                                  </div>
+                                  <select
+                                    value={service.icon}
+                                    onChange={(e) =>
+                                      handleCardChange(i, "icon", e.target.value)
+                                    }
+                                    className="w-full pl-12 pr-6 py-4 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#a0004f] focus:ring-1 focus:ring-[#a0004f] outline-none text-gray-800 appearance-none cursor-pointer"
+                                  >
+                                    <option value="ClipboardCheck">
+                                      ClipboardCheck Icon
+                                    </option>
+                                    <option value="Network">Network Icon</option>
+                                    <option value="Flame">Flame Icon</option>
+                                    <option value="Search">Search Icon</option>
+                                    <option value="Wrench">Wrench Icon</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
 
-                      {/* CTA Section */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <InputField
-                          label="CTA Button Text"
-                          value={service.ctaLabel || ""}
-                          onChange={(e) =>
-                            handleCardChange(i, "ctaLabel", e.target.value)
-                          }
-                          placeholder="e.g. Learn More"
-                        />
-                        <InputField
-                          label="CTA Button Link (URL)"
-                          value={service.ctaUrl || ""}
-                          onChange={(e) =>
-                            handleCardChange(i, "ctaUrl", e.target.value)
-                          }
-                          placeholder="e.g. /services"
-                        />
+                            {/* Description — full width */}
+                            <TextAreaField
+                              label="Description Subtext"
+                              value={service.description}
+                              onChange={(e) =>
+                                handleCardChange(i, "description", e.target.value)
+                              }
+                              placeholder="Describe this service lifecycle stage..."
+                              rows={3}
+                            />
+
+                            {/* Image Uploader — full width, Hero Style */}
+                            <div className="flex flex-col gap-2">
+                              <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
+                                Showcase Image
+                              </label>
+
+                              {service.image ? (
+                                <div className="flex items-center justify-between p-4 px-5 bg-white border border-gray-200 rounded-2xl transition-all hover:bg-gray-50/50 shadow-sm w-full">
+                                  <div className="flex items-center gap-3.5 text-gray-700 min-w-0">
+                                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-200 border border-gray-300/40 flex-shrink-0">
+                                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                                      <img
+                                        src={service.image}
+                                        alt={service.title}
+                                        className="w-full h-full object-cover"
+                                      />
+                                    </div>
+                                    <div className="flex flex-col min-w-0">
+                                      <span className="text-sm font-bold text-gray-900 truncate max-w-xs sm:max-w-md">
+                                        {service.image.split("/").pop() ||
+                                          "Service Image"}
+                                      </span>
+                                      <span className="text-[10px] text-gray-400 font-semibold mt-0.5">
+                                        Selected Image Asset
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center gap-2 flex-shrink-0">
+                                    <button
+                                      type="button"
+                                      onClick={() =>
+                                        fileInputRefs.current[i]?.click()
+                                      }
+                                      className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all active:scale-95 cursor-pointer"
+                                    >
+                                      Change
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => handleCardChange(i, "image", "")}
+                                      className="text-red-500 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-xl transition-all cursor-pointer"
+                                      title="Remove Image"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div
+                                  onClick={() => fileInputRefs.current[i]?.click()}
+                                  onDragOver={(e) => {
+                                    e.preventDefault();
+                                    setDraggingIdx(i);
+                                  }}
+                                  onDragLeave={() => setDraggingIdx(null)}
+                                  onDrop={(e) => handleDrop(i, e)}
+                                  className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-10 text-center cursor-pointer transition-all group ${
+                                    draggingIdx === i
+                                      ? "border-blue-400 bg-blue-50"
+                                      : "border-gray-200 hover:border-blue-400 bg-white hover:bg-blue-50/10"
+                                  }`}
+                                >
+                                  <CloudUpload
+                                    className={`w-9 h-9 mb-3 transition-colors ${
+                                      draggingIdx === i
+                                        ? "text-blue-500"
+                                        : "text-gray-400 group-hover:text-blue-500"
+                                    }`}
+                                  />
+                                  <p className="text-sm text-gray-500 font-semibold group-hover:text-blue-600 mb-1">
+                                    {draggingIdx === i ? (
+                                      <span className="text-blue-600">
+                                        Drop image here
+                                      </span>
+                                    ) : (
+                                      <>
+                                        Drag and drop image here, or{" "}
+                                        <span className="text-blue-500 hover:underline">
+                                          browse
+                                        </span>
+                                      </>
+                                    )}
+                                  </p>
+                                  <p className="text-xs text-gray-400">
+                                    Supports JPG, PNG, WEBP (Recommended 800×600px)
+                                  </p>
+                                </div>
+                              )}
+
+                              <input
+                                type="file"
+                                ref={(el) => {
+                                  fileInputRefs.current[i] = el;
+                                }}
+                                onChange={(e) => handleFileChange(i, e)}
+                                accept="image/*"
+                                className="hidden"
+                              />
+                            </div>
+
+                            {/* CTA Section */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <InputField
+                                label="CTA Button Text"
+                                value={service.ctaLabel || ""}
+                                onChange={(e) =>
+                                  handleCardChange(i, "ctaLabel", e.target.value)
+                                }
+                                placeholder="e.g. Learn More"
+                              />
+                              <InputField
+                                label="CTA Button Link (URL)"
+                                value={service.ctaUrl || ""}
+                                onChange={(e) =>
+                                  handleCardChange(i, "ctaUrl", e.target.value)
+                                }
+                                placeholder="e.g. /services"
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  ))}
+                  );
+                  })}
                 </div>
               </div>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { TextAreaField } from "@/components/TextAreaField";
@@ -93,6 +94,14 @@ export function ProjectShowcaseSection({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [expandedProjects, setExpandedProjects] = useState<Record<number, boolean>>({});
+
+  const toggleProject = (idx: number) => {
+    setExpandedProjects((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     if (initialData) {
@@ -245,56 +254,100 @@ export function ProjectShowcaseSection({
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">
                   Featured Case Study Cards (2 Items)
                 </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {formData.projects.map((project, i) => (
-                    <div
-                      key={i}
-                      className="border border-gray-100 p-6 rounded-2xl bg-gray-50/20 flex flex-col gap-4 relative group"
-                    >
-                      <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-widest">
-                        Case Study 0{i + 1}
-                      </span>
-                      <InputField
-                        label="Project Title"
-                        value={project.title}
-                        onChange={(e) => handleProjectChange(i, "title", e.target.value)}
-                        placeholder="e.g. Supercritical Mastery at Rajpura"
-                      />
-                      <InputField
-                        label="Location Details"
-                        value={project.location}
-                        onChange={(e) => handleProjectChange(i, "location", e.target.value)}
-                        placeholder="e.g. Rajpura, Punjab"
-                      />
-                      <InputField
-                        label="Category Label"
-                        value={project.category}
-                        onChange={(e) => handleProjectChange(i, "category", e.target.value)}
-                        placeholder="e.g. Asset Stewardship"
-                      />
-                      <InputField
-                        label="Case Study Link / URL"
-                        value={project.ctaUrl || ""}
-                        onChange={(e) => handleProjectChange(i, "ctaUrl", e.target.value)}
-                        placeholder="e.g. /insights/ensuring-reliability-rajpura"
-                      />
-                      <TextAreaField
-                        label="Case Study Description"
-                        value={project.description}
-                        onChange={(e) => handleProjectChange(i, "description", e.target.value)}
-                        placeholder="Project narrative subtext details..."
-                        rows={3}
-                      />
+                <div className="flex flex-col gap-3">
+                  {formData.projects.map((project, i) => {
+                    const isExpanded = !!expandedProjects[i];
+                    return (
+                      <div
+                        key={i}
+                        className="border border-gray-200/80 rounded-2xl bg-white overflow-hidden shadow-xs transition-all"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => toggleProject(i)}
+                          className="w-full p-4 px-5 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer text-left select-none"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="text-[10px] font-bold text-[#a0004f] uppercase tracking-wider shrink-0">
+                              Case Study 0{i + 1}
+                            </span>
+                            {project.title && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-xs font-semibold text-gray-800 truncate">
+                                  {project.title}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0 text-gray-500">
+                            <span className="text-xs font-medium text-gray-400 hidden sm:inline">
+                              {isExpanded ? "Collapse" : "Expand"}
+                            </span>
+                            <ChevronDown
+                              className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${
+                                isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                              }`}
+                            />
+                          </div>
+                        </button>
 
-                      {/* Image picker */}
-                      <ImagePickerField
-                        label={`Case Study Showcase Image #${i + 1}`}
-                        value={project.image}
-                        onChange={(file) => handleProjectChange(i, "image", file)}
-                        sublabel="Drag and drop or browse case study image asset"
-                      />
-                    </div>
-                  ))}
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-4 bg-white">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <InputField
+                                  label="Project Title"
+                                  value={project.title}
+                                  onChange={(e) => handleProjectChange(i, "title", e.target.value)}
+                                  placeholder="e.g. Supercritical Mastery at Rajpura"
+                                />
+                                <InputField
+                                  label="Category Label"
+                                  value={project.category}
+                                  onChange={(e) => handleProjectChange(i, "category", e.target.value)}
+                                  placeholder="e.g. Asset Stewardship"
+                                />
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <InputField
+                                  label="Location Details"
+                                  value={project.location}
+                                  onChange={(e) => handleProjectChange(i, "location", e.target.value)}
+                                  placeholder="e.g. Rajpura, Punjab"
+                                />
+                                <InputField
+                                  label="Case Study Link / URL"
+                                  value={project.ctaUrl || ""}
+                                  onChange={(e) => handleProjectChange(i, "ctaUrl", e.target.value)}
+                                  placeholder="e.g. /insights/ensuring-reliability-rajpura"
+                                />
+                              </div>
+                              <TextAreaField
+                                label="Case Study Description"
+                                value={project.description}
+                                onChange={(e) => handleProjectChange(i, "description", e.target.value)}
+                                placeholder="Project narrative subtext details..."
+                                rows={3}
+                              />
+
+                              {/* Image picker */}
+                              <ImagePickerField
+                                label={`Case Study Showcase Image #${i + 1}`}
+                                value={project.image}
+                                onChange={(file) => handleProjectChange(i, "image", file)}
+                                sublabel="Drag and drop or browse case study image asset"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
@@ -58,6 +58,14 @@ export function IndustriesSectionCMS({
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [industriesList, setIndustriesList] = useState<IndustryItem[]>([emptyIndustry()]);
+  const [expandedIndustries, setExpandedIndustries] = useState<Record<number, boolean>>({});
+
+  const toggleIndustry = (idx: number) => {
+    setExpandedIndustries((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     const unpackData = (data: any) => {
@@ -239,49 +247,94 @@ export function IndustriesSectionCMS({
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {industriesList.map((ind, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                          Industry Card {i + 1}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => deleteIndustry(i)}
-                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
-                          title="Delete Industry Card"
+                <div className="flex flex-col gap-3">
+                  {industriesList.map((ind, i) => {
+                    const isExpanded = !!expandedIndustries[i];
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-xs transition-all"
+                      >
+                        <div
+                          onClick={() => toggleIndustry(i)}
+                          className="w-full p-4 px-5 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer select-none"
                         >
-                          <Trash2 size={14} />
-                        </button>
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider shrink-0">
+                              Industry {i + 1}
+                            </span>
+                            {ind.name && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-xs font-semibold text-gray-800 truncate">
+                                  {ind.name}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteIndustry(i);
+                              }}
+                              className="flex items-center justify-center w-7 h-7 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                              title="Delete Industry Card"
+                            >
+                              <Trash2 size={13} />
+                            </button>
+                            <div className="p-0.5">
+                              <ChevronDown
+                                size={16}
+                                className={`text-gray-400 transition-transform duration-300 ${
+                                  isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-4 bg-white">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <InputField
+                                  label="Industry Name"
+                                  name={`industryName${i}`}
+                                  value={ind.name}
+                                  onChange={(e) => handleIndustryChange(i, "name", e.target.value)}
+                                  placeholder="e.g. Thermal Power"
+                                  required
+                                />
+                                <InputField
+                                  label="Lucide Icon Name"
+                                  name={`industryIcon${i}`}
+                                  value={ind.icon}
+                                  onChange={(e) => handleIndustryChange(i, "icon", e.target.value)}
+                                  placeholder="e.g. Flame, Zap, Wind, Sun..."
+                                  required
+                                />
+                              </div>
+                              <TextAreaField
+                                label="Subtitle / Summary"
+                                name={`industrySubtitle${i}`}
+                                value={ind.subtitle}
+                                onChange={(e) => handleIndustryChange(i, "subtitle", e.target.value)}
+                                placeholder="e.g. Coal & Gas fired assets"
+                                required
+                                rows={3}
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <InputField
-                        label="Industry Name"
-                        name={`industryName${i}`}
-                        value={ind.name}
-                        onChange={(e) => handleIndustryChange(i, "name", e.target.value)}
-                        placeholder="e.g. Thermal Power"
-                        required
-                      />
-                      <TextAreaField
-                        label="Subtitle / Summary"
-                        name={`industrySubtitle${i}`}
-                        value={ind.subtitle}
-                        onChange={(e) => handleIndustryChange(i, "subtitle", e.target.value)}
-                        placeholder="e.g. Coal & Gas fired assets"
-                        required
-                        rows={3}
-                      />
-                      <InputField
-                        label="Lucide Icon Name"
-                        name={`industryIcon${i}`}
-                        value={ind.icon}
-                        onChange={(e) => handleIndustryChange(i, "icon", e.target.value)}
-                        placeholder="e.g. Flame, Zap, Wind, Sun..."
-                        required
-                      />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

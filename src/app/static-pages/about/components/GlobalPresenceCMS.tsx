@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -57,6 +57,14 @@ export function GlobalPresenceCMS({
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [areaCards, setAreaCards] = useState<AreaCard[]>([emptyArea()]);
+  const [expandedAreas, setExpandedAreas] = useState<Record<number, boolean>>({});
+
+  const toggleArea = (idx: number) => {
+    setExpandedAreas((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     const unpackData = (data: any) => {
@@ -269,41 +277,84 @@ export function GlobalPresenceCMS({
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {areaCards.map((card, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                          Region Card {i + 1}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => handleDeleteArea(i)}
-                          title="Delete Region Card"
-                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
+                <div className="flex flex-col gap-3">
+                  {areaCards.map((card, i) => {
+                    const isExpanded = !!expandedAreas[i];
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-xs transition-all"
+                      >
+                        <div
+                          onClick={() => toggleArea(i)}
+                          className="w-full p-4 px-5 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer select-none"
                         >
-                          <Trash2 size={14} />
-                        </button>
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider shrink-0">
+                              Region {i + 1}
+                            </span>
+                            {card.title && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-xs font-semibold text-gray-800 truncate">
+                                  {card.title}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteArea(i);
+                              }}
+                              className="flex items-center justify-center w-7 h-7 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                              title="Delete Region Card"
+                            >
+                              <Trash2 size={13} />
+                            </button>
+                            <div className="p-0.5">
+                              <ChevronDown
+                                size={16}
+                                className={`text-gray-400 transition-transform duration-300 ${
+                                  isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-4 bg-white">
+                              <InputField
+                                label="Region Title"
+                                name={`areaTitle${i}`}
+                                value={card.title}
+                                onChange={(e) => handleAreaChange(i, "title", e.target.value)}
+                                placeholder="e.g. Headquarters"
+                                required
+                              />
+                              <TextAreaField
+                                label="Region Description"
+                                name={`areaDesc${i}`}
+                                value={card.desc}
+                                onChange={(e) => handleAreaChange(i, "desc", e.target.value)}
+                                placeholder="e.g. Noida, India"
+                                required
+                                rows={3}
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <InputField
-                        label="Region Title"
-                        name={`areaTitle${i}`}
-                        value={card.title}
-                        onChange={(e) => handleAreaChange(i, "title", e.target.value)}
-                        placeholder="e.g. Headquarters"
-                        required
-                      />
-                      <TextAreaField
-                        label="Region Description"
-                        name={`areaDesc${i}`}
-                        value={card.desc}
-                        onChange={(e) => handleAreaChange(i, "desc", e.target.value)}
-                        placeholder="e.g. Noida, India"
-                        required
-                        rows={3}
-                      />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* Bottom Callout Block */}

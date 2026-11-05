@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
@@ -57,6 +57,14 @@ export function LeadershipCMS({
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
   const [leadersList, setLeadersList] = useState<LeaderProfile[]>([emptyLeader()]);
+  const [expandedLeaders, setExpandedLeaders] = useState<Record<number, boolean>>({});
+
+  const toggleLeader = (idx: number) => {
+    setExpandedLeaders((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     const unpackData = (data: any) => {
@@ -260,55 +268,100 @@ export function LeadershipCMS({
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {leadersList.map((leader, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl flex flex-col gap-4 shadow-sm relative group">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                          Executive Profile {i + 1}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => deleteLeader(i)}
-                          className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 p-1 rounded transition-colors cursor-pointer"
-                          title="Delete Leader Profile"
+                <div className="flex flex-col gap-3">
+                  {leadersList.map((leader, i) => {
+                    const isExpanded = !!expandedLeaders[i];
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-xs transition-all"
+                      >
+                        <div
+                          onClick={() => toggleLeader(i)}
+                          className="w-full p-4 px-6 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer select-none"
                         >
-                          <Trash2 size={14} />
-                        </button>
+                          <div className="flex items-center gap-3 min-w-0">
+                            <span className="text-[11px] font-bold text-blue-500 uppercase tracking-wider shrink-0">
+                              Executive Profile {i + 1}
+                            </span>
+                            {(leader.name || leader.role) && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-sm font-semibold text-gray-800 truncate">
+                                  {leader.name ? `${leader.name} (${leader.role})` : leader.role}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteLeader(i);
+                              }}
+                              className="flex items-center justify-center w-7 h-7 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                              title="Delete Leader Profile"
+                            >
+                              <Trash2 size={13} />
+                            </button>
+                            <div className="p-0.5">
+                              <ChevronDown
+                                size={16}
+                                className={`text-gray-400 transition-transform duration-300 ${
+                                  isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-5 bg-white">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <InputField
+                                  label="Role / Title"
+                                  name={`leaderRole${i}`}
+                                  value={leader.role}
+                                  onChange={(e) => handleLeaderChange(i, "role", e.target.value)}
+                                  placeholder="e.g. Managing Director"
+                                  required
+                                />
+                                <InputField
+                                  label="Name"
+                                  name={`leaderName${i}`}
+                                  value={leader.name}
+                                  onChange={(e) => handleLeaderChange(i, "name", e.target.value)}
+                                  placeholder="e.g. [Name]"
+                                  required
+                                />
+                              </div>
+                              <ImagePickerField
+                                label="Profile Image (Upload File or Cloudinary URL)"
+                                sublabel={`Leader #${i + 1} Photo`}
+                                value={leader.image || null}
+                                onChange={(val) => handleLeaderChange(i, "image", val)}
+                              />
+                              <TextAreaField
+                                label="Biography"
+                                name={`leaderBio${i}`}
+                                value={leader.bio}
+                                onChange={(e) => handleLeaderChange(i, "bio", e.target.value)}
+                                placeholder="Executive bio..."
+                                rows={5}
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <InputField
-                        label="Role / Title"
-                        name={`leaderRole${i}`}
-                        value={leader.role}
-                        onChange={(e) => handleLeaderChange(i, "role", e.target.value)}
-                        placeholder="e.g. Managing Director"
-                        required
-                      />
-                      <InputField
-                        label="Name"
-                        name={`leaderName${i}`}
-                        value={leader.name}
-                        onChange={(e) => handleLeaderChange(i, "name", e.target.value)}
-                        placeholder="e.g. [Name]"
-                        required
-                      />
-                      <ImagePickerField
-                        label="Profile Image (Upload File or Cloudinary URL)"
-                        sublabel={`Leader #${i + 1} Photo`}
-                        value={leader.image || null}
-                        onChange={(val) => handleLeaderChange(i, "image", val)}
-                      />
-                      <TextAreaField
-                        label="Biography"
-                        name={`leaderBio${i}`}
-                        value={leader.bio}
-                        onChange={(e) => handleLeaderChange(i, "bio", e.target.value)}
-                        placeholder="Executive bio..."
-                        rows={6}
-                        required
-                      />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -84,6 +85,14 @@ export function CoreServicesCMS({
 
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState(defaultFormData);
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+
+  const toggleCard = (idx: number) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   useEffect(() => {
     const unpackData = (data: any) => {
@@ -278,68 +287,110 @@ export function CoreServicesCMS({
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-4 animate-pulse">
                   Edit 6 Core Service Cards (Click Details to toggle details dropdowns on site)
                 </span>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className="p-6 bg-white border border-gray-200 rounded-2xl flex flex-col gap-4 shadow-sm">
-                      <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
-                        Core Service Card {i + 1}
-                      </span>
-                      <InputField
-                        label="Service Title"
-                        name={`serviceTitle${i}`}
-                        value={(formData as any)[`serviceTitle${i}`]}
-                        onChange={handleChange}
-                        placeholder="e.g. Asset Stewardship (O&M)"
-                        required
-                      />
-                      <div className="flex gap-4">
-                        <InputField
-                          label="Lucide Icon (e.g. Settings, Target, HardHat...)"
-                          name={`serviceIcon${i}`}
-                          value={(formData as any)[`serviceIcon${i}`]}
-                          onChange={handleChange}
-                          placeholder="e.g. Target"
-                          required
-                          containerClassName="flex-1"
-                        />
-                        <InputField
-                          label="Redirection Route Link"
-                          name={`serviceLink${i}`}
-                          value={(formData as any)[`serviceLink${i}`]}
-                          onChange={handleChange}
-                          placeholder="e.g. /services/power-generation"
-                          containerClassName="flex-1"
-                        />
+                <div className="flex flex-col gap-3">
+                  {Array.from({ length: 6 }).map((_, i) => {
+                    const isExpanded = !!expandedCards[i];
+                    const title = (formData as any)[`serviceTitle${i}`];
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-xs transition-all"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => toggleCard(i)}
+                          className="w-full p-4 px-5 bg-gray-50/70 hover:bg-gray-100/70 transition-colors flex items-center justify-between cursor-pointer text-left select-none"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider shrink-0">
+                              Core Service {i + 1}
+                            </span>
+                            {title && (
+                              <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-xs font-semibold text-gray-800 truncate">
+                                  {title}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0 text-gray-500">
+                            <span className="text-xs font-medium text-gray-400 hidden sm:inline">
+                              {isExpanded ? "Collapse" : "Expand"}
+                            </span>
+                            <ChevronDown
+                              className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${
+                                isExpanded ? "rotate-180 text-gray-700" : "rotate-0"
+                              }`}
+                            />
+                          </div>
+                        </button>
+
+                        <div
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="p-6 border-t border-gray-100 flex flex-col gap-4 bg-white">
+                              <InputField
+                                label="Service Title"
+                                name={`serviceTitle${i}`}
+                                value={(formData as any)[`serviceTitle${i}`]}
+                                onChange={handleChange}
+                                placeholder="e.g. Asset Stewardship (O&M)"
+                                required
+                              />
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <InputField
+                                  label="Lucide Icon"
+                                  name={`serviceIcon${i}`}
+                                  value={(formData as any)[`serviceIcon${i}`]}
+                                  onChange={handleChange}
+                                  placeholder="e.g. Target"
+                                  required
+                                />
+                                <InputField
+                                  label="Redirection Route Link"
+                                  name={`serviceLink${i}`}
+                                  value={(formData as any)[`serviceLink${i}`]}
+                                  onChange={handleChange}
+                                  placeholder="e.g. /services/power-generation"
+                                />
+                              </div>
+                              <TextAreaField
+                                label="Card Overview Description"
+                                name={`serviceOverview${i}`}
+                                value={(formData as any)[`serviceOverview${i}`]}
+                                onChange={handleChange}
+                                placeholder="Overview of the service..."
+                                rows={2}
+                                required
+                              />
+                              <TextAreaField
+                                label="Key Capabilities (One item per line)"
+                                name={`serviceCapabilities${i}`}
+                                value={(formData as any)[`serviceCapabilities${i}`]}
+                                onChange={handleChange}
+                                placeholder="Feasibility Studies&#10;Strategic Sourcing&#10;Financial Assessments"
+                                rows={3}
+                                required
+                              />
+                              <TextAreaField
+                                label="Value Delivered (One item per line)"
+                                name={`serviceValue${i}`}
+                                value={(formData as any)[`serviceValue${i}`]}
+                                onChange={handleChange}
+                                placeholder="Technically sound planning&#10;Viable project returns"
+                                rows={3}
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <TextAreaField
-                        label="Card Overview Description"
-                        name={`serviceOverview${i}`}
-                        value={(formData as any)[`serviceOverview${i}`]}
-                        onChange={handleChange}
-                        placeholder="Overview of the service..."
-                        rows={2}
-                        required
-                      />
-                      <TextAreaField
-                        label="Key Capabilities (One item per line)"
-                        name={`serviceCapabilities${i}`}
-                        value={(formData as any)[`serviceCapabilities${i}`]}
-                        onChange={handleChange}
-                        placeholder="Feasibility Studies&#10;Strategic Sourcing&#10;Financial Assessments"
-                        rows={4}
-                        required
-                      />
-                      <TextAreaField
-                        label="Value Delivered (One item per line)"
-                        name={`serviceValue${i}`}
-                        value={(formData as any)[`serviceValue${i}`]}
-                        onChange={handleChange}
-                        placeholder="Technically sound planning&#10;Viable project returns"
-                        rows={3}
-                        required
-                      />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

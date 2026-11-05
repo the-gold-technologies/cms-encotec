@@ -9,8 +9,7 @@ export async function GET() {
       where: { id: "global" },
     });
 
-    const websiteUrl =
-      process.env.NEXT_PUBLIC_WEBSITE_URL || "https://encotech-six.vercel.app";
+    const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL || "";
     const robotsTxt =
       config?.robotsTxt ||
       `User-agent: *\nAllow: /\n\nSitemap: ${websiteUrl}/sitemap.xml`;

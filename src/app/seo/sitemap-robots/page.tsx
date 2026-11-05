@@ -24,7 +24,7 @@ const defaultData: SitemapRobotsConfig = {
   sitemapEnabled: true,
   sitemapCustomContent: null,
   robotsTxt:
-    "User-agent: *\nAllow: /\n\nSitemap: https://encotec-six.vercel.app/sitemap.xml",
+    "User-agent: *\nAllow: /\n\nSitemap: https://www.encotecenergy.com/sitemap.xml",
 };
 
 export default function SitemapRobotsPage() {
@@ -157,7 +157,7 @@ export default function SitemapRobotsPage() {
   };
 
   const websiteUrl =
-    process.env.NEXT_PUBLIC_WEBSITE_URL || "https://encotec-six.vercel.app";
+    process.env.NEXT_PUBLIC_WEBSITE_URL || "https://www.encotecenergy.com";
 
   if (isLoading) {
     return (

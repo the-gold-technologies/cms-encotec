@@ -61,10 +61,28 @@ export async function POST(req: Request) {
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
-        const uploadResponse = await uploadBufferToCloudinary(buffer, {
-          folder: "encotec-Assets",
-          resource_type: "auto",
-        });
+        let uploadResponse;
+        if (isPdf) {
+          try {
+            // Apply Cloudinary's automatic PDF compression (optimizes embedded images & content streams)
+            uploadResponse = await uploadBufferToCloudinary(buffer, {
+              folder: "encotec-Assets",
+              resource_type: "image",
+              transformation: [{ quality: "auto" }],
+            });
+          } catch (pdfErr) {
+            console.warn("Optimized PDF upload fallback to auto:", pdfErr);
+            uploadResponse = await uploadBufferToCloudinary(buffer, {
+              folder: "encotec-Assets",
+              resource_type: "auto",
+            });
+          }
+        } else {
+          uploadResponse = await uploadBufferToCloudinary(buffer, {
+            folder: "encotec-Assets",
+            resource_type: "auto",
+          });
+        }
 
         if (uploadResponse?.secure_url) {
           uploadedFiles.push(uploadResponse.secure_url);

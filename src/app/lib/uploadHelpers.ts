@@ -147,6 +147,14 @@ export async function uploadFiles(
       if (file.type.startsWith("image/")) {
         return await compressImage(file);
       }
+      if (
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf")
+      ) {
+        console.log(
+          `[PDF Optimization] ${file.name}: ${(file.size / 1024).toFixed(0)}KB queued for Cloudinary q_auto compression`,
+        );
+      }
       return file;
     }),
   );

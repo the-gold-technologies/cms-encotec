@@ -169,13 +169,24 @@ export async function POST(request: Request) {
       try {
         const uploadResult = await cloudinary.uploader.upload(resumeBase64, {
           folder: "encotec-resumes",
-          resource_type: "auto",
+          resource_type: "image",
+          transformation: [{ quality: "auto" }],
         });
         if (uploadResult && uploadResult.secure_url) {
           finalResumeUrl = uploadResult.secure_url;
         }
       } catch (cloudErr) {
-        console.warn("Cloudinary upload for resume failed, falling back to database base64:", cloudErr);
+        try {
+          const fallbackResult = await cloudinary.uploader.upload(resumeBase64, {
+            folder: "encotec-resumes",
+            resource_type: "auto",
+          });
+          if (fallbackResult && fallbackResult.secure_url) {
+            finalResumeUrl = fallbackResult.secure_url;
+          }
+        } catch (fallbackErr) {
+          console.warn("Cloudinary upload for resume failed, falling back to database base64:", fallbackErr);
+        }
       }
     }
 

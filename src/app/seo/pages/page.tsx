@@ -21,6 +21,9 @@ interface PageSEOSummary {
   isStatic?: boolean;
 }
 
+const toSiteUrl = (slug: string) =>
+  slug === "home" ? "/" : `/${slug.replace(/^service\//, "services/")}`;
+
 export default function PageSEODashboard() {
   const [pages, setPages] = useState<PageSEOSummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -132,6 +135,9 @@ export default function PageSEODashboard() {
 
                   const hasTitle = !!root.metaTitle;
                   const hasDesc = !!root.metaDescription;
+                  // Dropdown parents (e.g. Services, Insights) are real pages on the
+                  // website, so they get SEO too — only URL-less groups are skipped.
+                  const hasPageUrl = !!root.slug && root.slug !== "#";
 
                   return (
                     <React.Fragment key={root.id}>
@@ -168,7 +174,7 @@ export default function PageSEODashboard() {
                           </div>
                         </td>
                         <td className="px-6 py-5">
-                          {root.type === "Dropdown" ? (
+                          {!hasPageUrl ? (
                             <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">
                               Group Container
                             </span>
@@ -209,11 +215,11 @@ export default function PageSEODashboard() {
                           </span>
                         </td>
                         <td className="px-6 py-5 w-10 font-mono text-xs text-gray-400">
-                          {root.slug === "home" ? "/" : `/${root.slug}`}
+                          {toSiteUrl(root.slug)}
                         </td>
                         <td className="px-6 py-5">
                           <div className="flex items-center gap-3 justify-end">
-                            {root.type !== "Dropdown" && (
+                            {hasPageUrl && (
                               <>
                                 <Link
                                   href={`/seo/pages/${root.slug}`}
@@ -289,7 +295,7 @@ export default function PageSEODashboard() {
                                 </span>
                               </td>
                               <td className="px-6 py-4 text-xs font-mono text-gray-400">
-                                {child.slug === "home" ? "/" : `/${child.slug}`}
+                                {toSiteUrl(child.slug)}
                               </td>
                               <td className="px-6 py-4">
                                 <div className="flex items-center gap-3 justify-end">

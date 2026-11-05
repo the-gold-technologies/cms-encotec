@@ -293,13 +293,14 @@ export function GlobalPresenceCMS({
                         placeholder="e.g. Headquarters"
                         required
                       />
-                      <InputField
+                      <TextAreaField
                         label="Region Description"
                         name={`areaDesc${i}`}
                         value={card.desc}
                         onChange={(e) => handleAreaChange(i, "desc", e.target.value)}
                         placeholder="e.g. Noida, India"
                         required
+                        rows={3}
                       />
                     </div>
                   ))}
@@ -309,7 +310,7 @@ export function GlobalPresenceCMS({
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 mt-6">
                   Bottom Callout Box
                 </span>
-                <div className="flex flex-col md:flex-row gap-6 w-full mt-2">
+                <div className="flex flex-col gap-6 w-full mt-2">
                   <InputField
                     label="Callout Title"
                     name="calloutTitle"
@@ -317,16 +318,15 @@ export function GlobalPresenceCMS({
                     onChange={handleChange}
                     placeholder="e.g. Wherever Energy is Needed"
                     required
-                    containerClassName="flex-1"
                   />
-                  <InputField
+                  <TextAreaField
                     label="Callout Description"
                     name="calloutDesc"
                     value={formData.calloutDesc}
                     onChange={handleChange}
                     placeholder="We combine local execution strength..."
                     required
-                    containerClassName="flex-1"
+                    rows={3}
                   />
                 </div>
               </div>

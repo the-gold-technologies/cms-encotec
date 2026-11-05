@@ -177,11 +177,12 @@ export function GalleryGridCMS() {
             />
           </div>
 
-          <InputField
+          <TextAreaField
             label="Section Subtitle / Description (Optional)"
             value={sectionSubtitle}
             onChange={(e) => setSectionSubtitle(e.target.value)}
             placeholder="e.g. A visual chronicle of our field engineering presence..."
+            rows={3}
           />
 
           {/* Categories / Filters Management */}

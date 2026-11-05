@@ -281,31 +281,34 @@ export function PhilosophySectionCMS({ saveUrl }: { saveUrl: string }) {
             {formData.features.map((feat, i) => (
               <div
                 key={i}
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-4 border-b last:border-0 border-gray-100"
+                className="flex flex-col gap-4 pb-4 border-b last:border-0 border-gray-100"
               >
-                <InputField
-                  label="Title"
-                  value={feat.title}
-                  onChange={(e) =>
-                    handleFeatureChange(i, "title", e.target.value)
-                  }
-                  required
-                />
-                <InputField
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <InputField
+                    label="Title"
+                    value={feat.title}
+                    onChange={(e) =>
+                      handleFeatureChange(i, "title", e.target.value)
+                    }
+                    required
+                  />
+                  <InputField
+                    label="Lucide Icon (e.g. Target, Users)"
+                    value={feat.icon}
+                    onChange={(e) =>
+                      handleFeatureChange(i, "icon", e.target.value)
+                    }
+                    required
+                  />
+                </div>
+                <TextAreaField
                   label="Description"
                   value={feat.desc}
                   onChange={(e) =>
                     handleFeatureChange(i, "desc", e.target.value)
                   }
                   required
-                />
-                <InputField
-                  label="Lucide Icon (e.g. Target, Users)"
-                  value={feat.icon}
-                  onChange={(e) =>
-                    handleFeatureChange(i, "icon", e.target.value)
-                  }
-                  required
+                  rows={3}
                 />
               </div>
             ))}

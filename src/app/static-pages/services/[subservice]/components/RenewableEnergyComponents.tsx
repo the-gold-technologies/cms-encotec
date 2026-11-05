@@ -350,11 +350,12 @@ export function DiagnosticProcessCMS({ saveUrl }: { saveUrl: string }) {
                   onChange={(e) => handleStepChange(i, "title", e.target.value)}
                   required
                 />
-                <InputField
+                <TextAreaField
                   label="Description"
                   value={step.desc}
                   onChange={(e) => handleStepChange(i, "desc", e.target.value)}
                   required
+                  rows={3}
                 />
               </div>
             ))}

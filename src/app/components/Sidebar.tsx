@@ -36,7 +36,8 @@ const sidebarLinks: SidebarLink[] = [
     icon: Compass,
     sublinks: [
       { title: "Menu Links", href: "/navigation/menu-links" },
-      { title: "Social Media", href: "/navigation/social-media" },
+      // Hidden: social media links are not used on the website (page kept, access blocked in middleware)
+      // { title: "Social Media", href: "/navigation/social-media" },
     ],
   },
   {

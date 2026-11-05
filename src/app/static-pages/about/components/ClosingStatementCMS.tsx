@@ -163,13 +163,14 @@ export function ClosingStatementCMS({
                   required
                 />
 
-                <InputField
+                <TextAreaField
                   label="Description Line / Subtitle"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="e.g. — not just at commissioning, but throughout..."
                   required
+                  rows={3}
                 />
 
                 <div className="flex flex-col md:flex-row gap-6 w-full border-t border-gray-100 pt-6">

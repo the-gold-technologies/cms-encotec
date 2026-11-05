@@ -100,13 +100,14 @@ export function NewsletterSectionCMS() {
             rows={2}
             required
           />
-          <InputField
+          <TextAreaField
             label="Privacy / Unsubscribe Note"
             name="privacyNote"
             value={formData.privacyNote}
             onChange={handleChange}
             placeholder="e.g. We respect your privacy. Unsubscribe at any time."
             required
+            rows={3}
           />
           <div className="flex justify-end pt-4 border-t border-gray-50">
             <SaveButton

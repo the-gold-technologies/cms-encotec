@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ImagePickerField } from "@/components/ImagePickerField";
@@ -51,7 +52,7 @@ export function InsightsHeroCMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -136,13 +137,14 @@ export function InsightsHeroCMS() {
               required
             />
           </div>
-          <InputField
+          <TextAreaField
             label="Hero Subtitle"
             name="heroSubtitle"
             value={formData.heroSubtitle}
             onChange={handleChange}
             placeholder="e.g. Explore our thought leadership, project successes, and the latest updates from the forefront of global energy engineering."
             required
+            rows={3}
           />
 
           {/* Main Insights Hero Background */}

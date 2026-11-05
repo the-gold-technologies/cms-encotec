@@ -1,16 +1,82 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getTransporter } from "@/lib/mailer";
+import { normalizeSourcePath, getSourcePageLabel } from "@/lib/sourcePage";
 
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
     },
   });
+}
+
+/**
+ * Heuristic detector for automated bot / spam submissions
+ */
+function isSpamSubmission(body: Record<string, any>): { isSpam: boolean; reason?: string } {
+  const { name, email, phone, companyName, message, projectGoals, location } = body;
+
+  // 1. Honeypot check: automated spambots routinely populate hidden form fields
+  const honeypots = ["website", "fax", "url", "honeypot", "botField", "comment", "address2"];
+  for (const hp of honeypots) {
+    if (body[hp] && typeof body[hp] === "string" && body[hp].trim().length > 0) {
+      return { isSpam: true, reason: `Honeypot field '${hp}' was populated` };
+    }
+  }
+
+  // 2. Email checks
+  if (typeof email === "string") {
+    const trimmedEmail = email.trim();
+    // Excessive dots in username prefix (e.g., w.al.k.erdy.l.a.n.ekm.p.n.a.o.i.k.l@gmail.com)
+    const emailPrefix = trimmedEmail.split("@")[0] || "";
+    const dotCount = (emailPrefix.match(/\./g) || []).length;
+    if (dotCount >= 4) {
+      return { isSpam: true, reason: "Excessive dots in email username" };
+    }
+
+    // Check basic email structure
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      return { isSpam: true, reason: "Invalid email format" };
+    }
+  }
+
+  // 3. Name checks
+  if (typeof name === "string") {
+    const trimmedName = name.trim();
+    // Short name without any vowels (e.g. "Zqmqv")
+    if (trimmedName.length >= 4 && trimmedName.length <= 10) {
+      if (!/[aeiouyAEIOUY]/.test(trimmedName)) {
+        return { isSpam: true, reason: "Name contains no vowels (random consonant generator)" };
+      }
+    }
+  }
+
+  // 4. Message / Project Location gibberish checks
+  const textToCheck = `${message || ""} ${location || ""} ${projectGoals || ""}`.trim();
+  const tokens = textToCheck.split(/\s+/).filter(Boolean);
+  for (const token of tokens) {
+    // Single uninterrupted token >= 16 chars with mixed upper and lower case letters and no separators
+    if (
+      token.length >= 16 &&
+      !token.startsWith("http") &&
+      !token.includes("/") &&
+      !token.includes("@") &&
+      !token.includes("-") &&
+      /[A-Z]/.test(token) &&
+      /[a-z]/.test(token)
+    ) {
+      if (tokens.length <= 3) {
+        return { isSpam: true, reason: "Message or location consists of random gibberish string" };
+      }
+    }
+  }
+
+  return { isSpam: false };
 }
 
 export async function GET(request: Request) {
@@ -19,18 +85,31 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
     const search = searchParams.get("search") || "";
+    const pageFilter = searchParams.get("pageFilter") || searchParams.get("sourcePage") || searchParams.get("pageSource") || "";
     const skip = (page - 1) * limit;
 
-    const where = search
-      ? {
-          OR: [
-            { name: { contains: search, mode: "insensitive" as any } },
-            { email: { contains: search, mode: "insensitive" as any } },
-          ],
-        }
-      : {};
+    const andConditions: any[] = [];
 
-    const [enquiries, total] = await Promise.all([
+    if (search) {
+      andConditions.push({
+        OR: [
+          { name: { contains: search, mode: "insensitive" as any } },
+          { email: { contains: search, mode: "insensitive" as any } },
+          { interestedIn: { contains: search, mode: "insensitive" as any } },
+          { budget: { contains: search, mode: "insensitive" as any } },
+          { projectGoals: { contains: search, mode: "insensitive" as any } },
+          { sourcePage: { contains: search, mode: "insensitive" as any } },
+        ],
+      });
+    }
+
+    if (pageFilter && pageFilter !== "ALL") {
+      andConditions.push({ sourcePage: pageFilter === "NONE" ? null : pageFilter });
+    }
+
+    const where = andConditions.length > 0 ? { AND: andConditions } : {};
+
+    const [enquiries, total, pageGroups] = await Promise.all([
       prisma.enquiry.findMany({
         where,
         skip,
@@ -38,11 +117,25 @@ export async function GET(request: Request) {
         orderBy: { createdAt: "desc" },
       }),
       prisma.enquiry.count({ where }),
+      prisma.enquiry.groupBy({
+        by: ["sourcePage"],
+        _count: { _all: true },
+      }),
     ]);
+
+    // Distinct source pages that actually exist in the database (for the filter dropdown)
+    const availablePages = pageGroups
+      .map((g: { sourcePage: string | null; _count: { _all: number } }) => ({
+        value: g.sourcePage ?? "NONE",
+        label: getSourcePageLabel(g.sourcePage),
+        count: g._count._all,
+      }))
+      .sort((x: { label: string }, y: { label: string }) => x.label.localeCompare(y.label));
 
     return NextResponse.json({
       success: true,
       data: enquiries,
+      availablePages,
       pagination: {
         total,
         page,
@@ -71,6 +164,23 @@ export async function POST(request: Request) {
       );
     }
 
+    // Bot & spam heuristic filtering
+    const spamCheck = isSpamSubmission(body);
+    if (spamCheck.isSpam) {
+      console.warn("Blocked spam enquiry submission:", spamCheck.reason, { name, email });
+      return NextResponse.json(
+        { success: false, error: `Submission rejected: ${spamCheck.reason}` },
+        { status: 400, headers: { "Access-Control-Allow-Origin": "*" } },
+      );
+    }
+
+    // Page the form was submitted from. The website sends its pathname as `sourcePage`;
+    // the Referer header is only a fallback (cross-origin requests usually strip the path).
+    const sourcePath =
+      normalizeSourcePath(body.sourcePage) ??
+      normalizeSourcePath(request.headers.get("referer"));
+    const sourcePageLabel = getSourcePageLabel(sourcePath);
+
     const enquiry = await prisma.enquiry.create({
       data: {
         name,
@@ -78,6 +188,7 @@ export async function POST(request: Request) {
         interestedIn: interestedIn || subject || "General Inquiry",
         budget: budget || null,
         projectGoals: projectGoals || message || "",
+        sourcePage: sourcePath,
       },
     });
 
@@ -136,6 +247,7 @@ export async function POST(request: Request) {
                   <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Service Required:</td>
                   <td style="padding: 10px 0; color: #111827; font-weight: bold;">${interestedIn || subject || "General Inquiry"}</td>
                 </tr>
+                ${sourcePath ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Source Page:</td><td style="padding: 10px 0; color: #111827; font-weight: bold;">${sourcePageLabel} <span style="color: #9ca3af; font-weight: normal;">(${sourcePath})</span></td></tr>` : ""}
                 ${budget ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Budget / Company:</td><td style="padding: 10px 0; color: #111827;">${budget}</td></tr>` : ""}
               </table>
 
@@ -195,4 +307,41 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    let id = searchParams.get("id");
+
+    if (!id) {
+      try {
+        const body = await request.json();
+        id = body.id;
+      } catch {}
+    }
+
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Enquiry ID is required" },
+        { status: 400, headers: { "Access-Control-Allow-Origin": "*" } },
+      );
+    }
+
+    await prisma.enquiry.delete({
+      where: { id },
+    });
+
+    return NextResponse.json(
+      { success: true, message: "Enquiry deleted successfully" },
+      { headers: { "Access-Control-Allow-Origin": "*" } },
+    );
+  } catch (error) {
+    console.error("Enquiry delete error:", error);
+    return NextResponse.json(
+      { success: false, error: "Failed to delete enquiry" },
+      { status: 500, headers: { "Access-Control-Allow-Origin": "*" } },
+    );
+  }
+}
+
 

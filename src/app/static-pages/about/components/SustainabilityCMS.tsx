@@ -241,7 +241,7 @@ export function SustainabilityCMS({
                   />
                 </div>
 
-                <InputField
+                <TextAreaField
                   label="Footer Note"
                   name="footerNote"
                   value={formData.footerNote}
@@ -249,6 +249,7 @@ export function SustainabilityCMS({
                   placeholder="e.g. Our approach ensures that sustainability is not..."
                   required
                   containerClassName="mt-4"
+                  rows={3}
                 />
               </div>
 

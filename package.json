@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "update-seed": "node scripts/fetch-prod-data.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",

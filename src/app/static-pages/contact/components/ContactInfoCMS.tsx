@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
-import { TextAreaField } from "@/components/TextAreaField";
 
 const defaultFormData = {
   infoHeading: "",
@@ -139,13 +138,8 @@ export function ContactInfoCMS({
 
   const handleSave = async () => {
     const errs: string[] = [];
-    if (!formData.infoHeading?.trim()) errs.push("Heading Part 1 is required");
-    if (!formData.infoHeadingItalic?.trim())
-      errs.push("Italic Heading Part is required");
-    if (!formData.infoDesc?.trim())
-      errs.push("Description statement is required");
     if (!formData.locationTitle?.trim())
-      errs.push("Location title / Pub name is required");
+      errs.push("Location title is required");
     if (!formData.addressLine1?.trim()) errs.push("Address line 1 is required");
     if (!formData.addressLine2?.trim()) errs.push("Address line 2 is required");
     if (!formData.phoneNumber?.trim()) errs.push("Phone number is required");
@@ -201,7 +195,7 @@ export function ContactInfoCMS({
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="Contact Info & Hours"
-          description="Manage main get-in-touch summaries, map locations, phone/email, and dynamic opening hours cards."
+          description="Manage address, phone/email, form labels, and opening hours cards."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -213,46 +207,6 @@ export function ContactInfoCMS({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-8 pt-6 animate-in fade-in duration-500">
-              {/* Heading Summary block */}
-              <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  Pillar Header & Subheading
-                </span>
-
-                <div className="flex flex-col md:flex-row gap-6 w-full">
-                  <InputField
-                    label="Info Heading Part 1"
-                    name="infoHeading"
-                    value={formData.infoHeading}
-                    onChange={handleChange}
-                    placeholder="e.g. Get in"
-                    required
-                    containerClassName="flex-1"
-                  />
-                  <InputField
-                    label="Info Heading Part 2 (Italic)"
-                    name="infoHeadingItalic"
-                    value={formData.infoHeadingItalic}
-                    onChange={handleChange}
-                    placeholder="e.g. touch"
-                    required
-                    containerClassName="flex-1"
-                  />
-                </div>
-
-                <TextAreaField
-                  label="Atmospheric Summary Description"
-                  name="infoDesc"
-                  value={formData.infoDesc}
-                  onChange={handleChange}
-                  placeholder="Whether you're looking to book a table for Sunday roast..."
-                  containerClassName="w-full"
-                  rows={2}
-                  required
-                />
-              </div>
-
               {/* Location & Contact Grid */}
               <div className="grid grid-cols-1 gap-8 items-start w-full">
                 {/* Physical Location */}
@@ -263,11 +217,11 @@ export function ContactInfoCMS({
                   </span>
 
                   <InputField
-                    label="Pub/Location Title"
+                    label="Location Title"
                     name="locationTitle"
                     value={formData.locationTitle}
                     onChange={handleChange}
-                    placeholder="e.g. The Seven Stars"
+                    placeholder="e.g. Corporate Headquarters"
                     required
                   />
 
@@ -276,7 +230,7 @@ export function ContactInfoCMS({
                     name="addressLine1"
                     value={formData.addressLine1}
                     onChange={handleChange}
-                    placeholder="e.g. The Green, Marsh Baldon"
+                    placeholder="e.g. C-85, Sector-63"
                     required
                   />
 
@@ -285,7 +239,7 @@ export function ContactInfoCMS({
                     name="addressLine2"
                     value={formData.addressLine2}
                     onChange={handleChange}
-                    placeholder="e.g. Oxford, OX44 9LP"
+                    placeholder="e.g. Noida - 201 301, Uttar Pradesh, India"
                     required
                   />
                 </div>
@@ -302,7 +256,7 @@ export function ContactInfoCMS({
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleChange}
-                    placeholder="e.g. 01865 343337"
+                    placeholder="e.g. +91 120 4155612"
                     required
                   />
 
@@ -311,7 +265,7 @@ export function ContactInfoCMS({
                     name="emailAddress"
                     value={formData.emailAddress}
                     onChange={handleChange}
-                    placeholder="e.g. info@sevenstarsmarshbaldon.co.uk"
+                    placeholder="e.g. sales@encotecenergy.com"
                     required
                   />
                 </div>
@@ -405,7 +359,7 @@ export function ContactInfoCMS({
                         onChange={(e) =>
                           handleCardFieldChange(idx, "days", e.target.value)
                         }
-                        placeholder="e.g. Monday - Thursday"
+                        placeholder="e.g. Monday - Friday"
                         required
                       />
 
@@ -415,7 +369,7 @@ export function ContactInfoCMS({
                         onChange={(e) =>
                           handleCardFieldChange(idx, "hours", e.target.value)
                         }
-                        placeholder="e.g. 12:00 - 23:00"
+                        placeholder="e.g. 9:00 AM - 6:00 PM IST"
                         required
                       />
                     </div>

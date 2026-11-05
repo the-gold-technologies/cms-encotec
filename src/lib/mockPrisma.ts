@@ -1008,6 +1008,18 @@ export const createMockPrisma = () => {
             const limit = args?.take || mockEnquiries.length;
             return mockEnquiries.slice(0, limit);
           },
+          groupBy: async () => {
+            const counts = new Map<string | null, number>();
+            for (const e of mockEnquiries as any[]) {
+              const key = e.sourcePage ?? null;
+              counts.set(key, (counts.get(key) || 0) + 1);
+            }
+            return Array.from(counts, ([sourcePage, n]) => ({ sourcePage, _count: { _all: n } }));
+          },
+          delete: async (args: any) => {
+            const index = mockEnquiries.findIndex((e: any) => e.id === args.where.id);
+            return index !== -1 ? mockEnquiries.splice(index, 1)[0] : null;
+          },
           create: async (args: any) => {
             const newEnquiry = {
               id: `enq-${Math.random().toString(36).substring(7)}`,

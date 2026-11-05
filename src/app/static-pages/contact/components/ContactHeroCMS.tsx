@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { uploadFiles } from "@/lib/uploadHelpers";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -72,7 +73,9 @@ export function ContactHeroCMS({
     }
   }, [initialData, saveUrl, responseKey]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -183,13 +186,14 @@ export function ContactHeroCMS({
                   />
                 </div>
 
-                <InputField
+                <TextAreaField
                   label="Hero Subtitle"
                   name="heroSubtitle"
                   value={formData.heroSubtitle}
                   onChange={handleChange}
                   placeholder="Reach out to our team of experts..."
                   required
+                  rows={3}
                   containerClassName="w-full"
                 />
               </div>

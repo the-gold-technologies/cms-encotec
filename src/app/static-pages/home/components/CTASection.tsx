@@ -421,7 +421,7 @@ export function CTASection({
                                 placeholder="e.g. ISO 9001 certification"
                                 required
                               />
-                              <InputField
+                              <TextAreaField
                                 label="Description"
                                 value={certificate.description}
                                 onChange={(event) =>
@@ -433,6 +433,7 @@ export function CTASection({
                                 }
                                 placeholder="e.g. ISO 9001:2015"
                                 required
+                                rows={3}
                               />
                             </div>
                           </div>

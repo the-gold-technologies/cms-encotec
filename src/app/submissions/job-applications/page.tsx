@@ -93,13 +93,17 @@ export default function JobApplicationsPage() {
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [page, setPage] = useState(1);
   const [selectedApp, setSelectedApp] = useState<JobApplication | null>(null);
-  const [previewResumeApp, setPreviewResumeApp] = useState<JobApplication | null>(null);
+  const [previewResumeApp, setPreviewResumeApp] =
+    useState<JobApplication | null>(null);
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
+  const [appToDelete, setAppToDelete] = useState<{ id: string; name: string } | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchApplications = useCallback(async () => {
     setIsLoading(true);
     try {
-      const statusParam = statusFilter !== "ALL" ? `&status=${statusFilter}` : "";
+      const statusParam =
+        statusFilter !== "ALL" ? `&status=${statusFilter}` : "";
       const res = await fetch(
         `/api/job-applications?page=${page}&search=${encodeURIComponent(searchQuery)}${statusParam}`,
       );
@@ -132,24 +136,19 @@ export default function JobApplicationsPage() {
       });
       const json = await res.json();
       if (json.success) {
-        let msg = `Status updated to ${newStatus}`;
-        if (json.candidateEmailSent) {
-          if (newStatus === "Shortlisted") {
-            msg = `Candidate shortlisted! Acceptance email sent to ${selectedApp?.email || "candidate"}`;
-          } else if (newStatus === "Rejected") {
-            msg = `Candidate rejected. Rejection email sent to ${selectedApp?.email || "candidate"}`;
-          } else if (newStatus === "Contacted") {
-            msg = `Status updated! Notification email sent to ${selectedApp?.email || "candidate"}`;
-          }
-        }
-        toast.success(msg, { id: toastId, duration: 4500 });
+        toast.success(`Status updated to ${newStatus}`, {
+          id: toastId,
+          duration: 3000,
+        });
         setApplications((prev) =>
           prev.map((app) =>
             app.id === id ? { ...app, status: newStatus } : app,
           ),
         );
         if (selectedApp && selectedApp.id === id) {
-          setSelectedApp((prev) => (prev ? { ...prev, status: newStatus } : null));
+          setSelectedApp((prev) =>
+            prev ? { ...prev, status: newStatus } : null,
+          );
         }
       } else {
         toast.error(json.error || "Failed to update status", { id: toastId });
@@ -161,8 +160,10 @@ export default function JobApplicationsPage() {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this job application?")) return;
+  const confirmDelete = async () => {
+    if (!appToDelete) return;
+    const { id } = appToDelete;
+    setIsDeleting(true);
     try {
       const res = await fetch(`/api/job-applications?id=${id}`, {
         method: "DELETE",
@@ -171,12 +172,15 @@ export default function JobApplicationsPage() {
       if (json.success) {
         toast.success("Application deleted successfully");
         if (selectedApp?.id === id) setSelectedApp(null);
+        setAppToDelete(null);
         fetchApplications();
       } else {
         toast.error(json.error || "Delete failed");
       }
     } catch {
       toast.error("Network error deleting application");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -195,7 +199,8 @@ export default function JobApplicationsPage() {
         const blobUrl = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = blobUrl;
-        link.download = app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
+        link.download =
+          app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -204,7 +209,8 @@ export default function JobApplicationsPage() {
       } catch (e) {
         const link = document.createElement("a");
         link.href = app.resumeBase64;
-        link.download = app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
+        link.download =
+          app.resumeName || `${app.name.replace(/\s+/g, "_")}_Resume.pdf`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -223,7 +229,10 @@ export default function JobApplicationsPage() {
     if (!previewResumeApp) return null;
     if (previewResumeApp.resumeBase64) {
       try {
-        const base64Clean = previewResumeApp.resumeBase64.replace(/^data:[^;]+;base64,/, "");
+        const base64Clean = previewResumeApp.resumeBase64.replace(
+          /^data:[^;]+;base64,/,
+          "",
+        );
         const byteCharacters = atob(base64Clean);
         const byteNumbers = new Array(byteCharacters.length);
         for (let i = 0; i < byteCharacters.length; i++) {
@@ -244,7 +253,7 @@ export default function JobApplicationsPage() {
     <div className="flex flex-col gap-8 pb-20">
       <PageHeader
         title="Job Applications & Resumes"
-        description="Review candidate applications submitted through the Careers portal, preview applicant resumes directly inside CMS, and manage automated email status notifications."
+        description="Review candidate applications submitted through the Careers portal, preview applicant resumes directly inside CMS, and update applicant review status."
       />
 
       {/* Filter & Search Bar */}
@@ -261,27 +270,32 @@ export default function JobApplicationsPage() {
         />
 
         <div className="flex items-center gap-2 flex-wrap self-stretch lg:self-auto shrink-0">
-          {["ALL", "Pending", "Reviewing", "Shortlisted", "Contacted", "Rejected"].map(
-            (status) => {
-              const isActive = statusFilter === status;
-              return (
-                <button
-                  key={status}
-                  onClick={() => {
-                    setStatusFilter(status);
-                    setPage(1);
-                  }}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                    isActive
-                      ? "bg-[#0A0F29] text-white shadow-md shadow-gray-200"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  {status === "ALL" ? "All" : status}
-                </button>
-              );
-            },
-          )}
+          {[
+            "ALL",
+            "Pending",
+            "Reviewing",
+            "Shortlisted",
+            "Contacted",
+            "Rejected",
+          ].map((status) => {
+            const isActive = statusFilter === status;
+            return (
+              <button
+                key={status}
+                onClick={() => {
+                  setStatusFilter(status);
+                  setPage(1);
+                }}
+                className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                  isActive
+                    ? "bg-[#0A0F29] text-white shadow-md shadow-gray-200"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+              >
+                {status === "ALL" ? "All" : status}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -305,16 +319,21 @@ export default function JobApplicationsPage() {
                 <tr>
                   <td colSpan={7} className="text-center py-20">
                     <Loader2 className="w-8 h-8 animate-spin text-[#a0004f] mx-auto" />
-                    <p className="text-gray-400 text-xs mt-2 font-medium">Loading applications...</p>
+                    <p className="text-gray-400 text-xs mt-2 font-medium">
+                      Loading applications...
+                    </p>
                   </td>
                 </tr>
               ) : applications.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="text-center py-20">
                     <Briefcase className="w-12 h-12 text-gray-300 mx-auto mb-2" />
-                    <p className="text-gray-600 font-semibold">No job applications found</p>
+                    <p className="text-gray-600 font-semibold">
+                      No job applications found
+                    </p>
                     <p className="text-gray-400 text-xs mt-1">
-                      Candidate submissions via the Careers page will appear here.
+                      Candidate submissions via the Careers page will appear
+                      here.
                     </p>
                   </td>
                 </tr>
@@ -377,7 +396,9 @@ export default function JobApplicationsPage() {
                             <span className="truncate">{app.jobLocation}</span>
                           </div>
                         ) : (
-                          <div className="text-gray-400 text-[11px] mt-1">India / Global</div>
+                          <div className="text-gray-400 text-[11px] mt-1">
+                            India / Global
+                          </div>
                         )}
                       </td>
 
@@ -413,7 +434,9 @@ export default function JobApplicationsPage() {
                             </button>
                           </div>
                         ) : (
-                          <span className="text-xs text-gray-400 italic">No attachment</span>
+                          <span className="text-xs text-gray-400 italic">
+                            No attachment
+                          </span>
                         )}
                       </td>
 
@@ -433,9 +456,9 @@ export default function JobApplicationsPage() {
                           >
                             <option value="Pending">Pending</option>
                             <option value="Reviewing">Under Review</option>
-                            <option value="Shortlisted">Shortlisted (Send Email)</option>
-                            <option value="Contacted">Contacted (Send Email)</option>
-                            <option value="Rejected">Rejected (Send Email)</option>
+                            <option value="Shortlisted">Shortlisted</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Rejected">Rejected</option>
                           </select>
                           <ChevronDown className="w-3 h-3 text-current absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none opacity-60" />
                         </div>
@@ -446,11 +469,14 @@ export default function JobApplicationsPage() {
                         <div className="flex items-center gap-1.5">
                           <Calendar className="w-3.5 h-3.5 text-gray-400 shrink-0" />
                           <span>
-                            {new Date(app.createdAt).toLocaleDateString("en-IN", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric",
-                            })}
+                            {new Date(app.createdAt).toLocaleDateString(
+                              "en-IN",
+                              {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                              },
+                            )}
                           </span>
                         </div>
                       </td>
@@ -469,7 +495,7 @@ export default function JobApplicationsPage() {
                             <Eye className="w-4 h-4" />
                           </button>
                           <button
-                            onClick={() => handleDelete(app.id)}
+                            onClick={() => setAppToDelete({ id: app.id, name: app.name })}
                             className="p-2 text-gray-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all cursor-pointer"
                             title="Delete Application"
                           >
@@ -490,7 +516,8 @@ export default function JobApplicationsPage() {
           <div className="flex items-center justify-between px-8 py-4 border-t border-gray-100 bg-gray-50/40">
             <span className="text-xs text-gray-500 font-medium">
               Showing page <strong>{pagination.page}</strong> of{" "}
-              <strong>{pagination.totalPages}</strong> ({pagination.total} total applicants)
+              <strong>{pagination.totalPages}</strong> ({pagination.total} total
+              applicants)
             </span>
             <div className="flex items-center gap-2">
               <button
@@ -527,7 +554,14 @@ export default function JobApplicationsPage() {
                     {previewResumeApp.resumeName || "Resume Document"}
                   </h3>
                   <p className="text-xs text-gray-300 mt-0.5">
-                    Candidate: <span className="text-pink-300 font-semibold">{previewResumeApp.name}</span> • Position: <span className="text-gray-200">{previewResumeApp.jobTitle || "General Application"}</span>
+                    Candidate:{" "}
+                    <span className="text-pink-300 font-semibold">
+                      {previewResumeApp.name}
+                    </span>{" "}
+                    • Position:{" "}
+                    <span className="text-gray-200">
+                      {previewResumeApp.jobTitle || "General Application"}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -603,7 +637,9 @@ export default function JobApplicationsPage() {
             <div className="p-6 bg-[#0A0F29] text-white flex items-center justify-between relative overflow-hidden border-b-2 border-brand-pink">
               <div className="flex items-center gap-4 relative z-10">
                 <div className="w-12 h-12 rounded-2xl bg-brand-pink text-white flex items-center justify-center font-bold text-lg shadow-md">
-                  {selectedApp.name ? selectedApp.name.charAt(0).toUpperCase() : "A"}
+                  {selectedApp.name
+                    ? selectedApp.name.charAt(0).toUpperCase()
+                    : "A"}
                 </div>
                 <div>
                   <h3 className="font-bold text-xl leading-tight text-white">
@@ -614,7 +650,9 @@ export default function JobApplicationsPage() {
                     <span className="text-pink-300 font-semibold">
                       {selectedApp.jobTitle || "General Application"}
                     </span>{" "}
-                    <span className="text-gray-400">({selectedApp.department || "General"})</span>
+                    <span className="text-gray-400">
+                      ({selectedApp.department || "General"})
+                    </span>
                   </p>
                 </div>
               </div>
@@ -738,7 +776,7 @@ export default function JobApplicationsPage() {
                     Update Candidate Review Status:
                   </span>
                   <span className="text-[11px] text-gray-400">
-                    Changing to Shortlisted or Rejected automatically emails the candidate.
+                    Updates the application status in the database.
                   </span>
                 </div>
                 <select
@@ -751,9 +789,9 @@ export default function JobApplicationsPage() {
                 >
                   <option value="Pending">Pending</option>
                   <option value="Reviewing">Under Review</option>
-                  <option value="Shortlisted">Shortlisted (Send Email)</option>
-                  <option value="Contacted">Contacted (Send Email)</option>
-                  <option value="Rejected">Rejected (Send Email)</option>
+                  <option value="Shortlisted">Shortlisted</option>
+                  <option value="Contacted">Contacted</option>
+                  <option value="Rejected">Rejected</option>
                 </select>
               </div>
             </div>
@@ -761,16 +799,64 @@ export default function JobApplicationsPage() {
             {/* Footer */}
             <div className="p-4 bg-gray-50/80 border-t border-gray-100 flex items-center justify-between">
               <button
-                onClick={() => handleDelete(selectedApp.id)}
+                type="button"
+                onClick={() => setAppToDelete({ id: selectedApp.id, name: selectedApp.name })}
                 className="flex items-center gap-1.5 text-xs text-rose-600 hover:text-rose-800 font-semibold px-3.5 py-2 rounded-xl hover:bg-rose-50 transition-colors cursor-pointer"
               >
                 <Trash2 className="w-4 h-4" /> Delete Application
               </button>
               <button
+                type="button"
                 onClick={() => setSelectedApp(null)}
                 className="px-6 py-2.5 bg-[#0A0F29] text-white rounded-xl text-xs font-bold hover:bg-black transition-colors cursor-pointer"
               >
                 Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Custom Delete Confirmation Popup Modal */}
+      {appToDelete && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-gray-100 flex flex-col gap-6 animate-in zoom-in-95 duration-200 relative">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 border border-red-100">
+                <Trash2 className="w-6 h-6" />
+              </div>
+              <div className="flex-1">
+                <h4 className="text-lg font-black text-[#0B0F29] uppercase tracking-tight">
+                  Delete Application
+                </h4>
+                <p className="text-sm text-gray-500 mt-1 leading-relaxed">
+                  Are you sure you want to delete the job application from{" "}
+                  <span className="font-bold text-gray-900">"{appToDelete.name}"</span>? This action cannot be undone.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-2 border-t border-gray-50">
+              <button
+                type="button"
+                disabled={isDeleting}
+                onClick={() => setAppToDelete(null)}
+                className="px-4 py-2.5 rounded-xl border border-gray-200 hover:bg-gray-50 text-gray-700 text-xs font-bold transition-all cursor-pointer disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={isDeleting}
+                onClick={confirmDelete}
+                className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-all flex items-center gap-2 cursor-pointer shadow-md shadow-red-600/20 disabled:opacity-50"
+              >
+                {isDeleting ? (
+                  <Loader2 className="w-4 h-4 animate-spin text-white" />
+                ) : (
+                  <Trash2 className="w-4 h-4" />
+                )}
+                <span>Delete</span>
               </button>
             </div>
           </div>

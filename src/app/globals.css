@@ -29,3 +29,16 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Sticky Save button: keeps each section's Save button visible at the bottom of
+   the screen while that section is being edited. Targets the standard
+   `flex justify-end` wrapper around <SaveButton/>; sticky is bounded by the
+   section, so the next section's button takes over once you scroll past it. */
+.flex.justify-end:has(> .cms-save-btn) {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  background: #ffffff;
+  padding-bottom: 1rem;
+  margin-bottom: -1rem;
+}

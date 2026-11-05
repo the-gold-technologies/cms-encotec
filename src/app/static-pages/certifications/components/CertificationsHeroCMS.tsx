@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchWithCache } from "@/lib/apiCache";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ImagePickerField } from "@/components/ImagePickerField";
@@ -40,7 +41,7 @@ export function CertificationsHeroCMS() {
       .catch(console.error);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -104,12 +105,13 @@ export function CertificationsHeroCMS() {
             onChange={handleChange}
             required
           />
-          <InputField
+          <TextAreaField
             label="Hero Subtitle"
             name="heroSubtitle"
             value={formData.heroSubtitle}
             onChange={handleChange}
             required
+            rows={3}
           />
           <ImagePickerField
             label="Hero Background Image"

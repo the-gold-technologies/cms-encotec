@@ -236,13 +236,14 @@ export function ScaleImpactCMS({
                   required
                 />
 
-                <InputField
+                <TextAreaField
                   label="Footer Note Statement"
                   name="footerNote"
                   value={formData.footerNote}
                   onChange={handleChange}
                   placeholder="e.g. Our scale is not just a measure of size..."
                   required
+                  rows={3}
                 />
 
                 {/* Dynamic Stats Cards Header */}

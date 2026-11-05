@@ -105,12 +105,13 @@ export function CareersCultureCMS() {
             rows={3}
             required
           />
-          <InputField
+          <TextAreaField
             label="Callout Quote"
             name="cultureQuote"
             value={formData.cultureQuote}
             onChange={handleChange}
             required
+            rows={3}
           />
           {formData.cultureImage && (
             <div className="w-full h-32 rounded-lg overflow-hidden bg-gray-50 border border-gray-100">

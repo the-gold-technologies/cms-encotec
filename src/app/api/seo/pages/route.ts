@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { navUrlToSeoSlug, seoSlugToPageSlug, SERVICE_SUBPAGES } from "@/lib/seoSlug";
 
 export async function GET() {
   try {
@@ -19,74 +20,26 @@ export async function GET() {
       orderBy: { order: "asc" },
     });
 
-    const servicesPage = await prisma.page.findUnique({
-      where: { slug: "services" },
-      include: {
-        sections: true,
-      },
-    });
+    const findPage = (seoSlug: string) => {
+      const pageSlug = seoSlugToPageSlug(seoSlug);
+      return pageSlug ? pages.find((p: any) => p.slug === pageSlug) : undefined;
+    };
 
     const mergedData = links.map((link: any) => {
-      const urlMatchesSlug = (url: string, slug: string) => {
-        if (url === "/" && slug === "home") return true;
-        return url === `/${slug}`;
-      };
+      // Every nav link (including Dropdown parents like Services / Insights, which
+      // are real pages on the website) resolves to one canonical SEO slug.
+      const slug = navUrlToSeoSlug(link.url);
+      const matchedPage = findPage(slug);
 
-      // 1. Try to match with a regular page
-      const matchedPage = pages.find((p: any) => urlMatchesSlug(link.url, p.slug));
-
-      if (matchedPage) {
-        return {
-          id: link.id,
-          pageId: matchedPage.id,
-          title: link.label,
-          slug: matchedPage.slug,
-          metaTitle: matchedPage.metaTitle,
-          metaDescription: matchedPage.metaDescription,
-          type: link.type || matchedPage.type,
-          visibility: matchedPage.visibility,
-          parent: link.parent,
-          order: link.order,
-          description: link.description,
-          navTitle: link.title,
-          isStatic: link.isStatic,
-        };
-      }
-
-      // 2. Try to match with a service sub-page
-      if (link.url.startsWith("/service/") && servicesPage) {
-        const serviceId = link.url.split("/service/")[1];
-        const section = servicesPage.sections.find((s: any) => s.type === serviceId);
-        if (section) {
-          const content = section.content as any;
-          return {
-            id: link.id,
-            pageId: `${servicesPage.id}-${serviceId}`,
-            title: link.label,
-            slug: link.url.replace(/^\//, ""),
-            metaTitle: content.seo?.metaTitle || null,
-            metaDescription: content.seo?.metaDescription || null,
-            type: link.type || "sub-link",
-            visibility: "published",
-            parent: link.parent,
-            order: link.order,
-            description: link.description,
-            navTitle: link.title,
-            isStatic: link.isStatic,
-          };
-        }
-      }
-
-      // 3. Fallback for static/missing links
       return {
         id: link.id,
-        pageId: null,
+        pageId: matchedPage?.id ?? null,
         title: link.label,
-        slug: link.url === "/" ? "home" : link.url.replace(/^\//, ""),
-        metaTitle: null,
-        metaDescription: null,
-        type: link.type || "static",
-        visibility: "published",
+        slug,
+        metaTitle: matchedPage?.metaTitle ?? null,
+        metaDescription: matchedPage?.metaDescription ?? null,
+        type: link.type || matchedPage?.type || "static",
+        visibility: matchedPage?.visibility ?? "published",
         parent: link.parent,
         order: link.order,
         description: link.description,
@@ -95,50 +48,34 @@ export async function GET() {
       };
     });
 
-    const slugMap: Record<string, string> = {
-      "project-management": "project-management",
-      "power-generation": "power-generation",
-      "construction-commissioning": "construction-commissioning",
-      "technical-advisory": "technical-advisory",
-      "due-diligence": "due-diligence",
-      "value-added": "value-added",
-    };
-
+    // Add any service sub-page that exists on the website but is missing from navigation.
     const servicesLink = links.find((l: any) => l.url === "/services");
-    const serviceSubpages = [];
-    if (servicesPage) {
-      const subserviceIds = [
-        "project-management",
-        "power-generation",
-        "construction-commissioning",
-        "technical-advisory",
-        "due-diligence",
-        "value-added"
-      ];
-      
-      for (const serviceId of subserviceIds) {
-        const pageSlug = slugMap[serviceId];
-        const subpage = pages.find((p: any) => p.slug === pageSlug);
-        
-        serviceSubpages.push({
-          id: `sub-${serviceId}`,
-          pageId: subpage ? subpage.id : `${servicesPage.id}-${serviceId}`,
-          title: subpage ? subpage.title : (serviceId.charAt(0).toUpperCase() + serviceId.slice(1).replace("-", " ")),
-          slug: `service/${serviceId}`,
-          metaTitle: subpage ? subpage.metaTitle : null,
-          metaDescription: subpage ? subpage.metaDescription : null,
-          type: "sub-link",
-          visibility: subpage ? subpage.visibility : "published",
-          parent: servicesLink ? servicesLink.id : "-",
-          order: 1,
-          isStatic: false
-        });
-      }
-    }
+    const listedSlugs = new Set(mergedData.map((d: any) => d.slug));
+    const missingServicePages = SERVICE_SUBPAGES.filter(
+      (id) => !listedSlugs.has(`service/${id}`),
+    ).map((id, i) => {
+      const subpage = pages.find((p: any) => p.slug === id);
+      return {
+        id: `sub-${id}`,
+        pageId: subpage?.id ?? null,
+        title:
+          subpage?.title ??
+          id.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" "),
+        slug: `service/${id}`,
+        metaTitle: subpage?.metaTitle ?? null,
+        metaDescription: subpage?.metaDescription ?? null,
+        type: "Sub-link",
+        visibility: subpage?.visibility ?? "published",
+        parent: servicesLink ? servicesLink.id : "-",
+        order: 100 + i,
+        isStatic: false,
+      };
+    });
 
-    const finalData = mergedData.concat(serviceSubpages);
-
-    return NextResponse.json({ success: true, data: finalData });
+    return NextResponse.json({
+      success: true,
+      data: mergedData.concat(missingServicePages),
+    });
   } catch (error) {
     console.error("Error fetching pages for SEO:", error);
     return NextResponse.json(

@@ -211,26 +211,23 @@ export function MissionVisionValuesCMS({
               <div className="flex flex-col gap-6 bg-gray-50/20 border border-gray-100 p-6 rounded-2xl w-full">
 
                 {/* Tag + Description */}
-                <div className="flex flex-col md:flex-row gap-6 w-full">
-                  <InputField
-                    label="Section Tag Label"
-                    name="tagline"
-                    value={formData.tagline}
-                    onChange={handleChange}
-                    placeholder="e.g. Our Heart and Soul"
-                    required
-                    containerClassName="flex-1"
-                  />
-                  <InputField
-                    label="Description Subtitle"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    placeholder="e.g. Our purpose is to bridge..."
-                    required
-                    containerClassName="flex-1"
-                  />
-                </div>
+                <InputField
+                  label="Section Tag Label"
+                  name="tagline"
+                  value={formData.tagline}
+                  onChange={handleChange}
+                  placeholder="e.g. Our Heart and Soul"
+                  required
+                />
+                <TextAreaField
+                  label="Description Subtitle"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  placeholder="e.g. Our purpose is to bridge..."
+                  required
+                  rows={3}
+                />
 
                 {/* Mission + Vision */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full border-t border-gray-100 pt-6">

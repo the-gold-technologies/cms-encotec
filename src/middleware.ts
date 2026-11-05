@@ -40,6 +40,13 @@ export default auth((req) => {
     return Response.redirect(new URL("/login", nextUrl));
   }
 
+  // Hidden admin pages: kept in the codebase but not accessible.
+  // Remove a path from this list to re-enable it.
+  const hiddenRoutes = ["/navigation/social-media"];
+  if (hiddenRoutes.some((p) => nextUrl.pathname === p || nextUrl.pathname.startsWith(`${p}/`))) {
+    return Response.redirect(new URL("/", nextUrl));
+  }
+
   return;
 });
 

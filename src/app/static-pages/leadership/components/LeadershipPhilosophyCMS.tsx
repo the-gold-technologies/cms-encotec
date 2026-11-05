@@ -94,12 +94,13 @@ export function LeadershipPhilosophyCMS() {
             rows={3}
             required
           />
-          <InputField
+          <TextAreaField
             label="Callout Quote"
             name="philosophyQuote"
             value={formData.philosophyQuote}
             onChange={handleChange}
             required
+            rows={3}
           />
           <div className="flex justify-end pt-4 border-t border-gray-50">
             <SaveButton
